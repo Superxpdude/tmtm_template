@@ -1,3 +1,7 @@
+// initServer.sqf
+// Executes only on the server at mission start
+// No parameters are passed to this script
+
 // Initialise dynamic groups
 ["Initialize", [true]] call BIS_fnc_dynamicGroups;
 
