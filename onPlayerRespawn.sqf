@@ -11,4 +11,6 @@ if (_loadout == "config") then {
 	_loadout = typeOf _unit;
 };
 [_unit, missionConfigFile >> "CfgRespawnInventory" >> _loadout] call BIS_fnc_loadInventory;
+
+// Sets the insignia of the unit to the TMTM insignia
 [_unit, "tmtm"] remoteExec ["BIS_fnc_setUnitInsignia", 0, true];
