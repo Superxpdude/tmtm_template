@@ -1,0 +1,98 @@
+//-------------------- Mission Information
+
+author = ""; // Author name visible on loading screen
+briefingName = ""; // Name visible in mission select screen
+overviewText = ""; // Description visible in mission select screen
+//overviewPicture = ""; // Image visible in mission select screen. Leave commented, still doesn't work properly.
+onLoadName = ""; // Name visible on loading screen
+onLoadMission = ""; // Description visible on loading screen
+//loadScreen = "media\loadscreen.paa"; // Image visible on loading screen
+
+class Header
+{
+	gameType = COOP; // https://community.bistudio.com/wiki/Multiplayer_Game_Types
+	minPlayers = 1; // Minimum amount of players needed for the mission
+	maxPlayers = 16; // Maximum amount of players the mission supports
+}; 
+
+//-------------------- Admin
+
+enableDebugConsole = 1; // Leave this as 1
+allowFunctionsLog = 0; // Disables functions from spamming the server RPT logs
+allowFunctionsRecompile = 0; // Always leave this as 0
+
+//-------------------- Misc
+
+// Disablechannels is set above to disable voice for all channels (since we use TFAR), as well as text for non-global channels. More info here https://community.bistudio.com/wiki/Description.ext#disableChannels
+disableChannels[] = {{0,false,true},{1,true,true}{2,true,true}{3,true,true}{4,true,true}{5,true,true}{6,false,false}}; // Use this for COOPs
+//disableChannels[] = {{0,false,true},{1,false,true}{2,true,true}{3,true,true}{4,true,true}{5,true,true}{6,false,false}}; // Use this for TvTs
+disabledAI = 1; // Disable AI in player slots
+aiKills = 0; // Don't show AI units on the leaderboards
+enableItemsDropping = 0; // Don't drop player items when they swim
+joinUnassigned = 1; // Don't autoslot players when they join the lobby
+skipLobby = 0; // Change this to 1 if all players slots are the same and you want to skip the lobby screen. Needs joinUnassigned = 0;
+showUAVFeed = 1;
+foceRotorLibSimulation = 0; // Leave AFM choice to the player
+saving = 0; // Disable saving for multiplayer missions
+
+//-------------------- Respawn
+// https://community.bistudio.com/wiki/Arma_3_Respawn
+
+respawn = 3; // 3 is BASE respawn
+respawnDelay = 120; // Respawn delay in seconds
+respawnVehicleDelay = 1800; // Vehicle respawn delay in seconds
+respawnDialog = 0; // Disables showing scoreboard when respawning
+respawnTemplates[] = {"MenuPosition", "Spectator"}; // Templates used for player respawning, applies to all sides
+//respawnTemplatesWest[] = {"MenuPosition", "Spectator"}; // Templates used for player respawning, applies to BLUFOR only
+//respawnTemplatesEast[] = {"MenuPosition", "Spectator"}; // Templates used for player respawning, applies to OPFOR only
+//respawnTemplatesGuer[] = {"MenuPosition", "Spectator"}; // Templates used for player respawning, applies to Independent only
+//respawnTemplatesCiv[] = {"MenuPosition", "Spectator"}; // Templates used for player respawning, applies to Civilians only
+//respawnTemplatesVirtual[] = {"MenuPosition", "Spectator"}; // Templates used for player respawning, applies to Virtual Units (Zeus, HC) only
+respawnOnStart = 0; // Respawns players at the start of the mission. Leave this off for most cases.
+respawnButton = 1; // Enable the respawn button for players
+
+//-------------------- Garbage Collector
+
+
+corpseManagerMode = 3; // Only manages corpses for non-respawning units
+corpseLimit = 50; // Start cleaning up corpses once we get above this number
+corpseRemovalMinTime = 60; // Make sure corpses stay on the ground for at least 60 seconds
+corpseRemovalMaxTime = 600; // Remove corpses after 10 minutes regardless of how many are on the map  
+
+wreckManagerMode = 3; // Only manages corpses for non-respawning units
+wreckLimit = 10; // Start cleaning up wrecks once we get above this number
+wreckRemovalMinTime = 60; // Make sure wrecks stay for at least 60 seconds
+wreckRemovalMaxTime = 1800; // Remove wrecks after 30 minutes regardless of how many are on the map
+
+//-------------------- Parameters
+
+#include "config\CfgParams.hpp";
+
+//-------------------- Functions
+
+#include "config\CfgFunctions.hpp";
+
+//-------------------- Notifications
+
+#include "config\CfgNotifications.hpp";
+
+//-------------------- Communication Menu
+
+#include "config\CfgCommunicationMenu.hpp";
+
+//-------------------- Debriefing
+
+#include "config\CfgDebriefing.hpp";
+
+//-------------------- Respawn Inventories
+
+#include "config\CfgRespawnInventory.hpp";
+
+//-------------------- Unit Insignias
+
+#include "config\CfgUnitInsignia.hpp";
+
+//-------------------- ORBAT
+
+#include "config\CfgORBAT.hpp";
+
