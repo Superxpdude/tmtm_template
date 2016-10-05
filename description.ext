@@ -32,7 +32,7 @@ enableItemsDropping = 0; // Don't drop player items when they swim
 joinUnassigned = 1; // Don't autoslot players when they join the lobby
 skipLobby = 0; // Change this to 1 if all players slots are the same and you want to skip the lobby screen. Needs joinUnassigned = 0;
 showUAVFeed = 1;
-foceRotorLibSimulation = 0; // Leave AFM choice to the player
+forceRotorLibSimulation = 0; // Leave AFM choice to the player
 saving = 0; // Disable saving for multiplayer missions
 
 //-------------------- Respawn
