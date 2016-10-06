@@ -2,11 +2,25 @@
 // Handles setting up TFAR radios for player units
 
 // Set radio encryption codes
-// Use these for COOP missions, this sets all radios to the same encryption
-// Comment this out for TvTs
-tf_west_radio_code = "_tmtm";
-tf_east_radio_code = "_tmtm";
-tf_guer_radio_code = "_tmtm";
+// These can be used to over-ride the auto detection method
+// To use: Uncomment the next 3 lines, and comment out the auto-detection system
+//tf_west_radio_code = "_tmtm";
+//tf_east_radio_code = "_tmtm";
+//tf_guer_radio_code = "_tmtm";
+
+// Mission Type Auto Detection
+// Automatically sets up radios depending on the gameType determined in description.ext
+private "_missionType";
+_missionType = toLower (getText (getMissionConfig >> "Header" >> "gameType"));
+switch (_missionType) do {
+	case "zeus";
+	case "coop": {tf_west_radio_code = "_tmtm"; tf_east_radio_code = "_tmtm"; tf_guer_radio_code = "_tmtm";};
+	case "dm";
+	case "ctf";
+	case "sc";
+	case "koth";
+	case "tdm": {tf_west_radio_code = "_tmtm_west"; tf_east_radio_code = "_tmtm_east"; tf_guer_radio_code = "_tmtm_guer";};
+};
 
 // TODO: Set radio frequencies to be consistent
 tf_no_auto_long_range_radio = true; // Don't automatically give group leaders radio backpacks
