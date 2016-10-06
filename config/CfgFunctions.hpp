@@ -3,10 +3,13 @@
 // https://community.bistudio.com/wiki/Functions_Library_(Arma_3))
 
 {
+	// Don't change anything in this class
 	class SXP
 	{
+		// Don't change anything in this class
 		class system
 		{
+			// Don't change any of these classes
 			class mapMarkers {};
 			class setupHC {};
 			class setupTFAR {preInit = 1;};

@@ -3,6 +3,7 @@
 // https://community.bistudio.com/wiki/Arma_3_Unit_Insignia
 
 {
+	// Don't change anything in this class
 	class tmtm
 	{
 		displayName = "TMTM";
