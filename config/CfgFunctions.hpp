@@ -9,6 +9,7 @@
 		// Don't change anything in this class
 		class curator
 		{
+			// Don't change any of these classes
 			class addUnitToZeus {};
 			class zeusRemoveNVGs {};
 		};
