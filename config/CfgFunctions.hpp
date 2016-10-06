@@ -7,10 +7,15 @@
 	class SXP
 	{
 		// Don't change anything in this class
+		class curator
+		{
+			class addUnitToZeus {};
+			class zeusRemoveNVGs {};
+		};
+		// Don't change anything in this class
 		class system
 		{
 			// Don't change any of these classes
-			class addUnitToZeus {};
 			class mapMarkers {};
 			class setupHC {};
 			class setupTFAR {preInit = 1;};
