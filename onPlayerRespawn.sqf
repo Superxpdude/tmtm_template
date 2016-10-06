@@ -16,5 +16,8 @@ if (isClass ((getMissionConfig "CfgRespawnInventory") >> _loadout)) then {
 	[_unit, missionConfigFile >> "CfgRespawnInventory" >> _loadout] call BIS_fnc_loadInventory;
 };
 
+// Makes sure the unit is editable by all zeus modules. Needs to be run on the server
+[_unit] remoteExec ["SXP_fnc_addUnitToZeus", 2];
+
 // Sets the insignia of the unit to the TMTM insignia
 [_unit, "tmtm"] remoteExec ["BIS_fnc_setUnitInsignia", 0, true];

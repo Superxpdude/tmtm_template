@@ -10,6 +10,7 @@
 		class system
 		{
 			// Don't change any of these classes
+			class addUnitToZeus {};
 			class mapMarkers {};
 			class setupHC {};
 			class setupTFAR {preInit = 1;};
