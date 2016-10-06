@@ -12,7 +12,7 @@ if (_loadout == "config") then {
 };
 
 // Only load the loadout for a unit if that loadout actually exists
-if (isClass ((getMissionConfigValue "CfgRespawnInventory") >> _loadout)) then {
+if (isClass ((getMissionConfig "CfgRespawnInventory") >> _loadout)) then {
 	[_unit, missionConfigFile >> "CfgRespawnInventory" >> _loadout] call BIS_fnc_loadInventory;
 };
 
