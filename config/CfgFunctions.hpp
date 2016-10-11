@@ -18,6 +18,7 @@
 		{
 			// Don't change any of these classes
 			class mapMarkers {};
+			class mapMarkersLocal {};
 			class setupHC {};
 			class setupTFAR {preInit = 1;};
 		};

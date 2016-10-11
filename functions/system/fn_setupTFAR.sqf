@@ -2,24 +2,18 @@
 // Handles setting up TFAR radios for player units
 
 // Set radio encryption codes
-// These can be used to over-ride the auto detection method
-// To use: Uncomment the next 3 lines, and comment out the auto-detection system
-//tf_west_radio_code = "_tmtm";
-//tf_east_radio_code = "_tmtm";
-//tf_guer_radio_code = "_tmtm";
-
 // Mission Type Auto Detection
 // Automatically sets up radios depending on the gameType determined in description.ext
-private "_missionType";
-_missionType = toLower (getText (getMissionConfig >> "Header" >> "gameType"));
-switch (_missionType) do {
-	case "zeus";
-	case "coop": {tf_west_radio_code = "_tmtm"; tf_east_radio_code = "_tmtm"; tf_guer_radio_code = "_tmtm";};
-	case "dm";
-	case "ctf";
-	case "sc";
-	case "koth";
-	case "tdm": {tf_west_radio_code = "_tmtm_west"; tf_east_radio_code = "_tmtm_east"; tf_guer_radio_code = "_tmtm_guer";};
+private ["_isPVP"];
+_isPVP = getMissionConfigValue "SXP_isPVP";
+if (_isPVP) then {
+	tf_west_radio_code = "_tmtm_west";
+	tf_east_radio_code = "_tmtm_east";
+	tf_guer_radio_code = "_tmtm_guer";
+} else {
+	tf_west_radio_code = "_tmtm";
+	tf_east_radio_code = "_tmtm";
+	tf_guer_radio_code = "_tmtm";
 };
 
 // TODO: Set radio frequencies to be consistent
@@ -33,12 +27,29 @@ if (isServer) then {
 	_settingsSW = false call TFAR_fnc_generateSwSettings;
 	_settingsLR = false call TFAR_fnc_generateLRSettings;
 	
-	_settingsSW set [2, ["200","225","250","275","300","325","350","375"]];
+	// Set frequencies depending on if the mission is PVP or not
+	if (_isPVP) then {
+		// Set frequencies for BLUFOR
+		_settingsSWWest = _settingsSW;
+		_settingsSWWest set [2, ["200","220","240","260","280","300","320","340"]];
+		// Set frequencies for OPFOR
+		_settingsSWEast = _settingsSW;
+		_settingsSWEast set [2, ["210","230","250","270","290","310","330","350"]];
+		// Set frequencies for Independent
+		_settingsSWGuer = _settingsSW;
+		_settingsSWGuer set [2, ["205","215","225","235","245","255","265","275"]];
+	} else {
+		_settingsSW set [2, ["200","220","240","260","280","300","320","340"]];
+		_settingsSWWest = _settingsSW;
+		_settingsSWEast = _settingsSW;
+		_settingsSWGuer = _settingsSW;
+	};
+	
 	_settingsLR set [2, ["50","55","60","65","70","75","80","85","90"]];
 	
-	tf_freq_west = _settingsSW;
-	tf_freq_east = _settingsSW;
-	tf_freq_guer = _settingsSW;
+	tf_freq_west = _settingsSWWest;
+	tf_freq_east = _settingsSWEast;
+	tf_freq_guer = _settingsSWGuer;
 	
 	tf_freq_west_lr = _settingsLR;
 	tf_freq_east_lr = _settingsLR;
