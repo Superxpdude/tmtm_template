@@ -33,8 +33,8 @@ allowFunctionsRecompile = 0; // Always leave this as 0
 //-------------------- Misc
 
 // Disablechannels is set below to disable voice for all channels (since we use TFAR), as well as text for non-global channels. More info here https://community.bistudio.com/wiki/Description.ext#disableChannels
-disableChannels[] = {{0,false,true},{1,true,true},{2,true,true},{3,true,true},{4,true,true},{5,true,true}}; // Use this for COOPs
-//disableChannels[] = {{0,false,true},{1,false,true},{2,true,true},{3,true,true},{4,true,true},{5,true,true}}; // Use this for TvTs
+disableChannels[] = {{0,false,true},{1,true,true},{2,true,true},{3,false,true},{4,true,true},{5,true,true}}; // Use this for COOPs
+//disableChannels[] = {{0,false,true},{1,false,true},{2,true,true},{3,false,true},{4,true,true},{5,true,true}}; // Use this for TvTs
 disabledAI = 1; // Disable AI in player slots
 aiKills = 0; // Don't show AI units on the leaderboards
 enableItemsDropping = 0; // Don't drop player items when they swim
