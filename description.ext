@@ -74,6 +74,8 @@ wreckLimit = 10; // Start cleaning up wrecks once we get above this number
 wreckRemovalMinTime = 60; // Make sure wrecks stay for at least 60 seconds
 wreckRemovalMaxTime = 1800; // Remove wrecks after 30 minutes regardless of how many are on the map
 
+minPlayerDistance = 75; // Don't remove a wreck or corpse if there's a player within 75 meters.
+
 //-------------------- Parameters
 
 #include "config\CfgParams.hpp";
