@@ -7,6 +7,16 @@ if (getMissionConfigValue "SXP_zeus_removeNVGs") then {
 	_objPlaced append ["_this remoteExec ['SXP_fnc_objPlaced', 2]"];
 };
 
+// Figure out if we need to set custom vehicle cargos
+if (getMissionConfigValue "SXP_customVehicleCargo") then {
+	_objPlaced append ["_this call SXP_fnc_setVehicleCargo"];
+};
+
+// Figure out if we need to set custom unit loadouts
+if (getMissionConfigValue "SXP_zeus_customLoadouts") then {
+	_objPlaced append ["_this call SXP_fnc_setUnitLoadouts"];
+};
+
 // Add the event handlers to all curators
 {
 	_x addEventHandler ["CuratorObjectPlaced",compile (_objPlaced joinString "; ")];
