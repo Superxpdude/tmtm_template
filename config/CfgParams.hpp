@@ -1,7 +1,7 @@
 // Mission parameters
 // Available on mission lobby
 // https://community.bistudio.com/wiki/Arma_3_Mission_Parameters
-
+class params
 {
 	// Don't change anything in this class
 	class ace_medical_level
