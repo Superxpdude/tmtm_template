@@ -8,7 +8,7 @@ if (!(getMissionConfigValue "SXP_isPVP")) exitWith {};
 {
 	private ["_x"];
 	// Check if the side of the group is friendly to the side of the player
-	if (!([(side player), (side (_x select 1)] call BIS_fnc_sideIsFriendly)) then {
+	if (!([(side player), (side (_x select 1))] call BIS_fnc_sideIsFriendly)) then {
 		// If the sides are not friends, hide the marker
 		(_x select 0) setMarkerAlphaLocal 0;
 	};

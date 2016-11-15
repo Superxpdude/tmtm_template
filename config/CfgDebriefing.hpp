@@ -2,6 +2,7 @@
 // Handles the mission ending screen
 // https://community.bistudio.com/wiki/Debriefing
 
+class cfgDebriefing
 {
 	class example
 	{

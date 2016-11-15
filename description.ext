@@ -107,4 +107,3 @@ minPlayerDistance = 75; // Don't remove a wreck or corpse if there's a player wi
 //-------------------- ORBAT
 
 #include "config\CfgORBAT.hpp"
-

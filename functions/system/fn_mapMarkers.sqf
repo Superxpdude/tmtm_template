@@ -3,6 +3,7 @@ if ((_this select 0) == 0) exitWith {};
 
 [] spawn {
 	private ["_groups", "_markers", "_tempMarkers", "_markerType"];
+	_markers = [];
 	while {true} do {
 		// Clear the groups list
 		_groups = [];
@@ -30,7 +31,7 @@ if ((_this select 0) == 0) exitWith {};
 					case civilian: {"c_unknown"};
 					default {"b_unknown"};
 				};
-				_grpMarker setMarkerType = _markerType;
+				_grpMarker setMarkerType _markerType;
 				_grpMarker setMarkerPos (getPosATL (leader _x));
 				_grpMarker setMarkerText (groupID _x);
 				_grpMarker setMarkerSize [0.75, 0.75];

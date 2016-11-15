@@ -12,7 +12,7 @@ class params
 		texts[] = {"Basic", "Advanced"};
 		default = 1;
 	};
-	// Don't change anything other than the default value.
+	// Don't change anything other than the default value
 	class ace_medical_enableRevive
 	{
 		title = "Enable ACE3 Revive";
@@ -21,7 +21,7 @@ class params
 		texts[] = {"No", "Yes"};
 		default = 1;
 	};
-	// Don't change anything other than the default value.
+	// Don't change anything other than the default value
 	class ace_medical_enableUnconsciousnessAI
 	{
 		title = "AI Unconsciousness Setting";
@@ -30,7 +30,7 @@ class params
 		texts[] = {"Instant Death", "50/50", "Always go unconscious first"};
 		default = 1;
 	};
-	// Don't change anything other than the default value.
+	// Don't change anything other than the default value
 	class map_markers
 	{
 		title = "Enable group tracking on map";
@@ -40,7 +40,7 @@ class params
 		isGlobal = 0;
 		function = "SXP_fnc_mapMarkers";
 	};
-	// Don't change anything in this class.
+	// Don't change anything in this class
 	class headlessclient
 	{
 		title = "Enable Headless Client support";

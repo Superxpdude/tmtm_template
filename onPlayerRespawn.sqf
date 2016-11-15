@@ -3,7 +3,7 @@
 // _this = [<newUnit>, <oldUnit>, <respawn>, <respawnDelay>]
 
 _unit = _this select 0;
-if (getMissionConfigValue "SXP_customLoadouts") then {
+if ((getMissionConfigValue "SXP_customLoadouts") == "true") then {
 	// Handle giving units their proper loadouts upon respawn.
 	// If the variable "loadout" is given to a unit, that loadout will be used from CfgRespawnInventory
 	// If the variable is not used, the classname of the unit will be used.
