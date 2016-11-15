@@ -78,33 +78,33 @@ minPlayerDistance = 75; // Don't remove a wreck or corpse if there's a player wi
 
 //-------------------- Parameters
 
-#include "config\CfgParams.hpp";
+#include "config\CfgParams.hpp"
 
 //-------------------- Functions
 
-#include "config\CfgFunctions.hpp";
+#include "config\CfgFunctions.hpp"
 
 //-------------------- Notifications
 
-#include "config\CfgNotifications.hpp";
+#include "config\CfgNotifications.hpp"
 
 //-------------------- Communication Menu
 
-#include "config\CfgCommunicationMenu.hpp";
+#include "config\CfgCommunicationMenu.hpp"
 
 //-------------------- Debriefing
 
-#include "config\CfgDebriefing.hpp";
+#include "config\CfgDebriefing.hpp"
 
 //-------------------- Respawn Inventories
 
-#include "config\CfgRespawnInventory.hpp";
+#include "config\CfgRespawnInventory.hpp"
 
 //-------------------- Unit Insignias
 
-#include "config\CfgUnitInsignia.hpp";
+#include "config\CfgUnitInsignia.hpp"
 
 //-------------------- ORBAT
 
-#include "config\CfgORBAT.hpp";
+#include "config\CfgORBAT.hpp"
 
