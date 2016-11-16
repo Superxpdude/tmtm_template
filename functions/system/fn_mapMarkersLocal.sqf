@@ -2,7 +2,7 @@
 // Local component of map markers script. Only runs during PVP missions. Not to be run on dedicated machines
 // Hides markers of other sides during PVP matches
 if (isDedicated) exitWith {};
-if (!(getMissionConfigValue "SXP_isPVP")) exitWith {};
+if ((getMissionConfigValue "SXP_isPVP") == 0) exitWith {};
 
 // Run through each marker passed to the script, and determine if we need to hide it
 {
