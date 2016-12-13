@@ -14,7 +14,7 @@ if ((_this select 0) == 0) exitWith {};
 			if (isPlayer (leader _x)) then {
 				_groups pushBackUnique _x;
 			};
-		};
+		} forEach allGroups;
 		// Start updating markers for all groups
 		{
 			// Check if the group already has a marker
@@ -23,6 +23,7 @@ if ((_this select 0) == 0) exitWith {};
 			if (isNil "_grpMarker") then {
 				// If the group does not yet have a marker, create one
 				_grpMarker = createMarker [format ["%1", _x], getPosATL (leader _x)];
+				_grpMarker setMarkerShape "ICON";
 				// Get the correct marker type based on the group's side
 				_markerType = switch (side _x) do {
 					case west: {"b_unknown"};
@@ -36,12 +37,11 @@ if ((_this select 0) == 0) exitWith {};
 				_grpMarker setMarkerText (groupID _x);
 				_grpMarker setMarkerSize [0.75, 0.75];
 				// Add the new marker to the markers array
-				_markers pushBackUnique [_grpMarker, _x];
-				_tempMarkers pushBackUnique [_grpMarker, _x];
+				_markers pushBackUnique _grpMarker;
 				// Set a variable on the group referencing the new marker
 				_x setVariable ["SXP_mapMarker", _grpMarker, true];
 				// If the mission is a PVP mission, tell the clients to hide markers of other sides
-				if (getMissionConfigValue "SXP_isPVP") then {
+				if ((getMissionConfigValue "SXP_isPVP") == "true") then {
 					[[_grpMarker, _x]] remoteExec ["SXP_fnc_mapMarkersLocal", 0];
 				};
 			} else {
@@ -49,13 +49,13 @@ if ((_this select 0) == 0) exitWith {};
 				_grpMarker setMarkerPos (getPosATL (leader _x));
 				_grpMarker setMarkerText (groupID _x);
 			};
-			_tempMarkers = _tempMarkers - [_grpMarker, _x];
+			_tempMarkers = _tempMarkers - [_grpMarker];
 		} forEach _groups;
 		// If there are any markers that are missing a group, then delete them
 		if ((count _tempMarkers) > 0) then {
 			{
-				_markers = _markers - _x;
-				deleteMarker (_x select 0);
+				_markers = _markers - [_x];
+				deleteMarker _x;
 			} forEach _tempMarkers;
 		};
 		// Broadcast the markers list to all clients
