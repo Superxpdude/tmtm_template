@@ -41,7 +41,7 @@ if ((_this select 0) == 0) exitWith {};
 				// Set a variable on the group referencing the new marker
 				_x setVariable ["SXP_mapMarker", _grpMarker, true];
 				// If the mission is a PVP mission, tell the clients to hide markers of other sides
-				if ((getMissionConfigValue "SXP_isPVP") == "true") then {
+				if ((getMissionConfigValue "SXP_isPVP") == 1) then {
 					[[_grpMarker, _x]] remoteExec ["SXP_fnc_mapMarkersLocal", 0];
 				};
 			} else {

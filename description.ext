@@ -18,11 +18,11 @@ class Header
 //-------------------- Script Options
 
 // The following variables have no relevance to the game if not used with the rest of the template scripts
-SXP_isPVP = false; // Set to true if the mission is a PVP mission. Changes how radios and map markers are handled
-SXP_customLoadouts = false; // Set to true to enable loading custom loadouts for player units
-SXP_customVehicleCargo = false; // Set to true to enable custom vehicle inventories
-SXP_zeus_removeNVGs = false; // Set to true to remove NVGs from zeus-spawned units
-SXP_zeus_customLoadouts = false; // Set to true to enable loading custom loadouts for zeus-spawned units
+SXP_isPVP = 0; // Set to 1 if the mission is a PVP mission. Changes how radios and map markers are handled
+SXP_customLoadouts = 0; // Set to 1 to enable loading custom loadouts for player units
+SXP_customVehicleCargo = 0; // Set to 1 to enable custom vehicle inventories
+SXP_zeus_removeNVGs = 0; // Set to 1 to remove NVGs from zeus-spawned units
+SXP_zeus_customLoadouts = 0; // Set to 1 to enable loading custom loadouts for zeus-spawned units
  
 
 //-------------------- Admin

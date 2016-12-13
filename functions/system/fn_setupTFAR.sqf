@@ -6,7 +6,7 @@
 // Automatically sets up radios depending on the gameType determined in description.ext
 private ["_isPVP", "_settingsSW", "_settingsLR", "_settingsSWWest", "_settingsSWEast", "_settingsSWGuer"];
 _isPVP = getMissionConfigValue "SXP_isPVP";
-if (_isPVP == "true") then {
+if (_isPVP == 1) then {
 	tf_west_radio_code = "_tmtm_west";
 	tf_east_radio_code = "_tmtm_east";
 	tf_guer_radio_code = "_tmtm_guer";
@@ -28,7 +28,7 @@ if (isServer) then {
 	_settingsLR = false call TFAR_fnc_generateLRSettings;
 	
 	// Set frequencies depending on if the mission is PVP or not
-	if (_isPVP == "true") then {
+	if (_isPVP == 1) then {
 		// Set frequencies for BLUFOR
 		_settingsSWWest = _settingsSW;
 		_settingsSWWest set [2, ["200","220","240","260","280","300","320","340","360"]];
