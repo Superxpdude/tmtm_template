@@ -28,7 +28,7 @@ class params
 		ACE_setting = 1;
 		values[] = {0,1,2};
 		texts[] = {"Instant Death", "50/50", "Always go unconscious first"};
-		default = 1;
+		default = 0;
 	};
 	// Don't change anything other than the default value
 	class map_markers
