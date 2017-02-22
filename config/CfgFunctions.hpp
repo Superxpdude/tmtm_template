@@ -15,9 +15,10 @@ class cfgFunctions
 			class zeusRemoveNVGs {};
 		};
 		// Don't change anything in this class
-		class inventory
+		class inventory {
 			// Don't change any of these classes
 			class loadInventory {};
+		};
 		// Don't change anything in this class
 		class system
 		{
