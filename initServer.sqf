@@ -20,3 +20,6 @@ _blacklistedMissionObjects = [];
 		};
 	} forEach playableUnits + switchableUnits + allMissionObjects "LandVehicle" + allMissionObjects "Man" + allMissionObjects "Air" + allMissionObjects "Reammobox_F" - _blacklistedMissionObjects - allMissionObjects "VirtualMan_F";
 } forEach allCurators;
+
+// Call the script to handle initial task setup
+[] execVM "scripts\tasks.sqf";
