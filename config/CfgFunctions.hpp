@@ -27,8 +27,10 @@ class cfgFunctions
 		class system
 		{
 			// Don't change any of these classes
+			class loadRadioSettings {};
 			class mapMarkers {};
 			class mapMarkersLocal {};
+			class saveRadioSettings {};
 			class setupHC {};
 			class setupTFAR {preInit = 1;};
 		};
