@@ -115,6 +115,10 @@ if (!local _unit) then {
 			_unit addItemToBackpack (_x select 0)
 		};
 	} forEach _backpackItems;
+	
+	// Copy the unit's old radio settings (if they have any)
+	// Use spawn since this function waits for TFAR to be finished assigning new radios
+	[] spawn SXP_fnc_loadRadioSettings;
 };
 // Return true if script is completed.
 true 
