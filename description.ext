@@ -1,80 +1,92 @@
 //-------------------- Mission Information
 
-author = ""; // Author name visible on loading screen
-briefingName = ""; // Name visible in mission select screen
-overviewText = ""; // Description visible in mission select screen
-//overviewPicture = ""; // Image visible in mission select screen. Leave commented, still doesn't work properly.
-onLoadName = ""; // Name visible on loading screen
-onLoadMission = ""; // Description visible on loading screen
+author = ""; 					// Author name visible on loading screen
+briefingName = ""; 				// Name visible in mission select screen
+overviewText = ""; 				// Description visible in mission select screen
+//overviewPicture = "";			// Image visible in mission select screen. Leave commented, still doesn't work properly.
+onLoadName = ""; 				// Name visible on loading screen
+onLoadMission = ""; 			// Description visible on loading screen
 //loadScreen = "media\loadscreen.paa"; // Image visible on loading screen
 
 class Header
 {
-	gameType = COOP; // https://community.bistudio.com/wiki/Multiplayer_Game_Types
-	minPlayers = 1; // Minimum amount of players needed for the mission
-	maxPlayers = 16; // Maximum amount of players the mission supports
-}; 
+	gameType = COOP; 			// https://community.bistudio.com/wiki/Multiplayer_Game_Types
+	minPlayers = 1; 			// Minimum amount of players needed for the mission
+	maxPlayers = 16; 			// Maximum amount of players the mission supports
+};
+
+//-------------------- Defines
+//#define DEFINEPVP 1			// Uncomment if the mission is a PvP mission
+
+//-------------------- DO NOT EDIT THIS SECTION
+#ifndef DEFINEPVP
+	SXP_isPVP = 0; 				// Set as 0 for COOP missions
+	disableChannels[] = {{0,false,true},{1,true,true},{2,true,true},{3,false,true},{4,true,true},{5,true,true}}; // Use this for COOPs
+#else
+	SXP_isPVP = 1;				// Set as 1 for PVP missions
+	disableChannels[] = {{0,false,true},{1,false,true},{2,true,true},{3,false,true},{4,true,true},{5,true,true}}; // Use this for TvTs
+#endif
 
 //-------------------- Script Options
 
 // The following variables have no relevance to the game if not used with the rest of the template scripts
-SXP_isPVP = 0; // Set to 1 if the mission is a PVP mission. Changes how radios and map markers are handled
-SXP_customLoadouts = 0; // Set to 1 to enable loading custom loadouts for player units
-SXP_customVehicleCargo = 0; // Set to 1 to enable custom vehicle inventories - Currently unused
-SXP_zeus_removeNVGs = 0; // Set to 1 to remove NVGs from zeus-spawned units
-SXP_zeus_customLoadouts = 0; // Set to 1 to enable loading custom loadouts for zeus-spawned units - Currently unused
+// Edit the values below to change template settings
+SXP_customLoadouts = 0; 		// Set to 1 to enable loading custom loadouts for player units
+SXP_customVehicleCargo = 0; 	// Set to 1 to enable custom vehicle inventories - Currently unused
+SXP_zeus_removeNVGs = 0; 		// Set to 1 to remove NVGs from zeus-spawned units
+SXP_zeus_customLoadouts = 0; 	// Set to 1 to enable loading custom loadouts for zeus-spawned units - Currently unused
  
 
 //-------------------- Admin
 
-enableDebugConsole = 1; // Leave this as 1
-allowFunctionsLog = 0; // Disables functions from spamming the server RPT logs
-allowFunctionsRecompile = 0; // Always leave this as 0
+enableDebugConsole = 1; 		// Leave this as 1
+allowFunctionsLog = 0; 			// Disables functions from spamming the server RPT logs
+allowFunctionsRecompile = 0; 	// Always leave this as 0
 
 //-------------------- Misc
 
-// Disablechannels is set below to disable voice for all channels (since we use TFAR), as well as text for non-global channels. More info here https://community.bistudio.com/wiki/Description.ext#disableChannels
-disableChannels[] = {{0,false,true},{1,true,true},{2,true,true},{3,false,true},{4,true,true},{5,true,true}}; // Use this for COOPs
-//disableChannels[] = {{0,false,true},{1,false,true},{2,true,true},{3,false,true},{4,true,true},{5,true,true}}; // Use this for TvTs
-disabledAI = 1; // Disable AI in player slots
-aiKills = 0; // Don't show AI units on the leaderboards
-enableItemsDropping = 0; // Don't drop player items when they swim
-joinUnassigned = 1; // Don't autoslot players when they join the lobby
-skipLobby = 0; // Change this to 1 if all players slots are the same and you want to skip the lobby screen. Needs joinUnassigned = 0;
-showUAVFeed = 1;
-forceRotorLibSimulation = 0; // Leave AFM choice to the player
-saving = 0; // Disable saving for multiplayer missions
+disabledAI = 1; 				// Disable AI in player slots
+aiKills = 0; 					// Don't show AI units on the leaderboards
+enableItemsDropping = 0; 		// Don't drop player items when they swim
+joinUnassigned = 1; 			// Don't autoslot players when they join the lobby
+skipLobby = 0; 					// Change this to 1 if all players slots are the same and you want to skip the lobby screen. Needs joinUnassigned = 0;
+showUAVFeed = 1;				// Leave this as 1
+forceRotorLibSimulation = 0; 	// Leave AFM choice to the player
+saving = 0; 					// Disable saving for multiplayer missions
 
 //-------------------- Respawn
 // https://community.bistudio.com/wiki/Arma_3_Respawn
 
-respawn = 3; // 3 is BASE respawn
-respawnDelay = 120; // Respawn delay in seconds
-respawnVehicleDelay = 1800; // Vehicle respawn delay in seconds
-respawnDialog = 0; // Disables showing scoreboard when respawning
-respawnTemplates[] = {"MenuPosition", "Spectator"}; // Templates used for player respawning, applies to all sides
-//respawnTemplatesWest[] = {"MenuPosition", "Spectator"}; // Templates used for player respawning, applies to BLUFOR only
-//respawnTemplatesEast[] = {"MenuPosition", "Spectator"}; // Templates used for player respawning, applies to OPFOR only
-//respawnTemplatesGuer[] = {"MenuPosition", "Spectator"}; // Templates used for player respawning, applies to Independent only
-//respawnTemplatesCiv[] = {"MenuPosition", "Spectator"}; // Templates used for player respawning, applies to Civilians only
-//respawnTemplatesVirtual[] = {"MenuPosition", "Spectator"}; // Templates used for player respawning, applies to Virtual Units (Zeus, HC) only
-respawnOnStart = 0; // Respawns players at the start of the mission. Leave this off for most cases.
-respawnButton = 1; // Enable the respawn button for players
+respawn = 3; 					// 3 is BASE respawn
+respawnDelay = 120; 			// Respawn delay in seconds
+respawnVehicleDelay = 1800;		// Vehicle respawn delay in seconds
+respawnDialog = 0; 				// Disables showing scoreboard when respawning
+respawnOnStart = 0; 			// Respawns players at the start of the mission. Leave this off for most cases.
+respawnButton = 1; 				// Enable the respawn button for players
+
+//-------------------- Respawn Templates
+
+respawnTemplates[] = {"MenuPosition", "Spectator"}; 			// Templates used for player respawning, applies to all sides
+//respawnTemplatesWest[] = {"MenuPosition", "Spectator"}; 		// Templates used for player respawning, applies to BLUFOR only
+//respawnTemplatesEast[] = {"MenuPosition", "Spectator"}; 		// Templates used for player respawning, applies to OPFOR only
+//respawnTemplatesGuer[] = {"MenuPosition", "Spectator"}; 		// Templates used for player respawning, applies to Independent only
+//respawnTemplatesCiv[] = {"MenuPosition", "Spectator"}; 		// Templates used for player respawning, applies to Civilians only
+//respawnTemplatesVirtual[] = {"MenuPosition", "Spectator"}; 	// Templates used for player respawning, applies to Virtual Units (Zeus, HC) only
 
 //-------------------- Garbage Collector
 
 
-corpseManagerMode = 3; // Only manages corpses for non-respawning units
-corpseLimit = 50; // Start cleaning up corpses once we get above this number
-corpseRemovalMinTime = 60; // Make sure corpses stay on the ground for at least 60 seconds
-corpseRemovalMaxTime = 600; // Remove corpses after 10 minutes regardless of how many are on the map  
+corpseManagerMode = 3;				// Only manages corpses for non-respawning units
+corpseLimit = 50;					// Start cleaning up corpses once we get above this number
+corpseRemovalMinTime = 60;			// Make sure corpses stay on the ground for at least 60 seconds
+corpseRemovalMaxTime = 600;			// Remove corpses after 10 minutes regardless of how many are on the map  
 
-wreckManagerMode = 3; // Only manages corpses for non-respawning units
-wreckLimit = 10; // Start cleaning up wrecks once we get above this number
-wreckRemovalMinTime = 60; // Make sure wrecks stay for at least 60 seconds
-wreckRemovalMaxTime = 1800; // Remove wrecks after 30 minutes regardless of how many are on the map
+wreckManagerMode = 3;				// Only manages corpses for non-respawning units
+wreckLimit = 10;					// Start cleaning up wrecks once we get above this number
+wreckRemovalMinTime = 60;			// Make sure wrecks stay for at least 60 seconds
+wreckRemovalMaxTime = 1800;			// Remove wrecks after 30 minutes regardless of how many are on the map
 
-minPlayerDistance = 75; // Don't remove a wreck or corpse if there's a player within 75 meters.
+minPlayerDistance = 50;				// Don't remove a wreck or corpse if there's a player within 50 meters.
 
 //-------------------- Parameters
 
@@ -107,6 +119,10 @@ minPlayerDistance = 75; // Don't remove a wreck or corpse if there's a player wi
 //-------------------- ORBAT
 
 #include "config\CfgORBAT.hpp"
+
+//-------------------- Task Enhancements
+
+#include "config\CfgTaskEnhancements.hpp"
 
 //-------------------- Custom config entries
 class SuperXP
