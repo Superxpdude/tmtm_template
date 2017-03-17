@@ -1,18 +1,18 @@
 //-------------------- Mission Information
 
-author = ""; 					// Author name visible on loading screen
-briefingName = ""; 				// Name visible in mission select screen
-overviewText = ""; 				// Description visible in mission select screen
+author = "";					// Author name visible on loading screen
+briefingName = "";				// Name visible in mission select screen
+overviewText = "";				// Description visible in mission select screen
 //overviewPicture = "";			// Image visible in mission select screen. Leave commented, still doesn't work properly.
-onLoadName = ""; 				// Name visible on loading screen
-onLoadMission = ""; 			// Description visible on loading screen
+onLoadName = "";				// Name visible on loading screen
+onLoadMission = "";				// Description visible on loading screen
 //loadScreen = "media\loadscreen.paa"; // Image visible on loading screen
 
 class Header
 {
-	gameType = COOP; 			// https://community.bistudio.com/wiki/Multiplayer_Game_Types
-	minPlayers = 1; 			// Minimum amount of players needed for the mission
-	maxPlayers = 16; 			// Maximum amount of players the mission supports
+	gameType = COOP;			// https://community.bistudio.com/wiki/Multiplayer_Game_Types
+	minPlayers = 1;				// Minimum amount of players needed for the mission
+	maxPlayers = 16;			// Maximum amount of players the mission supports
 };
 
 //-------------------- Defines
@@ -31,47 +31,47 @@ class Header
 
 // The following variables have no relevance to the game if not used with the rest of the template scripts
 // Edit the values below to change template settings
-SXP_customLoadouts = 0; 		// Set to 1 to enable loading custom loadouts for player units
-SXP_customVehicleCargo = 0; 	// Set to 1 to enable custom vehicle inventories - Currently unused
-SXP_zeus_removeNVGs = 0; 		// Set to 1 to remove NVGs from zeus-spawned units
-SXP_zeus_customLoadouts = 0; 	// Set to 1 to enable loading custom loadouts for zeus-spawned units - Currently unused
+SXP_customLoadouts = 0;			// Set to 1 to enable loading custom loadouts for player units
+SXP_customVehicleCargo = 0;		// Set to 1 to enable custom vehicle inventories - Currently unused
+SXP_zeus_removeNVGs = 0;		// Set to 1 to remove NVGs from zeus-spawned units
+SXP_zeus_customLoadouts = 0;	// Set to 1 to enable loading custom loadouts for zeus-spawned units - Currently unused
  
 
 //-------------------- Admin
 
-enableDebugConsole = 1; 		// Leave this as 1
-allowFunctionsLog = 0; 			// Disables functions from spamming the server RPT logs
-allowFunctionsRecompile = 0; 	// Always leave this as 0
+enableDebugConsole = 1;			// Leave this as 1
+allowFunctionsLog = 0;			// Disables functions from spamming the server RPT logs
+allowFunctionsRecompile = 0;	// Always leave this as 0
 
 //-------------------- Misc
 
-disabledAI = 1; 				// Disable AI in player slots
-aiKills = 0; 					// Don't show AI units on the leaderboards
-enableItemsDropping = 0; 		// Don't drop player items when they swim
-joinUnassigned = 1; 			// Don't autoslot players when they join the lobby
-skipLobby = 0; 					// Change this to 1 if all players slots are the same and you want to skip the lobby screen. Needs joinUnassigned = 0;
+disabledAI = 1;					// Disable AI in player slots
+aiKills = 0;					// Don't show AI units on the leaderboards
+enableItemsDropping = 0;		// Don't drop player items when they swim
+joinUnassigned = 1;				// Don't autoslot players when they join the lobby
+skipLobby = 0;					// Change this to 1 if all players slots are the same and you want to skip the lobby screen. Needs joinUnassigned = 0;
 showUAVFeed = 1;				// Leave this as 1
-forceRotorLibSimulation = 0; 	// Leave AFM choice to the player
-saving = 0; 					// Disable saving for multiplayer missions
+forceRotorLibSimulation = 0;	// Leave AFM choice to the player
+saving = 0;						// Disable saving for multiplayer missions
 
 //-------------------- Respawn
 // https://community.bistudio.com/wiki/Arma_3_Respawn
 
-respawn = 3; 					// 3 is BASE respawn
-respawnDelay = 120; 			// Respawn delay in seconds
+respawn = 3;					// 3 is BASE respawn
+respawnDelay = 120;				// Respawn delay in seconds
 respawnVehicleDelay = 1800;		// Vehicle respawn delay in seconds
-respawnDialog = 0; 				// Disables showing scoreboard when respawning
-respawnOnStart = 0; 			// Respawns players at the start of the mission. Leave this off for most cases.
-respawnButton = 1; 				// Enable the respawn button for players
+respawnDialog = 0;				// Disables showing scoreboard when respawning
+respawnOnStart = 0;				// Respawns players at the start of the mission. Leave this off for most cases.
+respawnButton = 1;				// Enable the respawn button for players
 
 //-------------------- Respawn Templates
 
-respawnTemplates[] = {"MenuPosition", "Spectator"}; 			// Templates used for player respawning, applies to all sides
-//respawnTemplatesWest[] = {"MenuPosition", "Spectator"}; 		// Templates used for player respawning, applies to BLUFOR only
-//respawnTemplatesEast[] = {"MenuPosition", "Spectator"}; 		// Templates used for player respawning, applies to OPFOR only
-//respawnTemplatesGuer[] = {"MenuPosition", "Spectator"}; 		// Templates used for player respawning, applies to Independent only
-//respawnTemplatesCiv[] = {"MenuPosition", "Spectator"}; 		// Templates used for player respawning, applies to Civilians only
-//respawnTemplatesVirtual[] = {"MenuPosition", "Spectator"}; 	// Templates used for player respawning, applies to Virtual Units (Zeus, HC) only
+respawnTemplates[] = {"MenuPosition", "Spectator"};				// Templates used for player respawning, applies to all sides
+//respawnTemplatesWest[] = {"MenuPosition", "Spectator"};		// Templates used for player respawning, applies to BLUFOR only
+//respawnTemplatesEast[] = {"MenuPosition", "Spectator"};		// Templates used for player respawning, applies to OPFOR only
+//respawnTemplatesGuer[] = {"MenuPosition", "Spectator"};		// Templates used for player respawning, applies to Independent only
+//respawnTemplatesCiv[] = {"MenuPosition", "Spectator"};		// Templates used for player respawning, applies to Civilians only
+//respawnTemplatesVirtual[] = {"MenuPosition", "Spectator"};	// Templates used for player respawning, applies to Virtual Units (Zeus, HC) only
 
 //-------------------- Garbage Collector
 
