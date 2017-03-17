@@ -124,6 +124,10 @@ minPlayerDistance = 50;				// Don't remove a wreck or corpse if there's a player
 
 #include "config\CfgTaskEnhancements.hpp"
 
+//-------------------- Task Descriptions
+
+#include "config\CfgTaskDescriptions.hpp"
+
 //-------------------- Custom config entries
 class SuperXP
 {
