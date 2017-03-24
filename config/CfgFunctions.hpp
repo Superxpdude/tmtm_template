@@ -29,6 +29,7 @@ class cfgFunctions
 			// Don't change any of these classes
 			class endMission {};
 			class updateTask {};
+		};
 		// Don't change anything in this class
 		class system
 		{
