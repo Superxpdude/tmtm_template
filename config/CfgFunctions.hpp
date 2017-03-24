@@ -16,7 +16,14 @@ class cfgFunctions
 			class grpPlaced {};
 			class objPlaced {};
 			class setVehicleCargo {};
+			class transferGroup {};
 			class zeusRemoveNVGs {};
+		};
+		// Don't change anything in this class
+		class debug
+		{
+			// Don't change any of these classes
+			class fixCurator {};
 		};
 		// Don't change anything in this class
 		class inventory {
@@ -42,4 +49,6 @@ class cfgFunctions
 			class setupTFAR {preInit = 1;};
 		};
 	};
+	// If you need to add additional functions, create a new section below using your tag of choice (Ex: SXP = Superxpdude)
+	// See the functions library wiki page for additional details
 };

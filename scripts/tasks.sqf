@@ -14,14 +14,13 @@ if (!isServer) exitWith {};
 	"attack", // Task type. Types can be found in CfgTaskTypes, or at https://community.bistudio.com/wiki/Arma_3_Tasks_Overhaul#Appendix
 	true // Share task. If true, game will report which players have the task selected.	
 ] call BIS_fnc_taskCreate;
-*/
 
-if (isNil "zeus_unit") then {
-	// Put initial tasks here
-} else {
-	// Put second copy of tasks here.
-	// Due to a bug in BIS_fnc_taskCreate, zeus will not be set as an owner unless explicitly defined.
-	// However, if zeus isn't present, trying to use the object will throw script errors.
-	// Copy the tasks from above into this section, and replace the owner with an array
-	// Example: true, would turn into [true, zeus_unit],
-};
+	Make sure to add the name of the zeus module into the owner field in string format
+	It should look like this when written
+	
+		[true, "zeus_module"]
+		
+	This adds the task to all player units, as well as the "zeus_module" curator.
+	This makes sure that zeus units have the same tasks that the players do
+*/
+// Place tasks here

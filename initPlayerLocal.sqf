@@ -7,3 +7,4 @@
 
 // Create initial briefings for the players
 [] execVM "scripts\briefing.sqf";
+[] execVM "scripts\zeusMenu.sqf";

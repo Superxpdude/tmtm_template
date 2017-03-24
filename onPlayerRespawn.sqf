@@ -14,7 +14,7 @@ if ((getMissionConfigValue "SXP_customLoadouts") == 1) then {
 	
 	// Check where the loadout is located, and execute the corresponding script
 	switch true do {
-		case (isClass ((getMissionConfig "SuperXP") >> "loadouts" >> _loadout)): {[_unit, (getMissionConfig "SuperXP") >> "loadouts" >> _loadout] call SXP_fnc_loadInventory;};
+		case (isClass ((getMissionConfig "CfgSuperXP") >> "loadouts" >> _loadout)): {[_unit, (getMissionConfig "CfgSuperXP") >> "loadouts" >> _loadout] call SXP_fnc_loadInventory;};
 		case (isClass ((getMissionConfig "CfgRespawnInventory") >> _loadout)): {[_unit, (getMissionConfig "CfgRespawnInventory") >> _loadout] call BIS_fnc_loadInventory;};
 	};
 };

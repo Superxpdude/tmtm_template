@@ -20,6 +20,6 @@ if ((_this select 0) == 0) exitWith {};
 
 	// Add an event handler that adds all zeus spawned units to the HC
 	{_x addEventHandler ["CuratorObjectPlaced",
-		{(group (_this select 1)) setGroupOwner hcClient}];
+		{[(group (_this select 1)),hcClient] remoteExec ["SXP_fnc_transferGroup", 2];}];
 	} forEach allCurators;
 };
