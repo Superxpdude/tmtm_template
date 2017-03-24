@@ -23,3 +23,5 @@ _blacklistedMissionObjects = [];
 
 // Call the script to handle initial task setup
 [] execVM "scripts\tasks.sqf";
+
+// Add any mission specific code after this point
