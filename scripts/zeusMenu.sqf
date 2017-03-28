@@ -15,6 +15,10 @@ player createDiarySubject ["zeusmenu", "Zeus Menu"];
 player createDiaryRecord ["zeusmenu", ["Debug",
 	"<executeClose expression='[zeus_Unit, zeus_Module] remoteExec [""SXP_fnc_fixCurator"", 2]'>Fix Curator Module</execute><br/>"
 ]];
+player createDiaryRecord ["zeusmenu", ["HeadlessClient",
+	"<executeClose expression='[true] call SXP_fnc_hcCuratorEnable'>Enable curator unit transfer</execute><br/>
+	<executeClose expression='[false] call SXP_fnc_hcCuratorEnable'>Disable curator unit transfer</execute><br/>"
+]];
 
 // Add any mission specific sections below. Replace the examples with your own menu entries
 // Uncomment the section below to activate
