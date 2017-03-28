@@ -5,6 +5,15 @@
 // Initialise dynamic groups
 ["Initialize", [true]] call BIS_fnc_dynamicGroups;
 
+// Initialize our headless client variables
+sxp_hc_clientID = 0;
+sxp_hc_enabled = false;
+
+// Push the HC variables to all clients
+{
+	publicVariable _x;
+} forEach ["sxp_hc_clientID", "sxp_hc_enabled"];
+
 // Create a list of mission objects that should not be curator editable
 private "_blacklistedMissionObjects";
 _blacklistedMissionObjects = [];

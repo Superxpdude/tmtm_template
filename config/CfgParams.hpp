@@ -48,6 +48,5 @@ class params
 		texts[] = {"Disabled", "Automatic"};
 		default = 1;
 		isGlobal = 0;
-		function = "SXP_fnc_setupHC";
 	};
 };

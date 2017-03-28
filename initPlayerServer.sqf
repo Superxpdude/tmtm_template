@@ -4,4 +4,8 @@
 // _this = [player:Object, didJIP:Boolean]
 _this params ["_player", "_jip"];
 
+if (_player isKindOf "HeadlessClient_F") then {
+	_this call SXP_fnc_hcConnect;
+};
+
 // Add any mission specific code after this point

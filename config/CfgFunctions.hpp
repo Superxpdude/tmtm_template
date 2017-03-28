@@ -16,7 +16,6 @@ class cfgFunctions
 			class grpPlaced {};
 			class objPlaced {};
 			class setVehicleCargo {};
-			class transferGroup {};
 			class zeusRemoveNVGs {};
 		};
 		// Don't change anything in this class
@@ -24,6 +23,14 @@ class cfgFunctions
 		{
 			// Don't change any of these classes
 			class fixCurator {};
+		};
+		// Don't change anything in this class
+		class headlessClient
+		{
+			// Don't change any of these classes
+			class hcConnect {};
+			class hcDisconnect {};
+			class hcSetGroupOwner {};
 		};
 		// Don't change anything in this class
 		class inventory {
@@ -45,7 +52,6 @@ class cfgFunctions
 			class mapMarkers {};
 			class mapMarkersLocal {};
 			class saveRadioSettings {};
-			class setupHC {};
 			class setupTFAR {preInit = 1;};
 		};
 	};
