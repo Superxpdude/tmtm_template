@@ -29,6 +29,7 @@ class cfgFunctions
 		{
 			// Don't change any of these classes
 			class hcConnect {};
+			class hcCuratorEnable {};
 			class hcDisconnect {};
 			class hcSetGroupOwner {};
 		};
