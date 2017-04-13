@@ -36,7 +36,7 @@
 */
 
 // Define variables
-private ["_unit", "_class"];
+private ["_unit", "_class", "_subclasses"];
 params [
 	["_unit", nil, [objNull]],
 	["_class", nil, [configNull]]
@@ -57,6 +57,12 @@ if (!local _unit) then {
 	};
 } else {
 	// If the unit is local, continue to changing its loadout
+	// Check if the specified class has sub-loadouts
+	_subclasses = "true" configClasses _class;
+	if ((count _subclasses) > 0) then {
+		// If we have any subclasses, select a random one.
+		_class = selectRandom _subclasses;
+	};
 	
 	// Retrieve loadout data from config files
 	private ["_displayName", "_weapons", "_primaryWeaponItems", "_secondaryWeaponItems", "_handgunItems", "_uniformClass", "_headgearClass", "_facewearClass", "_vestClass", "_backpackClass", "_linkedItems", "_uniformItems", "_vestItems", "_backpackItems"];
