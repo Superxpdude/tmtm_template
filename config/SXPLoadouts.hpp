@@ -17,7 +17,7 @@ class loadouts
 		uniformClass = "U_B_CombatUniform_mcam_tshirt";
 		headgearClass = "H_Watchcap_blk";
 		facewearClass = "";
-		vestClass = "V_Chestrif_khk";
+		vestClass = "V_Chestrig_khk";
 		backpackClass = "B_AssaultPack_mcamo";
 		
 		linkedItems[] = {"ItemMap", "ItemCompass", "ItemWatch", "ItemRadio"}; // Linked items for the unit, use for map, compass, radio, watch, gps, and NVGs
@@ -40,7 +40,7 @@ class loadouts
 			uniformClass = "U_B_CombatUniform_mcam_tshirt";
 			headgearClass = "H_Watchcap_blk";
 			facewearClass = "";
-			vestClass = "V_Chestrif_khk";
+			vestClass = "V_Chestrig_khk";
 			backpackClass = "B_AssaultPack_mcamo";
 			
 			linkedItems[] = {"ItemMap", "ItemCompass", "ItemWatch", "ItemRadio"}; // Linked items for the unit, use for map, compass, radio, watch, gps, and NVGs
@@ -60,7 +60,7 @@ class loadouts
 			uniformClass = "U_B_CombatUniform_mcam_tshirt";
 			headgearClass = "H_Watchcap_blk";
 			facewearClass = "";
-			vestClass = "V_Chestrif_khk";
+			vestClass = "V_Chestrig_khk";
 			backpackClass = "B_AssaultPack_mcamo";
 			
 			linkedItems[] = {"ItemMap", "ItemCompass", "ItemWatch", "ItemRadio"}; // Linked items for the unit, use for map, compass, radio, watch, gps, and NVGs
