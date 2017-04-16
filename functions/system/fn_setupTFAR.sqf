@@ -31,21 +31,21 @@ if (isServer) then {
 	if (_isPVP == 1) then {
 		// Set frequencies for BLUFOR
 		_settingsSWWest = _settingsSW;
-		_settingsSWWest set [2, ["200","220","240","260","280","300","320","340","360"]];
+		_settingsSWWest = ["200","220","240","260","280","300","320","340","360"];
 		// Set frequencies for OPFOR
 		_settingsSWEast = _settingsSW;
-		_settingsSWEast set [2, ["210","230","250","270","290","310","330","350","370"]];
+		_settingsSWEast = ["210","230","250","270","290","310","330","350","370"];
 		// Set frequencies for Independent
 		_settingsSWGuer = _settingsSW;
-		_settingsSWGuer set [2, ["205","215","225","235","245","255","265","275","285"]];
+		_settingsSWGuer = ["205","215","225","235","245","255","265","275","285"];
 	} else {
-		_settingsSW set [2, ["200","220","240","260","280","300","320","340"]];
+		_settingsSW = ["200","220","240","260","280","300","320","340","360"];
 		_settingsSWWest = _settingsSW;
 		_settingsSWEast = _settingsSW;
 		_settingsSWGuer = _settingsSW;
 	};
 	
-	_settingsLR set [2, ["50","55","60","65","70","75","80","85","90"]];
+	_settingsLR = ["50","55","60","65","70","75","80","85","90"];
 	
 	TFAR_defaultFrequencies_sr_west = _settingsSWWest;
 	TFAR_defaultFrequencies_sr_east = _settingsSWEast;
