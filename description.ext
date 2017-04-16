@@ -133,3 +133,6 @@ class CfgSuperXP
 {
 	#include "config\SXPloadouts.hpp"
 };
+
+//-------------------- ACE3 Settings
+#include "config\ACE_Settings.hpp"
