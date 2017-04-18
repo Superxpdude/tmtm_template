@@ -8,7 +8,7 @@ if (([] call TFAR_fnc_haveSwRadio) && (!isNil (missionNamespace getVariable [for
 	waitUntil {
 		// Only check once per second. TFAR can be slow sometimes
 		sleep 1;
-		!(([] call TFAR_activeSwRadio) call TFAR_fnc_isPrototypeRadio)
+		!(([] call TFAR_fnc_activeSwRadio) call TFAR_fnc_isPrototypeRadio)
 	};
 	// Copy the settings to the new radio
 	[missionNamespace getVariable [format ["%1_SW", getPlayerUID player], nil], [] call TFAR_activeSwRadio] call TFAR_fnc_copySettings;
