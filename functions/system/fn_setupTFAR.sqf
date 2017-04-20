@@ -24,19 +24,13 @@ TFAR_SameLRFrequenciesForSide = true; // Use the same long range frequencies for
 
 // Handles setting radio frequencies
 if (isServer) then {
-	_settingsSW = false call TFAR_fnc_generateSRSettings;
-	_settingsLR = false call TFAR_fnc_generateLRSettings;
-	
 	// Set frequencies depending on if the mission is PVP or not
 	if (_isPVP == 1) then {
 		// Set frequencies for BLUFOR
-		_settingsSWWest = _settingsSW;
 		_settingsSWWest = ["200","220","240","260","280","300","320","340","360"];
 		// Set frequencies for OPFOR
-		_settingsSWEast = _settingsSW;
 		_settingsSWEast = ["210","230","250","270","290","310","330","350","370"];
 		// Set frequencies for Independent
-		_settingsSWGuer = _settingsSW;
 		_settingsSWGuer = ["205","215","225","235","245","255","265","275","285"];
 	} else {
 		_settingsSW = ["200","220","240","260","280","300","320","340","360"];
