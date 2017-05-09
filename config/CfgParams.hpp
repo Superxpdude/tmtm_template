@@ -44,7 +44,7 @@ class params
 		ACE_setting = 1;
 		values[] = {30,60,90,120,180,240,300};
 		texts[] = {"30 seconds", "60 seconds", "90 seconds", "2 minutes", "3 minutes", "4 minutes", "5 minutes"};
-		default = 120;
+		default = 300;
 	};
 	// Don't change anything other than the default value
 	class ace_medical_enableUnconsciousnessAI
