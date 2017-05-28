@@ -20,7 +20,11 @@
 	
 	// Add event handler to handle curator units and headless clients
 	if (("headlessclient" call BIS_fnc_getParamValue) == 1) then {
-		_x addEventHandler ["CuratorObjectPlaced",{[(group (_this select 1))] remoteExec ["SXP_fnc_hcSetGroupOwner", 2];}];
+		_x addEventHandler ["CuratorObjectPlaced",{
+			if (sxp_hc_zeusEnabled) then {
+				[(group (_this select 1))] remoteExec ["SXP_fnc_hcSetGroupOwner", 2];
+			};
+		}];
 	};
 	_x addEventHandler ["CuratorGroupPlaced",{_this remoteExec ["SXP_fnc_grpPlaced", 2];}];
 } forEach allCurators;
