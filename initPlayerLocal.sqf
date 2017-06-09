@@ -3,7 +3,7 @@
 // _this = [player:Object, didJIP:Boolean]
 _this params ["_player", "_jip"];
 
-#include version.hpp
+#include "version.hpp"
 
 // Initialise dynamic groups on the player side
 ["InitializePlayer", [player, true]] call BIS_fnc_dynamicGroups;
