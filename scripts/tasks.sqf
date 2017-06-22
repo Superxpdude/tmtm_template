@@ -16,12 +16,12 @@ if (!isServer) exitWith {};
 	true // Share task. If true, game will report which players have the task selected.	
 ] call BIS_fnc_taskCreate;
 
-	Make sure to add the name of the zeus module into the owner field in string format
+	Make sure to add the name of the zeus unit into the owner field in string format
 	It should look like this when written
 	
-		[true, "zeus_module"]
+		[true, "zeus_unit"]
 		
-	This adds the task to all player units, as well as the "zeus_module" curator.
+	This adds the task to all player units, as well as the "zeus_unit" curator.
 	This makes sure that zeus units have the same tasks that the players do
 */
 // Place tasks here

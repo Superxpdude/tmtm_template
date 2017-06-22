@@ -1,9 +1,9 @@
 // Function to toggle enabling zeus-spawned units to the headless client
 
 // Change the value of the zeus-enabled parameter
-sxp_hc_zeusEnable = (_this select 0);
+sxp_hc_zeusEnabled = (_this select 0);
 // Broadcast the change to all clients
-publicVariable "sxp_hc_zeusEnable";
+publicVariable "sxp_hc_zeusEnabled";
 // Notify the zeus client that the status has been changed
 if (_this select 0) then {
 	systemChat "SXP-Headless: Curator unit transfer enabled";

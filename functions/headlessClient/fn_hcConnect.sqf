@@ -12,9 +12,11 @@ _this params ["_player", "_jip"];
 
 // Register the clientID of the headless client
 sxp_hc_clientID = owner _player;
+publicVariable "sxp_hc_clientID";
 
 // Mark the headless client as active
 sxp_hc_enabled = true;
+publicVariable "sxp_hc_enabled";
 
 // Move all existing non-player groups over to the headless client
 {
