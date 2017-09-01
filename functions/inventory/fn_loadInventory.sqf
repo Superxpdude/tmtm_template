@@ -65,7 +65,7 @@ if (!local _unit) then {
 	};
 	
 	// Retrieve loadout data from config files
-	private ["_displayName", "_weapons", "_primaryWeaponItems", "_secondaryWeaponItems", "_handgunItems", "_uniformClass", "_headgearClass", "_facewearClass", "_vestClass", "_backpackClass", "_linkedItems", "_uniformItems", "_vestItems", "_backpackItems"];
+	private ["_displayName", "_weapons", "_primaryWeaponItems", "_secondaryWeaponItems", "_handgunItems", "_uniformClass", "_headgearClass", "_facewearClass", "_vestClass", "_backpackClass", "_linkedItems", "_uniformItems", "_vestItems", "_backpackItems", "_uniformMedical", "_vestMedical", "_backpackMedical"];
 	_displayName = [((_class >> "displayName") call BIS_fnc_getCfgData)] param [0, "", [""]];
 	_weapons = [((_class >> "weapons") call BIS_fnc_getCfgData)] param [0, "", [[""]]];
 	_primaryWeaponItems = [((_class >> "primaryWeaponItems") call BIS_fnc_getCfgData)] param [0, [""], [[]]];
@@ -80,6 +80,19 @@ if (!local _unit) then {
 	_uniformItems = [((_class >> "uniformItems") call BIS_fnc_getCfgData)] param [0, [""], [[]]];
 	_vestItems = [((_class >> "vestItems") call BIS_fnc_getCfgData)] param [0, [""], [[]]];
 	_backpackItems = [((_class >> "backpackItems") call BIS_fnc_getCfgData)] param [0, [""], [[]]];
+	
+	// Retrieve medical items from config file.
+	if ((getMissionConfigValue "ace_medical_level") == 1) then {
+		// Only load these classes if basic medical is being used.
+		_uniformMedical = [((_class >> "basicMedUniform") call BIS_fnc_getCfgData)] param [0, [""], [[]]];
+		_vestMedical = [((_class >> "basicMedVest") call BIS_fnc_getCfgData)] param [0, [""], [[]]];
+		_backpackMedical = [((_class >> "basicMedBackpack") call BIS_fnc_getCfgData)] param [0, [""], [[]]];
+	} else {
+		// Only load these classes if advanced medical is being used.
+		_uniformMedical = [((_class >> "advMedUniform") call BIS_fnc_getCfgData)] param [0, [""], [[]]];
+		_vestMedical = [((_class >> "advMedVest") call BIS_fnc_getCfgData)] param [0, [""], [[]]];
+		_backpackMedical = [((_class >> "advMedBackpack") call BIS_fnc_getCfgData)] param [0, [""], [[]]];
+	};
 	
 	// Remove the existing loadout from the unit
 	removeAllContainers _unit; // Removes uniform, vest, and backpack
@@ -110,17 +123,17 @@ if (!local _unit) then {
 		for "_i" from 1 to (_x select 1) do {
 			_unit addItemToUniform (_x select 0)
 		};
-	} forEach _uniformItems;
+	} forEach (_uniformItems + _uniformMedical);
 	{
 		for "_i" from 1 to (_x select 1) do {
 			_unit addItemToVest (_x select 0)
 		};
-	} forEach _vestItems;
+	} forEach (_vestItems + _vestMedical);
 	{
 		for "_i" from 1 to (_x select 1) do {
 			_unit addItemToBackpack (_x select 0)
 		};
-	} forEach _backpackItems;
+	} forEach (_backpackItems + _backpackMedical);
 	
 	// Copy the unit's old radio settings (if they have any)
 	// Use spawn since this function waits for TFAR to be finished assigning new radios

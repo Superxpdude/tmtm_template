@@ -24,6 +24,15 @@ class loadouts
 		uniformItems[] = {{"FirstAidKit", 3}, {"30Rnd_65x39_caseless_mag", 4}}; // Items to place in uniform. Includes weapon magazines
 		vestItems[] = {{"FirstAidKit", 3}, {"30Rnd_65x39_caseless_mag", 4}}; // Items to place in vest. Includes weapon magazines
 		backpackItems[] = {{"FirstAidKit", 3}, {"30Rnd_65x39_caseless_mag", 4}}; // Items to place in backpack. Includes weapon magazines
+		
+		basicMedUniform[] = {}; // Items to be placed in the uniform only when basic medical is being used
+		basicMedVest[] = {}; // Items to be placed in the vest only when basic medical is being used
+		basicMedBackpack[] = {}; // Items to be placed in the backpack only when basic medical is being used
+		
+		advMedUniform[] = {}; // Items to be placed in the uniform only when advanced medical is being used
+		advMedVest[] = {}; // Items to be placed in the vest only when advanced medical is being used
+		advMedBackpack[] = {}; // Items to be placed in the backpack only when advanced medical is being used
+		
 	};
 	class example_random
 	{

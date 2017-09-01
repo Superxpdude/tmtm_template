@@ -10,7 +10,7 @@ class params
 		texts[] = {""};
 		default = 0;
 	};
-	// Don't change anything in this class
+	// Don't change anything other than the default value
 	class ace_medical_level
 	{
 		title = "ACE3 - Medical Level";
