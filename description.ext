@@ -95,43 +95,43 @@ class params
 {
 	#include "template\config\CfgParams.hpp"
 };
-//#include "config\CfgParams.hpp"
 
 //-------------------- Functions
-
-#include "config\CfgFunctions.hpp"
-
+class CfgFunctions
+{
+	#include "template\config\CfgFunctions.hpp"
+};
 //-------------------- Notifications
 
-#include "config\CfgNotifications.hpp"
+//#include "config\CfgNotifications.hpp"
 
 //-------------------- Communication Menu
 
-#include "config\CfgCommunicationMenu.hpp"
+//#include "config\CfgCommunicationMenu.hpp"
 
 //-------------------- Debriefing
 
-#include "config\CfgDebriefing.hpp"
+//#include "config\CfgDebriefing.hpp"
 
 //-------------------- Respawn Inventories
 
-#include "config\CfgRespawnInventory.hpp"
+//#include "config\CfgRespawnInventory.hpp"
 
 //-------------------- Unit Insignias
 
-#include "config\CfgUnitInsignia.hpp"
+//#include "config\CfgUnitInsignia.hpp"
 
 //-------------------- ORBAT
 
-#include "config\CfgORBAT.hpp"
+//#include "config\CfgORBAT.hpp"
 
 //-------------------- Task Enhancements
 
-#include "config\CfgTaskEnhancements.hpp"
+//#include "config\CfgTaskEnhancements.hpp"
 
 //-------------------- Task Descriptions
 
-#include "config\CfgTaskDescriptions.hpp"
+//#include "config\CfgTaskDescriptions.hpp"
 
 //-------------------- Custom config entries
 class CfgSuperXP

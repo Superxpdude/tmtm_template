@@ -65,7 +65,7 @@ class header_mission_settings
 };
 class map_markers
 {
-	title = "SXP - Enable group tracking on map";
+	title = "XPT - Enable group tracking on map";
 	values[] = {0,1};
 	texts[] = {"Disabled", "Enabled"};
 	default = 1;
@@ -74,9 +74,16 @@ class map_markers
 };
 class headlessclient
 {
-	title = "SXP - Enable Headless Client support";
+	title = "XPT - Enable Headless Client support";
 	values[] = {0,1};
 	texts[] = {"Disabled", "Automatic"};
 	default = 1;
 	isGlobal = 0;
+};
+class debugMode
+{
+	title = "XPT - Enable debug mode";
+	values[] = {0,1};
+	texts[] = {"Disabled", "Enabled"};
+	default = 0;
 };
