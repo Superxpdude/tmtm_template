@@ -10,4 +10,9 @@ class XPT
 		file = "template\functions\debug";
 		class errorReport {}; // Function for handling error reporting
 	};
+	class loadout
+	{
+		file = "template\functions\loadout";
+		class loadInventory {}; // Function for loading a unit's inventory
+	};
 };
