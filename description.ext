@@ -17,6 +17,7 @@ class Header
 
 //-------------------- Defines
 //#define DEFINEPVP 1			// Uncomment if the mission is a PvP mission
+#define DEFAULTMEDICAL 1		// Defines default ACE medical setting. Set to 1 for Basic, 2 for Advanced
 
 //-------------------- DO NOT EDIT THIS SECTION
 #ifndef DEFINEPVP
@@ -90,7 +91,11 @@ minPlayerDistance = 50;				// Don't remove a wreck or corpse if there's a player
 
 //-------------------- Parameters
 
-#include "config\CfgParams.hpp"
+class params
+{
+	#include "template\config\CfgParams.hpp"
+};
+//#include "config\CfgParams.hpp"
 
 //-------------------- Functions
 
