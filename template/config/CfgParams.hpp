@@ -14,7 +14,7 @@ class ace_medical_level
 	ACE_setting = 1;
 	values[] = {1,2};
 	texts[] = {"Basic", "Advanced"};
-	default = 1;
+	default = DEFAULTMEDICAL;
 };
 class ace_medical_preventInstaDeath
 {
@@ -34,7 +34,11 @@ class ace_medical_enableRevive
 	ACE_setting = 1;
 	values[] = {0,1};
 	texts[] = {"Disabled", "Enabled"};
-	default = 1;
+	#ifdef DEFINEPVP
+		default = 0;
+	#else
+		default = 1;
+	#endif
 };
 class ace_medical_maxReviveTime
 {
