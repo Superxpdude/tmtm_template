@@ -120,6 +120,10 @@ class CfgFunctions
 //-------------------- Unit Insignias
 
 //#include "config\CfgUnitInsignia.hpp"
+class CfgUnitInsignia
+{
+	#include "template\config\CfgUnitInsignia.hpp"
+};
 
 //-------------------- ORBAT
 
