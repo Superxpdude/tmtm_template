@@ -145,7 +145,7 @@ if (!local _unit) then {
 	
 	// Copy the unit's old radio settings (if they have any)
 	// Use spawn since this function waits for TFAR to be finished assigning new radios
-	//[] spawn SXP_fnc_loadRadioSettings; //Commented out until function is rewritten.
+	//[] spawn SXP_fnc_loadRadioSettings; //Commented out for now. TFAR has a function that handles this.
 };
 // Return true if script is completed.
 true 
