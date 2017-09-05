@@ -29,5 +29,6 @@ class XPT
 	class radio
 	{
 		file = "template\functions\radio";
+		class setupTFAR {preInit = 1}; // Function for configuring radio settings
 	};
 };

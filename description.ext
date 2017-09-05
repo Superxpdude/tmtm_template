@@ -21,10 +21,10 @@ class Header
 
 //-------------------- DO NOT EDIT THIS SECTION
 #ifndef DEFINEPVP
-	SXP_isPVP = 0; 				// Set as 0 for COOP missions
+	XPT_isPVP = 0; 				// Set as 0 for COOP missions
 	disableChannels[] = {{0,false,true},{1,true,true},{2,true,true},{3,false,true},{4,true,true},{5,true,true}}; // Use this for COOPs
 #else
-	SXP_isPVP = 1;				// Set as 1 for PVP missions
+	XPT_isPVP = 1;				// Set as 1 for PVP missions
 	disableChannels[] = {{0,false,true},{1,false,true},{2,true,true},{3,false,true},{4,true,true},{5,true,true}}; // Use this for TvTs
 #endif
 
@@ -32,10 +32,10 @@ class Header
 
 // The following variables have no relevance to the game if not used with the rest of the template scripts
 // Edit the values below to change template settings
-SXP_customLoadouts = 0;			// Set to 1 to enable loading custom loadouts for player units
-SXP_customVehicleCargo = 0;		// Set to 1 to enable custom vehicle inventories - Currently unused
-SXP_zeus_removeNVGs = 0;		// Set to 1 to remove NVGs from zeus-spawned units
-SXP_zeus_customLoadouts = 0;	// Set to 1 to enable loading custom loadouts for zeus-spawned units - Currently unused
+XPT_customLoadouts = 0;			// Set to 1 to enable loading custom loadouts for player units
+XPT_customVehicleCargo = 0;		// Set to 1 to enable custom vehicle inventories - Currently unused
+XPT_zeus_removeNVGs = 0;		// Set to 1 to remove NVGs from zeus-spawned units
+XPT_zeus_customLoadouts = 0;	// Set to 1 to enable loading custom loadouts for zeus-spawned units - Currently unused
  
 
 //-------------------- Admin
@@ -134,7 +134,7 @@ class CfgFunctions
 //#include "config\CfgTaskDescriptions.hpp"
 
 //-------------------- Custom config entries
-class CfgSuperXP
+class CfgXPT
 {
 	#include "config\SXPloadouts.hpp"
 };
