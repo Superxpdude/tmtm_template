@@ -17,7 +17,9 @@
 	_x addEventHandler ["CuratorObjectPlaced", {_this remoteExec ["XPT_fnc_curatorGrpPlaced", 2]}];
 	
 	// Add event handler to remove NVGs from spawned units
-	// Function yet to be added.
+	if ((getMissionConfigValue "XPT_curator_removeNVG") == 1) then {
+		_x addEventHandler ["CuratorObjectPlaced",{_this call XPT_fnc_curatorRemoveNVG;}];
+	};
 	
 	// Add event handler to set custom vehicle cargos
 	// Function yet to be added.

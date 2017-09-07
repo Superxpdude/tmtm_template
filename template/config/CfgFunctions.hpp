@@ -8,9 +8,11 @@ class XPT
 	class curator
 	{
 		file = "template\functions\curator";
-		class curatorEH {postInit = 1}; // Function for adding event handlers to curators on mission start.
-		class curatorGrpPlaced {}; // Function for adding curator placed groups to other curators.
-		class curatorObjPlaced {}; // Function for adding curator placed objects to other curators.
+		class curatorAddUnit {}; // Function to add an editable unit to all curators
+		class curatorEH {postInit = 1}; // Function for adding event handlers to curators on mission start
+		class curatorGrpPlaced {}; // Function for adding curator placed groups to other curators
+		class curatorObjPlaced {}; // Function for adding curator placed objects to other curators
+		class curatorRemoveNVG {}; // Function for removing NVGs from curator-spawned units
 	};
 	class debug
 	{
@@ -20,6 +22,10 @@ class XPT
 	class headlessClient
 	{
 		file = "template\functions\headlessClient";
+		class headlessConnect {}; // Function for handling the headlessClient connecting
+		class headlessDisconnect {}; // Function for handling the headlessClient disconnecting
+		class headlessSetGroupOwner {}; // Function for moving groups to the headlessClient
+		class headlessSetup {preInit = 1}; // Function for setting up the headlessClient framework
 	};
 	class loadout
 	{
@@ -30,5 +36,9 @@ class XPT
 	{
 		file = "template\functions\radio";
 		class setupTFAR {preInit = 1}; // Function for configuring radio settings
+	};
+	class system
+	{
+		file = "template\functions\system"
 	};
 };
