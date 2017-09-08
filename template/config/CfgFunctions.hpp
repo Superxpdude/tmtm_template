@@ -17,6 +17,7 @@ class XPT
 	class debug
 	{
 		file = "template\functions\debug";
+		class debugCuratorFix {}; // Function to fix black screen in the curator interface
 		class errorReport {}; // Function for handling error reporting
 	};
 	class event
