@@ -14,7 +14,7 @@ class ace_medical_level
 	ACE_setting = 1;
 	values[] = {1,2};
 	texts[] = {"Basic", "Advanced"};
-	default = DEFAULTMEDICAL;
+	default = XPT_DEFAULTMEDICAL;
 };
 class ace_medical_preventInstaDeath
 {
@@ -22,7 +22,7 @@ class ace_medical_preventInstaDeath
 	ACE_setting = 1;
 	values[] = {0,1};
 	texts[] = {"Disabled", "Enabled"};
-	#ifdef DEFINEPVP
+	#ifdef XPT_DEFINEPVP
 		default = 0;
 	#else
 		default = 1;
@@ -34,7 +34,7 @@ class ace_medical_enableRevive
 	ACE_setting = 1;
 	values[] = {0,1};
 	texts[] = {"Disabled", "Enabled"};
-	#ifdef DEFINEPVP
+	#ifdef XPT_DEFINEPVP
 		default = 0;
 	#else
 		default = 1;
@@ -58,7 +58,7 @@ class ace_medical_enableUnconsciousnessAI
 };
 class header_mission_settings
 {
-	title = "===== Mission Settings =====";
+	title = "===== Template Settings =====";
 	values[] = {0};
 	texts[] = {""};
 	default = 0;
@@ -68,7 +68,7 @@ class XPT_map_markers
 	title = "XPT - Enable group tracking on map";
 	values[] = {0,1};
 	texts[] = {"Disabled", "Enabled"};
-	default = 1;
+	default = XPT_DEFAULTGROUPTRACK;
 	isGlobal = 0;
 	function = "SXP_fnc_mapMarkers";
 };

@@ -16,11 +16,12 @@ class Header
 };
 
 //-------------------- Defines
-//#define DEFINEPVP 1			// Uncomment if the mission is a PvP mission
-#define DEFAULTMEDICAL 1		// Defines default ACE medical setting. Set to 1 for Basic, 2 for Advanced
+//#define XPT_DEFINEPVP 1			// Uncomment if the mission is a PvP mission
+#define XPT_DEFAULTMEDICAL 1		// Defines default ACE medical setting. Set to 1 for Basic, 2 for Advanced
+#define XPT_DEFAULTGROUPTRACK 1		// Defines default group map markers setting. 0 = Disabled, 1 = Enabled
 
 //-------------------- DO NOT EDIT THIS SECTION
-#ifndef DEFINEPVP
+#ifndef XPT_DEFINEPVP
 	XPT_isPVP = 0; 				// Set as 0 for COOP missions
 	disableChannels[] = {{0,false,true},{1,true,true},{2,true,true},{3,false,true},{4,true,true},{5,true,true}}; // Use this for COOPs
 #else
