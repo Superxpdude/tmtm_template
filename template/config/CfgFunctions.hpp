@@ -25,7 +25,7 @@ class XPT
 		class headlessConnect {}; // Function for handling the headlessClient connecting
 		class headlessDisconnect {}; // Function for handling the headlessClient disconnecting
 		class headlessSetGroupOwner {}; // Function for moving groups to the headlessClient
-		class headlessSetup {preInit = 1}; // Function for setting up the headlessClient framework
+		class headlessSetup {}; // Function for setting up the headlessClient framework
 	};
 	class loadout
 	{

@@ -63,7 +63,7 @@ class header_mission_settings
 	texts[] = {""};
 	default = 0;
 };
-class map_markers
+class XPT_map_markers
 {
 	title = "XPT - Enable group tracking on map";
 	values[] = {0,1};
@@ -72,7 +72,7 @@ class map_markers
 	isGlobal = 0;
 	function = "SXP_fnc_mapMarkers";
 };
-class headlessclient
+class XPT_headlessclient
 {
 	title = "XPT - Enable Headless Client support";
 	values[] = {0,1};
@@ -80,7 +80,7 @@ class headlessclient
 	default = 1;
 	isGlobal = 0;
 };
-class debugMode
+class XPT_debugMode
 {
 	title = "XPT - Enable debug mode";
 	values[] = {0,1};

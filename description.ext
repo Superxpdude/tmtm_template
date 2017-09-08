@@ -34,9 +34,10 @@ class Header
 // Edit the values below to change template settings
 XPT_customLoadouts = 0;			// Set to 1 to enable loading custom loadouts for player units
 XPT_customVehicleCargo = 0;		// Set to 1 to enable custom vehicle inventories - Currently unused
-XPT_zeus_removeNVGs = 0;		// Set to 1 to remove NVGs from zeus-spawned units
-XPT_zeus_customLoadouts = 0;	// Set to 1 to enable loading custom loadouts for zeus-spawned units - Currently unused
- 
+
+// Curator settings
+XPT_curator_customLoadouts = 0;	// Set to 1 to enable loading custom loadouts for zeus-spawned units - Currently unused
+XPT_curator_removeNVGs = 0;		// Set to 1 to remove NVGs from zeus-spawned units
 
 //-------------------- Admin
 
