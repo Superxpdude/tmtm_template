@@ -27,6 +27,13 @@ class XPT
 		class headlessSetGroupOwner {}; // Function for moving groups to the headlessClient
 		class headlessSetup {}; // Function for setting up the headlessClient framework
 	};
+	class init
+	{
+		file = "template\functions\init"
+		class initPlayerLocal {}; // Template specific initPlayerLocal entries
+		class initPlayerServer {}; // Template specific initPlayerServer entries
+		class initServer{}; // Template specific initServer entries
+	};
 	class loadout
 	{
 		file = "template\functions\loadout";

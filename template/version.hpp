@@ -1,1 +1,1 @@
-#define __SXPVERSION__ "0.1"
+#define __XPTVERSION__ "0.1"
