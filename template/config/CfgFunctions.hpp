@@ -40,5 +40,7 @@ class XPT
 	class system
 	{
 		file = "template\functions\system"
+		class mapMarkersClient {}; // Client-side portion of the map-markers module
+		class mapMarkersServer {}; // Server-side portion of the map-markers module
 	};
 };

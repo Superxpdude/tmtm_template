@@ -70,7 +70,7 @@ class XPT_map_markers
 	texts[] = {"Disabled", "Enabled"};
 	default = XPT_DEFAULTGROUPTRACK;
 	isGlobal = 0;
-	function = "SXP_fnc_mapMarkers";
+	function = "XPT_fnc_mapMarkersServer";
 };
 class XPT_headlessclient
 {

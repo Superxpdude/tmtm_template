@@ -28,5 +28,9 @@
 	// Function yet to be added.
 	
 	// Add event handler to handle transferring units to headless clients
-	// Function yet to be added.
+	if (("XPT_headlessclient" call BIS_fnc_getParamValue) == 1) then {
+		_x addEventHandler ["CuratorObjectPlaced",{
+			[(group (_this select 1))] remoteExec ["XPT_fnc_headlessSetGroupOwner", 2];
+		}];
+	};
 } forEach allCurators;
