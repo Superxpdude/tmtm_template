@@ -19,6 +19,13 @@ class XPT
 		file = "template\functions\debug";
 		class errorReport {}; // Function for handling error reporting
 	};
+	class event
+	{
+		file = "template\functions\event"
+		class initPlayerLocal {}; // Template specific initPlayerLocal entries
+		class initPlayerServer {}; // Template specific initPlayerServer entries
+		class initServer{}; // Template specific initServer entries
+	};
 	class headlessClient
 	{
 		file = "template\functions\headlessClient";
@@ -26,13 +33,6 @@ class XPT
 		class headlessDisconnect {}; // Function for handling the headlessClient disconnecting
 		class headlessSetGroupOwner {}; // Function for moving groups to the headlessClient
 		class headlessSetup {}; // Function for setting up the headlessClient framework
-	};
-	class init
-	{
-		file = "template\functions\init"
-		class initPlayerLocal {}; // Template specific initPlayerLocal entries
-		class initPlayerServer {}; // Template specific initPlayerServer entries
-		class initServer{}; // Template specific initServer entries
 	};
 	class loadout
 	{
