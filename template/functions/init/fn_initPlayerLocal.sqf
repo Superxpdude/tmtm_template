@@ -20,7 +20,7 @@ params ["_player", "_jip"];
 
 // Create template-specific briefing sections
 player createDiarySubject ["XPT_template", "XP Template"];
-// Add the default debug actions
+// Add a version readout to the briefing section
 player createDiaryRecord ["XPT_template", ["Version",
 	"This mission is using version " + __XPTVERSION__ + " of the XP template."
 ]];
