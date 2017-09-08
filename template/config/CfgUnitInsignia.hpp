@@ -6,5 +6,5 @@ class tmtm
 {
 	displayName = "TMTM";
 	author = "TMTM";
-	texture = "template\media\tmtm.paa";
+	texture = "template\media\insignia\tmtm.paa";
 };
