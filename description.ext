@@ -96,6 +96,7 @@ minPlayerDistance = 50;				// Don't remove a wreck or corpse if there's a player
 class params
 {
 	#include "template\config\CfgParams.hpp"
+	#include "config\CfgParams.hpp"
 };
 
 //-------------------- Functions
@@ -125,6 +126,7 @@ class CfgFunctions
 class CfgUnitInsignia
 {
 	#include "template\config\CfgUnitInsignia.hpp"
+	#include "config\CfgUnitInsignia.hpp"
 };
 
 //-------------------- ORBAT
