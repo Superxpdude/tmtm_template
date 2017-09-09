@@ -142,6 +142,10 @@ class CfgUnitInsignia
 //-------------------- Custom config entries
 class CfgXPT
 {
+	class stages
+	{
+		#include "template\config\XPT_stage_base.hpp"
+	};
 	#include "config\SXPloadouts.hpp"
 };
 

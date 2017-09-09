@@ -43,8 +43,13 @@ class XPT
 	class radio
 	{
 		file = "template\functions\radio";
-		class setupTFAR {preInit = 1}; // Function for configuring radio settings
+		class radioInit {preInit = 1}; // Function for configuring radio settings
 	};
+	class stage
+	{
+		file = "template\functions\stage"
+		class stageInit {preInit = 1}; // Initialises the stage system
+		class stageUpdate {}; // Updates the current stage. Handles changing between stages
 	class system
 	{
 		file = "template\functions\system"
