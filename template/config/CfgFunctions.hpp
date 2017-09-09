@@ -25,7 +25,9 @@ class XPT
 		file = "template\functions\event"
 		class initPlayerLocal {}; // Template specific initPlayerLocal entries
 		class initPlayerServer {}; // Template specific initPlayerServer entries
-		class initServer{}; // Template specific initServer entries
+		class initServer {}; // Template specific initServer entries
+		class onPlayerKilled {}; // Template specific onPlayerKilled entries
+		class onPlayerRespawn {}; // Template specific onPlayerRespawn entries
 	};
 	class headlessClient
 	{
@@ -38,6 +40,7 @@ class XPT
 	class loadout
 	{
 		file = "template\functions\loadout";
+		class loadCurrentInventory {}; // Uses loadInventory to apply a loadout to a unit
 		class loadInventory {}; // Function for loading a unit's inventory
 	};
 	class radio
