@@ -58,10 +58,10 @@ if (!local _unit) then {
 	// If this has not been run on the server, we need to send it to the server to find the right owner
 	if (!isServer) then {
 		// Send the script on the server
-		[_unit, _class] remoteExec ["SXP_fnc_loadInventory", 2];
+		[_unit, _class] remoteExec ["XPT_fnc_loadInventory", 2];
 	} else {
 		// If this has been run on the server, find out who the owner is (since we've already confirmed it isn't local)
-		[_unit, _class] remoteExec ["SXP_fnc_loadInventory", owner _unit];
+		[_unit, _class] remoteExec ["XPT_fnc_loadInventory", owner _unit];
 	};
 } else {
 	// If the unit is local, continue to changing its loadout

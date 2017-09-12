@@ -18,7 +18,9 @@ class Header
 //-------------------- Defines
 //#define XPT_DEFINEPVP 1			// Uncomment if the mission is a PvP mission
 //#define XPT_DEFINEADVMED 1		// Uncomment to make advanced medical the default setting
-//#define XPT_DISABLEGROUPTRACK 1	// Uncomment to disable group tracking on map
+//#define XPT_DISABLEGROUPTRACK 1	// Uncomment to disable group tracking on map by default
+//#define XPT_DISABLEJIPTELEPORT 1	// Uncomment to disable the JIP teleporter by default. Currently unused
+//#define XPT_DISABLESAFESTART 1	// Uncomment to disable safe-start by default. Currently unused.
 
 //-------------------- DO NOT EDIT THIS SECTION
 #ifndef XPT_DEFINEPVP
@@ -104,6 +106,7 @@ class params
 class CfgFunctions
 {
 	#include "template\config\CfgFunctions.hpp"
+	#include "config\CfgFunctions.hpp"
 };
 
 //-------------------- Notifications
