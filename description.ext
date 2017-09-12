@@ -100,29 +100,44 @@ class params
 };
 
 //-------------------- Functions
+
 class CfgFunctions
 {
 	#include "template\config\CfgFunctions.hpp"
 };
+
 //-------------------- Notifications
 
-//#include "config\CfgNotifications.hpp"
+class CfgNotifications
+{
+	#include "template\config\CfgNotifications.hpp"
+	#include "config\CfgNotifications.hpp"
+};
 
 //-------------------- Communication Menu
 
-//#include "config\CfgCommunicationMenu.hpp"
+class CfgCommunicationMenu
+{
+	#include "template\config\CfgCommunicationMenu.hpp"
+	#include "config\CfgCommunicationMenu.hpp"
+};
 
 //-------------------- Debriefing
 
-//#include "config\CfgDebriefing.hpp"
+class CfgDebriefing
+{
+	#include "config\CfgDebriefing.hpp"
+};
 
 //-------------------- Respawn Inventories
 
-//#include "config\CfgRespawnInventory.hpp"
+class CfgRespawnInventory
+{
+	#include "config\CfgRespawnInventory.hpp"
+};
 
 //-------------------- Unit Insignias
 
-//#include "config\CfgUnitInsignia.hpp"
 class CfgUnitInsignia
 {
 	#include "template\config\CfgUnitInsignia.hpp"
@@ -131,17 +146,31 @@ class CfgUnitInsignia
 
 //-------------------- ORBAT
 
-//#include "config\CfgORBAT.hpp"
+class CfgORBAT
+{
+	#include "config\CfgORBAT.hpp"
+};
 
 //-------------------- Task Enhancements
 
-//#include "config\CfgTaskEnhancements.hpp"
+class CfgTaskEnhancements
+{
+	#include "config\CfgTaskEnhancements.hpp"
+};
 
 //-------------------- Task Descriptions
 
-//#include "config\CfgTaskDescriptions.hpp"
+class CfgTaskDescriptions
+{
+	#include "config\CfgTaskDescriptions.hpp"
+};
+
+//-------------------- Mirage Coordinator
+
+#include "config\CfgAdmins.hpp"
 
 //-------------------- Custom config entries
+
 class CfgXPT
 {
 	class stages
