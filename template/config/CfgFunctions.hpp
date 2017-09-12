@@ -11,6 +11,7 @@ class XPT
 		class curatorAddUnit {}; // Function to add an editable unit to all curators
 		class curatorEH {postInit = 1}; // Function for adding event handlers to curators on mission start
 		class curatorGrpPlaced {}; // Function for adding curator placed groups to other curators
+		class curatorMenu {}; // Function for adding the briefing-based curator menu
 		class curatorObjPlaced {}; // Function for adding curator placed objects to other curators
 		class curatorRemoveNVG {}; // Function for removing NVGs from curator-spawned units
 	};

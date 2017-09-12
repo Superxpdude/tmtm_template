@@ -1,7 +1,7 @@
 /*
-	XPT_fnc_setupTFAR
+	XPT_fnc_radioInit
 	Author: Superxpdude
-	Handles setting up TFAR radio settings.
+	Handles setting up radio settings.
 	
 	Parameters: None
 		
