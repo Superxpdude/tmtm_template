@@ -17,8 +17,8 @@ class Header
 
 //-------------------- Defines
 //#define XPT_DEFINEPVP 1			// Uncomment if the mission is a PvP mission
-#define XPT_DEFAULTMEDICAL 1		// Defines default ACE medical setting. Set to 1 for Basic, 2 for Advanced
-#define XPT_DEFAULTGROUPTRACK 1		// Defines default group map markers setting. 0 = Disabled, 1 = Enabled
+//#define XPT_DEFINEADVMED 1		// Uncomment to make advanced medical the default setting
+//#define XPT_DISABLEGROUPTRACK 1	// Uncomment to disable group tracking on map
 
 //-------------------- DO NOT EDIT THIS SECTION
 #ifndef XPT_DEFINEPVP
