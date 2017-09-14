@@ -17,10 +17,10 @@ class Header
 
 //-------------------- Defines
 //#define XPT_DEFINEPVP 1			// Uncomment if the mission is a PvP mission
-//#define XPT_DEFINEADVMED 1		// Uncomment to make advanced medical the default setting
-//#define XPT_DISABLEGROUPTRACK 1	// Uncomment to disable group tracking on map by default
-//#define XPT_DISABLEJIPTELEPORT 1	// Uncomment to disable the JIP teleporter by default. Currently unused
-//#define XPT_DISABLESAFESTART 1	// Uncomment to disable safe-start by default. Currently unused.
+#define XPT_MEDICALLEVEL 1			// 1 = Basic Medical, 2 = Advanced Medical
+#define XPT_GROUPMARKERS 1			// 0 = Disabled, 1 = Enabled
+#define XPT_JIPTELEPORT 1			// 0 = Disabled, 1 = Enabled. Currently unused
+#define XPT_SAFESTART 1				// 0 = Disabled, 1 = Enabled. Currently unused.
 
 //-------------------- DO NOT EDIT THIS SECTION
 #ifndef XPT_DEFINEPVP
