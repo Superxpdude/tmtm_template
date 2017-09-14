@@ -11,7 +11,9 @@
 */
 
 // Define variables
-param ["_unit", nil, [objNull]];
+params [
+	["_unit", nil, [objNull]]
+];
 
 // Exit the script if the unit doesn't exist
 if (isNil "_unit") exitWith {};

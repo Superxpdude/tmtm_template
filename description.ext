@@ -181,6 +181,7 @@ class CfgXPT
 		#include "template\config\XPT_stage_base.hpp" // This include must be first in the stage section
 	};
 	#include "config\SXPloadouts.hpp"
+	#include "config\XPTBriefings.hpp"
 };
 
 //-------------------- ACE3 Settings

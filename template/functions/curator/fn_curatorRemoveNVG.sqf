@@ -11,7 +11,9 @@
 */
 
 // Define variables
-param ["_unit", nil, [objNull]];
+params [
+	["_unit", nil, [objNull]]
+];
 // Exit if the unit is undefined
 if (isNil "_unit") exitWith {};
 

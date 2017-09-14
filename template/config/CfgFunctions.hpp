@@ -56,8 +56,10 @@ class XPT
 	class system
 	{
 		file = "template\functions\system"
+		class briefingCreate {}; // Function to create briefings from a config file
+		class briefingOnStart {postInit = 1}; // Function to create mission briefings on mission start
 		class curatorMenu {}; // Function for adding the briefing-based curator menu
-		class fpsMarkers {postInit = 1}; // Function to place FPS indicators on the map.
+		class fpsMarkers {postInit = 1}; // Function to place FPS indicators on the map
 		class mapMarkersClient {}; // Client-side portion of the map-markers module
 		class mapMarkersServer {}; // Server-side portion of the map-markers module
 		class updateTask {}; // Function for handling mission task updates

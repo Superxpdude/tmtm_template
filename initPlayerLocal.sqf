@@ -7,6 +7,3 @@ params ["_player", "_jip"];
 _this call XPT_fnc_initPlayerLocal; // DO NOT CHANGE THIS LINE
 
 // Add any mission specific code after this point
-
-// Create initial briefings for the players
-[] execVM "scripts\briefing.sqf";
