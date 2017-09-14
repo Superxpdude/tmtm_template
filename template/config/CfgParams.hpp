@@ -14,11 +14,10 @@ class ace_medical_level
 	ACE_setting = 1;
 	values[] = {1,2};
 	texts[] = {"Basic", "Advanced"};
-	#ifdef XPT_DEFINEADVMED
-		default = 1;
-	#else
-		default = 2;
+	#ifndef XPT_MEDICALLEVEL
+		#define XPT_MEDICALLEVEL 1
 	#endif
+	default = XPT_MEDICALLEVEL;
 };
 class ace_medical_preventInstaDeath
 {
@@ -72,11 +71,10 @@ class XPT_map_markers
 	title = "XPT - Enable group tracking on map";
 	values[] = {0,1};
 	texts[] = {"Disabled", "Enabled"};
-	#ifdef XPT_DISABLEGROUPTRACK
-		default = 0;
-	#else
-		default = 1;
+	#ifndef XPT_MAPMARKERS
+		#define XPT_MAPMARKERS 1
 	#endif
+	default = XPT_MAPMARKERS;
 	isGlobal = 0;
 	function = "XPT_fnc_mapMarkersServer";
 };
