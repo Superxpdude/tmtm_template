@@ -13,7 +13,7 @@
 if (!isServer) exitWith {};
 
 // Initialize stage variables
-_defaultStage = (getMissionConfigValue "XPT_stageDefault")
+_defaultStage = (getMissionConfigValue "XPT_stageDefault");
 if (isClass ((getMissionConfig "CfgXPT") >> "stages" >> _newStage)) then {
 	XPT_stage_active = _defaultStage;
 } else {
