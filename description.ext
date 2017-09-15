@@ -37,6 +37,7 @@ class Header
 // Edit the values below to change template settings
 XPT_customLoadouts = 0;			// Set to 1 to enable loading custom loadouts for player units
 XPT_customVehicleCargo = 0;		// Set to 1 to enable custom vehicle inventories - Currently unused
+XPT_stageDefault = "stage1";	// Set this to whatever stage you want as the default.
 
 // Curator settings
 XPT_curator_customLoadouts = 0;	// Set to 1 to enable loading custom loadouts for zeus-spawned units - Currently unused
@@ -178,9 +179,10 @@ class CfgXPT
 {
 	class stages
 	{
-		#include "template\config\XPT_stage_base.hpp" // This include must be first in the stage section
+		#include "template\config\XPT_stage_base.hpp" 	// This include must be first in the stage section
+		#include "config\stages\stage1.hpp"
 	};
-	#include "config\SXPloadouts.hpp"
+	#include "config\XPTLoadouts.hpp"
 	#include "config\XPTBriefings.hpp"
 	#include "config\XPTTaskUpdates.hpp"
 };

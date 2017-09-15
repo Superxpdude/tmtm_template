@@ -1,10 +1,12 @@
-// XPT_stage_base.hpp
-// Base stage config for the template.
-// User created stages should always inherit from this stage, or another user stage.
+// XPT Stages - Stage 1
+// Stage config for the XPT template
+// Used if you're going to have a mission that changes loadouts or such partway through
+// Stages should ALWAYS inherit from the base stage, or another use created stage
+// Stage 1 is the default stage, and will automatically be activated upon mission start. This can be changed in description.ext
 
-class stage_base
+class stage1: stage_base
 {
-	displayname = "Default Stage"; // Human readable name for the stage.
+	displayname = "Stage 1"; // Human readable name for the stage.
 	initScript = ""; // String containing code to be compiled then executed when the stage is activated. Only executed on the server.
 	endScript = ""; // String containing code to be compiled then executed when the stage is terminated. Only executed on the server.
 	
@@ -25,6 +27,6 @@ class stage_base
 	// Player unit loadouts for this stage.
 	class loadouts
 	{
-		// TODO: Fill this with default loadouts for player classes
+		// Stage-specific loadouts can go in here. The template will fall back on the old XPTLoadouts.hpp if a loadout is not found in this class
 	};
 };
