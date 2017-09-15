@@ -4,7 +4,7 @@
 	CONFIG BRIEFING EXAMPLE
 	The following config is an example of how your briefing should be written
 	
-	class example	// Config class. Doesn't really mean anything, but needs to be unique.
+	class example	// Config class. Used when calling XPT_fnc_briefingCreate. Needs to be unique.
 	{
 		category = "Diary";		// Category that the briefing goes in. Use "Diary" for the default briefing class
 		entryName = "Title";	// Briefing title. This is usually something like "Situation", "Mission", "Assets", etc.
