@@ -19,16 +19,16 @@ params [
 
 // If an incorrect parameter type was used, throw an error and exit.
 if (isNil "_taskUpdate") exitWith {
-	[[false, "[XPT-TASKS] XPT_fnc_updateTask was called with an incorrect parameter type."]] remoteExec ["XPT_fnc_errorReport", 0]
+	[[false, "[XPT-TASKS] XPT_fnc_updateTask was called with an incorrect parameter type."]] remoteExec ["XPT_fnc_errorReport", 0];
 };
 
 // If the updateTask class doesn't exist, throw an error and exit.
 if (!(isClass ((getMissionConfig "CfgXPT") >> "taskUpdates" >> _taskUpdate))) exitWith {
-	[[true, format ["[XPT-TASKS] Task update class <%1> does not exist", _taskUpdate]]] remoteExec ["XPT_fnc_errorReport", 0]
+	[[true, format ["[XPT-TASKS] Task update class <%1> does not exist", _taskUpdate]]] remoteExec ["XPT_fnc_errorReport", 0];
 };
 
 // Grab our variables
-private ["_code", "_briefings", "_tasksCreated", "_tasksAssigned", "_tasksSucceeded", "_tasksFailed", "_tasksCancelled"]
+private ["_code", "_briefings", "_tasksCreated", "_tasksAssigned", "_tasksSucceeded", "_tasksFailed", "_tasksCancelled"];
 _code = [(((getMissionConfig "CfgXPT") >> "taskUpdates" >> _taskUpdate >> "code") call BIS_fnc_getCfgData)] param [0, "", [""]];
 _briefings = [(((getMissionConfig "CfgXPT") >> "taskUpdates" >> _taskUpdate >> "briefings") call BIS_fnc_getCfgData)] param [0, [], [[]]];
 _tasksCreated = [(((getMissionConfig "CfgXPT") >> "taskUpdates" >> _taskUpdate >> "tasksCreated") call BIS_fnc_getCfgData)] param [0, [], [[]]];
@@ -52,7 +52,7 @@ _taskFunc = {
 			[_x, _state, true] call BIS_fnc_taskSetState;
 		} else {
 			// If the task doesn't exist, return an error
-			[[true, format ["[XPT-TASKS] Task <%1> does not exist", __x]]] remoteExec ["XPT_fnc_errorReport", 0]
+			[[true, format ["[XPT-TASKS] Task <%1> does not exist", __x]]] remoteExec ["XPT_fnc_errorReport", 0];
 		};
 	} forEach _tasks;
 };

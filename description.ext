@@ -182,6 +182,7 @@ class CfgXPT
 	};
 	#include "config\SXPloadouts.hpp"
 	#include "config\XPTBriefings.hpp"
+	#include "config\XPTTaskUpdates.hpp"
 };
 
 //-------------------- ACE3 Settings
