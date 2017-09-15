@@ -3,6 +3,7 @@
 // _this = [<oldUnit>, <killer>, <respawn>, <respawnDelay>]
 _this params ["_oldUnit", "_killer", "_respawn", "_respawnDelay"];
 
-[_oldUnit] call SXP_fnc_saveRadioSettings;
+// Call the template onPlayerKilled function
+_this call XPT_fnc_onPlayerKilled; // DO NOT CHANGE THIS LINE
 
 // Add any mission specific code after this point

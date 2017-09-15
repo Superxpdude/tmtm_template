@@ -1,1 +1,0 @@
-#define __SXPVERSION__ "0.1"
