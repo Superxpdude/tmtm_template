@@ -23,12 +23,7 @@ class briefings
 	{
 		category = "Diary";
 		entryName = "Assets";
-		entryText = "Example Assets List. REPLACE BEFORE RUNNING THE MISSION.<br/>
-			- 1x Car<br/>
-			- 1x Tank<br/>
-			- 1x Boat<br/>
-			- 1x Plane
-		";
+		entryText = "Example Assets List. REPLACE BEFORE RUNNING THE MISSION.<br/> - 1x Car<br/> - 1x Tank<br/> - 1x Boat<br/> - 1x Plane";
 		onStart = 1;
 		sides[] = {0,1,2,3};
 	};

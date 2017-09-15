@@ -35,7 +35,7 @@ class XPT
 		class headlessConnect {}; // Function for handling the headlessClient connecting
 		class headlessDisconnect {}; // Function for handling the headlessClient disconnecting
 		class headlessSetGroupOwner {}; // Function for moving groups to the headlessClient
-		class headlessSetup {}; // Function for setting up the headlessClient framework
+		class headlessSetup {preInit = 1}; // Function for setting up the headlessClient framework
 	};
 	class loadout
 	{
@@ -53,6 +53,7 @@ class XPT
 		file = "template\functions\stage"
 		class stageInit {preInit = 1}; // Initialises the stage system
 		class stageUpdate {}; // Updates the current stage. Handles changing between stages
+	};
 	class system
 	{
 		file = "template\functions\system"

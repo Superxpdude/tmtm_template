@@ -22,12 +22,12 @@
 	Returns: Nothing
 */
 private ["_debug"];
-_debug = (getMissionConfigValue "debugMode");
+_debug = (["XPT_debugMode", 0] call BIS_fnc_getParamValue);
 
 // Report errors
 {
 	if ((_x select 0) OR (_debug == 1)) then {
-		systemChat _x select 1;
+		systemChat (_x select 1);
 	};
 	diag_log (_x select 1);
 } forEach _this;

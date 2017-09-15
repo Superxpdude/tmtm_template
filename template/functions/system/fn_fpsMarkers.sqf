@@ -15,11 +15,11 @@ private ["_serverMark", "_hcMark"];
 
 // If running on the server, create the markers themselves.
 if (isServer) then {
-	_serverMark = createMarker ["fpsmarker_server", [500,1000]];
+	_serverMark = createMarker ["fpsmarker_server", [250,500]];
 	_serverMark setMarkerType "mil_start";
 	_serverMark setMarkerSize [0.7, 0.7];
 	
-	_hcMark = createMarker ["fpsmarker_hc", [500,500]];
+	_hcMark = createMarker ["fpsmarker_hc", [250,250]];
 	_hcMark setMarkerType "mil_start";
 	_hcMark setMarkerSize [0.7, 0.7];
 	

@@ -37,6 +37,6 @@ switch true do {
 		[_unit, (getMissionConfig "CfgRespawnInventory") >> _loadout] call BIS_fnc_loadInventory;
 	};
 	default {
-		[[false, format ["[XPT-LOADOUT] Unit of type %1 is missing a loadout", typeOf _unit]]] remoteExec ["XPT_fnc_errorReport", 0];
+		[[false, format ["[XPT-LOADOUT] Missing Loadout. Unit: ""%1"", Loadout: ""%2""", typeOf _unit, _loadout]]] remoteExec ["XPT_fnc_errorReport", 0];
 	};
 };

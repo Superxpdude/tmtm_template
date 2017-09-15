@@ -90,7 +90,7 @@ if (!local _unit) then {
 	_backpackItems = [((_class >> "backpackItems") call BIS_fnc_getCfgData)] param [0, [""], [[]]];
 	
 	// Retrieve medical items from config file.
-	if ((getMissionConfigValue "ace_medical_level") == 1) then {
+	if ((["ace_medical_level", 1] call BIS_fnc_getParamValue) == 1) then {
 		// Only load these classes if basic medical is being used.
 		_uniformMedical = [((_class >> "basicMedUniform") call BIS_fnc_getCfgData)] param [0, [""], [[]]];
 		_vestMedical = [((_class >> "basicMedVest") call BIS_fnc_getCfgData)] param [0, [""], [[]]];

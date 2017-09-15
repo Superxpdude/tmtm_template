@@ -22,8 +22,8 @@ _briefings = "getNumber (_x >> 'onStart') == 1" configClasses ((getMissionConfig
 switch (side player) do {
 	case west: {_sideNum = 0};
 	case east: {_sideNum = 1};
-	case independent {_sideNum = 2};
-	case civilian {_sideNum = 3};
+	case independent: {_sideNum = 2};
+	case civilian: {_sideNum = 3};
 };
 
 // Create the briefings

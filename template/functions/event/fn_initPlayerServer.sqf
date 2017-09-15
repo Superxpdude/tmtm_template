@@ -12,4 +12,7 @@
 // Define variables
 params ["_player", "_jip"];
 
-// There no is template-specific code that uses initPlayerServer at this time
+// Call the headless client connect function
+if ((["headlessClient", 0] call BIS_fnc_getParamValue) == 1) then {
+	_this call XPT_fnc_headlessConnect;
+};
