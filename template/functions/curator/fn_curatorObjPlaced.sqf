@@ -17,7 +17,7 @@ params [
 ];
 
 // Error checking
-if ((isNil "_curator") OR (isNil "_placed") exitWith {};
+if ((isNil "_curator") OR (isNil "_placed")) exitWith {};
 
 // Loop through all available curators
 {
