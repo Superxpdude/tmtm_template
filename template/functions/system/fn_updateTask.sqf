@@ -52,7 +52,7 @@ _taskFunc = {
 			[_x, _state, true] call BIS_fnc_taskSetState;
 		} else {
 			// If the task doesn't exist, return an error
-			[[true, format ["[XPT-TASKS] Task <%1> does not exist", __x]]] remoteExec ["XPT_fnc_errorReport", 0];
+			[[true, format ["[XPT-TASKS] Task <%1> does not exist", _x]]] remoteExec ["XPT_fnc_errorReport", 0];
 		};
 	} forEach _tasks;
 };
