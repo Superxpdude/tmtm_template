@@ -14,7 +14,7 @@
 	_x addEventHandler ["CuratorObjectPlaced", {_this remoteExec ["XPT_fnc_curatorObjPlaced", 2]}];
 	
 	// Add event handler to share placed groups between curators
-	_x addEventHandler ["CuratorObjectPlaced", {_this remoteExec ["XPT_fnc_curatorGrpPlaced", 2]}];
+	_x addEventHandler ["CuratorGroupPlaced", {_this remoteExec ["XPT_fnc_curatorGrpPlaced", 2]}];
 	
 	// Add event handler to remove NVGs from spawned units
 	if ((getMissionConfigValue "XPT_curator_removeNVG") == 1) then {
