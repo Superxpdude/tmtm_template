@@ -19,7 +19,7 @@ if (!isServer) exitWith {};
 params [
 	["_unit", objNull, [objNull]],
 	["_addCrew", true, [true]]
-]
+];
 
 // Add unit to all curators
 {
