@@ -7,6 +7,8 @@
 	
 	Parameters:
 		0: Object - Unit to be added to curators
+		OR
+		0: Array - Array of units to be added to curators
 		1: Boolean (Optional) - False to prevent vehicle crew from being added as editable
 		
 	Returns: Nothing
@@ -17,9 +19,17 @@ if (!isServer) exitWith {};
 
 // Define variables
 params [
-	["_unit", objNull, [objNull]],
+	["_unit", nil, [objNull, []]],
 	["_addCrew", true, [true]]
 ];
+
+// If the unit is nil, exit the function
+if (isNil "_unit") exitWith {};
+
+// If the unit is an object, convert it to an array
+if (typeName _unit == "OBJECT") then {
+	_unit = [_unit];
+};
 
 // Add unit to all curators
 {
