@@ -23,7 +23,7 @@ params [
 
 // Add unit to all curators
 {
-	_x addCuratorEditableObjects [_unit, _addCrew];
+	_x addCuratorEditableObjects [[_unit], _addCrew];
 } forEach allCurators;
 
 // Return nothing
