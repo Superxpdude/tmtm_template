@@ -26,5 +26,5 @@ if (isNil "XPT_blacklistedMissionObjects") then {
 		if !(_x in curatorEditableObjects _curator) then {
 			_curator addCuratorEditableObjects [[_x], true];
 		};
-	} forEach playableUnits + switchableUnits + allMissionObjects "LandVehicle" + allMissionObjects "Man" + allMissionObjects "Air" + allMissionObjects "Ship" + allMissionObjects "Reammobox_F" - _blacklistedMissionObjects - allMissionObjects "VirtualMan_F";
+	} forEach playableUnits + switchableUnits + allMissionObjects "LandVehicle" + allMissionObjects "Man" + allMissionObjects "Air" + allMissionObjects "Ship" + allMissionObjects "Reammobox_F" - XPT_blacklistedMissionObjects - allMissionObjects "VirtualMan_F";
 } forEach allCurators;
