@@ -9,7 +9,7 @@ class XPT
 	{
 		file = "template\functions\curator";
 		class curatorAddUnit {}; // Function to add an editable unit to all curators
-		class curatorEH {postInit = 1}; // Function for adding event handlers to curators on mission start
+		class curatorEH {postInit = 1;}; // Function for adding event handlers to curators on mission start
 		class curatorGrpPlaced {}; // Function for adding curator placed groups to other curators
 		class curatorObjPlaced {}; // Function for adding curator placed objects to other curators
 		class curatorRemoveNVG {}; // Function for removing NVGs from curator-spawned units
@@ -22,7 +22,7 @@ class XPT
 	};
 	class event
 	{
-		file = "template\functions\event"
+		file = "template\functions\event";
 		class initPlayerLocal {}; // Template specific initPlayerLocal entries
 		class initPlayerServer {}; // Template specific initPlayerServer entries
 		class initServer {}; // Template specific initServer entries
@@ -35,7 +35,7 @@ class XPT
 		class headlessConnect {}; // Function for handling the headlessClient connecting
 		class headlessDisconnect {}; // Function for handling the headlessClient disconnecting
 		class headlessSetGroupOwner {}; // Function for moving groups to the headlessClient
-		class headlessSetup {preInit = 1}; // Function for setting up the headlessClient framework
+		class headlessSetup {preInit = 1;}; // Function for setting up the headlessClient framework
 	};
 	class loadout
 	{
@@ -46,19 +46,19 @@ class XPT
 	class radio
 	{
 		file = "template\functions\radio";
-		class radioInit {preInit = 1}; // Function for configuring radio settings
+		class radioInit {preInit = 1;}; // Function for configuring radio settings
 	};
 	class stage
 	{
-		file = "template\functions\stage"
-		class stageInit {preInit = 1}; // Initialises the stage system
+		file = "template\functions\stage";
+		class stageInit {preInit = 1;}; // Initialises the stage system
 		class stageUpdate {}; // Updates the current stage. Handles changing between stages
 	};
 	class system
 	{
 		file = "template\functions\system"
 		class briefingCreate {}; // Function to create briefings from a config file
-		class briefingOnStart {postInit = 1}; // Function to create mission briefings on mission start
+		class briefingOnStart {postInit = 1;}; // Function to create mission briefings on mission start
 		class curatorMenu {}; // Function for adding the briefing-based curator menu
 		class fpsMarkers {postInit = 1}; // Function to place FPS indicators on the map
 		class mapMarkersClient {}; // Client-side portion of the map-markers module

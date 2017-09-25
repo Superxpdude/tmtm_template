@@ -31,7 +31,7 @@ class briefings
 	{
 		category = "Diary";
 		entryName = "Mission";
-		entryText = "Example Mission Briefing. REPLACE BEFORE RUNNING THE MISSION<br/>. We need to get the bad guy."
+		entryText = "Example Mission Briefing. REPLACE BEFORE RUNNING THE MISSION<br/>. We need to get the bad guy.";
 		onStart = 1;
 		sides[] = {0,1,2,3};
 	};
@@ -39,7 +39,7 @@ class briefings
 	{
 		category = "Diary";
 		entryName = "Situation";
-		entryText = "Example Situation. REPLACE BEFORE RUNNING THE MISSION<br/>. The bad guy did a bad thing. We need to stop him!"
+		entryText = "Example Situation. REPLACE BEFORE RUNNING THE MISSION<br/>. The bad guy did a bad thing. We need to stop him!";
 		onStart = 1;
 		sides[] = {0,1,2,3};
 	};
