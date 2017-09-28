@@ -59,6 +59,28 @@ class ace_medical_enableUnconsciousnessAI
 	texts[] = {"Disabled", "50/50", "Enabled"};
 	default = 0;
 };
+class ace_medical_playerDamageThreshold
+{
+	title = "ACE3 - Player Health Multiplier";
+	ACE_setting = 1;
+	values[] = {0.5,0.6,0.7,0.8,0.9,1,1.1,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9,2};
+	texts[] = {"50%","60%","70%","80%","90%","100%","110%","120%","130%","140%","150%","160%","170%","180%","190%","200%"};
+	#ifndef XPT_ACE3_PLAYERDAMAGETHRESHOLD
+		#define XPT_ACE3_PLAYERDAMAGETHRESHOLD 1
+	#endif
+	default = XPT_ACE3_PLAYERDAMAGETHRESHOLD;
+};
+class ace_medical_AIDamageThreshold
+{
+	title = "ACE3 - AI Health Multiplier";
+	ACE_setting = 1;
+	values[] = {0.5,0.6,0.7,0.8,0.9,1,1.1,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9,2};
+	texts[] = {"50%","60%","70%","80%","90%","100%","110%","120%","130%","140%","150%","160%","170%","180%","190%","200%"};
+	#ifndef XPT_ACE3_AIDAMAGETHRESHOLD
+		#define XPT_ACE3_AIDAMAGETHRESHOLD 1
+	#endif
+	default = XPT_ACE3_AIDAMAGETHRESHOLD;
+};
 class header_mission_settings
 {
 	title = "===== Template Settings =====";
