@@ -14,10 +14,10 @@ class ace_medical_level
 	ACE_setting = 1;
 	values[] = {1,2};
 	texts[] = {"Basic", "Advanced"};
-	#ifndef XPT_MEDICALLEVEL
-		#define XPT_MEDICALLEVEL 1
+	#ifndef XPT_ACE3_MEDICALLEVEL
+		#define XPT_ACE3_MEDICALLEVEL 1
 	#endif
-	default = XPT_MEDICALLEVEL;
+	default = XPT_ACE3_MEDICALLEVEL;
 };
 class ace_medical_preventInstaDeath
 {

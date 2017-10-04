@@ -15,12 +15,20 @@ class Header
 	maxPlayers = 16;			// Maximum amount of players the mission supports
 };
 
-//-------------------- Defines
+//-------------------- Template Defines
+
 //#define XPT_DEFINEPVP 1			// Uncomment if the mission is a PvP mission
-#define XPT_MEDICALLEVEL 1			// 1 = Basic Medical, 2 = Advanced Medical
+
+// The following defines set default values for lobby parameters. Change as needed for the mission.
 #define XPT_MAPMARKERS 1			// 0 = Disabled, 1 = Enabled
 #define XPT_JIPTELEPORT 1			// 0 = Disabled, 1 = Enabled. Currently unused
 #define XPT_SAFESTART 1				// 0 = Disabled, 1 = Enabled. Currently unused.
+
+//-------------------- ACE 3 Defines
+
+#define XPT_ACE3_MEDICALLEVEL 1					// 1 = Basic Medical, 2 = Advanced Medical
+#define XPT_ACE3_PLAYERDAMAGETHRESHOLD 1		// Accepts values from 0.5 to 2 in 0.1 increments (0.5, 0.6, 0.7, etc.)
+#define XPT_ACE3_AIDAMAGETHRESHOLD 1			// Accepts values from 0.5 to 2 in 0.1 increments (0.5, 0.6, 0.7, etc.)
 
 //-------------------- DO NOT EDIT THIS SECTION
 #ifndef XPT_DEFINEPVP
