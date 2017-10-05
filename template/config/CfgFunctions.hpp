@@ -56,7 +56,7 @@ class XPT
 	};
 	class system
 	{
-		file = "template\functions\system"
+		file = "template\functions\system";
 		class briefingCreate {}; // Function to create briefings from a config file
 		class briefingOnStart {postInit = 1;}; // Function to create mission briefings on mission start
 		class curatorMenu {}; // Function for adding the briefing-based curator menu
