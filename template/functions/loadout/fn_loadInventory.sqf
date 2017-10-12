@@ -75,31 +75,31 @@ if (!local _unit) then {
 	// Retrieve loadout data from config files
 	private ["_displayName", "_weapons", "_primaryWeaponItems", "_secondaryWeaponItems", "_handgunItems", "_uniformClass", "_headgearClass", "_facewearClass", "_vestClass", "_backpackClass", "_linkedItems", "_uniformItems", "_vestItems", "_backpackItems", "_uniformMedical", "_vestMedical", "_backpackMedical"];
 	_displayName = [((_class >> "displayName") call BIS_fnc_getCfgData)] param [0, "", [""]];
-	_weapons = [((_class >> "weapons") call BIS_fnc_getCfgData)] param [0, "", [[""]]];
-	_primaryWeaponItems = [((_class >> "primaryWeaponItems") call BIS_fnc_getCfgData)] param [0, [""], [[]]];
-	_secondaryWeaponItems = [((_class >> "secondaryWeaponItems") call BIS_fnc_getCfgData)] param [0, [""], [[]]];
-	_handgunItems = [((_class >> "handgunItems") call BIS_fnc_getCfgData)] param [0, [""], [[]]];
+	_weapons = [((_class >> "weapons") call BIS_fnc_getCfgData)] param [0, [], [[]]];
+	_primaryWeaponItems = [((_class >> "primaryWeaponItems") call BIS_fnc_getCfgData)] param [0, [], [[]]];
+	_secondaryWeaponItems = [((_class >> "secondaryWeaponItems") call BIS_fnc_getCfgData)] param [0, [], [[]]];
+	_handgunItems = [((_class >> "handgunItems") call BIS_fnc_getCfgData)] param [0, [], [[]]];
 	_uniformClass = [((_class >> "uniformClass") call BIS_fnc_getCfgData)] param [0, "", [""]];
 	_headgearClass = [((_class >> "headgearClass") call BIS_fnc_getCfgData)] param [0, "", [""]];
 	_facewearClass = [((_class >> "facewearClass") call BIS_fnc_getCfgData)] param [0, "", [""]];
 	_vestClass = [((_class >> "vestClass") call BIS_fnc_getCfgData)] param [0, "", [""]];
 	_backpackClass = [((_class >> "backpackClass") call BIS_fnc_getCfgData)] param [0, "", [""]];
-	_linkedItems = [((_class >> "linkedItems") call BIS_fnc_getCfgData)] param [0, "", [[]]];
-	_uniformItems = [((_class >> "uniformItems") call BIS_fnc_getCfgData)] param [0, [""], [[]]];
-	_vestItems = [((_class >> "vestItems") call BIS_fnc_getCfgData)] param [0, [""], [[]]];
-	_backpackItems = [((_class >> "backpackItems") call BIS_fnc_getCfgData)] param [0, [""], [[]]];
+	_linkedItems = [((_class >> "linkedItems") call BIS_fnc_getCfgData)] param [0, [], [[]]];
+	_uniformItems = [((_class >> "uniformItems") call BIS_fnc_getCfgData)] param [0, [], [[]]];
+	_vestItems = [((_class >> "vestItems") call BIS_fnc_getCfgData)] param [0, [], [[]]];
+	_backpackItems = [((_class >> "backpackItems") call BIS_fnc_getCfgData)] param [0, [], [[]]];
 	
 	// Retrieve medical items from config file.
 	if ((["ace_medical_level", 1] call BIS_fnc_getParamValue) == 1) then {
 		// Only load these classes if basic medical is being used.
-		_uniformMedical = [((_class >> "basicMedUniform") call BIS_fnc_getCfgData)] param [0, [""], [[]]];
-		_vestMedical = [((_class >> "basicMedVest") call BIS_fnc_getCfgData)] param [0, [""], [[]]];
-		_backpackMedical = [((_class >> "basicMedBackpack") call BIS_fnc_getCfgData)] param [0, [""], [[]]];
+		_uniformMedical = [((_class >> "basicMedUniform") call BIS_fnc_getCfgData)] param [0, [], [[]]];
+		_vestMedical = [((_class >> "basicMedVest") call BIS_fnc_getCfgData)] param [0, [], [[]]];
+		_backpackMedical = [((_class >> "basicMedBackpack") call BIS_fnc_getCfgData)] param [0, [], [[]]];
 	} else {
 		// Only load these classes if advanced medical is being used.
-		_uniformMedical = [((_class >> "advMedUniform") call BIS_fnc_getCfgData)] param [0, [""], [[]]];
-		_vestMedical = [((_class >> "advMedVest") call BIS_fnc_getCfgData)] param [0, [""], [[]]];
-		_backpackMedical = [((_class >> "advMedBackpack") call BIS_fnc_getCfgData)] param [0, [""], [[]]];
+		_uniformMedical = [((_class >> "advMedUniform") call BIS_fnc_getCfgData)] param [0, [], [[]]];
+		_vestMedical = [((_class >> "advMedVest") call BIS_fnc_getCfgData)] param [0, [], [[]]];
+		_backpackMedical = [((_class >> "advMedBackpack") call BIS_fnc_getCfgData)] param [0, [], [[]]];
 	};
 	
 	// Remove the existing loadout from the unit
