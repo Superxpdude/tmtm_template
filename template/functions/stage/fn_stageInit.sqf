@@ -14,10 +14,10 @@ if (!isServer) exitWith {};
 
 // Initialize stage variables
 _defaultStage = (getMissionConfigValue "XPT_stageDefault");
-if (isClass ((getMissionConfig "CfgXPT") >> "stages" >> _newStage)) then {
+if (isClass ((getMissionConfig "CfgXPT") >> "stages" >> _defaultStage)) then {
 	XPT_stage_active = _defaultStage;
 } else {
 	XPT_stage_active = "stage_base";
-	[[true, format ["[XPT-STAGE] Default stage <%1> does not exist", _newStage]]] remoteExec ["XPT_fnc_errorReport", 0];
+	[[true, format ["[XPT-STAGE] Default stage <%1> does not exist", _defaultStage]]] remoteExec ["XPT_fnc_errorReport", 0];
 };
 publicVariable "XPT_stage_active";
