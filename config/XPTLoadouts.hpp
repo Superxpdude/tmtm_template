@@ -1,4 +1,4 @@
-// SXPloadouts.hpp
+// XPTloadouts.hpp
 // Used for defining advanced respawn loadouts for players
 // Default behaviour is to check if the player unit has a special loadout defined. Otherwise, it will check to see if the classname matches a loadout
 // Advanced functionality allows mission creator to define exactly where items are placed in unit inventories
