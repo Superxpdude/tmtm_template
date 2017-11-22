@@ -113,5 +113,8 @@ class XPT_debugMode
 	title = "XPT - Enable debug mode";
 	values[] = {0,1};
 	texts[] = {"Disabled", "Enabled"};
-	default = 0;
+	#ifndef XPT_DEBUGMODE
+		#define XPT_DEBUGMODE 0
+	#endif
+	default = XPT_DEBUGMODE;
 };

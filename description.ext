@@ -24,6 +24,8 @@ class Header
 #define XPT_JIPTELEPORT 1			// 0 = Disabled, 1 = Enabled. Currently unused
 #define XPT_SAFESTART 1				// 0 = Disabled, 1 = Enabled. Currently unused.
 
+//#define XPT_DEBUGMODE 1			// Uncomment to enable debug mode by default. 0 = Disabled, 1 = Enabled.
+
 //-------------------- ACE 3 Defines
 
 #define XPT_ACE3_MEDICALLEVEL 1					// 1 = Basic Medical, 2 = Advanced Medical

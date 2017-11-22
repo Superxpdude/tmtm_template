@@ -27,3 +27,8 @@ player createDiarySubject ["XPT_template", "XP Template"];
 player createDiaryRecord ["XPT_template", ["Version",
 	"This mission is using version " + __XPTVERSION__ + " of the XP template."
 ]];
+
+// Display the debug mode warning (if debug mode is enabled)
+if (["XPT_debugMode", 0] call BIS_fnc_getParamValue) then {
+	["XPT_debugMode"] call BIS_fnc_showNotification;
+};
