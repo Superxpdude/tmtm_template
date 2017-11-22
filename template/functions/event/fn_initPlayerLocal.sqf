@@ -28,7 +28,12 @@ player createDiaryRecord ["XPT_template", ["Version",
 	"This mission is using version " + __XPTVERSION__ + " of the XP template."
 ]];
 
-// Display the debug mode warning (if debug mode is enabled)
-if (["XPT_debugMode", 0] call BIS_fnc_getParamValue) then {
-	["XPT_debugMode"] call BIS_fnc_showNotification;
+// This needs to be spawned so that it happens after the initialization is finished. Otherwise the notification doesn't work.
+[] spawn {
+	// Wait until the game has started before displaying the debug notification
+	waitUntil {time > 2};
+	// Display the debug mode warning (if debug mode is enabled)
+	if ((["XPT_debugMode", 0] call BIS_fnc_getParamValue) == 1) then {
+		["XPT_debugMode"] call BIS_fnc_showNotification;
+	};
 };
