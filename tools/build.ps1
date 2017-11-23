@@ -51,7 +51,6 @@ function New-Mission ([System.IO.DirectoryInfo]$Mission,[System.IO.DirectoryInfo
     # Describe and autotag if version not present
     $version = git.exe describe HEAD
     if ($LASTEXITCODE -eq 128) {
-        Write-Host "MissionInfo.Version is: " $MVersion
         git.exe tag -a "$MVersion" --message="Auto Version Tag"
         $version = git.exe describe HEAD
         Write-Host "[INFO] Version tag $version created! Don't forget to push it to your remote by calling git push --tags" -ForegroundColor Cyan
@@ -61,7 +60,7 @@ function New-Mission ([System.IO.DirectoryInfo]$Mission,[System.IO.DirectoryInfo
         $version = git.exe describe HEAD
         Write-Host "[INFO] Version tag $version created! Don't forget to push it to your remote by calling git push --tags" -ForegroundColor Cyan
     }
-    $MissionString = [string]::Format("{0}_{1}-{2}.{3}.pbo", $MissionInfo.Prefix, $MissionInfo.InternalName, $version, $MissionInfo.MapName)
+    $MissionString = [string]::Format("{0}_{1}-{2}.{3}.pbo", $MissionInfo.Prefix, $MissionInfo.InternalName, $version, $MissionInfo.MapName).Replace(" ", "_")
     $FinalDestination = "$Destination\"+$Mission.BaseName+".pbo"
     # Prepare description.ext
     $Description = Get-Content "$Mission\description.ext"
@@ -75,20 +74,18 @@ function New-Mission ([System.IO.DirectoryInfo]$Mission,[System.IO.DirectoryInfo
     # Start Packing
     Set-Location -Path ..
     FileBank.exe -exclude "$ScriptPath\exclude.lst" -dst $Destination (Get-Item $mission).BaseName
+    # Clean-up and restore old mission.sqm & description.ext
+    Move-Item -Path "$Mission\mission.sqm.tmp" -Destination "$Mission\mission.sqm" -Force
+    Set-Content -Path "$Mission\description.ext" -Value $Description
     if ($LASTEXITCODE -eq 0) {
         $Item = Get-Item $FinalDestination
         Move-Item -Path $Item -Destination $Destination\$MissionString -Force 
         Set-Location $LastLocation
-        # Clean-up and restore old mission.sqm & description.ext
-        Move-Item -Path "$Mission\mission.sqm.tmp" -Destination "$Mission\mission.sqm" -Force
-        Set-Content -Path "$Mission\description.ext" -Value $Description
         return $Item
     }
     else {
         Write-Host "[ERROR] Something went wrong during packing process" -ForegroundColor White -BackgroundColor Red
-        # Clean-up and restore old mission.sqm & description.ext
-        Move-Item -Path "$Mission\mission.sqm.tmp" -Destination "$Mission\mission.sqm" -Force
-        Set-Content -Path "$Mission\description.ext" -Value $Description
+        Set-Location $LastLocation
         return 1
     }
 }
