@@ -46,6 +46,7 @@ class XPT
 	class radio
 	{
 		file = "template\functions\radio";
+		class radioHandleRespawn {}; // Handles applying radio settings when the player respawns
 		class radioInit {preInit = 1;}; // Function for configuring radio settings
 	};
 	class stage
