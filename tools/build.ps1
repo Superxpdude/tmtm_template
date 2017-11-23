@@ -44,16 +44,21 @@ function New-Mission ([System.IO.DirectoryInfo]$Mission,[System.IO.DirectoryInfo
     $MissionInfo = $MissionInfoFile | ConvertFrom-Json
     $LastLocation = Get-Location
     Set-Location $Mission
+    $MVersion = $MissionInfo.Version
+    if (!$MVersion) {
+        $MVersion = Read-Host -Prompt "No version number found in manifest. Please input version number"
+    }
     # Describe and autotag if version not present
-    $version = git.exe describe master
-    if ($LASTEXITCODE -ne 0) {
-        git.exe tag -a $MissionInfo.Version -m 'Auto Version Tag'
-        $version = git describe master
+    $version = git.exe describe HEAD
+    if ($LASTEXITCODE -eq 128) {
+        Write-Host "MissionInfo.Version is: " $MVersion
+        git.exe tag -a "$MVersion" --message="Auto Version Tag"
+        $version = git.exe describe HEAD
         Write-Host "[INFO] Version tag $version created! Don't forget to push it to your remote by calling git push --tags" -ForegroundColor Cyan
     }
-    if ($version.Split("-")[0] -ne $MissionInfo.Version) {
-        git.exe tag -a $MissionInfo.Version -m "Auto Version Tag"
-        $version = git.exe describe master
+    if ($version.Split("-")[0] -ne $MVersion) {
+        git.exe tag -a "$MVersion" --message='Auto Version Tag'
+        $version = git.exe describe HEAD
         Write-Host "[INFO] Version tag $version created! Don't forget to push it to your remote by calling git push --tags" -ForegroundColor Cyan
     }
     $MissionString = [string]::Format("{0}_{1}-{2}.{3}.pbo", $MissionInfo.Prefix, $MissionInfo.InternalName, $version, $MissionInfo.MapName)
