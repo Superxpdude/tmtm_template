@@ -12,4 +12,5 @@
 // Define parameters
 _this params ["_oldUnit", "_killer", "_respawn", "_respawnDelay"];
 
-// OnPlayerKilled is not used for any template-specific code at this time.
+// Save the player's radio settings
+_this call XPT_fnc_radioHandleDeath;
