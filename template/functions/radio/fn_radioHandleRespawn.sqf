@@ -40,31 +40,32 @@ if (!local _unit) exitWith {
 	if !(call TFAR_fnc_haveSWRadio) exitWith {};
 	
 	// Check if any previous settings have been saved
+	// Settings are stored in an array that contains the classname of the radio, as well as a saved copy of TFAR_fnc_getSwSettings.
 	private _srSettings = _unit getVariable ["XPT_savedSRSettings", nil];
 	// Grab the classname of the new radio
 	private _srRadio = call TFAR_fnc_activeSwRadio;
-	// Grab the encryption code of the old radio
-	private _oldCode = if (isNil "_srSettings") then {"none"} else {_srSettings select 4};
-	// Grab the encryption code of the new radio
-	private _newCode = (configFile >> "CfgWeapons" >> _srRadio >> "tf_encryptionCode") call BIS_fnc_getCfgData;
+	// Grab the classname of the old radio
+	private _oldRadio = if (isNil "_srSettings") then {"none"} else {_srSettings select 0};
+	// Grab the side of the new radio. (The encryption code allows us to determine what side the radio belongs to).
+	private _radioSide = (configfile >> "CfgWeapons" >> _srRadio >> "tf_encryptionCode") call BIS_fnc_getCfgData;
 
 	// If any SR settings have been defined, assign them to the player's radio
-	// Only do so if the encryption codes match between the radios
-	if ((!isNil "_srSettings") AND (_oldCode == _newCode)) then {
-		[call TFAR_fnc_activeSwRadio, _srSettings] call TFAR_fnc_setSwSettings;
+	// Only do so if the classnames match between the radios
+	if ((!isNil "_srSettings") AND (_oldRadio == _srRadio)) then {
+		[call TFAR_fnc_activeSwRadio, (_srSettings select 1)] call TFAR_fnc_setSwSettings;
 	} else {
 		// If we have no saved data, or the encryption codes don't match, generate default values
-		private _srSettings = [false] call TFAR_fnc_generateSrSettings;
+		private _srSettings = ["",[false] call TFAR_fnc_generateSrSettings];
 		// Set the radio frequencies
-		switch (_newCode) do {
-			case "tf_west_radio_code" do {_srSettings set [2,TFAR_defaultFrequencies_sr_west];};
-			case "tf_east_radio_code" do {_srSettings set [2,TFAR_defaultFrequencies_sr_east];};
-			case "tf_guer_radio_code" do {_srSettings set [2,TFAR_defaultFrequencies_sr_independent];};
+		switch (_radioSide) do {
+			case "tf_west_radio_code" do {(_srSettings select 1) set [2,TFAR_defaultFrequencies_sr_west];};
+			case "tf_east_radio_code" do {(_srSettings select 1) set [2,TFAR_defaultFrequencies_sr_east];};
+			case "tf_guer_radio_code" do {(_srSettings select 1) set [2,TFAR_defaultFrequencies_sr_independent];};
 		};
 		// Set the default channel. Grab the value from the player unit first, otherwise try the group. If both don't exist, use the default (channel 0).
-		_srSettings set [0, (_unit getVariable ["TFAR_SRChannel", ((group _unit) getVariable ["TFAR_SRChannel", 0])])];
+		(_srSettings select 1) set [0, (_unit getVariable ["TFAR_SRChannel", ((group _unit) getVariable ["TFAR_SRChannel", 0])])];
 		// Assign the radio settings
-		[call TFAR_fnc_activeSwRadio, _srSettings] call TFAR_fnc_setSwSettings;
+		[call TFAR_fnc_activeSwRadio, (_srSettings select 1)] call TFAR_fnc_setSwSettings;
 	};
 };
 
@@ -82,29 +83,30 @@ if (!local _unit) exitWith {
 	if !(call TFAR_fnc_haveLRRadio) exitWith {};
 	
 	// Check if any previous settings have been saved
+	// Settings are stored in an array that contains the classname of the radio, as well as a saved copy of TFAR_fnc_getLrSettings.
 	private _lrSettings = _unit getVariable ["XPT_savedLRSettings", nil];
 	// Get the current LR radio
-	private _lrRadio = call TFAR_fnc_activeLRRadio;
-	// Grab the encryption code of the old radio
-	private _oldCode = if (isNil "_lrSettings") then {"none"} else {_lrSettings select 4};
-	// Grab the encryption code of the new radio
-	private _newCode = (configFile >> "CfgVehicles" >> (backpack _unit) >> "tf_encryptionCode") call BIS_fnc_getCfgData;
+	private _lrRadio = (backpack _unit);
+	// Grab the classname of the old radio
+	private _oldRadio = if (isNil "_lrSettings") then {"none"} else {_lrSettings select 0};
+	// Grab the side of the new radio. (The encryption code allows us to determine what side the radio belongs to).
+	private _radioSide = (configfile >> "CfgVehicles" >> _lrRadio >> "tf_encryptionCode") call BIS_fnc_getCfgData;
 
-	// If any SR settings have been defined, assign them to the player's radio
+	// If any LR settings have been defined, assign them to the player's radio
 	// Only do so if the encryption codes match between the radios
-	if ((!isNil "_lrSettings") AND (_oldCode == _newCode)) then {
-		[call TFAR_fnc_activeLRRadio, _lrSettings] call TFAR_fnc_setLRSettings;
+	if ((!isNil "_lrSettings") AND (_oldRadio == _lrRadio)) then {
+		[call TFAR_fnc_activeLRRadio, (_lrSettings select 1)] call TFAR_fnc_setLRSettings;
 	} else {
 		// If we have no saved data, or the encryption codes don't match, generate default values
-		private _lrSettings = [false] call TFAR_fnc_generateLrSettings;
+		private _lrSettings = ["",[false] call TFAR_fnc_generateLrSettings];
 		// Set the radio frequencies
-		switch (_newCode) do {
-			case "tf_west_radio_code" do {_lrSettings set [2,TFAR_defaultFrequencies_lr_west];};
-			case "tf_east_radio_code" do {_lrSettings set [2,TFAR_defaultFrequencies_lr_east];};
-			case "tf_guer_radio_code" do {_lrSettings set [2,TFAR_defaultFrequencies_lr_independent];};
+		switch (_radioSide) do {
+			case "tf_west_radio_code" do {(_lrSettings select 1) set [2,TFAR_defaultFrequencies_lr_west];};
+			case "tf_east_radio_code" do {(_lrSettings select 1) set [2,TFAR_defaultFrequencies_lr_east];};
+			case "tf_guer_radio_code" do {(_lrSettings select 1) set [2,TFAR_defaultFrequencies_lr_independent];};
 		};
 		// Set the default channel. Grab the value from the player unit first, otherwise try the group. If both don't exist, use the default (channel 0).
-		_lrSettings set [0, (_unit getVariable ["TFAR_LRChannel", ((group _unit) getVariable ["TFAR_LRChannel", 0])])];
+		(_lrSettings select 1) set [0, (_unit getVariable ["TFAR_LRChannel", ((group _unit) getVariable ["TFAR_LRChannel", 0])])];
 		// Assign the radio settings
 		[call TFAR_fnc_activeLRRadio, _lrSettings] call TFAR_fnc_setLRSettings;
 	};

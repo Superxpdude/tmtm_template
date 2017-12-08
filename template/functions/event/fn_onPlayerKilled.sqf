@@ -10,6 +10,6 @@
 */
 
 // Define parameters
-params ["_newUnit", "_oldUnit", "_respawn", "_respawnDelay"];
+_this params ["_oldUnit", "_killer", "_respawn", "_respawnDelay"];
 
 // OnPlayerKilled is not used for any template-specific code at this time.
