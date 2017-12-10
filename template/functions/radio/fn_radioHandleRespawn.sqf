@@ -54,7 +54,7 @@ if (!local _unit) exitWith {
 	if ((!isNil "_srSettings") AND (_oldRadio == _srRadio)) then {
 		[call TFAR_fnc_activeSwRadio, (_srSettings select 1)] call TFAR_fnc_setSwSettings;
 	} else {
-		// If we have no saved data, or the encryption codes don't match, generate default values
+		// If we have no saved data, or the classnames don't match, generate default values
 		private _srSettings = ["",[false] call TFAR_fnc_generateSrSettings];
 		// Set the radio frequencies
 		switch (_radioSide) do {
@@ -97,7 +97,7 @@ if (!local _unit) exitWith {
 	if ((!isNil "_lrSettings") AND (_oldRadio == _lrRadio)) then {
 		[call TFAR_fnc_activeLRRadio, (_lrSettings select 1)] call TFAR_fnc_setLRSettings;
 	} else {
-		// If we have no saved data, or the encryption codes don't match, generate default values
+		// If we have no saved data, or the classnames don't match, generate default values
 		private _lrSettings = ["",[false] call TFAR_fnc_generateLrSettings];
 		// Set the radio frequencies
 		switch (_radioSide) do {
