@@ -12,6 +12,9 @@
 // Define variables
 _this params ["_oldUnit", "_killer", "_respawn", "_respawnDelay"];
 
+// Don't run on Zeus units
+if (_oldUnit isKindOf "VirtualMan_F") exitWith {};
+
 
 // Figure out if the player has radios
 private _hasSR = _oldUnit call TFAR_fnc_activeSWRadio;

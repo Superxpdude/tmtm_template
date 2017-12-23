@@ -12,6 +12,7 @@
 
 // Define variables
 params [
+	["_curator", nil, [objNull]],
 	["_unit", nil, [objNull]]
 ];
 // Exit if the unit is undefined
