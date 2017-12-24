@@ -13,4 +13,4 @@
 _this params ["_oldUnit", "_killer", "_respawn", "_respawnDelay"];
 
 // Save the player's radio settings
-_this call XPT_fnc_radioHandleDeath;
+//_this call XPT_fnc_radioHandleDeath;
