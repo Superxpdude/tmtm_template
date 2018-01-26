@@ -1,7 +1,7 @@
 //-------------------- Mission Information
 
-author = "";					// Author name visible on loading screen
-briefingName = "";				// Name visible in mission select screen
+author = "";					// Author name visible on loading screen. DO NOT EDIT IF USING BUILD SCRIPT
+briefingName = "";				// Name visible in mission select screen. DO NOT EDIT IF USING BUILD SCRIPT
 overviewText = "";				// Description visible in mission select screen
 //overviewPicture = "";			// Image visible in mission select screen. Leave commented, still doesn't work properly.
 onLoadName = "";				// Name visible on loading screen
