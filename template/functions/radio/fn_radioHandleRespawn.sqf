@@ -97,7 +97,7 @@ if (!local _unit) exitWith {
 	// If any LR settings have been defined, assign them to the player's radio
 	// Only do so if the encryption codes match between the radios
 	if ((!isNil "_lrSettings") AND (_oldRadio == _lrRadio)) then {
-		[call TFAR_fnc_activeLRRadio, (_lrSettings select 1)] call TFAR_fnc_setLRSettings;
+		[_unit call TFAR_fnc_backpackLR, (_lrSettings select 1)] call TFAR_fnc_setLRSettings;
 	} else {
 		// If we have no saved data, or the classnames don't match, generate default values
 		private _lrSettings = ["",[false] call TFAR_fnc_generateLrSettings];
@@ -110,6 +110,6 @@ if (!local _unit) exitWith {
 		// Set the default channel. Grab the value from the player unit first, otherwise try the group. If both don't exist, use the default (channel 0).
 		(_lrSettings select 1) set [0, [(_unit getVariable ["TFAR_LRChannel", ((group _unit) getVariable ["TFAR_LRChannel", 0])])] param [0,0,[0]]];
 		// Assign the radio settings
-		[call TFAR_fnc_activeLRRadio, (_lrSettings select 1)] call TFAR_fnc_setLRSettings;
+		[_unit call TFAR_fnc_backpackLR (_lrSettings select 1)] call TFAR_fnc_setLRSettings;
 	};
 };
