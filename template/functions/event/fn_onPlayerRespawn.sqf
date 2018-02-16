@@ -12,6 +12,9 @@
 // Define parameters
 params ["_newUnit", "_oldUnit", "_respawn", "_respawnDelay"];
 
+// Re-enable feedback post-processing effects upon respawn
+BIS_fnc_feedback_allowPP = true;
+
 // Check if the player needs a loadout assigned
 if ((getMissionConfigValue "XPT_customLoadouts") == 1) then {
 	[_newUnit] call XPT_fnc_loadCurrentInventory;
