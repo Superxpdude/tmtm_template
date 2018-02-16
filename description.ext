@@ -150,6 +150,13 @@ class CfgRespawnInventory
 	#include "config\CfgRespawnInventory.hpp"
 };
 
+//-------------------- Respawn Templates
+class CfgRespawnTemplates
+{
+	#include "template\config\CfgRespawnTemplates.hpp"
+	#include "config\CfgRespawnTemplates.hpp"
+};
+
 //-------------------- Unit Insignias
 
 class CfgUnitInsignia
