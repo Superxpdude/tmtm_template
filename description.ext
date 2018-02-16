@@ -16,21 +16,29 @@ class Header
 };
 
 //-------------------- Template Defines
+// Uncomment the following defines if you want to change away from the default values pictured here.
 
 //#define XPT_DEFINEPVP 1			// Uncomment if the mission is a PvP mission
 
 // The following defines set default values for lobby parameters. Change as needed for the mission.
-#define XPT_MAPMARKERS 1			// 0 = Disabled, 1 = Enabled
-#define XPT_JIPTELEPORT 1			// 0 = Disabled, 1 = Enabled. Currently unused
-#define XPT_SAFESTART 1				// 0 = Disabled, 1 = Enabled. Currently unused.
+//#define XPT_MAPMARKERS 1			// 0 = Disabled, 1 = Enabled
+//#define XPT_JIPTELEPORT 1			// 0 = Disabled, 1 = Enabled. Currently unused
+//#define XPT_SAFESTART 1			// 0 = Disabled, 1 = Enabled. Currently unused.
 
-//#define XPT_DEBUGMODE 1			// Uncomment to enable debug mode by default. 0 = Disabled, 1 = Enabled.
+//#define XPT_DEBUGMODE 0			// 0 = Disabled, 1 = Enabled.
 
 //-------------------- ACE 3 Defines
+// Uncomment the following defines if you want to change away from the default values pictured here.
 
-#define XPT_ACE3_MEDICALLEVEL 1					// 1 = Basic Medical, 2 = Advanced Medical
-#define XPT_ACE3_PLAYERDAMAGETHRESHOLD 1		// Accepts values from 0.5 to 2 in 0.1 increments (0.5, 0.6, 0.7, etc.)
-#define XPT_ACE3_AIDAMAGETHRESHOLD 1			// Accepts values from 0.5 to 2 in 0.1 increments (0.5, 0.6, 0.7, etc.)
+//#define XPT_ACE3_MEDICALLEVEL 1					// 1 = Basic Medical, 2 = Advanced Medical
+//#define XPT_ACE3_PLAYERDAMAGETHRESHOLD 1			// Accepts values from 0.5 to 2 in 0.1 increments (0.5, 0.6, 0.7, etc.)
+//#define XPT_ACE3_AIDAMAGETHRESHOLD 1				// Accepts values from 0.5 to 2 in 0.1 increments (0.5, 0.6, 0.7, etc.)
+//#define XPT_ACE3_REVIVE_TIMER 300					// Revive timer duration in seconds. Accepts the following values: (30,60,90,120,180,240,300)
+
+//#define XPT_ACE3_PREVENTINSTANTDEATH_COOP 1		// Default PID setting for co-op missions. 0 = Disabled, 1 = Enabled
+//#define XPT_ACE3_REVIVE_COOP 1					// Default ACE revive setting for co-op misisons. 0 = Disabled, 1 = Enabled
+//#define XPT_ACE3_PREVENTINSTANTDEATH_PVP 0		// Default PID setting for PVP missions. 0 = Disabled, 1 = Enabled
+//#define XPT_ACE3_REVIVE_PVP 0						// Default ACE revive setting for PVP misisons. 0 = Disabled, 1 = Enabled
 
 //-------------------- DO NOT EDIT THIS SECTION
 #ifndef XPT_DEFINEPVP
@@ -103,6 +111,10 @@ wreckRemovalMinTime = 60;			// Make sure wrecks stay for at least 60 seconds
 wreckRemovalMaxTime = 1800;			// Remove wrecks after 30 minutes regardless of how many are on the map
 
 minPlayerDistance = 50;				// Don't remove a wreck or corpse if there's a player within 50 meters.
+
+//-------------------- Template Defines
+
+#include "template\config\XPT_Defines.hpp"
 
 //-------------------- Parameters
 
