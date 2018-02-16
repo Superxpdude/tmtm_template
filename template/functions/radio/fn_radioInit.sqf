@@ -55,4 +55,12 @@ if (isServer) then {
 	TFAR_defaultFrequencies_lr_west = _settingsLR;
 	TFAR_defaultFrequencies_lr_east = _settingsLR;
 	TFAR_defaultFrequencies_lr_independent = _settingsLR;
+	
+	publicVariable "TFAR_defaultFrequencies_sr_west";
+	publicVariable "TFAR_defaultFrequencies_sr_east";
+	publicVariable "TFAR_defaultFrequencies_sr_independent";
+	
+	publicVariable "TFAR_defaultFrequencies_lr_west";
+	publicVariable "TFAR_defaultFrequencies_lr_east";
+	publicVariable "TFAR_defaultFrequencies_lr_independent";
 };
