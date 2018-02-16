@@ -110,6 +110,6 @@ if (!local _unit) exitWith {
 		// Set the default channel. Grab the value from the player unit first, otherwise try the group. If both don't exist, use the default (channel 0).
 		(_lrSettings select 1) set [0, [(_unit getVariable ["TFAR_LRChannel", ((group _unit) getVariable ["TFAR_LRChannel", 0])])] param [0,0,[0]]];
 		// Assign the radio settings
-		[_unit call TFAR_fnc_backpackLR (_lrSettings select 1)] call TFAR_fnc_setLRSettings;
+		[_unit call TFAR_fnc_backpackLR, (_lrSettings select 1)] call TFAR_fnc_setLRSettings;
 	};
 };
