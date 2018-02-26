@@ -9,6 +9,8 @@
 		
 	Returns: Nothing
 */
+// Wait until the mission has started
+waitUntil {time > 0};
 
 // Exit if the function is run on a machine that does not have a player
 if (!hasInterface) exitWith {};
@@ -33,13 +35,12 @@ if (!local _unit) exitWith {
 // Assign settings to the SW radios
 // We need to spawn this so that it waits until the radios have been assigned without stopping the LR radio portion
 [_unit] spawn {
-	// Mark down the time that the script was spawned
 	private _unit = _this select 0;
-	_startTime = time;
-	// Wait until the player's radios have been assigned, or the timeout has been reached
-	waitUntil {((call TFAR_fnc_haveSWRadio) OR ((_startTime + 30) > time))};
-	// If the player does not have a radio (because the timeout was reached), exit the script.
-	if !(call TFAR_fnc_haveSWRadio) exitWith {};
+	
+	// Check if the player has an SW radio
+	if !(({(_x call TFAR_fnc_isPrototypeRadio) OR (_x call TFAR_fnc_isRadio)} count (assignedItems player)) > 0) exitWith {};
+	// Wait until the player's SW radio has been assigned
+	waitUntil {call TFAR_fnc_haveSWRadio};
 	
 	// Check if any previous settings have been saved
 	// Settings are stored in an array that contains the classname of the radio, as well as a saved copy of TFAR_fnc_getSwSettings.
@@ -76,13 +77,12 @@ if (!local _unit) exitWith {
 // Assign settings to the LR radios
 // Spawn this as well
 [_unit] spawn {
-	// Mark down the time that the script was spawned
 	private _unit = _this select 0;
-	_startTime = time;
-	// Wait until the player's radios have been assigned, or the timeout has been reached
-	waitUntil {((call TFAR_fnc_haveLRRadio) OR ((_startTime + 30) > time))};
-	// If the player does not have a radio (because the timeout was reached), exit the script.
-	if !(call TFAR_fnc_haveLRRadio) exitWith {};
+	
+	// Check if the player has an LR radio
+	if (isNil {player call TFAR_fnc_backpackLR}) exitWith {};
+	// Wait until the player's LR radio has been assigned.
+	waitUntil {call TFAR_fnc_haveLRRadio};
 	
 	// Check if any previous settings have been saved
 	// Settings are stored in an array that contains the classname of the radio, as well as a saved copy of TFAR_fnc_getLrSettings.
@@ -97,7 +97,7 @@ if (!local _unit) exitWith {
 	// If any LR settings have been defined, assign them to the player's radio
 	// Only do so if the encryption codes match between the radios
 	if ((!isNil "_lrSettings") AND (_oldRadio == _lrRadio)) then {
-		[call TFAR_fnc_activeLRRadio, (_lrSettings select 1)] call TFAR_fnc_setLRSettings;
+		[_unit call TFAR_fnc_backpackLR, (_lrSettings select 1)] call TFAR_fnc_setLRSettings;
 	} else {
 		// If we have no saved data, or the classnames don't match, generate default values
 		private _lrSettings = ["",[false] call TFAR_fnc_generateLrSettings];
@@ -110,6 +110,6 @@ if (!local _unit) exitWith {
 		// Set the default channel. Grab the value from the player unit first, otherwise try the group. If both don't exist, use the default (channel 0).
 		(_lrSettings select 1) set [0, [(_unit getVariable ["TFAR_LRChannel", ((group _unit) getVariable ["TFAR_LRChannel", 0])])] param [0,0,[0]]];
 		// Assign the radio settings
-		[call TFAR_fnc_activeLRRadio, (_lrSettings select 1)] call TFAR_fnc_setLRSettings;
+		[_unit call TFAR_fnc_backpackLR, (_lrSettings select 1)] call TFAR_fnc_setLRSettings;
 	};
 };

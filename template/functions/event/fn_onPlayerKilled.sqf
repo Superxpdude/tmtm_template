@@ -16,4 +16,4 @@ _this params ["_oldUnit", "_killer", "_respawn", "_respawnDelay"];
 BIS_fnc_feedback_allowPP = false;
 
 // Save the player's radio settings
-//_this call XPT_fnc_radioHandleDeath;
+_this call XPT_fnc_radioHandleDeath;
