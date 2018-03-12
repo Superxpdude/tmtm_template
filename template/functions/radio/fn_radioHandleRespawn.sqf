@@ -40,7 +40,7 @@ if (!local _unit) exitWith {
 	// Check if the player has an SW radio
 	if !(({(_x call TFAR_fnc_isPrototypeRadio) OR (_x call TFAR_fnc_isRadio)} count (assignedItems player)) > 0) exitWith {};
 	// Wait until the player's SW radio has been assigned
-	waitUntil {call TFAR_fnc_haveSWRadio};
+	waitUntil {(call TFAR_fnc_haveSWRadio) and !(isNil "XPT_radio_setup_complete")};
 	
 	// Check if any previous settings have been saved
 	// Settings are stored in an array that contains the classname of the radio, as well as a saved copy of TFAR_fnc_getSwSettings.
@@ -53,17 +53,26 @@ if (!local _unit) exitWith {
 	private _radioSide = (configfile >> "CfgWeapons" >> _srRadio >> "tf_encryptionCode") call BIS_fnc_getCfgData;
 
 	// If any SR settings have been defined, assign them to the player's radio
-	// Only do so if the classnames match between the radios
+	// Only do so if the classnames match between the radios, and the server has finished setting up radios.
 	if ((!isNil "_srSettings") AND (_oldRadio == _srRadio)) then {
 		[call TFAR_fnc_activeSwRadio, (_srSettings select 1)] call TFAR_fnc_setSwSettings;
 	} else {
 		// If we have no saved data, or the classnames don't match, generate default values
 		private _srSettings = ["",[false] call TFAR_fnc_generateSrSettings];
-		// Set the radio frequencies
+		// Set the radio frequencies and encryption codes
 		switch (_radioSide) do {
-			case "tf_west_radio_code" do {(_srSettings select 1) set [2,TFAR_defaultFrequencies_sr_west];};
-			case "tf_east_radio_code" do {(_srSettings select 1) set [2,TFAR_defaultFrequencies_sr_east];};
-			case "tf_guer_radio_code" do {(_srSettings select 1) set [2,TFAR_defaultFrequencies_sr_independent];};
+			case "tf_west_radio_code" do {
+				(_srSettings select 1) set [2,TFAR_defaultFrequencies_sr_west];
+				(_srSettings select 1) set [4,tf_west_radio_code];
+			};
+			case "tf_east_radio_code" do {
+				(_srSettings select 1) set [2,TFAR_defaultFrequencies_sr_east];
+				(_srSettings select 1) set [4,tf_east_radio_code];
+			};
+			case "tf_guer_radio_code" do {
+				(_srSettings select 1) set [2,TFAR_defaultFrequencies_sr_independent];
+				(_srSettings select 1) set [4,tf_guer_radio_code];
+			};
 		};
 		// Set the default channel. Grab the value from the player unit first, otherwise try the group. If both don't exist, use the default (channel 0).
 		(_srSettings select 1) set [0, (_unit getVariable ["TFAR_SRChannel", ((group _unit) getVariable ["TFAR_SRChannel", 0])])];
@@ -81,8 +90,8 @@ if (!local _unit) exitWith {
 	
 	// Check if the player has an LR radio
 	if (isNil {player call TFAR_fnc_backpackLR}) exitWith {};
-	// Wait until the player's LR radio has been assigned.
-	waitUntil {call TFAR_fnc_haveLRRadio};
+	// Wait until the player's LR radio has been assigned, and the server has finished setting up radios.
+	waitUntil {(call TFAR_fnc_haveLRRadio) and !(isNil "XPT_radio_setup_complete")};
 	
 	// Check if any previous settings have been saved
 	// Settings are stored in an array that contains the classname of the radio, as well as a saved copy of TFAR_fnc_getLrSettings.
@@ -101,11 +110,20 @@ if (!local _unit) exitWith {
 	} else {
 		// If we have no saved data, or the classnames don't match, generate default values
 		private _lrSettings = ["",[false] call TFAR_fnc_generateLrSettings];
-		// Set the radio frequencies
+		// Set the radio frequencies and encryption codes
 		switch (_radioSide) do {
-			case "tf_west_radio_code" do {(_lrSettings select 1) set [2,TFAR_defaultFrequencies_lr_west];};
-			case "tf_east_radio_code" do {(_lrSettings select 1) set [2,TFAR_defaultFrequencies_lr_east];};
-			case "tf_guer_radio_code" do {(_lrSettings select 1) set [2,TFAR_defaultFrequencies_lr_independent];};
+			case "tf_west_radio_code" do {
+				(_lrSettings select 1) set [2,TFAR_defaultFrequencies_lr_west];
+				(_lrSettings select 1) set [4,tf_west_radio_code];
+			};
+			case "tf_east_radio_code" do {
+				(_lrSettings select 1) set [2,TFAR_defaultFrequencies_lr_east];
+				(_lrSettings select 1) set [4,tf_east_radio_code];
+			};
+			case "tf_guer_radio_code" do {
+				(_lrSettings select 1) set [2,TFAR_defaultFrequencies_lr_independent];
+				(_lrSettings select 1) set [4,tf_guer_radio_code];
+			};
 		};
 		// Set the default channel. Grab the value from the player unit first, otherwise try the group. If both don't exist, use the default (channel 0).
 		(_lrSettings select 1) set [0, [(_unit getVariable ["TFAR_LRChannel", ((group _unit) getVariable ["TFAR_LRChannel", 0])])] param [0,0,[0]]];

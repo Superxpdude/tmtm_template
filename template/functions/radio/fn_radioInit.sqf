@@ -56,11 +56,22 @@ if (isServer) then {
 	TFAR_defaultFrequencies_lr_east = _settingsLR;
 	TFAR_defaultFrequencies_lr_independent = _settingsLR;
 	
-	publicVariable "TFAR_defaultFrequencies_sr_west";
-	publicVariable "TFAR_defaultFrequencies_sr_east";
-	publicVariable "TFAR_defaultFrequencies_sr_independent";
+	// Mark that the radio setup is complete
+	XPT_radio_setup_complete = true;
 	
-	publicVariable "TFAR_defaultFrequencies_lr_west";
-	publicVariable "TFAR_defaultFrequencies_lr_east";
-	publicVariable "TFAR_defaultFrequencies_lr_independent";
+	// Broadcast all variables to clients
+	{
+		publicVariable _x;
+	} forEach [
+		"XPT_radio_setup_complete",
+		"tf_west_radio_code",
+	    "tf_east_radio_code",
+	    "tf_guer_radio_code",
+		"TFAR_defaultFrequencies_sr_west",
+		"TFAR_defaultFrequencies_sr_east",
+		"TFAR_defaultFrequencies_sr_independent",
+		"TFAR_defaultFrequencies_lr_west",
+		"TFAR_defaultFrequencies_lr_east",
+		"TFAR_defaultFrequencies_lr_independent"
+	];
 };
