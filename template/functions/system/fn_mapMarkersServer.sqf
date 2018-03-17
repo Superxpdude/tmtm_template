@@ -67,7 +67,7 @@ if ((_this select 0) == 0) exitWith {};
 				// If the mission is a PVP mission, tell the clients to unhide friendly markers
 				if ((getMissionConfigValue "XPT_isPVP") == 1) then {
 					// Persistent execution of the remoteExec as long as the group exists
-					[[_grpMarker, _x]] remoteExec ["XPT_fnc_mapMarkersClient", 0, _x];
+					[_grpMarker, _x] remoteExec ["XPT_fnc_mapMarkersClient", 0, _x];
 				};
 			} else {
 				// If the group already has a marker, just update it
