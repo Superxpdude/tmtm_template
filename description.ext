@@ -211,9 +211,12 @@ class CfgXPT
 		#include "template\config\XPT_stage_base.hpp" 	// This include must be first in the stage section
 		#include "config\stages\stage1.hpp"
 	};
-	#include "config\XPTLoadouts.hpp"
+	
 	#include "config\XPTBriefings.hpp"
+	#include "config\XPTItemCargos.hpp"
+	#include "config\XPTLoadouts.hpp"
 	#include "config\XPTTaskUpdates.hpp"
+	#include "config\XPTVehicleLoadouts.hpp"
 };
 
 //-------------------- ACE3 Settings
