@@ -4,6 +4,22 @@
 
 //-------------------- Template parameter defines
 
+// PVP setting
+#ifndef XPT_TEXTCHANNELS_COOP
+	#define XPT_TEXTCHANNELS_COOP disableChannels[] = {{0,false,true},{1,true,true},{2,true,true},{3,false,true},{4,true,true},{5,true,true}};
+#endif
+#ifndef XPT_TEXTCHANNELS_PVP
+	#define XPT_TEXTCHANNELS_PVP disableChannels[] = {{0,false,true},{1,false,true},{2,true,true},{3,false,true},{4,true,true},{5,true,true}};
+#endif
+
+#ifndef XPT_DEFINEPVP
+	XPT_isPVP = 0;
+	XPT_TEXTCHANNELS_COOP
+#else
+	XPT_isPVP = 1;
+	XPT_TEXTCHANNELS_PVP
+#endif
+
 // XPT map markers. Defaults to Enabled.
 #ifndef XPT_MAPMARKERS
 	#define XPT_MAPMARKERS 1
@@ -24,6 +40,35 @@
 	#define XPT_DEBUGMODE 0
 #endif
 
+// Custom loadouts. Defaults to disabled.
+#ifndef XPT_DEFINE_CUSTOMLOADOUTS
+	#define XPT_DEFINE_CUSTOMLOADOUTS 0
+#endif
+XPT_customLoadouts = XPT_DEFINE_CUSTOMLOADOUTS;
+
+// Vehicle setup upon mission start. Defaults to disabled.
+#ifndef XPT_DEFINE_CUSTOMVEHICLECARGO
+	#define XPT_DEFINE_CUSTOMVEHICLECARGO 0
+#endif
+XPT_vehicleSetup = XPT_DEFINE_VEHICLESETUP;
+
+// Default mission stage. Defaults to "stage1"
+#ifndef XPT_DEFINE_STAGEDEFAULT
+	#define XPT_DEFINE_STAGEDEFAULT "stage1"
+#endif
+XPT_stageDefault = XPT_DEFINE_STAGEDEFAULT;
+
+// Custom loadouts for zeus-spawned units. Defaults to disabled.
+#ifndef XPT_DEFINE_CURATOR_CUSTOMLOADOUTS
+	#define XPT_DEFINE_CURATOR_CUSTOMLOADOUTS 0
+#endif
+XPT_curator_customLoadouts = XPT_DEFINE_CURATOR_CUSTOMLOADOUTS;
+
+// Remove NVGs from zeus-spawned units. Defaults to disabled.
+#ifndef XPT_DEFINE_CURATOR_REMOVENVG
+	#define XPT_DEFINE_CURATOR_REMOVENVG 0
+#endif
+XPT_curator_removeNVGs = XPT_DEFINE_CURATOR_REMOVENVG;
 
 //-------------------- ACE 3 medical defines
 
