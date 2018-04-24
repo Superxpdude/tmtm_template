@@ -55,9 +55,11 @@ class Header
 
 //-------------------- Admin
 
-enableDebugConsole = 1;			// Leave this as 1
-allowFunctionsLog = 0;			// Disables functions from spamming the server RPT logs
-allowFunctionsRecompile = 0;	// Always leave this as 0
+enableDebugConsole[] = {
+	"76561198031434864"
+};														// Array of player UIDs that have debug console access.
+allowFunctionsLog = 0;									// Disables functions from spamming the server RPT logs
+allowFunctionsRecompile = 0;							// Always leave this as 0
 
 //-------------------- Misc
 
