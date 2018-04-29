@@ -55,6 +55,8 @@ class Header
 
 //-------------------- Admin
 
+// Debug console - A list of playerUIDs that have access to the debug console when the mission is running.
+// Arma 3 playerUIDs correspond with the Steam64ID of the user.
 enableDebugConsole[] = {
 	"76561198031434864"
 };														// Array of player UIDs that have debug console access.
