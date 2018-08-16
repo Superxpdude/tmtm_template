@@ -13,6 +13,7 @@
 	The names of the sub-classes do not matter.
 	
 	The following example will select one of "box1" or "box2" when the "MyAmmoBox" class is called.
+	The names of the subclasses don't matter, and they can be named whatever you want them to be.
 	
 	class itemCargos
 	{
@@ -55,12 +56,12 @@ class itemCargos
 			{"FirstAidKit", {1,3,5}}
 		};
 		// Array of items that will only be added when ACE basic medical is being used
-		medicalBasic[] = {
+		itemsBasicMed[] = {
 			{"FirstAidKit", 5},
 			{"FirstAidKit", {1,3,5}}
 		};
 		// Array of items that will only be added when ACE advanced medical is being used
-		medicalAdvanced[] = {
+		itemsAdvMed[] = {
 			{"FirstAidKit", 5},
 			{"FirstAidKit", {1,3,5}}
 		};
