@@ -67,4 +67,10 @@ class XPT
 		class mapMarkersServer {}; // Server-side portion of the map-markers module
 		class updateTask {}; // Function for handling mission task updates
 	};
+	class vehicle
+	{
+		file = "template\functions\vehicle";
+		class loadItemCargo {};
+		class vehicleSetup {};
+	};
 };

@@ -33,7 +33,7 @@ class Header
 //#define XPT_DEBUGMODE 0			// 0 = Disabled, 1 = Enabled.
 
 //#define XPT_DEFINE_CUSTOMLOADOUTS 1		// 0 = Disabled, 1 = Enabled. Enables the loadout system
-//#define XPT_DEFINE_VEHICLESETUP 1			// 0 = Disabled, 1 = Enabled. Currently unused.
+//#define XPT_DEFINE_VEHICLESETUP 1			// 0 = Disabled, 1 = Enabled. Executes the vehicle setup script on all vehicles at mission start
 //#define XPT_DEFINE_STAGEDEFAULT "stage1"	// Use this to set the default mission stage. Does nothing if stages aren't used.
 
 // Curator settings

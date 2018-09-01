@@ -47,8 +47,8 @@
 XPT_customLoadouts = XPT_DEFINE_CUSTOMLOADOUTS;
 
 // Vehicle setup upon mission start. Defaults to disabled.
-#ifndef XPT_DEFINE_CUSTOMVEHICLECARGO
-	#define XPT_DEFINE_CUSTOMVEHICLECARGO 0
+#ifndef XPT_DEFINE_VEHICLESETUP
+	#define XPT_DEFINE_VEHICLESETUP 0
 #endif
 XPT_vehicleSetup = XPT_DEFINE_VEHICLESETUP;
 
