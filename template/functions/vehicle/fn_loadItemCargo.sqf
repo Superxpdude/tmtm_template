@@ -84,7 +84,7 @@ if (isNil "_itemsAdvMed") then {
 // Start processing the object
 
 // Remove all items currently in the object
-if (_remove) then 
+if (_remove) then {
 	clearWeaponCargoGlobal _object;
 	clearMagazineCargoGlobal _object;
 	clearBackpackCargoGlobal _object;

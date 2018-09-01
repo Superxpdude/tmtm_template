@@ -26,31 +26,37 @@ if (isNil "_vehicle") exitWith {
 	false
 };
 
-// Find the classname of the vehicle
-_class = (typeOf _vehicle);
-
-
-///////////////////////////////////////////////////////
-/// TODO: TRANSFER SCRIPT TO WHERE VEHICLE IS LOCAL ///
-///////////////////////////////////////////////////////
+// Execute the function where the vehicle is local
+if (!local _vehicle) exitWith {
+	if (!isServer) then {
+		// If this has been run on a client, send it to the server to find the object owner
+		_this remoteExec ["XPT_fnc_vehicleSetup", 2];
+	} else {
+		// If this has been run on the server, find out who the owner is and send it to them
+		_this remoteExec ["XPT_fnc_vehicleSetup", owner _vehicle];
+	};
+};
 
 // Find the config that we need if it's not already defined
-/*
+
 if (isNil "_loadout") then {
 	// Search the vehicle's variables to find a loadout
 	_loadout = _vehicle getVariable ["XPT_loadout", nil];
 	
 	// If the loadout is still undefined, grab the classname
 	if (isNil "_loadout") then {
-		_loadout = _class;
+		_loadout = (typeOf _vehicle);
+	};
+};
+
+/*
+if (isNil "_loadout") then {
+	switch true do {
+		case (!isNil (_vehicle getVariable ["XPT_loadout", nil])): {_vehicle getVariable ["XPT_loadout", nil]};
+		default {_loadout = _class};
 	};
 };
 */
-switch true do {
-	case (!isNil (_vehicle getVariable ["XPT_loadout", nil])): {_vehicle getVariable ["XPT_loadout", nil]};
-	default {_loadout = _class};
-};
-
 // Determine the config path of the vehicle loadout
 _config = ((getMissionConfig "CfgXPT") >> "vehicleSetup" >> _loadout);
 
@@ -61,10 +67,12 @@ if (!(isClass _config)) exitWith {
 };
 
 // Check if there are any sub-loadouts for the vehicle
-_subclasses = "true" configClasses _class;
+_subclasses = "true" configClasses _config;
 if ((count _subclasses) > 0) then {
 	// If there are any subclasses, select a random one.
 	_class = selectRandom _subclasses;
+} else {
+	_class = _config;
 };
 
 // Retrieve vehicle data from the config files
@@ -79,21 +87,19 @@ _datalink = [((_class >> "datalink") call BIS_fnc_getCfgData)] param [0, nil, [[
 
 // Load the item inventory
 if (!isNil "_itemCargo") then {
-	[_vehicle, _itemCargo, true] call XPT_fnc_loadItemCargo;
+	if (_itemCargo != "") then {
+		[_vehicle, _itemCargo, true] call XPT_fnc_loadItemCargo;
+	};
 };
 
 // Configure turrets
-
-////////////////////////////////
-/// SECTION NOT YET COMPLETE ///
-////////////////////////////////
 
 // Start a loop to iterate through all defined turrets
 {
 	private ["_turretPath"];
 	// TODO:
 	// Define variables in this section using the "params" command
-	
+	// Rewrite section to execute turret settings where turret is local
 	
 	// Grab the path of the turret in question
 	_turretPath = (_x select 0);
@@ -102,7 +108,7 @@ if (!isNil "_itemCargo") then {
 	if ((count (_x select 1)) > 0) then {
 		// If any weapons have been defined, remove all existing weapons
 		{
-			_vehicle removeWeaponTurret [_x,_turretPath];
+			//_vehicle removeWeaponTurret [_x,_turretPath];
 		} forEach (_vehicle weaponsTurret _turretPath);
 		
 		// Add the new turret weapons
@@ -166,13 +172,13 @@ if (!isNil "_datalink") then {
 	} forEach _datalink;
 	
 	// TODO: Find a way to clean up this section
-	if ((_datalink select 0) != -1) then {
+	if ((typeName (_datalink select 0)) == "BOOL") then {
 		_vehicle setVehicleReportOwnPosition (_datalink select 0);
 	};
-	if ((_datalink select 1) != -1) then {
+	if ((typeName (_datalink select 1)) == "BOOL") then {
 		_vehicle setVehicleReportRemoteTargets (_datalink select 1);
 	};
-	if ((_datalink select 2) != -1) then {
+	if ((typeName (_datalink select 2)) == "BOOL") then {
 		_vehicle setVehicleReceiveRemoteTargets (_datalink select 2);
 	};
 };
