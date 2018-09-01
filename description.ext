@@ -108,6 +108,10 @@ wreckRemovalMaxTime = 1800;			// Remove wrecks after 30 minutes regardless of ho
 
 minPlayerDistance = 50;				// Don't remove a wreck or corpse if there's a player within 50 meters.
 
+//-------------------- CBA Defines
+
+cba_settings_hasSettingsFile = 1;	// DO NOT CHANGE FROM 1
+
 //-------------------- Template Defines
 
 #include "template\config\XPT_Defines.hpp"
