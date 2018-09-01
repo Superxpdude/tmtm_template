@@ -35,14 +35,11 @@ if (isNil "_object") exitWith {
 	false
 };
 
-// Find the classname of the object
-_class = (typeOf _object);
-
 // Find the config class of the loadout
 if (!isNil "_loadout") then {
 	_config = ((getMissionConfig "CfgXPT") >> "itemCargos" >> _loadout);
 } else {
-	_config = ((getMissionConfig "CfgXPT") >> "itemCargos" >> _class);
+	_config = ((getMissionConfig "CfgXPT") >> "itemCargos" >> (typeOf _object));
 };
 
 // If the class doesn't exist, return an error
@@ -52,10 +49,12 @@ if (!(isClass _config)) exitWith {
 };
 
 // Check if there are any sub-loadouts for the class
-_subclasses = "true" configClasses _class;
+_subclasses = "true" configClasses _config;
 if ((count _subclasses) > 0) then {
 	// If there are any subclasses, select a random one.
 	_class = selectRandom _subclasses;
+} else {
+	_class = _config
 };
 
 // Retrieve item data from the config files
