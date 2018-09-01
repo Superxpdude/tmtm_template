@@ -28,3 +28,10 @@ if (isNil "XPT_blacklistedMissionObjects") then {
 		};
 	} forEach playableUnits + switchableUnits + allMissionObjects "LandVehicle" + allMissionObjects "Man" + allMissionObjects "Air" + allMissionObjects "Ship" + allMissionObjects "Reammobox_F" - XPT_blacklistedMissionObjects - allMissionObjects "VirtualMan_F";
 } forEach allCurators;
+
+// If enabled, execute the vehicle setup script on start
+if (["XPT_vehicleSetup", 0] call BIS_fnc_getParamValue == 1) then {
+	{
+		[_x, nil, true] call XPT_fnc_vehicleSetup;
+	} forEach allMissionObjects "LandVehicle" +  allMissionObjects "Air" + allMissionObjects "Ship";
+};

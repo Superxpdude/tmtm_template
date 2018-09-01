@@ -7,6 +7,7 @@
 	Parameters:
 		0: Object - Vehicle to configure
 		1: String (Optional) - Loadout to apply. Uses vehicle classname if undefined. Searches in XPTVehicleSetup.hpp
+		2: Bool (Optional) - True when executed on mission start. Suppresses warning about missing loadouts when vehicle classname is used
 		
 	Returns: Bool
 		True if the vehicle was configured correctly
@@ -14,10 +15,11 @@
 */
 
 // Define variables
-private ["_vehicle", "_class", "_loadout", "_config", "_subclasses"];
+private ["_vehicle", "_class", "_loadout", "_config", "_subclasses", "_onStart"];
 params [
 	["_vehicle", nil, [objNull]],
-	["_loadout", nil, [""]]
+	["_loadout", nil, [""]],
+	["_onStart", false, [false]]
 ];
 
 // Exit the script if the vehicle is undefined.
@@ -46,6 +48,9 @@ if (isNil "_loadout") then {
 	// If the loadout is still undefined, grab the classname
 	if (isNil "_loadout") then {
 		_loadout = (typeOf _vehicle);
+	} else {
+		// If the vehicle has a loadout defined, disable the onStart flag.
+		_onStart = false;
 	};
 };
 
@@ -61,7 +66,7 @@ if (isNil "_loadout") then {
 _config = ((getMissionConfig "CfgXPT") >> "vehicleSetup" >> _loadout);
 
 // If the class doesn't exist, return an error
-if (!(isClass _config)) exitWith {
+if ((!(isClass _config)) AND !(_onStart)) exitWith {
 	[[false, format ["[XPT-VEHICLE] Missing Loadout: ""%1""", _loadout]]] remoteExec ["XPT_fnc_errorReport", 0];
 	false
 };
