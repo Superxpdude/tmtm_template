@@ -111,3 +111,33 @@ XPT_curator_removeNVGs = XPT_DEFINE_CURATOR_REMOVENVG;
 #ifndef XPT_ACE3_REVIVE_TIMER
 	#define XPT_ACE3_REVIVE_TIMER 300
 #endif
+
+// ACEX View restriction COOP. Defaults to off
+#ifndef XPT_ACEX_VIEWRESTRICTION_COOP
+	#define XPT_ACEX_VIEWRESTRICTION_COOP 0
+#endif
+
+// ACEX View restriction PVP. Defaults to first-person only
+#ifndef XPT_ACEX_VIEWRESTRICTION_PVP
+	#define XPT_ACEX_VIEWRESTRICTION_PVP 1
+#endif
+
+// ACEX View restriction (On foot). Defaults to off
+#ifndef XPT_ACEX_VIEWRESTRICTION_FOOT
+	#define XPT_ACEX_VIEWRESTRICTION_FOOT 0
+#endif
+
+// ACEX View restriction (Land vehicles). Defaults to off
+#ifndef XPT_ACEX_VIEWRESTRICTION_LAND
+	#define XPT_ACEX_VIEWRESTRICTION_LAND 0
+#endif
+
+// ACEX View restriction (Air vehicles). Defaults to off
+#ifndef XPT_ACEX_VIEWRESTRICTION_AIR
+	#define XPT_ACEX_VIEWRESTRICTION_AIR 0
+#endif
+
+// ACEX View restriction (Sea vehicles). Defaults to off
+#ifndef XPT_ACEX_VIEWRESTRICTION_SEA
+	#define XPT_ACEX_VIEWRESTRICTION_SEA 0
+#endif

@@ -53,6 +53,16 @@ class Header
 //#define XPT_ACE3_PREVENTINSTANTDEATH_PVP 0		// Default PID setting for PVP missions. 0 = Disabled, 1 = Enabled
 //#define XPT_ACE3_REVIVE_PVP 0						// Default ACE revive setting for PVP misisons. 0 = Disabled, 1 = Enabled
 
+//-------------------- ACEX Defines
+
+//#define XPT_ACEX_VIEWRESTRICTION_COOP 0			// Default view setting for co-op. 0 = Disabled. 1 = First-person only. 2 = Third-person only. 3 = Selective
+//#define XPT_ACEX_VIEWRESTRICTION_PVP 1			// Default view setting for PVP. 0 = Disabled. 1 = First-person only. 2 = Third-person only. 3 = Selective
+
+//#define XPT_ACEX_VIEWRESTRICTION_FOOT 0			// Default view setting when 'selective' is chosen. 0 = Disabled. 1 = First-person only. 2 = Third-person only.
+//#define XPT_ACEX_VIEWRESTRICTION_LAND 0			// Default view setting when 'selective' is chosen. 0 = Disabled. 1 = First-person only. 2 = Third-person only.
+//#define XPT_ACEX_VIEWRESTRICTION_AIR 0			// Default view setting when 'selective' is chosen. 0 = Disabled. 1 = First-person only. 2 = Third-person only.
+//#define XPT_ACEX_VIEWRESTRICTION_SEA 0			// Default view setting when 'selective' is chosen. 0 = Disabled. 1 = First-person only. 2 = Third-person only.
+
 //-------------------- Admin
 
 // Debug console - A list of playerUIDs that have access to the debug console when the mission is running.
