@@ -74,6 +74,57 @@ class ace_medical_AIDamageThreshold
 	texts[] = {"50%","60%","70%","80%","90%","100%","110%","120%","130%","140%","150%","160%","170%","180%","190%","200%"};
 	default = XPT_ACE3_AIDAMAGETHRESHOLD;
 };
+class header_acex_settings
+{
+	title = "===== ACEX Settings =====";
+	values[] = {0};
+	texts[] = {""};
+	default = 0;
+};
+class acex_viewrestriction_mode
+{
+	title = "ACEX - View Restriction";
+	ACE_setting = 1;
+	values[] = {0,1,2,3};
+	texts[] = {"Disabled","Forced First-Person","Forced Third-Person","Selective (Follows rules below)"};
+	#ifdef XPT_DEFINEPVP
+		default = XPT_ACEX_VIEWRESTRICTION_PVP;
+	#else
+		default = XPT_ACEX_VIEWRESTRICTION_COOP;
+	#endif
+};
+class acex_viewrestriction_modeSelectiveFoot
+{
+	title = "ACEX - View Restriction Selective (On foot)";
+	ACE_setting = 1;
+	values[] = {0,1,2};
+	texts[] = {"Disabled","Forced First-Person","Forced Third-Person"};
+	default = XPT_ACEX_VIEWRESTRICTION_FOOT;
+};
+class acex_viewrestriction_modeSelectiveLand
+{
+	title = "ACEX - View Restriction Selective (Land Vehicles)";
+	ACE_setting = 1;
+	values[] = {0,1,2};
+	texts[] = {"Disabled","Forced First-Person","Forced Third-Person"};
+	default = XPT_ACEX_VIEWRESTRICTION_LAND;
+};
+class acex_viewrestriction_modeSelectiveAir
+{
+	title = "ACEX - View Restriction Selective (Air Vehicles)";
+	ACE_setting = 1;
+	values[] = {0,1,2};
+	texts[] = {"Disabled","Forced First-Person","Forced Third-Person"};
+	default = XPT_ACEX_VIEWRESTRICTION_AIR;
+};
+class acex_viewrestriction_modeSelectiveSea
+{
+	title = "ACEX - View Restriction Selective (Sea Vehicles)";
+	ACE_setting = 1;
+	values[] = {0,1,2};
+	texts[] = {"Disabled","Forced First-Person","Forced Third-Person"};
+	default = XPT_ACEX_VIEWRESTRICTION_SEA;
+};
 class header_mission_settings
 {
 	title = "===== Template Settings =====";
