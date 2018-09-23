@@ -61,17 +61,17 @@ if (!local _unit) exitWith {
 		private _srSettings = ["",[false] call TFAR_fnc_generateSrSettings];
 		// Set the radio frequencies and encryption codes
 		switch (_radioSide) do {
-			case "tf_west_radio_code" do {
+			case "tf_west_radio_code": {
 				(_srSettings select 1) set [2,TFAR_defaultFrequencies_sr_west];
 				(_srSettings select 1) set [4,tf_west_radio_code];
 			};
-			case "tf_east_radio_code" do {
+			case "tf_east_radio_code": {
 				(_srSettings select 1) set [2,TFAR_defaultFrequencies_sr_east];
 				(_srSettings select 1) set [4,tf_east_radio_code];
 			};
-			case "tf_guer_radio_code" do {
+			case "tf_independent_radio_code": {
 				(_srSettings select 1) set [2,TFAR_defaultFrequencies_sr_independent];
-				(_srSettings select 1) set [4,tf_guer_radio_code];
+				(_srSettings select 1) set [4,tf_independent_radio_code];
 			};
 		};
 		// Set the default channel. Grab the value from the player unit first, otherwise try the group. If both don't exist, use the default (channel 0).
@@ -112,17 +112,17 @@ if (!local _unit) exitWith {
 		private _lrSettings = ["",[false] call TFAR_fnc_generateLrSettings];
 		// Set the radio frequencies and encryption codes
 		switch (_radioSide) do {
-			case "tf_west_radio_code" do {
+			case "tf_west_radio_code": {
 				(_lrSettings select 1) set [2,TFAR_defaultFrequencies_lr_west];
 				(_lrSettings select 1) set [4,tf_west_radio_code];
 			};
-			case "tf_east_radio_code" do {
+			case "tf_east_radio_code": {
 				(_lrSettings select 1) set [2,TFAR_defaultFrequencies_lr_east];
 				(_lrSettings select 1) set [4,tf_east_radio_code];
 			};
-			case "tf_guer_radio_code" do {
+			case "tf_independent_radio_code": {
 				(_lrSettings select 1) set [2,TFAR_defaultFrequencies_lr_independent];
-				(_lrSettings select 1) set [4,tf_guer_radio_code];
+				(_lrSettings select 1) set [4,tf_independent_radio_code];
 			};
 		};
 		// Set the default channel. Grab the value from the player unit first, otherwise try the group. If both don't exist, use the default (channel 0).
