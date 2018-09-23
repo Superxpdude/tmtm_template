@@ -12,7 +12,7 @@
 private ["_isPVP", "_settingsSW", "_settingsLR", "_settingsSWWest", "_settingsSWEast", "_settingsSWGuer"];
 
 // Most (if not all) of this stuff should only be run on the server
-//if (!isServer) exitWith {};
+if (!isServer) exitWith {};
 
 // Check if the mission is a PVP mission
 _isPVP = getMissionConfigValue "XPT_isPVP";
@@ -32,30 +32,12 @@ if (_isPVP == 1) then {
 	_settingsSWEast = "200,210,220,230,240,250,260,270,280";
 	// Set frequencies for Independent
 	_settingsSWGuer = "300,310,320,330,340,350,360,370,380";
-	
-	// Set the radio encryption codes
-	//["tf_west_radio_code", "_radio_west", true, "mission"] call CBA_settings_fnc_set;
-	//["tf_east_radio_code", "_radio_east", true, "mission"] call CBA_settings_fnc_set;
-	//["tf_guer_radio_code", "_radio_guer", true, "mission"] call CBA_settings_fnc_set;
-	//tf_west_radio_code = "_radio_west";
-	//tf_east_radio_code = "_radio_east";
-	//tf_guer_radio_code = "_radio_guer";
-	
 } else {
 	_settingsSW = "100,110,120,130,140,150,160,170,180";
 	_settingsSWWest = _settingsSW;
 	_settingsSWEast = _settingsSW;
 	_settingsSWGuer = _settingsSW;
-	
-	// Set the radio encryption codes
-	//["tf_west_radio_code", "_radio", true, "mission"] call CBA_settings_fnc_set;
-	//["tf_east_radio_code", "_radio", true, "mission"] call CBA_settings_fnc_set;
-	//["tf_guer_radio_code", "_radio", true, "mission"] call CBA_settings_fnc_set;
-	
-	//tf_west_radio_code = "_radio";
-	//tf_east_radio_code = "_radio";
-	//tf_guer_radio_code = "_radio";
-	
+
 	// If not a PVP, disable radio codes entirely:
 	["tfar_radioCodesDisabled", true, true, "mission"] call CBA_settings_fnc_set;
 };
