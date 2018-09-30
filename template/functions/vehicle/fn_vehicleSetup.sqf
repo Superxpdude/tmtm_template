@@ -23,7 +23,7 @@ params [
 ];
 
 // Exit the script if the vehicle is undefined.
-if (isNil "_vehicle") exitWith {
+if ((isNil "_vehicle") AND (_onStart)) exitWith {
 	[[true,"[XPT-VEHICLE] XPT_fnc_vehicleSetup called with no vehicle defined."]] remoteExec ["XPT_fnc_errorReport", 0];
 	false
 };
@@ -113,7 +113,7 @@ if (!isNil "_itemCargo") then {
 	if ((count (_x select 1)) > 0) then {
 		// If any weapons have been defined, remove all existing weapons
 		{
-			//_vehicle removeWeaponTurret [_x,_turretPath];
+			_vehicle removeWeaponTurret [_x,_turretPath];
 		} forEach (_vehicle weaponsTurret _turretPath);
 		
 		// Add the new turret weapons
@@ -147,7 +147,7 @@ if (!isNil "_itemCargo") then {
 		default {_x set [3, nil]}; // Set the value to nil if it's not a 1 or 0
 	};
 	// If the desired lock status is defined, set it.
-	if (!isNil {_x select 3}) do {
+	if (!isNil {_x select 3}) then {
 		_vehicle lockTurret [_turretPath, _x select 3];
 	};
 	
