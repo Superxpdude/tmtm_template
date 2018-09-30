@@ -45,7 +45,7 @@ if (_isPVP == 1) then {
 _settingsLR = "50,55,60,65,70,75,80,85,90,95";
 
 // This won't work, TFAR frequency settings are defined in CBA settings as strings
-["TFAR_setting_defaultFrequencies_sr_west", _settingsSWWest, true, "mission",true] call CBA_settings_fnc_set;
+["TFAR_setting_defaultFrequencies_sr_west", _settingsSWWest, true, "mission"] call CBA_settings_fnc_set;
 ["TFAR_setting_defaultFrequencies_sr_east", _settingsSWEast, true, "mission"] call CBA_settings_fnc_set;
 ["TFAR_setting_defaultFrequencies_sr_independent", _settingsSWGuer, true, "mission"] call CBA_settings_fnc_set;
 
