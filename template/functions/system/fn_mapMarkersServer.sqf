@@ -15,14 +15,23 @@ if (!isServer) exitWith {};
 // Only to be run if map markers are enabled
 if ((_this select 0) == 0) exitWith {};
 
+// Do not execute if there are already map markers present, this would indicate that the function is already running
+if (!isNil "XPT_mapMarkersList") exitWith {
+	[[false,"[XPT-MAPMARKERS] Second XPT_fnc_mapMarkersServer instance started while another instance was already running."]]
+};
+	
+
 // Spawn map markers loop (since this function is called on mission start)
 [] spawn {
 	// Define our variables
 	private ["_groups", "_markers", "_tempMarkers", "_markerType"];
 	_markers = [];
 	
+	// Mark the map markers as enabled
+	XPT_mapMarkersEnabled = true;
+	
 	// Start the loop
-	while {true} do {
+	while {XPT_mapMarkersEnabled} do {
 		// Clear the groups list
 		_groups = [];
 		// Fill tempMarkers will variables from markers
@@ -90,4 +99,13 @@ if ((_this select 0) == 0) exitWith {};
 		// Wait a few seconds
 		sleep 5;
 	};
+	
+	// If the map markers become disabled at any point, delete all of the current map markers
+	{
+		deleteMarkers _x;
+	} forEach XPT_mapMarkersList;
+	// Set the map markers list to nil. This allows the markers to be restarted at any point
+	XPT_mapMarkersList = nil;
+	// Update the map markers array on all clients
+	publicVariable "XPT_mapMarkersList";
 };

@@ -29,6 +29,6 @@ _debug = (["XPT_debugMode", 0] call BIS_fnc_getParamValue);
 	if ((_x select 0) OR (_debug == 1)) then {
 		systemChat (_x select 1);
 	};
-	diag_log (_x select 1);
+	diag_log text (_x select 1);
 } forEach _this;
 	

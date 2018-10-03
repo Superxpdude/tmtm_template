@@ -72,5 +72,6 @@ class XPT
 		file = "template\functions\vehicle";
 		class loadItemCargo {};
 		class vehicleSetup {};
+		class vehicleSetupTurret {};
 	};
 };

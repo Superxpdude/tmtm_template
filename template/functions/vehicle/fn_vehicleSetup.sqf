@@ -2,7 +2,7 @@
 	XPT_fnc_vehicleSetup
 	Author: Superxpdude
 	Handles setting up a vehicle from a predefined config.
-	Will automatically execute itself where the vehicle is local.
+	Only executed on the server. Will execute commands as local where required.
 	
 	Parameters:
 		0: Object - Vehicle to configure
@@ -14,6 +14,9 @@
 		False if there was an error configuring the vehicle
 */
 
+// Only execute the main function on the server. This will execute commands on different machines as required.
+if (!isServer) exitWith {};
+
 // Define variables
 private ["_vehicle", "_class", "_loadout", "_config", "_subclasses", "_onStart"];
 params [
@@ -23,12 +26,13 @@ params [
 ];
 
 // Exit the script if the vehicle is undefined.
-if ((isNil "_vehicle") AND (_onStart)) exitWith {
+if (isNil "_vehicle") exitWith {
 	[[true,"[XPT-VEHICLE] XPT_fnc_vehicleSetup called with no vehicle defined."]] remoteExec ["XPT_fnc_errorReport", 0];
 	false
 };
 
 // Execute the function where the vehicle is local
+/*
 if (!local _vehicle) exitWith {
 	if (!isServer) then {
 		// If this has been run on a client, send it to the server to find the object owner
@@ -38,9 +42,11 @@ if (!local _vehicle) exitWith {
 		_this remoteExec ["XPT_fnc_vehicleSetup", owner _vehicle];
 	};
 };
+*/
+
+
 
 // Find the config that we need if it's not already defined
-
 if (isNil "_loadout") then {
 	// Search the vehicle's variables to find a loadout
 	_loadout = _vehicle getVariable ["XPT_loadout", nil];
@@ -54,14 +60,6 @@ if (isNil "_loadout") then {
 	};
 };
 
-/*
-if (isNil "_loadout") then {
-	switch true do {
-		case (!isNil (_vehicle getVariable ["XPT_loadout", nil])): {_vehicle getVariable ["XPT_loadout", nil]};
-		default {_loadout = _class};
-	};
-};
-*/
 // Determine the config path of the vehicle loadout
 _config = ((getMissionConfig "CfgXPT") >> "vehicleSetup" >> _loadout);
 
@@ -101,55 +99,12 @@ if (!isNil "_itemCargo") then {
 
 // Start a loop to iterate through all defined turrets
 {
-	private ["_turretPath"];
-	// TODO:
-	// Define variables in this section using the "params" command
-	// Rewrite section to execute turret settings where turret is local
-	
+	private ["_turretPath"];	
 	// Grab the path of the turret in question
 	_turretPath = (_x select 0);
 	
-	// Check if turret weapons has any entries, and if it does, apply those entries
-	if ((count (_x select 1)) > 0) then {
-		// If any weapons have been defined, remove all existing weapons
-		{
-			_vehicle removeWeaponTurret [_x,_turretPath];
-		} forEach (_vehicle weaponsTurret _turretPath);
-		
-		// Add the new turret weapons
-		{
-			_vehicle addWeaponTurret [_x,_turretPath];
-		} forEach (_x select 1);
-	};
-	
-	// Check if turret magazines has any entries, and if it does, apply those entries
-	if ((count (_x select 2)) > 0) then {
-		// If any magazines have been defined, remove all existing magazines
-		{
-			_vehicle removeMagazineTurret [_x,_turretPath];
-		} forEach (_vehicle magazinesTurret _turretPath);
-		
-		// Add the new turret magazines
-		{
-			private ["_magazine"];
-			_magazine = (_x select 0);
-			for "_i" from 1 to (_x select 1) do {
-				_vehicle addMagazineTurret [_magazine, _turretPath];
-			};
-		} forEach (_x select 2);
-	};
-
-	// Set the lock status of the turret
-	// Convert the number to a boolean
-	switch (_x select 3) do {
-		case 0: {_x set [3, false]};
-		case 1: {_x set [3, true]};
-		default {_x set [3, nil]}; // Set the value to nil if it's not a 1 or 0
-	};
-	// If the desired lock status is defined, set it.
-	if (!isNil {_x select 3}) then {
-		_vehicle lockTurret [_turretPath, _x select 3];
-	};
+	// Configure the turret where it is local
+	[_vehicle, _x] remoteExec ["XPT_fnc_vehicleSetupTurret", _vehicle turretOwner _turretPath];
 	
 } forEach _turretConfigs;
 
