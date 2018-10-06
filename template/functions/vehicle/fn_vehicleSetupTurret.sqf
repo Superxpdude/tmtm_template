@@ -25,11 +25,11 @@ _turretConfig params [
 ];
 
 // Don't run if we have undefined variables
-if (isNil "_vehicle") exitWith {[[false,"[XPT-VEHICLE] XPT_fnc_vehicleSetupTurret called with undefined vehicle."};
-if (isNil "_turretPath") exitWith {[[false,"[XPT-VEHICLE] XPT_fnc_vehicleSetupTurret called with undefined turret path."};
+if (isNil "_vehicle") exitWith {[[false,"[XPT-VEHICLE] XPT_fnc_vehicleSetupTurret called with undefined vehicle."]] remoteExec ["XPT_fnc_errorReport", 0];};
+if (isNil "_turretPath") exitWith {[[false,"[XPT-VEHICLE] XPT_fnc_vehicleSetupTurret called with undefined turret path."]] remoteExec ["XPT_fnc_errorReport", 0];};
 
 // Only run if the turret is local to this machine
-if !(_vehicle turretLocal _turretPath) exitWith {[[false,"[XPT-VEHICLE] XPT_fnc_vehicleSetupTurret executed where turret is not local."};
+if !(_vehicle turretLocal _turretPath) exitWith {[[false,"[XPT-VEHICLE] XPT_fnc_vehicleSetupTurret executed where turret is not local."]] remoteExec ["XPT_fnc_errorReport", 0];};
 
 // Start with magazines first, this way any new weapons will be automatically loaded.
 if ((count _turretMagazines) > 0) then {
