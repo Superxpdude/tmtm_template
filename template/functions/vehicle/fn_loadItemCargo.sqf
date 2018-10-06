@@ -107,7 +107,12 @@ if ((["ace_medical_level", 1] call BIS_fnc_getParamValue) == 1) then {
 	} else {
 		_count = (_x select 1);
 	};
-	_object addItemCargoGlobal [_x select 0,_count];
+	// If the class is for a backpack, add it as a backpack
+	if (isClass (configFile >> "CfgVehicles" >> (_x select 0))) then {
+		_object addBackpackCargoGlobal [_x select 0, _count];
+	} else {
+		_object addItemCargoGlobal [_x select 0,_count];
+	};
 } forEach _allItems;
 
 // Return true if it completed successfully

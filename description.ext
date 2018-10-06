@@ -96,7 +96,7 @@ respawnButton = 1;				// Enable the respawn button for players
 
 //-------------------- Respawn Templates
 
-respawnTemplates[] = {"MenuPosition", "Spectator"};				// Templates used for player respawning, applies to all sides
+respawnTemplates[] = {"Spectator"};								// Templates used for player respawning, applies to all sides
 //respawnTemplatesWest[] = {"MenuPosition", "Spectator"};		// Templates used for player respawning, applies to BLUFOR only
 //respawnTemplatesEast[] = {"MenuPosition", "Spectator"};		// Templates used for player respawning, applies to OPFOR only
 //respawnTemplatesGuer[] = {"MenuPosition", "Spectator"};		// Templates used for player respawning, applies to Independent only
