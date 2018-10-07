@@ -102,7 +102,7 @@ if (!isNil "XPT_mapMarkersList") exitWith {
 	
 	// If the map markers become disabled at any point, delete all of the current map markers
 	{
-		deleteMarkers _x;
+		deleteMarker _x;
 	} forEach XPT_mapMarkersList;
 	// Set the map markers list to nil. This allows the markers to be restarted at any point
 	XPT_mapMarkersList = nil;
