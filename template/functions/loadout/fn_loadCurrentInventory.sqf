@@ -24,14 +24,38 @@ if (isNil "_loadout") then {
 	_loadout = typeOf _unit;
 };
 
+
+// Determine the version of loadout that's being used. Run the matching inventory script.
+private _fn_checkInventoryVersion = {
+	private _subClasses = "true" configClasses (_this select 1);
+	private _class = if ((count _subClasses) > 0) then {selectRandom _subClasses} else {_this select 1};
+	if (isNil {((_class) >> "weapons") call BIS_fnc_getCfgData}) then {
+		_this call XPT_fnc_loadInventory;
+	} else {
+		_this call XPT_fnc_loadInventoryLegacy;
+	};
+};
+
+
+_subclasses = "true" configClasses _baseClass;
+if ((count _subclasses) > 0) then {
+	// If we have any subclasses, select a random one.
+	_class = selectRandom _subclasses;
+	_isSubclass = true;
+} else {
+	_class = _baseClass;
+};
+
 // Find the correct loadout for the unit. Report an error if no loadout is found
 switch true do {
 	case (isClass ((getMissionConfig "CfgXPT") >> XPT_stage_active >> "loadouts" >> _loadout)): {
-		[_unit, (getMissionConfig "CfgXPT") >> XPT_stage_active >> "loadouts" >> _loadout] call XPT_fnc_loadInventory;
+		//[_unit, (getMissionConfig "CfgXPT") >> XPT_stage_active >> "loadouts" >> _loadout] call XPT_fnc_loadInventory;
+		[_unit, (getMissionConfig "CfgXPT") >> XPT_stage_active >> "loadouts" >> _loadout] call _fn_checkInventoryVersion;
 	};
 	// Keep the old loadouts location in here for legacy reasons
 	case (isClass ((getMissionConfig "CfgXPT") >> "loadouts" >> _loadout)): {
-		[_unit, (getMissionConfig "CfgXPT") >> "loadouts" >> _loadout] call XPT_fnc_loadInventory;
+		//[_unit, (getMissionConfig "CfgXPT") >> "loadouts" >> _loadout] call XPT_fnc_loadInventory;
+		[_unit, (getMissionConfig "CfgXPT") >> "loadouts" >> _loadout] call _fn_checkInventoryVersion;
 	};
 	case (isClass ((getMissionConfig "CfgRespawnInventory") >> _loadout)): {
 		[_unit, (getMissionConfig "CfgRespawnInventory") >> _loadout] call BIS_fnc_loadInventory;
