@@ -125,5 +125,8 @@ private _loadout = [
 	_linkedItems
 ];
 
+// Apply the loadout
+_unit setUnitLoadout _loadout;
+
 // Return true if script is completed.
 true 
