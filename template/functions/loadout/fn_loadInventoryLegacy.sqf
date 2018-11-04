@@ -56,9 +56,9 @@ if ((isNil "_unit") or (isNil "_class")) exitWith {false};
 // Define some sub-functions
 private _fn_itemType = {
 	private ["_return"];
-	if (isClass (configFile >> "CfgMagazines" >> _this)) then {
+	if (isClass (configFile >> "CfgMagazines" >> (_this select 0))) then {
 		// If it's a magazine, grab the ammo count
-		_return = [_this,(configFile >> "CfgMagazines" >> _this >> "count") call BIS_fnc_getCfgData];
+		_return = [(_this select 0),(_this select 1),(configFile >> "CfgMagazines" >> (_this select 0) >> "count") call BIS_fnc_getCfgData];
 	} else {
 		// If it's an item, return the item
 		_return = _this;
