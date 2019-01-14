@@ -43,6 +43,7 @@ class XPT
 		file = "template\functions\loadout";
 		class loadCurrentInventory {}; // Uses loadInventory to apply a loadout to a unit
 		class loadInventory {}; // Function for loading a unit's inventory
+		class loadInventoryLegacy {}; // Old inventory function. Temporarily preserved for backwards compatibility.
 	};
 	class radio
 	{
