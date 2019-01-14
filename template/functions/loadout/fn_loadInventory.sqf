@@ -57,7 +57,7 @@ params [
 ];
 
 // Exit the script if _unit is not an object or _class is not a config class
-if ((isNil "_unit") or (isNil "_class")) exitWith {false};
+if ((isNil "_unit") or (isNil "_baseClass")) exitWith {false};
 
 // setUnitLoadout is apparently a global command. This section is no longer needed
 /*
@@ -102,15 +102,32 @@ private _backpackItems = [((_class >> "backpackItems") call BIS_fnc_getCfgData)]
 // Retrieve medical items from config file.
 if ((["ace_medical_level", 1] call BIS_fnc_getParamValue) == 1) then {
 	// Only load these classes if basic medical is being used.
-	_uniformItems append [((_class >> "basicMedUniform") call BIS_fnc_getCfgData)] param [0, [], [[]]];
-	_vestItems append [((_class >> "basicMedVest") call BIS_fnc_getCfgData)] param [0, [], [[]]];
-	_backpackItems append [((_class >> "basicMedBackpack") call BIS_fnc_getCfgData)] param [0, [], [[]]];
+	_uniformItems append ([((_class >> "basicMedUniform") call BIS_fnc_getCfgData)] param [0, [], [[]]]);
+	_vestItems append ([((_class >> "basicMedVest") call BIS_fnc_getCfgData)] param [0, [], [[]]]);
+	_backpackItems append ([((_class >> "basicMedBackpack") call BIS_fnc_getCfgData)] param [0, [], [[]]]);
 } else {
 	// Only load these classes if advanced medical is being used.
-	_uniformItems append [((_class >> "advMedUniform") call BIS_fnc_getCfgData)] param [0, [], [[]]];
-	_vestItems append [((_class >> "advMedVest") call BIS_fnc_getCfgData)] param [0, [], [[]]];
-	_backpackItems append [((_class >> "advMedBackpack") call BIS_fnc_getCfgData)] param [0, [], [[]]];
+	_uniformItems append ([((_class >> "advMedUniform") call BIS_fnc_getCfgData)] param [0, [], [[]]]);
+	_vestItems append ([((_class >> "advMedVest") call BIS_fnc_getCfgData)] param [0, [], [[]]]);
+	_backpackItems append ([((_class >> "advMedBackpack") call BIS_fnc_getCfgData)] param [0, [], [[]]]);
 };
+
+// Function to ensure that magazines have an ammo count defined
+private _fn_fixMagazine = {
+	_x = _this;
+	// Only run if the item does not have a third entry in the array
+	if (count _x == 2) then {
+		_classname = (_x select 0);
+		if (isClass (configFile >> "CfgMagazines" >> _classname)) then {
+			_x set [2, (configFile >> "CfgMagazines" >> _classname >> "count") call BIS_fnc_getCfgData];
+		};
+	};
+	_x
+};
+
+_uniformItems = _uniformItems apply {_x call _fn_fixMagazine};
+_vestItems = _vestItems apply {_x call _fn_fixMagazine};
+_backpackItems = _backpackItems apply {_x call _fn_fixMagazine};
 
 // Start formatting our unit loadout array.
 private _loadout = [

@@ -145,12 +145,12 @@ if ((["ace_medical_level", 1] call BIS_fnc_getParamValue) == 1) then {
 // Define our variables for setUnitLoadout
 private _loadout = [[],[],[],[],[],[],"","",[],[]];
 private _lPrimary = ["","","","",[],[],""];
-private _lSecondary = _lPrimary; // All weapons use the same array structure
-private _lHandgun = _lPrimary; // All weapons use the same array structure
+private _lSecondary = + _lPrimary; // All weapons use the same array structure
+private _lHandgun = + _lPrimary; // All weapons use the same array structure
 private _lUniformItems = [];
 private _lVestItems = [];
 private _lBackpackItems = [];
-private _lBinocular = _lPrimary; // All weapons use the same array structure
+private _lBinocular = + _lPrimary; // All weapons use the same array structure
 private _lLinkedItems = ["","","","","",""];
 
 // Start with the weapons
@@ -166,7 +166,7 @@ private _lLinkedItems = ["","","","","",""];
 
 // Primary weapon items
 {
-	_private _temp = [_lPrimary select 0,_x] call _fn_weaponItem;
+	private _temp = [_lPrimary select 0,_x] call _fn_weaponItem;
 	if ((_temp select 0) > 0) then {
 		_lPrimary set _temp;
 	};
@@ -175,7 +175,7 @@ _loadout set [0, _lPrimary];
 
 // Secondary weapon items
 {
-	_private _temp = [_lSecondary select 0,_x] call _fn_weaponItem;
+	private _temp = [_lSecondary select 0,_x] call _fn_weaponItem;
 	if ((_temp select 0) > 0) then {
 		_lSecondary set _temp;
 	};
@@ -184,7 +184,7 @@ _loadout set [1, _lSecondary];
 
 // Handgun weapon items
 {
-	_private _temp = [_lHandgun select 0,_x] call _fn_weaponItem;
+	private _temp = [_lHandgun select 0,_x] call _fn_weaponItem;
 	if ((_temp select 0) > 0) then {
 		_lHandgun set _temp;
 	};
@@ -225,6 +225,7 @@ _loadout set [5, [_backpackClass,_lBackpackItems]];
 // Assemble the loadout
 _loadout set [6, _headgearClass];
 _loadout set [7, _facewearClass];
+_loadout set [9, _lLinkedItems];
 
 _unit setUnitLoadout _loadout;
 
