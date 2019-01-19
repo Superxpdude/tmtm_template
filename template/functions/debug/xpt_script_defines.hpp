@@ -1,2 +1,2 @@
 // XPT Script defines
-#define XPT_DEF_MODULE XPT-DEBUG
+#define XPT_DEF_MODULE "XPT-DEBUG"

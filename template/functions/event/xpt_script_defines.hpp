@@ -1,2 +1,2 @@
 // XPT Script defines
-#define XPT_DEF_MODULE XPT-EVENT
+#define XPT_DEF_MODULE "XPT-EVENT"
