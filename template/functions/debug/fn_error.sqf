@@ -24,7 +24,7 @@
 	Returns: Nothing
 */
 
-#include xpt_script_defines.hpp
+#include "xpt_script_defines.hpp"
 
 // Define variables
 params [
@@ -39,17 +39,17 @@ private _debug = (["XPT_debugMode", 0] call BIS_fnc_getParamValue);
 
 // Log an error (heh) if any variables are missing or invalid.
 if (isNil "_module") exitWith {
-	[true, "XPT_DEF_MODULE", "XPT_fnc_error called with no module defined", 0] call XPT_fnc_error;
+	[true, XPT_DEF_MODULE, "XPT_fnc_error called with no module defined", 0] call XPT_fnc_error;
 };
 if (isNil "_message") exitWith {
-	[true, "XPT_DEF_MODULE", "XPT_fnc_error called with no message defined", 0] call XPT_fnc_error;
+	[true, XPT_DEF_MODULE, "XPT_fnc_error called with no message defined", 0] call XPT_fnc_error;
 };
 if ((_location > 2) OR (_location < 0)) exitWith {
-	[true, "XPT_DEF_MODULE", format ["XPT_fnc_error called with invalid location of: %1", _location], 0] call XPT_fnc_error;
+	[true, XPT_DEF_MODULE, format ["XPT_fnc_error called with invalid location of: %1", _location], 0] call XPT_fnc_error;
 };
 
 // Build our message
-private _log = text (format ["[%1] %2"]);
+private _log = text (format ["[%1:%2] %3",_module,_fnc_scriptNameParent,_message]);
 
 // Send our message
 switch (_location) do {

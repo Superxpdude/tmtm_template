@@ -1,2 +1,2 @@
 // XPT Script defines
-#define XPT_DEF_MODULE XPT-STAGE
+#define XPT_DEF_MODULE "XPT-STAGE"
