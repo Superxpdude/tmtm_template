@@ -24,7 +24,7 @@
 	Returns: Nothing
 */
 
-#include xpt_script_defines.hpp
+#include "xpt_script_defines.hpp"
 
 // Define variables
 params [
@@ -49,7 +49,7 @@ if ((_location > 2) OR (_location < 0)) exitWith {
 };
 
 // Build our message
-private _log = text (format ["[%1] %2"]);
+private _log = text (format ["[%1:%2] %3",_module,_fnc_scriptNameParent,_message]);
 
 // Send our message
 switch (_location) do {
