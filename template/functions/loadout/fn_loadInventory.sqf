@@ -49,6 +49,8 @@
 		False if loadout was not applied successfully
 */
 
+#include "xpt_script_defines.hpp"
+
 // Define variables
 private ["_subclasses", "_isSubclass", "_class"];
 params [
@@ -119,6 +121,7 @@ private _fn_fixMagazine = {
 	if (count _x == 2) then {
 		_classname = (_x select 0);
 		if (isClass (configFile >> "CfgMagazines" >> _classname)) then {
+			[false, nil, format ["Magazine type '%1' has no ammo count defined.",_classname], 0] call XPT_fnc_error;
 			_x set [2, (configFile >> "CfgMagazines" >> _classname >> "count") call BIS_fnc_getCfgData];
 		};
 	};

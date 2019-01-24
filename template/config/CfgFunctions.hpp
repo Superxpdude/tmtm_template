@@ -19,6 +19,7 @@ class XPT
 		file = "template\functions\debug";
 		class debugCuratorFix {}; // Function to fix black screen in the curator interface
 		class error {}; // Function used for handling errors
+		class errorLog {}; // Writes errors to the log and systemchat
 		class errorReport {}; // Old function for handling error reporting
 	};
 	class event

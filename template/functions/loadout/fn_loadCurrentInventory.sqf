@@ -9,6 +9,8 @@
 	Returns: Nothing
 */
 
+#include "xpt_script_defines.hpp"
+
 // Define our variables
 params ["_unit"];
 private ["_loadout"];
@@ -60,7 +62,8 @@ switch true do {
 	case (isClass ((getMissionConfig "CfgRespawnInventory") >> _loadout)): {
 		[_unit, (getMissionConfig "CfgRespawnInventory") >> _loadout] call BIS_fnc_loadInventory;
 	};
+	// If no loadout is found, report an error
 	default {
-		[[false, format ["[XPT-LOADOUT] Missing Loadout. Unit: ""%1"", Loadout: ""%2""", typeOf _unit, _loadout]]] remoteExec ["XPT_fnc_errorReport", 0];
+		[true, nil, format ["No loadout defined for unit. Loadout: '%1' Unit: '%2'", _loadout, name _unit] 2] call XPT_fnc_error;
 	};
 };

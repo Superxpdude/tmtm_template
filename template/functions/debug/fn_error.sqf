@@ -13,7 +13,7 @@
 	
 	Parameters:
 		0: Bool - Priority. "True" marks a message as a critical message, ensuring that it gets reported in systemChat regardless of the debugMode setting.
-		1: String - Module name. Used to distinguish which "part" of the template is throwing an error.
+		1: String - Module name. Used to distinguish which "part" of the template is throwing an error. Function name of calling script used when undefined.
 		2: String - Error message. Descriptive text to describe what went wrong.
 		3: Number (Optional) - Location. Uses the following values:
 			0 - Will only log the error on the machine upon which the error occured.
@@ -29,7 +29,7 @@
 // Define variables
 params [
 	["_priority", false, [false]],
-	["_module", nil, [""]],
+	["_module", _fnc_scriptNameParent, [""]],
 	["_message", nil, [""]],
 	["_location", 0, [0]]
 ];
@@ -49,14 +49,17 @@ if ((_location > 2) OR (_location < 0)) exitWith {
 };
 
 // Build our message
-private _log = text (format ["[%1:%2] %3",_module,_fnc_scriptNameParent,_message]);
+private _log = format ["[%1] %2",_module,_message];
 
 // Send our message
 switch (_location) do {
-	case 0: {diag_log _log;};
+	// Only the local machine
+	case 0: {[_priority,_log] call XPT_fnc_errorLog};
+	// Local machine and server
 	case 1: {
-		diag_log _log;
-		_log remoteExec ["diag_log", 2];
+		[_priority,_log] call XPT_fnc_errorLog;
+		[_priority,_log] remoteExec ["XPT_fnc_errorLog", 2];
 	};
-	case 2: {_log remoteExec ["diag_log", 0];};
+	// All machines
+	case 2: {[_priority,_log] remoteExec ["XPT_fnc_errorLog", 0];};
 };
