@@ -23,7 +23,7 @@ private _debug = (["XPT_debugMode", 0] call BIS_fnc_getParamValue);
 
 // Log an error if no error message was sent
 if (isNil "_log") exitWith {
-	[true, nil, "Could not log error, no message sent.", 0] call XPT_fnc_error;
+	[true, "Could not log error, no message sent.", 0] call XPT_fnc_error;
 };
 
 // Write the log messages

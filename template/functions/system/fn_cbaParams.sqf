@@ -16,7 +16,7 @@ if (!isServer) exitWith {};
 
 // If CBA is not installed, exit with an error
 if (!isClass (configfile >> "CfgMods" >> "cba")) exitWith {
-	[true, "XPT_DEF_MODULE", "CBA is not installed, cannot read lobby parameters", 0] call XPT_fnc_error;
+	[true, "CBA is not installed, cannot read lobby parameters", 0] call XPT_fnc_error;
 	false
 };
 

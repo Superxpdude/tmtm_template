@@ -18,6 +18,8 @@ if (isServer) then {
 	_serverMark = createMarker ["fpsmarker_server", [250,500]];
 	_serverMark setMarkerType "mil_start";
 	_serverMark setMarkerSize [0.7, 0.7];
+	_serverMark setMarkerColor "ColorBlue";
+	_serverMark setMarkerText "Server: Setup";
 	
 	_hcMark = createMarker ["fpsmarker_hc", [250,250]];
 	_hcMark setMarkerType "mil_start";
@@ -26,6 +28,9 @@ if (isServer) then {
 	if (isNil "hc") then {
 		_hcMark setMarkerColor "ColorGREY";
 		_hcMark setMarkerText "HC: Disconnected";
+	} else {
+		_hcMark setMarkerColor "ColorBlue";
+		_hcMark setMarkerText "HC: Setup";
 	};
 };
 
@@ -41,6 +46,9 @@ if (isServer) then {
 		_marker = "fpsmarker_hc";
 		_name = "HC";
 	};
+	
+	// Wait until the mission has started
+	sleep 1;
 	
 	while {true} do {
 		_fps = diag_fps;

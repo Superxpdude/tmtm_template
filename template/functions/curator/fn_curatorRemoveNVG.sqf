@@ -16,7 +16,9 @@ params [
 	["_unit", nil, [objNull]]
 ];
 // Exit if the unit is undefined
-if (isNil "_unit") exitWith {};
+if (isNil "_unit") exitWith {
+	[false, "Called with no unit defined", 0] call XPT_fnc_error;
+};
 
 // Determine if the spawned unit is a vehicle or a man
 if (_unit isKindOf "Man") then {

@@ -64,6 +64,6 @@ switch true do {
 	};
 	// If no loadout is found, report an error
 	default {
-		[true, nil, format ["No loadout defined for unit. Loadout: '%1' Unit: '%2'", _loadout, name _unit] 2] call XPT_fnc_error;
+		[true, format ["No loadout defined for unit. Loadout: '%1' Unit: '%2'", _loadout, name _unit] 2] call XPT_fnc_error;
 	};
 };

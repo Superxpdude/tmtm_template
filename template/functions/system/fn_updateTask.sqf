@@ -19,12 +19,12 @@ params [
 
 // If an incorrect parameter type was used, throw an error and exit.
 if (isNil "_taskUpdate") exitWith {
-	[[false, "[XPT-TASKS] XPT_fnc_updateTask was called with an incorrect parameter type."]] remoteExec ["XPT_fnc_errorReport", 0];
+	[false, "Called with an incorrect parameter type.", 0] call XPT_fnc_error;
 };
 
 // If the updateTask class doesn't exist, throw an error and exit.
 if (!(isClass ((getMissionConfig "CfgXPT") >> "taskUpdates" >> _taskUpdate))) exitWith {
-	[[true, format ["[XPT-TASKS] Task update class <%1> does not exist", _taskUpdate]]] remoteExec ["XPT_fnc_errorReport", 0];
+	[true, format ["Task update class <%1> does not exist", _taskUpdate], 0] call XPT_fnc_error;
 };
 
 // Grab our variables
@@ -52,7 +52,7 @@ _taskFunc = {
 			[_x, _state, true] call BIS_fnc_taskSetState;
 		} else {
 			// If the task doesn't exist, return an error
-			[[true, format ["[XPT-TASKS] Task <%1> does not exist", _x]]] remoteExec ["XPT_fnc_errorReport", 0];
+			[true, format ["Task <%1> does not exist", _x], 0] call XPT_fnc_error;
 		};
 	} forEach _tasks;
 };
@@ -69,7 +69,6 @@ _briefings remoteExec ["XPT_fnc_briefingCreate",0,true];
 	[_tasksSucceeded, "SUCCEEDED"],
 	[_tasksFailed, "FAILED"],
 	[_tasksCancelled, "CANCELED"]
-	
 ];
 // Execute the code portion
 [] call compile _code;

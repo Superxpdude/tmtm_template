@@ -27,7 +27,7 @@ params [
 
 // If the unit is nil, exit the function
 if (isNil "_unit") exitWith {
-	[false, nil, "Function called with no unit defined", 0] call XPT_fnc_error;
+	[false, "Function called with no unit defined", 0] call XPT_fnc_error;
 };
 
 // If the unit is an object, convert it to an array

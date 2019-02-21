@@ -17,7 +17,9 @@ params [
 ];
 
 // Error checking
-if ((isNil "_curator") OR (isNil "_placed")) exitWith {};
+if ((isNil "_curator") OR (isNil "_placed")) exitWith {
+	[false, "Curator or placed unit undefined", 0] call XPT_fnc_error;
+};
 
 // Loop through all available curators
 {
