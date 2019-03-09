@@ -5,6 +5,8 @@
 	
 	Parameters:
 		Designed to be called from a lobby parameter
+		Can also be re-executed manually using the following command:
+			[true] call XPT_fnc_mapMarkersServer
 		
 	Returns: Nothing
 */
@@ -17,7 +19,7 @@ if ((_this select 0) == 0) exitWith {};
 
 // Do not execute if there are already map markers present, this would indicate that the function is already running
 if (!isNil "XPT_mapMarkersList") exitWith {
-	[[false,"[XPT-MAPMARKERS] Second XPT_fnc_mapMarkersServer instance started while another instance was already running."]]
+	[true, "Second XPT_fnc_mapMarkersServer instance started while another instance was already running", 2] call XPT_fnc_error;
 };
 	
 

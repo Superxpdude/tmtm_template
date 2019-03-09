@@ -13,9 +13,12 @@
 	
 	Parameters:
 		0: Bool - Priority. "True" marks a message as a critical message, ensuring that it gets reported in systemChat regardless of the debugMode setting.
-		1: String - Module name. Used to distinguish which "part" of the template is throwing an error.
-		2: String - Error message. Descriptive text to describe what went wrong.
-		3: Number (Optional) - Location. Uses the following values:
+		1: String - Error message. Descriptive text to describe what went wrong.
+			OR
+		1: Array - Contains the following values:
+			1.0: String - Module Name. Used to distinguish which "part" of the template is throwing an error. Function name of calling script used when undefined.
+			1.1: String - Error message.
+		2: Number (Optional) - Location. Uses the following values:
 			0 - Will only log the error on the machine upon which the error occured.
 			1 - Will log the error on the machine, as well as the server.
 			2 - Will log the error on all connected machines.
@@ -29,8 +32,7 @@
 // Define variables
 params [
 	["_priority", false, [false]],
-	["_module", nil, [""]],
-	["_message", nil, [""]],
+	["_error", nil, ["",[]],2],
 	["_location", 0, [0]]
 ];
 
@@ -38,25 +40,41 @@ params [
 private _debug = (["XPT_debugMode", 0] call BIS_fnc_getParamValue);
 
 // Log an error (heh) if any variables are missing or invalid.
-if (isNil "_module") exitWith {
-	[true, XPT_DEF_MODULE, "XPT_fnc_error called with no module defined", 0] call XPT_fnc_error;
-};
-if (isNil "_message") exitWith {
-	[true, XPT_DEF_MODULE, "XPT_fnc_error called with no message defined", 0] call XPT_fnc_error;
+if (isNil "_error") exitWith {
+	[true, "Called with no message defined", 0] call XPT_fnc_error;
 };
 if ((_location > 2) OR (_location < 0)) exitWith {
-	[true, XPT_DEF_MODULE, format ["XPT_fnc_error called with invalid location of: %1", _location], 0] call XPT_fnc_error;
+	[true, format ["Called with invalid location of: %1", _location], 0] call XPT_fnc_error;
+};
+
+// Split the error message if needed.
+if (_error isEqualType []) then {
+	_error params [
+		["_module", _fnc_scriptNameParent, [""]],
+		["_message", nil, [""]]
+	];
+} else {
+	_message = _error;
+	_module = _fnc_scriptNameParent;
+};
+
+// Check to make sure that the message is defined
+if (isNil "_message") exitWith {
+	[true, "Called with no message defined", 0] call XPT_fnc_error;
 };
 
 // Build our message
-private _log = text (format ["[%1:%2] %3",_module,_fnc_scriptNameParent,_message]);
+private _log = format ["[%1] %2",_module,_message];
 
 // Send our message
 switch (_location) do {
-	case 0: {diag_log _log;};
+	// Only the local machine
+	case 0: {[_priority,_log] call XPT_fnc_errorLog};
+	// Local machine and server
 	case 1: {
-		diag_log _log;
-		_log remoteExec ["diag_log", 2];
+		[_priority,_log] call XPT_fnc_errorLog;
+		[_priority,_log] remoteExec ["XPT_fnc_errorLog", 2];
 	};
-	case 2: {_log remoteExec ["diag_log", 0];};
+	// All machines
+	case 2: {[_priority,_log] remoteExec ["XPT_fnc_errorLog", 0];};
 };
