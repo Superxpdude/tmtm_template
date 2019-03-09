@@ -38,7 +38,7 @@ private _fn_checkInventoryVersion = {
 	};
 };
 
-
+/*
 _subclasses = "true" configClasses _baseClass;
 if ((count _subclasses) > 0) then {
 	// If we have any subclasses, select a random one.
@@ -47,7 +47,7 @@ if ((count _subclasses) > 0) then {
 } else {
 	_class = _baseClass;
 };
-
+*/
 // Find the correct loadout for the unit. Report an error if no loadout is found
 switch true do {
 	case (isClass ((getMissionConfig "CfgXPT") >> XPT_stage_active >> "loadouts" >> _loadout)): {
@@ -64,6 +64,6 @@ switch true do {
 	};
 	// If no loadout is found, report an error
 	default {
-		[true, format ["No loadout defined for unit. Loadout: '%1' Unit: '%2'", _loadout, name _unit] 2] call XPT_fnc_error;
+		[true, format ["No loadout defined for unit. Loadout: '%1' Unit: '%2'", _loadout, name _unit], 2] call XPT_fnc_error;
 	};
 };
