@@ -87,9 +87,9 @@ if ((count _subclasses) > 0) then {
 
 // Retrieve loadout data from config files
 private _displayName = [((_class >> "displayName") call BIS_fnc_getCfgData)] param [0, "", [""]];
-private _primaryWeapon = [((_class >> "primaryWeapon") call BIS_fnc_getCfgData)] param [0, [], [[]], 7];
-private _secondaryWeapon = [((_class >> "secondaryWeapon") call BIS_fnc_getCfgData)] param [0, [], [[]], 7];
-private _handgunWeapon = [((_class >> "handgunWeapon") call BIS_fnc_getCfgData)] param [0, [], [[]], 7];
+private _primaryWeapon = [((_class >> "primaryWeapon") call BIS_fnc_getCfgData)] param [0, [], [[]], [0,7]];
+private _secondaryWeapon = [((_class >> "secondaryWeapon") call BIS_fnc_getCfgData)] param [0, [], [[]], [0,7]];
+private _handgunWeapon = [((_class >> "handgunWeapon") call BIS_fnc_getCfgData)] param [0, [], [[]], [0,7]];
 private _binocular = [((_class >> "binocular") call BIS_fnc_getCfgData)] param [0, "", [""]];
 private _uniformClass = [((_class >> "uniformClass") call BIS_fnc_getCfgData)] param [0, "", [""]];
 private _headgearClass = [((_class >> "headgearClass") call BIS_fnc_getCfgData)] param [0, "", [""]];
