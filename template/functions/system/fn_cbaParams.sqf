@@ -11,9 +11,6 @@
 
 #include "xpt_script_defines.hpp"
 
-// Only run on the server
-if (!isServer) exitWith {};
-
 // If CBA is not installed, exit with an error
 if (!isClass (configfile >> "CfgMods" >> "cba")) exitWith {
 	[true, "CBA is not installed, cannot read lobby parameters", 0] call XPT_fnc_error;
