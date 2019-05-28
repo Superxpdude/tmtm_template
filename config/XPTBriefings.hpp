@@ -19,6 +19,8 @@
 
 class briefings
 {
+	// Uncomment the briefings below if you intend to use them for your mission.
+	/*
 	class assets	// Example assets briefing. Should include a list of all friendly vehicle assets available.
 	{
 		category = "Diary";
@@ -43,4 +45,5 @@ class briefings
 		onStart = 1;
 		sides[] = {0,1,2,3};
 	};
+	*/
 };
