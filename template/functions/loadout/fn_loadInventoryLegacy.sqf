@@ -224,7 +224,7 @@ private _backpackArray = [_backpackClass,_lBackpackItems];
 	if ((_x select 0) == "") then {
 		_x = [];
 	};
-} forEach {_lPrimary, _lSecondary, _lHandgun, _uniformArray, _vestArray, _backpackArray, _lBinocular};
+} forEach [_lPrimary, _lSecondary, _lHandgun, _uniformArray, _vestArray, _backpackArray, _lBinocular];
 
 // Assemble the loadout
 /*

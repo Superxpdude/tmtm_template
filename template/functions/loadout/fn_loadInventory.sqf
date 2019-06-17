@@ -144,7 +144,7 @@ private _binocularArray = [_binocular,"","","",[],[],""];
 	if ((_x select 0) == "") then {
 		_x = [];
 	};
-} forEach {_primaryWeapon, _secondaryWeapon, _handgunWeapon, _uniformArray, _vestArray, _backpackArray, _binocularArray};
+} forEach [_primaryWeapon, _secondaryWeapon, _handgunWeapon, _uniformArray, _vestArray, _backpackArray, _binocularArray];
 
 // Start formatting our unit loadout array.
 private _loadout = [
