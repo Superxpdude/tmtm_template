@@ -132,16 +132,31 @@ _uniformItems = _uniformItems apply {_x call _fn_fixMagazine};
 _vestItems = _vestItems apply {_x call _fn_fixMagazine};
 _backpackItems = _backpackItems apply {_x call _fn_fixMagazine};
 
+// Merge some arrays into their main unit loadout entry
+private _uniformArray = [_uniformClass, _uniformItems];
+private _vestArray = [_vestClass, _vestItems];
+private _backpackArray = [_backpackClass, _backpackItems];
+private _binocularArray = [_binocular,"","","",[],[],""];
+
+// Fix for "Bad Vehicle Type" errors regarding weapons and inventories
+{
+	// If the main classname is undefined, replace the array with an empty one.
+	if ((_x select 0) == "") then {
+		_x = [];
+	};
+} forEach {_primaryWeapon, _secondaryWeapon, _handgunWeapon, _uniformArray, _vestArray, _backpackArray, _binocularArray};
+
 // Start formatting our unit loadout array.
 private _loadout = [
 	_primaryWeapon,
 	_secondaryWeapon,
 	_handgunWeapon,
-	[_uniformClass, _uniformItems],
-	[_vestClass, _vestItems],
-	[_backpackClass, _backpackItems],
-	_headgearClass, _facewearClass,
-	[_binocular,"","","",[],[],""],
+	_uniformArray,
+	_vestArray,
+	_backpackArray,
+	_headgearClass, 
+	_facewearClass,
+	_binocularArray,
 	_linkedItems
 ];
 

@@ -143,7 +143,7 @@ if ((["ace_medical_level", 1] call BIS_fnc_getParamValue) == 1) then {
 };
 
 // Define our variables for setUnitLoadout
-private _loadout = [[],[],[],[],[],[],"","",[],[]];
+//private _loadout = [[],[],[],[],[],[],"","",[],[]];
 private _lPrimary = ["","","","",[],[],""];
 private _lSecondary = + _lPrimary; // All weapons use the same array structure
 private _lHandgun = + _lPrimary; // All weapons use the same array structure
@@ -171,7 +171,6 @@ private _lLinkedItems = ["","","","","",""];
 		_lPrimary set _temp;
 	};
 } forEach _primaryWeaponItems;
-_loadout set [0, _lPrimary];
 
 // Secondary weapon items
 {
@@ -180,7 +179,7 @@ _loadout set [0, _lPrimary];
 		_lSecondary set _temp;
 	};
 } forEach _secondaryWeaponItems;
-_loadout set [1, _lSecondary];
+
 
 // Handgun weapon items
 {
@@ -189,19 +188,11 @@ _loadout set [1, _lSecondary];
 		_lHandgun set _temp;
 	};
 } forEach _handgunItems;
-_loadout set [2, _lHandgun];
-
-// Binoculars
-_loadout set [8, _lBinocular];
 
 // Items carried in inventory
 _lUniformItems = (_uniformItems + _uniformMedical) apply {_x call _fn_itemType};
 _lVestItems = (_vestItems + _vestMedical) apply {_x call _fn_itemType};
 _lBackpackItems = (_backpackItems + _backpackMedical) apply {_x call _fn_itemType};
-
-_loadout set [3, [_uniformClass,_lUniformItems]];
-_loadout set [4, [_vestClass,_lVestItems]];
-_loadout set [5, [_backpackClass,_lBackpackItems]];
 
 // Linked items
 {
@@ -222,11 +213,44 @@ _loadout set [5, [_backpackClass,_lBackpackItems]];
 	};
 } forEach _linkedItems;
 
+// Merge the uniform, vest, and backpack arrays
+private _uniformArray = [_uniformClass,_lUniformItems];
+private _vestArray = [_vestClass,_lVestItems];
+private _backpackArray = [_backpackClass,_lBackpackItems];
+
+// Fix for "Bad Vehicle Type" errors regarding weapons and inventories
+{
+	// If the main classname is undefined, replace the array with an empty one.
+	if ((_x select 0) == "") then {
+		_x = [];
+	};
+} forEach {_lPrimary, _lSecondary, _lHandgun, _uniformArray, _vestArray, _backpackArray, _lBinocular};
+
 // Assemble the loadout
+/*
+_loadout set [0, _lPrimary];
+_loadout set [1, _lSecondary];
+_loadout set [2, _lHandgun];
+_loadout set [3, _uniformArray];
+_loadout set [4, _vestArray];
+_loadout set [5, _backpackArray];
 _loadout set [6, _headgearClass];
 _loadout set [7, _facewearClass];
+_loadout set [8, _lBinocular];
 _loadout set [9, _lLinkedItems];
-
+*/
+private _loadout = [
+	_lPrimary,
+	_lSecondary,
+	_lHandgun,
+	_uniformArray,
+	_vestArray,
+	_backpackArray,
+	_headgearClass,
+	_facewearClass,
+	_lBinocular,
+	_lLinkedItems
+];
 _unit setUnitLoadout _loadout;
 
 // Return true if script is completed.
