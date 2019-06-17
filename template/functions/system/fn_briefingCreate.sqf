@@ -51,10 +51,11 @@ _briefingFunc = {
 		case east: {1};
 		case independent: {2};
 		case civilian: {3};
+		case sideLogic: {4};
 	};
 	
 	// Check if the player side is in the sides array.
-	if (_sideNum in _sides) then {
+	if ((_sideNum in _sides) or (-1 in _sides)) then {
 		// If the sides match up, create the diary record.
 		player createDiaryRecord [_category, [_title,_text]];
 	};
