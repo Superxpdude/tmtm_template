@@ -142,7 +142,7 @@ private _binocularArray = [_binocular,"","","",[],[],""];
 {
 	// If the main classname is undefined, replace the array with an empty one.
 	if ((_x select 0) == "") then {
-		_x = [];
+		_x deleteRange [0,10]; // Ensure the entire array is emptied
 	};
 } forEach [_primaryWeapon, _secondaryWeapon, _handgunWeapon, _uniformArray, _vestArray, _backpackArray, _binocularArray];
 
