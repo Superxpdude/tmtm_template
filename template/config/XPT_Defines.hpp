@@ -70,6 +70,32 @@ XPT_curator_customLoadouts = XPT_DEFINE_CURATOR_CUSTOMLOADOUTS;
 #endif
 XPT_curator_removeNVGs = XPT_DEFINE_CURATOR_REMOVENVG;
 
+//-------------------- ACRE2 radio defines
+#ifndef XPT_DEFINE_ACRE_ENABLE
+	#define XPT_DEFINE_ACRE_ENABLE 1
+#endif
+XPT_acre_enable = XPT_DEFINE_ACRE_ENABLE
+
+// ACRE2 autoradio script. Automatically provides 
+#ifndef XPT_DEFINE_ACRE_AUTORADIO
+	#define XPT_DEFINE_ACRE_AUTORADIO 0
+#endif
+XPT_acre_autoradio = XPT_DEFINE_ACRE_AUTORADIO
+
+// ACRE2 autoconfiguration for babel. Sets different languages for each side if enabled.
+#ifndef XPT_DEFINE_ACRE_AUTOBABEL_COOP
+	#define XPT_DEFINE_ACRE_AUTOBABEL_COOP 0
+#endif
+#ifndef XPT_DEFINE_ACRE_AUTOBABEL_PVP
+	#define XPT_DEFINE_ACRE_AUTOBABEL_PVP 1
+#endif
+
+#ifndef XPT_DEFINEPVP
+	XPT_acre_autobabel = XPT_DEFINE_ACRE_AUTOBABEL_COOP
+#else
+	XPT_acre_autobabel = XPT_DEFINE_ACRE_AUTOBABEL_PVP
+#endif
+
 //-------------------- ACE 3 medical defines
 
 // ACE 3 medical level. Defaults to basic medical.

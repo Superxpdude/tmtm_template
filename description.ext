@@ -40,6 +40,14 @@ class Header
 //#define XPT_DEFINE_CURATOR_CUSTOMLOADOUTS 1		// 0 = Disabled, 1 = Enabled. Currently unused.
 //#define XPT_DEFINE_CURATOR_REMOVENVG 1			// 0 = Disabled, 1 = Enabled. Removes NVGs from zeus-spawned units.
 
+//-------------------- Radio Defines
+// ACRE2 radio setup parameters.
+
+//#define XPT_DEFINE_ACRE_ENABLE 1							// 0 = Disabled, 1 = Enabled. Default = 1. Set to 0 if you use a custom radio setup script.
+//#define XPT_DEFINE_ACRE_AUTORADIO 0						// 0 = Disabled, 1 = Enabled. Default = 0. Set to 1 to enable automatically giving radios to units.
+//#define XPT_DEFINE_ACRE_AUTOBABEL_COOP 0					// 0 = Disabled, 1 = Enabled. Default = 0. Determines if babel languages should be autoconfigured for COOP missions.
+//#define XPT_DEFINE_ACRE_AUTOBABEL_PVP 1					// 0 = Disabled, 1 = Enabled. Default = 1. Determines if babel languages should be autoconfigured for PVP missions.
+
 //-------------------- ACE 3 Defines
 // Uncomment the following defines if you want to change away from the default values pictured here.
 
