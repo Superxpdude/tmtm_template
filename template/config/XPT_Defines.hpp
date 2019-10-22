@@ -74,13 +74,13 @@ XPT_curator_removeNVGs = XPT_DEFINE_CURATOR_REMOVENVG;
 #ifndef XPT_DEFINE_ACRE_ENABLE
 	#define XPT_DEFINE_ACRE_ENABLE 1
 #endif
-XPT_acre_enable = XPT_DEFINE_ACRE_ENABLE
+XPT_acre_enable = XPT_DEFINE_ACRE_ENABLE;
 
 // ACRE2 autoradio script. Automatically provides 
 #ifndef XPT_DEFINE_ACRE_AUTORADIO
 	#define XPT_DEFINE_ACRE_AUTORADIO 0
 #endif
-XPT_acre_autoradio = XPT_DEFINE_ACRE_AUTORADIO
+XPT_acre_autoradio = XPT_DEFINE_ACRE_AUTORADIO;
 
 // ACRE2 autoconfiguration for babel. Sets different languages for each side if enabled.
 #ifndef XPT_DEFINE_ACRE_AUTOBABEL_COOP
@@ -91,9 +91,9 @@ XPT_acre_autoradio = XPT_DEFINE_ACRE_AUTORADIO
 #endif
 
 #ifndef XPT_DEFINEPVP
-	XPT_acre_autobabel = XPT_DEFINE_ACRE_AUTOBABEL_COOP
+	XPT_acre_autobabel = XPT_DEFINE_ACRE_AUTOBABEL_COOP;
 #else
-	XPT_acre_autobabel = XPT_DEFINE_ACRE_AUTOBABEL_PVP
+	XPT_acre_autobabel = XPT_DEFINE_ACRE_AUTOBABEL_PVP;
 #endif
 
 //-------------------- ACE 3 medical defines

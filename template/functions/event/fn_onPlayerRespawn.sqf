@@ -27,6 +27,6 @@ if ((getMissionConfigValue "XPT_customLoadouts") == 1) then {
 [_newUnit, "tmtm"] remoteExec ["BIS_fnc_setUnitInsignia", 0, true];
 
 // Load the player's radio settings. (This needs to happen after the inventory is loaded)
-if ((getMissionConfigValue "XPT_acre_autoradio") == 1) then {
+if ((getMissionConfigValue "XPT_acre_enable") == 1) then {
 	[_newUnit] spawn XPT_fnc_radioHandleRespawn;
 };

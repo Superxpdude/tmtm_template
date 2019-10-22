@@ -20,20 +20,64 @@ _unit = _this param [0, player, [objNull]];
 // Don't run on Zeus units
 if (_unit isKindOf "VirtualMan_F") exitWith {};
 
-// Remove the 343
-if (!isNil {["ACRE_PRC343"] call acre_api_fnc_getRadioByType}) then {
-	_unit removeItem (["ACRE_PRC343"] call acre_api_fnc_getRadioByType);
-};
-
-// Add the 148
-if (isNil {["ACRE_PRC148"] call acre_api_fnc_getRadioByType}) then {
-	_unit addItem "ACRE_PRC148";
-};
-
-// Add the 117
-if (((leader group _unit) == _unit) AND (isNil {["ACRE_PRC117F"] call acre_api_fnc_getRadioByType})) then {
-	if (backpack _unit == "") then {
-		_unit addBackpackGlobal "B_AssaultPack_khk";
+if ((getMissionConfigValue "XPT_acre_autoradio") == 1) then {
+	// Remove the 343
+	if (!isNil {["ACRE_PRC343"] call acre_api_fnc_getRadioByType}) then {
+		_unit removeItem (["ACRE_PRC343"] call acre_api_fnc_getRadioByType);
 	};
-	_unit addItem "ACRE_PRC117F";
+
+	// Add the 148
+	if (isNil {["ACRE_PRC148"] call acre_api_fnc_getRadioByType}) then {
+		_unit addItem "ACRE_PRC148";
+	};
+
+	// Add the 117
+	if (((leader group _unit) == _unit) AND (isNil {["ACRE_PRC117F"] call acre_api_fnc_getRadioByType})) then {
+		if (backpack _unit == "") then {
+			_unit addBackpackGlobal "B_AssaultPack_khk";
+		};
+		_unit addItem "ACRE_PRC117F";
+	};
 };
+
+
+[{
+    call acre_api_fnc_isInitialized
+}, {
+	// Set radio channels
+	private _channel_343 = (player getVariable ["ACRE_channel_343", ((group player) getVariable ["ACRE_channel_343", -1])]);
+	private _channel_148 = (player getVariable ["ACRE_channel_148", ((group player) getVariable ["ACRE_channel_148", -1])]);
+	private _channel_152 = (player getVariable ["ACRE_channel_152", ((group player) getVariable ["ACRE_channel_152", -1])]);
+	private _channel_117 = (player getVariable ["ACRE_channel_117", ((group player) getVariable ["ACRE_channel_117", -1])]);
+	//private _channel_77 = (player getVariable ["ACRE_channel_77", ((group player) getVariable ["ACRE_channel_77", -1])]);
+	private _channel_sem52 = (player getVariable ["ACRE_channel_sem52", ((group player) getVariable ["ACRE_channel_sem52", -1])]);
+	//private _channel_sem70 = (player getVariable ["ACRE_channel_sem70", ((group player) getVariable ["ACRE_channel_sem70", -1])]);
+
+	if (_channel_343 >= 0) then {
+		[["ACRE_PRC343"] call acre_api_fnc_getRadioByType, _channel_343] call acre_api_fnc_setRadioChannel;
+	};
+
+	if (_channel_148 >= 0) then {
+		[["ACRE_PRC148"] call acre_api_fnc_getRadioByType, _channel_148] call acre_api_fnc_setRadioChannel;
+	};
+
+	if (_channel_152 >= 0) then {
+		[["ACRE_PRC152"] call acre_api_fnc_getRadioByType, _channel_152] call acre_api_fnc_setRadioChannel;
+	};
+
+	if (_channel_117 >= 0) then {
+		[["ACRE_PRC117F"] call acre_api_fnc_getRadioByType, _channel_117] call acre_api_fnc_setRadioChannel;
+	};
+
+//	if (_channel_77 >= 0) then {
+//		[["ACRE_PRC77"] call acre_api_fnc_getRadioByType, _channel_77] call acre_api_fnc_setRadioChannel;
+//	};
+
+	if (_channel_sem52 >= 0) then {
+		[["ACRE_SEM52SL"] call acre_api_fnc_getRadioByType, _channel_sem52] call acre_api_fnc_setRadioChannel;
+	};
+
+//	if (_channel_sem70 >= 0) then {
+//		[["ACRE_SEM70"] call acre_api_fnc_getRadioByType, _channel_sem70] call acre_api_fnc_setRadioChannel;
+//	};
+}, _this] call CBA_fnc_waitUntilAndExecute;
