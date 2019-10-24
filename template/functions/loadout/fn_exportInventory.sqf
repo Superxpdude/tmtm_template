@@ -116,6 +116,29 @@ _fn_addValue = {
 	_export = _export + _br;
 };
 
+// Replace ACRE radios with base classes
+_fn_acreCheck = {
+	_array = _this select 0;
+	// Loop through each entry in the array
+	{
+		// If the item is an ACRE radio. Replace it with a base class.
+		if ([_x select 0] call acre_api_fnc_isRadio) then {
+			_x set [0, [_x select 0] call acre_api_fnc_getBaseRadio];
+		};
+	} forEach _array;
+};
+
+// Remove ACRE unique radios from item arrays
+if (count (_loadout select 3) > 0) then {
+	[(_loadout select 3) select 1] call _fn_acreCheck;
+};
+if (count (_loadout select 4) > 0) then {
+	[(_loadout select 4) select 1] call _fn_acreCheck;
+};
+if (count (_loadout select 5) > 0) then {
+	[(_loadout select 5) select 1] call _fn_acreCheck;
+};
+
 ["displayName", typeOf _unit] call _fn_addValue;
 _export = _export + _br;
 

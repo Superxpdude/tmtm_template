@@ -44,14 +44,15 @@ if ((getMissionConfigValue "XPT_acre_autoradio") == 1) then {
 [{
     call acre_api_fnc_isInitialized
 }, {
+	_unit = _this select 0;
 	// Set radio channels
-	private _channel_343 = (player getVariable ["ACRE_channel_343", ((group player) getVariable ["ACRE_channel_343", -1])]);
-	private _channel_148 = (player getVariable ["ACRE_channel_148", ((group player) getVariable ["ACRE_channel_148", -1])]);
-	private _channel_152 = (player getVariable ["ACRE_channel_152", ((group player) getVariable ["ACRE_channel_152", -1])]);
-	private _channel_117 = (player getVariable ["ACRE_channel_117", ((group player) getVariable ["ACRE_channel_117", -1])]);
-	//private _channel_77 = (player getVariable ["ACRE_channel_77", ((group player) getVariable ["ACRE_channel_77", -1])]);
-	private _channel_sem52 = (player getVariable ["ACRE_channel_sem52", ((group player) getVariable ["ACRE_channel_sem52", -1])]);
-	//private _channel_sem70 = (player getVariable ["ACRE_channel_sem70", ((group player) getVariable ["ACRE_channel_sem70", -1])]);
+	private _channel_343 = (_unit getVariable ["ACRE_channel_343", ((group _unit) getVariable ["ACRE_channel_343", -1])]);
+	private _channel_148 = (_unit getVariable ["ACRE_channel_148", ((group _unit) getVariable ["ACRE_channel_148", -1])]);
+	private _channel_152 = (_unit getVariable ["ACRE_channel_152", ((group _unit) getVariable ["ACRE_channel_152", -1])]);
+	private _channel_117 = (_unit getVariable ["ACRE_channel_117", ((group _unit) getVariable ["ACRE_channel_117", -1])]);
+	//private _channel_77 = (_unit getVariable ["ACRE_channel_77", ((group _unit) getVariable ["ACRE_channel_77", -1])]);
+	private _channel_sem52 = (_unit getVariable ["ACRE_channel_sem52", ((group _unit) getVariable ["ACRE_channel_sem52", -1])]);
+	//private _channel_sem70 = (_unit getVariable ["ACRE_channel_sem70", ((group _unit) getVariable ["ACRE_channel_sem70", -1])]);
 
 	if (_channel_343 >= 0) then {
 		[["ACRE_PRC343"] call acre_api_fnc_getRadioByType, _channel_343] call acre_api_fnc_setRadioChannel;
