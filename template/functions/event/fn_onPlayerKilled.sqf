@@ -14,6 +14,3 @@ _this params ["_oldUnit", "_killer", "_respawn", "_respawnDelay"];
 
 // Disable feedback post-processing effects when dead.
 BIS_fnc_feedback_allowPP = false;
-
-// Save the player's radio settings
-_this call XPT_fnc_radioHandleDeath;
