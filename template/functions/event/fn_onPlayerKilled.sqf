@@ -14,3 +14,8 @@ _this params ["_oldUnit", "_killer", "_respawn", "_respawnDelay"];
 
 // Disable feedback post-processing effects when dead.
 BIS_fnc_feedback_allowPP = false;
+
+// Save the player's radio channels
+if ((getMissionConfigValue "XPT_acre_enable") == 1) then {
+	[_oldUnit] spawn XPT_fnc_radioHandleDeath;
+};

@@ -50,7 +50,8 @@ class XPT
 	class radio
 	{
 		file = "template\functions\radio";
-		class radioHandleRespawn {}; // Function for handling autoradios
+		class radioHandleDeath {}; // Function for saving radio info on death
+		class radioHandleRespawn {}; // Function for setting radio info on respawn
 		class radioInit {preInit = 1;}; // Function for configuring radio settings
 	};
 	class stage

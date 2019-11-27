@@ -37,3 +37,23 @@ player createDiaryRecord ["XPT_template", ["Version",
 		["XPT_debugMode"] call BIS_fnc_showNotification;
 	};
 };
+
+// Check if the player is marked as a zeus unit
+if (_player getVariable ["XPT_zeusUnit", false]) then {
+	// Set the unit's loadout
+	// _player setUnitLoadout []
+	// Spawn the movement loop
+	[_player] spawn {
+		_player allowDamage false;
+		// These commands need to be executed on the server
+		[_player, false] remoteExec ["enableSimulationGlobal", 2];
+		[_player, true] remoteExec ["hideObjectGlobal", 2];
+		// Wait until the mission has started
+		waitUntil {time > 2};
+		// Start the loop
+		while {true} do {
+			sleep 1;
+			_player setPosASL (getPosASL curatorCamera);
+		};
+	};
+};
