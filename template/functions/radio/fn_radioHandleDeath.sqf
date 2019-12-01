@@ -20,22 +20,40 @@ _radios = [] call acre_api_fnc_getCurrentRadioList;
 // Iterate through all radios, and get their current channels
 // This may cause inconsistencies when the player has multiple radios of the same type
 {
-	switch (toLower ([_x] call acre_api_fnc_getBaseRadio)) do {
+	switch (toUpper ([_x] call acre_api_fnc_getBaseRadio)) do {
 		case "ACRE_PRC343": {
-			_unit setVariable ["ACRE_channel_343", [_x] call acre_api_fnc_getRadioChannel, true];
+			_unit setVariable ["XPT_ACRE_channel_343", [_x] call acre_api_fnc_getRadioChannel, true];
+			_unit setVariable ["XPT_ACRE_spatial_343", [_x] call acre_api_fnc_getRadioSpatial, true];
 		};
 		case "ACRE_PRC148": {
-			_unit setVariable ["ACRE_channel_148", [_x] call acre_api_fnc_getRadioChannel, true];
+			_unit setVariable ["XPT_ACRE_channel_148", [_x] call acre_api_fnc_getRadioChannel, true];
+			_unit setVariable ["XPT_ACRE_spatial_148", [_x] call acre_api_fnc_getRadioSpatial, true];
 		};
 		case "ACRE_PRC152": {
-			_unit setVariable ["ACRE_channel_152", [_x] call acre_api_fnc_getRadioChannel, true];
+			_unit setVariable ["XPT_ACRE_channel_152", [_x] call acre_api_fnc_getRadioChannel, true];
+			_unit setVariable ["XPT_ACRE_spatial_152", [_x] call acre_api_fnc_getRadioSpatial, true];
 		};
 		case "ACRE_PRC117F": {
-			_unit setVariable ["ACRE_channel_117", [_x] call acre_api_fnc_getRadioChannel, true];
+			_unit setVariable ["XPT_ACRE_channel_117", [_x] call acre_api_fnc_getRadioChannel, true];
+			_unit setVariable ["XPT_ACRE_spatial_117", [_x] call acre_api_fnc_getRadioSpatial, true];
 		};
 		case "ACRE_SEM52SL": {
-			_unit setVariable ["ACRE_channel_sem52", [_x] call acre_api_fnc_getRadioChannel, true];
+			_unit setVariable ["XPT_ACRE_channel_sem52", [_x] call acre_api_fnc_getRadioChannel, true];
+			_unit setVariable ["XPT_ACRE_spatial_sem52", [_x] call acre_api_fnc_getRadioSpatial, true];
+		};
+		case "ACRE_PRC77": {
+			_unit setVariable ["XPT_ACRE_spatial_77", [_x] call acre_api_fnc_getRadioSpatial, true];
+		};
+		case "ACRE_SEM70": {
+			_unit setVariable ["XPT_ACRE_spatial_sem70", [_x] call acre_api_fnc_getRadioSpatial, true];
 		};
 		default {} // Do nothing for other radios
 	};
 } forEach _radios;
+
+// Store the player push to talk assignments
+_ptt = [] call acre_api_fnc_getMultiPushToTalkAssignment;
+{
+	_ptt set [_forEachIndex, [_x] call acre_api_fnc_getBaseRadio];
+} forEach _ptt;
+_unit setVariable ["XPT_ACRE_ptt", _ptt];

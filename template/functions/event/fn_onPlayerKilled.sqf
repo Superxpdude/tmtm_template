@@ -17,5 +17,5 @@ BIS_fnc_feedback_allowPP = false;
 
 // Save the player's radio channels
 if ((getMissionConfigValue "XPT_acre_enable") == 1) then {
-	[_oldUnit] spawn XPT_fnc_radioHandleDeath;
+	[_oldUnit] call XPT_fnc_radioHandleDeath;
 };
