@@ -38,22 +38,28 @@ player createDiaryRecord ["XPT_template", ["Version",
 	};
 };
 
+_zeus = _player getVariable ["XPT_zeusUnit", false];
 // Check if the player is marked as a zeus unit
-if (_player getVariable ["XPT_zeusUnit", false]) then {
+if !(_zeus isEqualTo false) then {
 	// Set the unit's loadout
 	// _player setUnitLoadout []
+	// Ensure that the player can access the curator interface
+	if ((typeName _zeus) == "STRING") then {
+		[_player, _zeus] remoteExec ["XPT_fnc_curatorAssignUnit", 2];
+	};
 	// Spawn the movement loop
-	[_player] spawn {
-		_player allowDamage false;
+	_player spawn {
+		waitUntil {!isNull (getAssignedCuratorLogic _this)};
+		_this allowDamage false;
 		// These commands need to be executed on the server
-		[_player, false] remoteExec ["enableSimulationGlobal", 2];
-		[_player, true] remoteExec ["hideObjectGlobal", 2];
+		[_this, false] remoteExec ["enableSimulationGlobal", 2];
+		[_this, true] remoteExec ["hideObjectGlobal", 2];
 		// Wait until the mission has started
 		waitUntil {time > 2};
 		// Start the loop
 		while {true} do {
 			sleep 1;
-			_player setPosASL (getPosASL curatorCamera);
+			_this setPosASL (getPosASL curatorCamera);
 		};
 	};
 };

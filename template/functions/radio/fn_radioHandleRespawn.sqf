@@ -18,7 +18,7 @@ if (!hasInterface) exitWith {};
 // Define variables
 _unit = _this param [0, player, [objNull]];
 // Don't run on Zeus units
-if ((_unit isKindOf "VirtualMan_F") or (_unit getVariable ["XPT_zeusUnit", false])) exitWith {};
+if ((_unit isKindOf "VirtualMan_F") or !((_unit getVariable ["XPT_zeusUnit", false]) isEqualTo false)) exitWith {};
 
 if ((getMissionConfigValue "XPT_acre_autoradio") == 1) then {
 	// Autoradio will automatically provide squad leaders with AN/PRC-152s
