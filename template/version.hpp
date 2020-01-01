@@ -1,1 +1,1 @@
-#define __XPTVERSION__ "0.5.1"
+#define __XPTVERSION__ "0.5.2"
