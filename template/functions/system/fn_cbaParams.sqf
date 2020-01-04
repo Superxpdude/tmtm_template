@@ -29,6 +29,13 @@ if (!isClass (configfile >> "CfgMods" >> "cba")) exitWith {
 		// Use the parameter name to grab the parameter value
 		private _paramValue = [_paramName] call BIS_fnc_getParamValue;
 		
+		private _paramMod = [(_x >> "XPT_modifier") call BIS_fnc_getCfgData] param [0,nil,[""]];
+		
+		// If we have a modifier, apply it to the result before we set the CBA setting
+		if (!isNil "_paramMod") then {
+			_paramValue = call compile format [_paramMod, _paramValue];
+		};
+		
 		// Set the CBA setting from the parameter's value
 		["CBA_settings_setSettingMission", [_paramName, _paramValue, true]] call CBA_fnc_localEvent;
 	} forEach _params;
