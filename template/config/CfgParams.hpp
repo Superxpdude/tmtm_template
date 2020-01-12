@@ -12,12 +12,42 @@ class header_ace_medical
 };
 class ace_medical_level
 {
-	title = "ACE3 - Medical Level";
+	title = "ACE3 - Medical Level (Legacy)";
 	//ACE_setting = 1;
 	XPT_CBA_setting = 1;
 	values[] = {1,2};
 	texts[] = {"Basic", "Advanced"};
 	default = XPT_ACE3_MEDICALLEVEL;
+};
+class xpt_medical_level
+{
+	title = "ACE3 - Medical Level";
+	XPT_CBA_multiSetting = 1;
+	values[] = {0,1};
+	texts[] = {"Basic", "Advanced"};
+	default = XPT_ACE3_MEDICALLEVEL;
+	XPT_paramArray[] = {
+		// Basic medical
+		{
+			{"ace_medical_limping",1},
+			{"ace_medical_fractures",0},
+			{"ace_medical_treatment_advancedDiagnose",0},
+			{"ace_medical_treatment_advancedBandages",0},
+			{"ace_medical_treatment_clearTraumaAfterBandage",1},
+			{"ace_medical_treatment_advancedMedication",0},
+			{"ace_medical_treatment_woundReopening",0}
+		},
+		// Advanced medical
+		{
+			{"ace_medical_limping",1},
+			{"ace_medical_fractures",1},
+			{"ace_medical_treatment_advancedDiagnose",1},
+			{"ace_medical_treatment_advancedBandages",1},
+			{"ace_medical_treatment_clearTraumaAfterBandage",0},
+			{"ace_medical_treatment_advancedMedication",1},
+			{"ace_medical_treatment_woundReopening",1}
+		}
+	};
 };
 class ace_medical_preventInstaDeath
 {

@@ -40,6 +40,25 @@ if (!isClass (configfile >> "CfgMods" >> "cba")) exitWith {
 		["CBA_settings_setSettingMission", [_paramName, _paramValue, true]] call CBA_fnc_localEvent;
 	} forEach _params;
 	
+	// Find all lobby parameters that affect multiple CBA settings
+	private _multiparams = "getNumber (_x >> 'XPT_CBA_multiSetting') > 0" configClasses (missionConfigFile >> "params");
+	
+	// Loop through each lobby parameters
+	{
+		// Grab the parameter name
+		private _paramName = configName _x;
+		// Use the parameter name to grab the parameter value
+		private _paramValue = [_paramName] call BIS_fnc_getParamValue;
+		
+		// Grab our array of parameter values
+		private _paramArray = [(_x >> "XPT_paramArray") call BIS_fnc_getCfgData] param [0,nil,[[]]];
+		
+		// Iterate through the sub-array to set CBA settings
+		{
+			["CBA_settings_setSettingMission", [_x select 0, _x select 1, true]] call CBA_fnc_localEvent;
+		} forEach (_paramArray select _paramValue);
+	} forEach _multiparams;
+	
 }] call CBA_fnc_addEventHandler;
 
 true 

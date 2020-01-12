@@ -100,7 +100,7 @@ XPT_acre_autoradio = XPT_DEFINE_ACRE_AUTORADIO;
 
 // ACE 3 medical level. Defaults to basic medical.
 #ifndef XPT_ACE3_MEDICALLEVEL
-	#define XPT_ACE3_MEDICALLEVEL 1
+	#define XPT_ACE3_MEDICALLEVEL 0
 #endif
 
 // ACE 3 player damage threshold. Defaults to 100%.

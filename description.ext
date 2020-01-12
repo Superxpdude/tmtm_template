@@ -51,7 +51,7 @@ class Header
 //-------------------- ACE 3 Defines
 // Uncomment the following defines if you want to change away from the default values pictured here.
 
-//#define XPT_ACE3_MEDICALLEVEL 1					// 1 = Basic Medical, 2 = Advanced Medical
+//#define XPT_ACE3_MEDICALLEVEL 0					// 0 = Basic Medical, 1 = Advanced Medical
 //#define XPT_ACE3_PLAYERDAMAGETHRESHOLD 100		// Percentage value (without the % sign). Accepts values from 50 to 200 in increments of 10 (50, 60, 70, etc.) (70 = 70% of normal health)
 //#define XPT_ACE3_AIDAMAGETHRESHOLD 100			// Percentage value (without the % sign). Accepts values from 50 to 200 in increments of 10 (50, 60, 70, etc.) (70 = 70% of normal health)
 //#define XPT_ACE3_REVIVE_TIMER 300					// Revive timer duration in seconds. Accepts the following values: (30,60,90,120,180,240,300)
