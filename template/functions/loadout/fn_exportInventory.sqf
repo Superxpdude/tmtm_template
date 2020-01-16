@@ -103,6 +103,17 @@ _fn_addItemArray = {
 	_export = _export + "};" + _br;
 };
 
+_fn_acreCheckLinkedItems = {
+	_array = _this select 0;
+	// Loop through the array
+	{
+		// If the item is a flagged radio, replace it with nothing
+		if (_x == "ItemRadioAcreFlagged") then {
+			_array set [_forEachIndex, ""];
+		};
+	} forEach _array;
+};
+
 // Creates a single entry for the config
 _fn_addValue = {
 	_name = _this select 0; // The name of the value
@@ -138,6 +149,10 @@ if (count (_loadout select 4) > 0) then {
 if (count (_loadout select 5) > 0) then {
 	[(_loadout select 5) select 1] call _fn_acreCheck;
 };
+
+[_loadout select 9] call _fn_acreCheckLinkedItems;
+
+// Remove 
 
 ["displayName", typeOf _unit] call _fn_addValue;
 _export = _export + _br;
