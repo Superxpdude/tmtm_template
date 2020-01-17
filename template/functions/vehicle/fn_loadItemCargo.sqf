@@ -91,7 +91,7 @@ if (_remove) then {
 };
 
 // Create our array of all items to add
-if ((["ace_medical_level", 1] call BIS_fnc_getParamValue) == 1) then {
+if ((["xpt_medical_level", 0] call BIS_fnc_getParamValue) == 0) then {
 	_allItems = _items + _itemsBasicMed;
 } else {
 	_allItems = _items + _itemsAdvMed;

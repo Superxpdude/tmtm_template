@@ -10,15 +10,6 @@ class header_ace_medical
 	texts[] = {""};
 	default = 0;
 };
-class ace_medical_level
-{
-	title = "ACE3 - Medical Level (Legacy)";
-	//ACE_setting = 1;
-	XPT_CBA_setting = 1;
-	values[] = {1,2};
-	texts[] = {"Basic", "Advanced"};
-	default = XPT_ACE3_MEDICALLEVEL;
-};
 class xpt_medical_level
 {
 	title = "ACE3 - Medical Level";

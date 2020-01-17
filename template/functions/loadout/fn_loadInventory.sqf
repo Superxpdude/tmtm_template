@@ -102,7 +102,7 @@ private _vestItems = [((_class >> "vestItems") call BIS_fnc_getCfgData)] param [
 private _backpackItems = [((_class >> "backpackItems") call BIS_fnc_getCfgData)] param [0, [], [[]]];
 
 // Retrieve medical items from config file.
-if ((["ace_medical_level", 1] call BIS_fnc_getParamValue) == 1) then {
+if ((["xpt_medical_level", 0] call BIS_fnc_getParamValue) == 0) then {
 	// Only load these classes if basic medical is being used.
 	_uniformItems append ([((_class >> "basicMedUniform") call BIS_fnc_getCfgData)] param [0, [], [[]]]);
 	_vestItems append ([((_class >> "basicMedVest") call BIS_fnc_getCfgData)] param [0, [], [[]]]);
