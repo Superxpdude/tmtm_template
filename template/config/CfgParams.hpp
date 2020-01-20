@@ -14,75 +14,53 @@ class xpt_medical_level
 {
 	title = "ACE3 - Medical Level";
 	XPT_CBA_multiSetting = 1;
-	values[] = {0,1};
-	texts[] = {"Basic", "Advanced"};
+	values[] = {0,1,2};
+	texts[] = {"Standard", "Realistic", "Custom"};
 	default = XPT_ACE3_MEDICALLEVEL;
 	XPT_paramArray[] = {
 		// Basic medical
 		{
 			{"ace_medical_limping",1},
 			{"ace_medical_fractures",0},
-			{"ace_medical_treatment_advancedDiagnose",0},
+			{"ace_medical_treatment_advancedDiagnose",1},
 			{"ace_medical_treatment_advancedBandages",0},
 			{"ace_medical_treatment_clearTraumaAfterBandage",1},
-			{"ace_medical_treatment_advancedMedication",0},
+			{"ace_medical_treatment_advancedMedication",1},
 			{"ace_medical_treatment_woundReopening",0}
 		},
 		// Advanced medical
 		{
-			{"ace_medical_limping",1},
+			{"ace_medical_limping",2},
 			{"ace_medical_fractures",1},
 			{"ace_medical_treatment_advancedDiagnose",1},
 			{"ace_medical_treatment_advancedBandages",1},
 			{"ace_medical_treatment_clearTraumaAfterBandage",0},
 			{"ace_medical_treatment_advancedMedication",1},
 			{"ace_medical_treatment_woundReopening",1}
-		}
+		},
+		// Custom
+		{}
 	};
 };
-class ace_medical_preventInstaDeath
+class ace_medical_statemachine_fatalInjuriesPlayer
 {
-	title = "ACE3 - Prevent Instant Death";
-	//ACE_setting = 1;
+	title = "ACE3 - Player Fatal Injuries";
 	XPT_CBA_setting = 1;
-	values[] = {0,1};
-	texts[] = {"Disabled", "Enabled"};
+	values[] = {0,1,2};
+	texts[] = {"Always", "Only in Cardiac Arrest", "Never"};
 	#ifdef XPT_DEFINEPVP
-		default = XPT_ACE3_PREVENTINSTANTDEATH_PVP;
+		default = XPT_ACE3_PLAYERFATAL_PVP;
 	#else
-		default = XPT_ACE3_PREVENTINSTANTDEATH_COOP;
+		default = XPT_ACE3_PLAYERFATAL_COOP;
 	#endif
 };
-class ace_medical_enableRevive
+class ace_medical_statemachine_cardiacArrestTime
 {
-	title = "ACE3 - Enable Revive";
-	//ACE_setting = 1;
-	XPT_CBA_setting = 1;
-	values[] = {0,1};
-	texts[] = {"Disabled", "Enabled"};
-	#ifdef XPT_DEFINEPVP
-		default = XPT_ACE3_REVIVE_PVP;
-	#else
-		default = XPT_ACE3_REVIVE_COOP;
-	#endif
-};
-class ace_medical_maxReviveTime
-{
-	title = "ACE3 - Revive Bleedout Timer";
-	//ACE_setting = 1;
+	title = "ACE3 - Cardiac Arrest Timer";
 	XPT_CBA_setting = 1;
 	values[] = {30,60,90,120,180,240,300};
 	texts[] = {"30 seconds", "60 seconds", "90 seconds", "2 minutes", "3 minutes", "4 minutes", "5 minutes"};
-	default = XPT_ACE3_REVIVE_TIMER;
-};
-class ace_medical_enableUnconsciousnessAI
-{
-	title = "ACE3 - AI Unconsciousness";
-	//ACE_setting = 1;
-	XPT_CBA_setting = 1;
-	values[] = {0,1,2};
-	texts[] = {"Disabled", "50/50", "Enabled"};
-	default = 0;
+	default = XPT_ACE3_CARDARREST_TIMER;
 };
 class ace_medical_playerDamageThreshold
 {

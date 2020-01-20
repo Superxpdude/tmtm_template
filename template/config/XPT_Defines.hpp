@@ -113,29 +113,19 @@ XPT_acre_autoradio = XPT_DEFINE_ACRE_AUTORADIO;
 	#define XPT_ACE3_AIDAMAGETHRESHOLD 1
 #endif
 
-// ACE 3 PID for co-op missions. Defaults to Enabled.
-#ifndef XPT_ACE3_PREVENTINSTANTDEATH_COOP
-	#define XPT_ACE3_PREVENTINSTANTDEATH_COOP 1
+// ACE 3 PID for co-op missions. Defaults to "Only in Cardiac Arrest".
+#ifndef XPT_ACE3_PLAYERFATAL_COOP
+	#define XPT_ACE3_PLAYERFATAL_COOP 1
 #endif
 
-// ACE 3 revive for co-op missions. Defaults to Enabled.
-#ifndef XPT_ACE3_REVIVE_COOP
-	#define XPT_ACE3_REVIVE_COOP 1
+// ACE 3 Fatal Injuries for PVP. Defaults to "Always"
+#ifndef XPT_ACE3_PLAYERFATAL_PVP
+	#define XPT_ACE3_PLAYERFATAL_PVP 0
 #endif
 
-// ACE 3 PID for PVP missions. Defaults to Disabled.
-#ifndef XPT_ACE3_PREVENTINSTANTDEATH_PVP
-	#define XPT_ACE3_PREVENTINSTANTDEATH_PVP 0
-#endif
-
-// ACE 3 revive for PVP missions. Defaults to Disabled.
-#ifndef XPT_ACE3_REVIVE_PVP
-	#define XPT_ACE3_REVIVE_PVP 0
-#endif
-
-// ACE 3 revive timer. Defaults to 300 seconds.
-#ifndef XPT_ACE3_REVIVE_TIMER
-	#define XPT_ACE3_REVIVE_TIMER 300
+// ACE 3 cardiac arrest timer. Defaults to 120 seconds.
+#ifndef XPT_ACE3_CARDARREST_TIMER
+	#define XPT_ACE3_CARDARREST_TIMER 120
 #endif
 
 // ACEX View restriction COOP. Defaults to off

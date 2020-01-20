@@ -26,7 +26,7 @@ class Header
 //#define XPT_TEXTCHANNELS_PVP disableChannels[] = {{0,false,true},{1,false,true},{2,true,true},{3,false,true},{4,true,true},{5,true,true}};
 
 // The following defines set default values for lobby parameters. Change as needed for the mission.
-//#define XPT_MAPMARKERS 1			// 0 = Disabled, 1 = Enabled
+//#define XPT_MAPMARKERS 1			// 0 = Disabled, 1 = Enabled.
 //#define XPT_JIPTELEPORT 1			// 0 = Disabled, 1 = Enabled. Currently unused
 //#define XPT_SAFESTART 1			// 0 = Disabled, 1 = Enabled. Currently unused.
 
@@ -43,23 +43,21 @@ class Header
 //-------------------- Radio Defines
 // ACRE2 radio setup parameters.
 
-//#define XPT_DEFINE_ACRE_ENABLE 1							// 0 = Disabled, 1 = Enabled. Default = 1. Set to 0 if you use a custom radio setup script.
-//#define XPT_DEFINE_ACRE_AUTORADIO 0						// 0 = Disabled, 1 = Enabled. Default = 0. Set to 1 to enable automatically giving radios to units.
-//#define XPT_DEFINE_ACRE_AUTOBABEL_COOP 0					// 0 = Disabled, 1 = Enabled. Default = 0. Determines if babel languages should be autoconfigured for COOP missions.
-//#define XPT_DEFINE_ACRE_AUTOBABEL_PVP 1					// 0 = Disabled, 1 = Enabled. Default = 1. Determines if babel languages should be autoconfigured for PVP missions.
+//#define XPT_DEFINE_ACRE_ENABLE 1					// 0 = Disabled, 1 = Enabled. Default = 1. Set to 0 if you use a custom radio setup script.
+//#define XPT_DEFINE_ACRE_AUTORADIO 0				// 0 = Disabled, 1 = Enabled. Default = 0. Set to 1 to enable automatically giving radios to units.
+//#define XPT_DEFINE_ACRE_AUTOBABEL_COOP 0			// 0 = Disabled, 1 = Enabled. Default = 0. Determines if babel languages should be autoconfigured for COOP missions.
+//#define XPT_DEFINE_ACRE_AUTOBABEL_PVP 1			// 0 = Disabled, 1 = Enabled. Default = 1. Determines if babel languages should be autoconfigured for PVP missions.
 
 //-------------------- ACE 3 Defines
 // Uncomment the following defines if you want to change away from the default values pictured here.
 
-//#define XPT_ACE3_MEDICALLEVEL 0					// 0 = Basic Medical, 1 = Advanced Medical
+//#define XPT_ACE3_MEDICALLEVEL 0					// 0 = Standard, 1 = Realistic, 2 = Custom (does not modify any settings)
 //#define XPT_ACE3_PLAYERDAMAGETHRESHOLD 100		// Percentage value (without the % sign). Accepts values from 50 to 200 in increments of 10 (50, 60, 70, etc.) (70 = 70% of normal health)
 //#define XPT_ACE3_AIDAMAGETHRESHOLD 100			// Percentage value (without the % sign). Accepts values from 50 to 200 in increments of 10 (50, 60, 70, etc.) (70 = 70% of normal health)
-//#define XPT_ACE3_REVIVE_TIMER 300					// Revive timer duration in seconds. Accepts the following values: (30,60,90,120,180,240,300)
+//#define XPT_ACE3_CARDARREST_TIMER 120				// Revive timer duration in seconds. Accepts the following values: (30,60,90,120,180,240,300)
 
-//#define XPT_ACE3_PREVENTINSTANTDEATH_COOP 1		// Default PID setting for co-op missions. 0 = Disabled, 1 = Enabled
-//#define XPT_ACE3_REVIVE_COOP 1					// Default ACE revive setting for co-op misisons. 0 = Disabled, 1 = Enabled
-//#define XPT_ACE3_PREVENTINSTANTDEATH_PVP 0		// Default PID setting for PVP missions. 0 = Disabled, 1 = Enabled
-//#define XPT_ACE3_REVIVE_PVP 0						// Default ACE revive setting for PVP misisons. 0 = Disabled, 1 = Enabled
+//#define XPT_ACE3_PLAYERFATAL_COOP 1				// Default Fatal Injuries setting for co-op missions. 0 = Always, 1 = Only in Cardiac Arrest, 2 = Never
+//#define XPT_ACE3_PLAYERFATAL_PVP 0				// Default Fatal Injuries for PVP missions. 0 = Always, 1 = Only in Cardiac Arrest, 2 = Never
 
 //-------------------- ACEX Defines
 
