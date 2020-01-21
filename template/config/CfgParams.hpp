@@ -18,7 +18,7 @@ class xpt_medical_level
 	texts[] = {"Standard", "Realistic", "Custom"};
 	default = XPT_ACE3_MEDICALLEVEL;
 	XPT_paramArray[] = {
-		// Basic medical
+		// Standard medical
 		{
 			{"ace_medical_limping",1},
 			{"ace_medical_fractures",0},
@@ -28,7 +28,7 @@ class xpt_medical_level
 			{"ace_medical_treatment_advancedMedication",1},
 			{"ace_medical_treatment_woundReopening",0}
 		},
-		// Advanced medical
+		// Realistic medical
 		{
 			{"ace_medical_limping",2},
 			{"ace_medical_fractures",1},
@@ -41,6 +41,14 @@ class xpt_medical_level
 		// Custom
 		{}
 	};
+};
+class ace_medical_fatalDamageSource
+{
+	title = "ACE3 - Fatal Damage Source";
+	XPT_CBA_setting = 1;
+	values[] = {0,1,2};
+	texts[] = {"Only large hits to vital organs","Sum of trauma","Either"};
+	default = XPT_ACE3_FATALDAMAGESOURCE;
 };
 class ace_medical_statemachine_fatalInjuriesPlayer
 {

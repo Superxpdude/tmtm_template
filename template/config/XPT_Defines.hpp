@@ -113,6 +113,11 @@ XPT_acre_autoradio = XPT_DEFINE_ACRE_AUTORADIO;
 	#define XPT_ACE3_AIDAMAGETHRESHOLD 1
 #endif
 
+// ACE 3 Fatal Damage Source. Defaults to "Large hits to vitals only"
+#ifndef XPT_ACE3_FATALDAMAGESOURCE
+	#define XPT_ACE3_FATALDAMAGESOURCE 0
+#endif
+
 // ACE 3 PID for co-op missions. Defaults to "Only in Cardiac Arrest".
 #ifndef XPT_ACE3_PLAYERFATAL_COOP
 	#define XPT_ACE3_PLAYERFATAL_COOP 1
