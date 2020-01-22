@@ -66,8 +66,8 @@ class ace_medical_statemachine_cardiacArrestTime
 {
 	title = "ACE3 - Cardiac Arrest Timer";
 	XPT_CBA_setting = 1;
-	values[] = {30,60,90,120,180,240,300};
-	texts[] = {"30 seconds", "60 seconds", "90 seconds", "2 minutes", "3 minutes", "4 minutes", "5 minutes"};
+	values[] = {60,90,120,180,240,300};
+	texts[] = {"60 seconds", "90 seconds", "2 minutes", "3 minutes", "4 minutes", "5 minutes"};
 	default = XPT_ACE3_CARDARREST_TIMER;
 };
 class ace_medical_playerDamageThreshold

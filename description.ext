@@ -54,7 +54,7 @@ class Header
 //#define XPT_ACE3_MEDICALLEVEL 0					// 0 = Standard, 1 = Realistic (for side/sunday ops only), 2 = Custom (does not modify any settings, for side ops only)
 //#define XPT_ACE3_PLAYERDAMAGETHRESHOLD 100		// Percentage value (without the % sign). Accepts values from 50 to 200 in increments of 10 (50, 60, 70, etc.) (70 = 70% of normal health)
 //#define XPT_ACE3_AIDAMAGETHRESHOLD 100			// Percentage value (without the % sign). Accepts values from 50 to 200 in increments of 10 (50, 60, 70, etc.) (70 = 70% of normal health)
-//#define XPT_ACE3_CARDARREST_TIMER 120				// Cardiac arrest timer duration in seconds. Accepts the following values: (30,60,90,120,180,240,300)
+//#define XPT_ACE3_CARDARREST_TIMER 120				// Cardiac arrest timer duration in seconds. Accepts the following values: (60,90,120,180,240,300)
 
 //#define XPT_ACE3_FATALDAMAGESOURCE 0				// Default Fatal Damage Source setting. 0 = Vitals only (New system), 1 = Sum of trauma (Old system), 2 = Either
 //#define XPT_ACE3_PLAYERFATAL_COOP 1				// Default Fatal Injuries setting for co-op missions. 0 = Always, 1 = Only in Cardiac Arrest, 2 = Never
