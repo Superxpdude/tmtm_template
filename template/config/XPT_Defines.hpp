@@ -105,12 +105,12 @@ XPT_acre_autoradio = XPT_DEFINE_ACRE_AUTORADIO;
 
 // ACE 3 player damage threshold. Defaults to 100%.
 #ifndef XPT_ACE3_PLAYERDAMAGETHRESHOLD
-	#define XPT_ACE3_PLAYERDAMAGETHRESHOLD 1
+	#define XPT_ACE3_PLAYERDAMAGETHRESHOLD 100
 #endif
 
 // ACE 3 AI damage threshold. Defaults to 100%.
 #ifndef XPT_ACE3_AIDAMAGETHRESHOLD
-	#define XPT_ACE3_AIDAMAGETHRESHOLD 1
+	#define XPT_ACE3_AIDAMAGETHRESHOLD 100
 #endif
 
 // ACE 3 Fatal Damage Source. Defaults to "Large hits to vitals only"
