@@ -50,13 +50,11 @@ if ((count _subclasses) > 0) then {
 */
 // Find the correct loadout for the unit. Report an error if no loadout is found
 switch true do {
-	case (isClass ((getMissionConfig "CfgXPT") >> XPT_stage_active >> "loadouts" >> _loadout)): {
-		//[_unit, (getMissionConfig "CfgXPT") >> XPT_stage_active >> "loadouts" >> _loadout] call XPT_fnc_loadInventory;
-		[_unit, (getMissionConfig "CfgXPT") >> XPT_stage_active >> "loadouts" >> _loadout] call _fn_checkInventoryVersion;
+	case (isClass ((getMissionConfig "CfgXPT") >> "stages" >> XPT_stage_active >> "loadouts" >> _loadout)): {
+		[_unit, (getMissionConfig "CfgXPT") >> "stages" >> XPT_stage_active >> "loadouts" >> _loadout] call _fn_checkInventoryVersion;
 	};
 	// Keep the old loadouts location in here for legacy reasons
 	case (isClass ((getMissionConfig "CfgXPT") >> "loadouts" >> _loadout)): {
-		//[_unit, (getMissionConfig "CfgXPT") >> "loadouts" >> _loadout] call XPT_fnc_loadInventory;
 		[_unit, (getMissionConfig "CfgXPT") >> "loadouts" >> _loadout] call _fn_checkInventoryVersion;
 	};
 	case (isClass ((getMissionConfig "CfgRespawnInventory") >> _loadout)): {
