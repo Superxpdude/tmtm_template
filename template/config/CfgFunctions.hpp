@@ -56,6 +56,11 @@ class XPT
 		class radioHandleRespawn {};			// Function for setting radio info on respawn
 		class radioInit {preInit = 1;};			// Function for configuring radio settings
 	};
+	class respawn
+	{
+		file = "template\functions\respawn";
+		class waveOnPlayerKilled {};			// onPlayerKilled portion of the waves respawn template
+	};
 	class stage
 	{
 		file = "template\functions\stage";

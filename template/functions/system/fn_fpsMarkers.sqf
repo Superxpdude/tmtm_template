@@ -13,7 +13,7 @@
 
 // Not to be run on player clients
 if (hasInterface and !isServer) exitWith {};
-private ["_serverMark", "_hcMark"];
+private ["_serverMark", "_hcMark", "_hcMark2", "_hcMark3"];
 
 private _markerSpacing = 250;
 
