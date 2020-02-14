@@ -38,15 +38,9 @@ params [
 
 private ["_module", "_message"];
 
-// Grab the debug mode status
-private _debug = (["XPT_debugMode", 0] call BIS_fnc_getParamValue);
-
 // Log an error (heh) if any variables are missing or invalid.
 if (isNil "_error") exitWith {
-	[true, "Called with no message defined"] call XPT_fnc_errorLog;
-};
-if ((_location > 2) OR (_location < 0)) exitWith {
-	[true, format ["Called with invalid location of: %1", _location]] call XPT_fnc_errorLog;
+	[2, format ["Deprecated function XPT_fnc_error called from [%1] with no message defined",_fnc_scriptNameParent]] call XPT_fnc_log;
 };
 
 // If the error message is a string, convert it to an array
@@ -59,23 +53,9 @@ _error params [
 	["_message", nil, [""]]
 ];
 
-// Check to make sure that the message is defined
-if (isNil "_message") exitWith {
-	[true, "Called with no message defined"] call XPT_fnc_errorLog;
+if (_priority) then {
+	[1, [_module,_message],_location] call XPT_fnc_log;
+} else {
+	[2, [_module,_message],_location] call XPT_fnc_log;
 };
-
-// Build our message
-private _log = format ["[%1] %2",_module,_message];
-
-// Send our message
-switch (_location) do {
-	// Only the local machine
-	case 0: {[_priority,_log] call XPT_fnc_errorLog;};
-	// Local machine and server
-	case 1: {
-		[_priority,_log] call XPT_fnc_errorLog;
-		[_priority,_log] remoteExec ["XPT_fnc_errorLog", 2];
-	};
-	// All machines
-	case 2: {[_priority,_log] remoteExec ["XPT_fnc_errorLog", 0];};
-};
+[2, format ["Deprecated function XPT_fnc_error called from [%1]",_fnc_scriptNameParent],_location] call XPT_fnc_log;
