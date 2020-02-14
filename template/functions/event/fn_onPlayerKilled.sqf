@@ -9,6 +9,8 @@
 	Returns: Nothing
 */
 
+#include "script_macros.hpp"
+
 // Define parameters
 _this params ["_oldUnit", "_killer", "_respawn", "_respawnDelay"];
 

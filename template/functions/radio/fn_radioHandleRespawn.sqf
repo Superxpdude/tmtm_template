@@ -9,6 +9,9 @@
 		
 	Returns: Nothing
 */
+
+#include "script_macros.hpp"
+
 // Do not run before acre has initialized
 waitUntil {call acre_api_fnc_isInitialized};
 
@@ -31,7 +34,7 @@ if ((getMissionConfigValue "XPT_acre_autoradio") == 1) then {
 		_unit addItem "ACRE_PRC343";
 		// Check if the radio was added successfully
 		if ((isNil {["ACRE_PRC343"] call acre_api_fnc_getRadioByType}) AND !("ACRE_PRC343" in items _unit)) then {
-			[true, format ["Autoradio was unable to provide an AN/PRC343. Type: '%1' Unit: '%2'", typeOf _unit, name _unit], 2] call XPT_fnc_error;
+			[1, format ["Autoradio was unable to provide an AN/PRC343. Type: '%1' Unit: '%2'", typeOf _unit, name _unit], 2] call XPT_fnc_log;
 		};
 	};
 	
@@ -41,7 +44,7 @@ if ((getMissionConfigValue "XPT_acre_autoradio") == 1) then {
 		_unit addItem "ACRE_PRC152";
 		// Check if the radio was added successfully
 		if ((isNil {["ACRE_PRC152"] call acre_api_fnc_getRadioByType}) AND !("ACRE_PRC152" in items _unit)) then {
-			[true, format ["Autoradio was unable to provide an AN/PRC152. Type: '%1' Unit: '%2'", typeOf _unit, name _unit], 2] call XPT_fnc_error;
+			[1, format ["Autoradio was unable to provide an AN/PRC152. Type: '%1' Unit: '%2'", typeOf _unit, name _unit], 2] call XPT_fnc_log;
 		};
 	};
 };

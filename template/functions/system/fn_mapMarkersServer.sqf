@@ -11,6 +11,8 @@
 	Returns: Nothing
 */
 
+#include "script_macros.hpp"
+
 // Only to be run on the server
 if (!isServer) exitWith {};
 
@@ -19,7 +21,7 @@ if ((_this select 0) == 0) exitWith {};
 
 // Do not execute if there are already map markers present, this would indicate that the function is already running
 if (!isNil "XPT_mapMarkersList") exitWith {
-	[true, "Second XPT_fnc_mapMarkersServer instance started while another instance was already running", 2] call XPT_fnc_error;
+	[1, "Second XPT_fnc_mapMarkersServer instance started while another instance was already running", 2] call XPT_fnc_log;
 };
 	
 
@@ -32,12 +34,14 @@ if (!isNil "XPT_mapMarkersList") exitWith {
 	// Mark the map markers as enabled
 	XPT_mapMarkersEnabled = true;
 	
+	[3, "Starting map markers loop", 0] call XPT_fnc_log;
+	
 	// Start the loop
 	while {XPT_mapMarkersEnabled} do {
 		// Clear the groups list
 		_groups = [];
 		// Fill tempMarkers will variables from markers
-		_tempMarkers = _markers;
+		_tempMarkers = + _markers;
 		// Fill the groups list with player groups
 		{
 			// Ensure that we exclude zeus groups
@@ -73,14 +77,10 @@ if (!isNil "XPT_mapMarkersList") exitWith {
 				_grpMarker setMarkerText (groupID _x);
 				_grpMarker setMarkerSize [0.75, 0.75];
 				// Add the new marker to the markers array
-				_markers pushBackUnique _grpMarker;
+				_markers pushBackUnique [_grpMarker];
 				// Set a variable on the group referencing the new marker
 				_x setVariable ["XPT_mapMarker", _grpMarker, true];
-				// If the mission is a PVP mission, tell the clients to unhide friendly markers
-				if ((getMissionConfigValue "XPT_isPVP") == 1) then {
-					// Persistent execution of the remoteExec as long as the group exists
-					[_grpMarker, _x] remoteExec ["XPT_fnc_mapMarkersClient", 0, _x];
-				};
+				
 			} else {
 				// If the group already has a marker, just update it
 				_grpMarker setMarkerPos (getPosATL (leader _x));
@@ -98,6 +98,10 @@ if (!isNil "XPT_mapMarkersList") exitWith {
 		};
 		// Broadcast the markers list to all clients
 		XPT_mapMarkersList = _markers;
+		// If the mission is a PVP mission, tell the clients to unhide friendly markers
+		if ((getMissionConfigValue "XPT_isPVP") == 1) then {
+			[_groups] remoteExec ["XPT_fnc_mapMarkersClient", 2];
+		};
 		publicVariable "XPT_mapMarkersList";
 		// Wait a few seconds
 		sleep 5;

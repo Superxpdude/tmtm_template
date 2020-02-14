@@ -9,6 +9,8 @@
 	Returns: Nothing
 */
 
+#include "script_macros.hpp"
+
 // Define parameters
 params ["_newUnit", "_oldUnit", "_respawn", "_respawnDelay"];
 
@@ -29,4 +31,24 @@ if ((getMissionConfigValue "XPT_customLoadouts") == 1) then {
 // Load the player's radio settings. (This needs to happen after the inventory is loaded)
 if ((getMissionConfigValue "XPT_acre_enable") == 1) then {
 	[_newUnit] spawn XPT_fnc_radioHandleRespawn;
+};
+
+// If the player is a zeus unit. Spawn the movement loop
+_zeus = _newUnit getVariable ["XPT_zeusUnit", false];
+if !(_zeus isEqualTo false) then {
+	_newUnit spawn {
+		waitUntil {!isNull (getAssignedCuratorLogic _this)};
+		_this allowDamage false;
+		// These commands need to be executed on the server
+		[_this, false] remoteExec ["enableSimulationGlobal", 2];
+		[_this, true] remoteExec ["hideObjectGlobal", 2];
+		// Wait until the mission has started
+		waitUntil {time > 2};
+		// Start the loop
+		while {alive _this} do {
+			sleep 1;
+			_this setPosASL (getPosASL curatorCamera);
+			_this setDir (getDir curatorCamera);
+		};
+	};
 };

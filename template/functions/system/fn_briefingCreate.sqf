@@ -11,6 +11,8 @@
 	Returns: Nothing
 */
 
+#include "script_macros.hpp"
+
 // Only run on a machine with a player
 if (!hasInterface) exitWith {};
 
@@ -21,7 +23,7 @@ _briefingFunc = {
 	_briefing = param [0, nil, ["", configNull]];
 	// Exit if the briefing is undefined
 	if (isNil "_briefing") exitWith {
-		[false,"[XPT-BRIEFING] XPT_fnc_briefingCreate called with incorrect variable type."] call "XPT_fnc_errorReport";
+		[2, "XPT_fnc_briefingCreate called with incorrect variable type"] call XPT_fnc_log;
 	};
 	
 	// If the briefing is a string, find the correct class
@@ -31,7 +33,7 @@ _briefingFunc = {
 	
 	// If the class doesn't exist, return an error
 	if (!(isClass _briefing)) exitWith {
-		[true, format ["[XPT-BRIEFING] Missing briefing class", _briefing]] call "XPT_fnc_errorReport";
+		[1, format ["Missing briefing class [%1]", _briefing]] call XPT_fnc_log;
 	};
 	
 	// Now that we know the config exists, grab the rest of our variables
@@ -42,7 +44,7 @@ _briefingFunc = {
 	_sides = [((_briefing >> "sides") call BIS_fnc_getCfgData)] param [0, nil, [[]]];
 	
 	if ((isNil "_category") OR (isNil "_title") OR (isNil "_text") OR (isNil "_sides")) exitWith {
-		[true,format ["[XPT-BRIEFING] Briefing class <%1> is missing a config value", configName _briefing]] call "XPT_fnc_errorReport";
+		[1,format ["Briefing class [%1] is missing a config value", configName _briefing]] call XPT_fnc_log;
 	};
 	
 	// Grab a number based on the player side

@@ -14,7 +14,7 @@
 	Returns: Nothing
 */
 
-#include "xpt_script_defines.hpp"
+#include "script_macros.hpp"
 
 // Only to be run on the server
 if (!isServer) exitWith {};
@@ -27,7 +27,7 @@ params [
 
 // If the unit is nil, exit the function
 if (isNil "_unit") exitWith {
-	[false, "Function called with no unit defined", 0] call XPT_fnc_error;
+	[2, "Function called with no unit defined", 0] call XPT_fnc_log;
 };
 
 // If the unit is an object, convert it to an array

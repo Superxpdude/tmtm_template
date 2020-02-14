@@ -12,6 +12,9 @@
 		True if the turret was configured correctly
 		False if there was an error configuring the turret
 */
+
+#include "script_macros.hpp"
+
 params [
 	["_vehicle", nil, [objNull]],
 	["_turretConfig", [], [[]]]
@@ -25,11 +28,17 @@ _turretConfig params [
 ];
 
 // Don't run if we have undefined variables
-if (isNil "_vehicle") exitWith {[[false,"[XPT-VEHICLE] XPT_fnc_vehicleSetupTurret called with undefined vehicle."]] remoteExec ["XPT_fnc_errorReport", 0];};
-if (isNil "_turretPath") exitWith {[[false,"[XPT-VEHICLE] XPT_fnc_vehicleSetupTurret called with undefined turret path."]] remoteExec ["XPT_fnc_errorReport", 0];};
+if (isNil "_vehicle") exitWith {
+	[2,"XPT_fnc_vehicleSetupTurret called with undefined vehicle."] call XPT_fnc_log;
+};
+if (isNil "_turretPath") exitWith {
+	[2,"XPT_fnc_vehicleSetupTurret called with undefined turret path."] call XPT_fnc_log;
+};
 
 // Only run if the turret is local to this machine
-if !(_vehicle turretLocal _turretPath) exitWith {[[false,"[XPT-VEHICLE] XPT_fnc_vehicleSetupTurret executed where turret is not local."]] remoteExec ["XPT_fnc_errorReport", 0];};
+if !(_vehicle turretLocal _turretPath) exitWith {
+	[2,"XPT_fnc_vehicleSetupTurret executed where turret is not local."] call XPT_fnc_log;
+};
 
 // Start with magazines first, this way any new weapons will be automatically loaded.
 if ((count _turretMagazines) > 0) then {

@@ -10,8 +10,12 @@
 	Returns: Nothing
 */
 
+#include "script_macros.hpp"
+
 // Only execute on the server. Tasks should only ever be created server-side
-if (!isServer) exitWith {};
+if (!isServer) exitWith {
+	[1, "XPT_fnc_updateTask called on non-server machine"] call XPT_fnc_log;
+};
 
 params [
 	["_taskUpdate", nil, [""]]
@@ -19,12 +23,12 @@ params [
 
 // If an incorrect parameter type was used, throw an error and exit.
 if (isNil "_taskUpdate") exitWith {
-	[false, "Called with an incorrect parameter type.", 0] call XPT_fnc_error;
+	[2, "Called with an incorrect parameter type.", 0] call XPT_fnc_log;
 };
 
 // If the updateTask class doesn't exist, throw an error and exit.
 if (!(isClass ((getMissionConfig "CfgXPT") >> "taskUpdates" >> _taskUpdate))) exitWith {
-	[true, format ["Task update class <%1> does not exist", _taskUpdate], 0] call XPT_fnc_error;
+	[1, format ["Task update class <%1> does not exist", _taskUpdate], 2] call XPT_fnc_log;
 };
 
 // Grab our variables
@@ -52,7 +56,7 @@ _taskFunc = {
 			[_x, _state, true] call BIS_fnc_taskSetState;
 		} else {
 			// If the task doesn't exist, return an error
-			[true, format ["Task <%1> does not exist", _x], 0] call XPT_fnc_error;
+			[1, format ["Task <%1> does not exist", _x], 2] call XPT_fnc_log;
 		};
 	} forEach _tasks;
 };

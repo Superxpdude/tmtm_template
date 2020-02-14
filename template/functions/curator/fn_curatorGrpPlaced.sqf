@@ -10,6 +10,8 @@
 	Returns: Nothing
 */
 
+#include "script_macros.hpp"
+
 // Define variables
 params [
 	["_curator", nil, [objNull]],
@@ -18,7 +20,7 @@ params [
 
 // Error checking
 if ((isNil "_curator") OR (isNil "_placed")) exitWith {
-	[false, "Curator or placed unit undefined", 0] call XPT_fnc_error;
+	[2, "Curator or placed unit undefined", 0] call XPT_fnc_log;
 };
 
 // Loop through all available curators

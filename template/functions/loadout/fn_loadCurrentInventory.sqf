@@ -9,7 +9,7 @@
 	Returns: Nothing
 */
 
-#include "xpt_script_defines.hpp"
+#include "script_macros.hpp"
 
 // Define our variables
 params ["_unit"];
@@ -62,6 +62,6 @@ switch true do {
 	};
 	// If no loadout is found, report an error
 	default {
-		[true, format ["No loadout defined for unit. Loadout: '%1' Unit: '%2'", _loadout, name _unit], 2] call XPT_fnc_error;
+		[1, format ["No loadout defined for unit. Loadout: '%1' Unit: '%2'", _loadout, name _unit], 2] call XPT_fnc_log;
 	};
 };

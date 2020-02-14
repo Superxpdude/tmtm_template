@@ -9,6 +9,8 @@
 	Returns: Nothing
 */
 
+#include "script_macros.hpp"
+
 // Do not run on a dedicated server or headless client
 if (!hasInterface) exitWith {};
 // Wait until the player exists

@@ -9,6 +9,8 @@
 	Returns: Nothing
 */
 
+#include "script_macros.hpp"
+
 // Define variables
 params ["_player", "_jip"];
 
@@ -46,20 +48,5 @@ if !(_zeus isEqualTo false) then {
 	// Ensure that the player can access the curator interface
 	if ((typeName _zeus) == "STRING") then {
 		[_player, _zeus] remoteExec ["XPT_fnc_curatorAssignUnit", 2];
-	};
-	// Spawn the movement loop
-	_player spawn {
-		waitUntil {!isNull (getAssignedCuratorLogic _this)};
-		_this allowDamage false;
-		// These commands need to be executed on the server
-		[_this, false] remoteExec ["enableSimulationGlobal", 2];
-		[_this, true] remoteExec ["hideObjectGlobal", 2];
-		// Wait until the mission has started
-		waitUntil {time > 2};
-		// Start the loop
-		while {true} do {
-			sleep 1;
-			_this setPosASL (getPosASL curatorCamera);
-		};
 	};
 };

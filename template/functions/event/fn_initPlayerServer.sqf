@@ -9,6 +9,8 @@
 	Returns: Nothing
 */
 
+#include "script_macros.hpp"
+
 // Define variables
 params ["_player", "_jip"];
 

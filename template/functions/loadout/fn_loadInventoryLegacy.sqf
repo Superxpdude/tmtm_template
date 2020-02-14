@@ -43,6 +43,8 @@
 		False if loadout was not applied successfully
 */
 
+#include "script_macros.hpp"
+
 // Define variables
 private ["_unit", "_class", "_subclasses"];
 params [

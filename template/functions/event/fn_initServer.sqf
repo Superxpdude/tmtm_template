@@ -9,6 +9,8 @@
 	Returns: Nothing
 */
 
+#include "script_macros.hpp"
+
 // Initialise BIS dynamic groups (server-side)
 ["Initialize", [true]] call BIS_fnc_dynamicGroups;
 

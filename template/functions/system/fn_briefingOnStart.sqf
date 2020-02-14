@@ -9,6 +9,8 @@
 	Returns: Nothing
 */
 
+#include "script_macros.hpp"
+
 // Only run on a machine with a player
 if (!hasInterface) exitWith {};
 

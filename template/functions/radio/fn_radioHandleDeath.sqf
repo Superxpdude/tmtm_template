@@ -10,6 +10,9 @@
 	Returns: Nothing
 */
 // Define variables
+
+#include "script_macros.hpp"
+
 _unit = _this param [0, player, [objNull]];
 
 // Don't run on Zeus units

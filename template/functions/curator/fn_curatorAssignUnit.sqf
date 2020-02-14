@@ -13,7 +13,7 @@
 	Returns: Nothing
 */
 
-#include "xpt_script_defines.hpp"
+#include "script_macros.hpp"
 
 // Only to be run on the server
 if (!isServer) exitWith {};
@@ -26,10 +26,10 @@ params [
 
 // Ensure that the unit and curator are defined
 if (isNil "_unit") exitWith {
-	[false, "Function called with no unit defined", 0] call XPT_fnc_error;
+	[2, "Function called with no unit defined", 0] call XPT_fnc_log;
 };
 if (isNil "_curator") exitWith {
-	[false, "Function called with no curator defined", 0] call XPT_fnc_error;
+	[2, "Function called with no curator defined", 0] call XPT_fnc_log;
 };
 
 _assignCurator = {
@@ -46,7 +46,7 @@ _assignCurator = {
 // If the curator is a string, grab the object
 if ((typeName _curator) == "STRING") then {
 	if !(call compile format ["%1 in allCurators", _curator]) exitWith {
-		[true, format ["Invalid curator string provided: (%1)", _curator], 0] call XPT_fnc_error;
+		[1, format ["Invalid curator string provided: (%1)", _curator], 2] call XPT_fnc_log;
 	};
 	_curatorModule = (call compile format ["%1", _curator]);
 	[_unit, _curatorModule] spawn _assignCurator;

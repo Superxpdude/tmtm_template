@@ -17,7 +17,7 @@ params [
 ];
 // Exit if the unit is undefined
 if (isNil "_unit") exitWith {
-	[false, "Called with no unit defined", 0] call XPT_fnc_error;
+	[2, "Called with no unit defined", 0] call XPT_fnc_log;
 };
 
 // Determine if the spawned unit is a vehicle or a man

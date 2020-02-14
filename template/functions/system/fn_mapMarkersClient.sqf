@@ -11,14 +11,27 @@
 	Returns: Nothing
 */
 
+#include "script_macros.hpp"
+
 // Don't run on servers or headless clients
 if (!hasInterface) exitWith {};
 
 // Define parameters
-params ["_marker", "_group"];
+params ["_groups"];
 
-// Check if the group is friendly to the player
-if ([(side player), (side _group)] call BIS_fnc_sideIsFriendly) then {
-	// If the sides are friends, show the marker
-	_marker setMarkerAlphaLocal 1;
-};
+// Iterate through all groups passed to the client
+{
+	if (_x isEqualType grpNull) then {
+		private _grpMarker = _x getVariable ["XPT_mapMarker", nil];
+		if !(isNil "_grpMarker") then {
+			// Group has a map marker. Check if they are friendly
+			if ([(side player), (side _x)] call BIS_fnc_sideIsFriendly) then {
+				// Group is friendly
+				_grpMarker setMarkerAlphaLocal 1;
+			} else {
+				// Group is not friendly
+				_grpMarker setMarkerAlphaLocal 0;
+			};
+		};
+	};
+} forEach _groups;

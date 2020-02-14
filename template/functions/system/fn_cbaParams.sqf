@@ -9,11 +9,11 @@
 	Returns: Nothing
 */
 
-#include "xpt_script_defines.hpp"
+#include "script_macros.hpp"
 
 // If CBA is not installed, exit with an error
 if (!isClass (configfile >> "CfgMods" >> "cba")) exitWith {
-	[true, "CBA is not installed, cannot read lobby parameters", 0] call XPT_fnc_error;
+	[1, "CBA is not installed, cannot read lobby parameters"] call XPT_fnc_log;
 	false
 };
 
@@ -38,6 +38,7 @@ if (!isClass (configfile >> "CfgMods" >> "cba")) exitWith {
 		
 		// Set the CBA setting from the parameter's value
 		["CBA_settings_setSettingMission", [_paramName, _paramValue, true]] call CBA_fnc_localEvent;
+		[3, format ["Setting CBA setting [%1] to [%2]",_paramName, _paramValue]] call XPT_fnc_log;
 	} forEach _params;
 	
 	// Find all lobby parameters that affect multiple CBA settings
@@ -56,6 +57,7 @@ if (!isClass (configfile >> "CfgMods" >> "cba")) exitWith {
 		// Iterate through the sub-array to set CBA settings
 		{
 			["CBA_settings_setSettingMission", [_x select 0, _x select 1, true]] call CBA_fnc_localEvent;
+			[3, format ["Setting CBA setting [%1] to [%2]",_paramName, _paramValue]] call XPT_fnc_log;
 		} forEach (_paramArray select _paramValue);
 	} forEach _multiparams;
 	

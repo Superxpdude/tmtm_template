@@ -10,6 +10,8 @@
 	Returns: Nothing
 */
 
+#include "script_macros.hpp"
+
 _unit = _this param [0, player, [objNull]];
 
 // Define some variables

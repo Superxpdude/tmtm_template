@@ -14,6 +14,8 @@
 		False if there was an error
 */
 
+#include "script_macros.hpp"
+
 // Define variables
 private ["_object", "_loadout", "_class", "_config", "_remove", "_allitems"];
 params [
@@ -31,7 +33,7 @@ if ((typeName _remove) == "SCALAR") then {
 
 // Exit the script if the object is undefined.
 if (isNil "_object") exitWith {
-	[[true,"[XPT-LOADOUT] XPT_fnc_loadItemCargo called with no object defined."]] remoteExec ["XPT_fnc_errorReport", 0];
+	[1,"XPT_fnc_loadItemCargo called with no object defined."] call XPT_fnc_log;
 	false
 };
 
@@ -44,7 +46,7 @@ if (!isNil "_loadout") then {
 
 // If the class doesn't exist, return an error
 if (!(isClass _config)) exitWith {
-	[[true, format ["[XPT-LOADOUT] Missing Item Cargo: ""%1""", _loadout]]] remoteExec ["XPT_fnc_errorReport", 0];
+	[1, format ["Missing Item Cargo: [%1]", _loadout],2] call XPT_fnc_log;
 	false
 };
 
@@ -66,17 +68,18 @@ _itemsAdvMed = [((_class >> "itemsAdvMed") call BIS_fnc_getCfgData)] param [0, n
 // Log errors if definitions are missing. Define the variable as an empty array to prevent further errors
 if (isNil "_items") then {
 	// Log this one as a critical error, as all loadout definitions need a base items listing
-	[[true, format ["[XPT-LOADOUT] Missing items definition for class: ""%1""", _loadout]]] remoteExec ["XPT_fnc_errorReport", 0];
+	[1, format ["Missing items definition for class: [%1]", _loadout],2] call XPT_fnc_log;
+	
 	_items = [];
 };
 if (isNil "_itemsBasicMed") then {
 	// Log this one as a minor error, this may not be needed depending on the mission, but it should still be there for consistency.
-	[[false, format ["[XPT-LOADOUT] Missing itemsBasicMed definition for class: ""%1""", _loadout]]] remoteExec ["XPT_fnc_errorReport", 0];
+	[2, format ["Missing itemsBasicMed definition for class: [%1]", _loadout],2] call XPT_fnc_log;
 	_itemsBasicMed = [];
 };
 if (isNil "_itemsAdvMed") then {
 	// Log this one as a minor error, this may not be needed depending on the mission, but it should still be there for consistency.
-	[[false, format ["[XPT-LOADOUT] Missing itemsAdvMed definition for class: ""%1""", _loadout]]] remoteExec ["XPT_fnc_errorReport", 0];
+	[2, format ["Missing itemsAdvMed definition for class: [%1]", _loadout],2] call XPT_fnc_log;
 	_itemsAdvMed = [];
 };
 

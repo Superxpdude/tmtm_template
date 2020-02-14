@@ -14,6 +14,8 @@
 		False if there was an error configuring the vehicle
 */
 
+#include "script_macros.hpp"
+
 // Only execute the main function on the server. This will execute commands on different machines as required.
 if (!isServer) exitWith {};
 
@@ -27,24 +29,9 @@ params [
 
 // Exit the script if the vehicle is undefined.
 if (isNil "_vehicle") exitWith {
-	[[true,"[XPT-VEHICLE] XPT_fnc_vehicleSetup called with no vehicle defined."]] remoteExec ["XPT_fnc_errorReport", 0];
+	[1,"XPT_fnc_vehicleSetup called with no vehicle defined."] call XPT_fnc_log;
 	false
 };
-
-// Execute the function where the vehicle is local
-/*
-if (!local _vehicle) exitWith {
-	if (!isServer) then {
-		// If this has been run on a client, send it to the server to find the object owner
-		_this remoteExec ["XPT_fnc_vehicleSetup", 2];
-	} else {
-		// If this has been run on the server, find out who the owner is and send it to them
-		_this remoteExec ["XPT_fnc_vehicleSetup", owner _vehicle];
-	};
-};
-*/
-
-
 
 // Find the config that we need if it's not already defined
 if (isNil "_loadout") then {
@@ -65,7 +52,7 @@ _config = ((getMissionConfig "CfgXPT") >> "vehicleSetup" >> _loadout);
 
 // If the class doesn't exist, return an error
 if ((!(isClass _config)) AND !(_onStart)) exitWith {
-	[[false, format ["[XPT-VEHICLE] Missing Loadout: ""%1""", _loadout]]] remoteExec ["XPT_fnc_errorReport", 0];
+	[1, format ["Missing vehicle config for [%1]", _loadout],2] call XPT_fnc_log;
 	false
 };
 
