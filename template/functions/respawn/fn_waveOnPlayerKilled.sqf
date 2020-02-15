@@ -25,5 +25,4 @@ private _currentTime = serverTime;
 private _respawnDelay = getMissionConfigValue ["respawnDelay",180];
 private _respawnTimer = _respawnDelay - ((_currentTime - _startTime) mod _respawnDelay);
 
-systemchat format ["Start Time: %1 | Current Time: %2 | Respawn Timer: %3",_startTime,_currentTime,_respawnTimer];
 setPlayerRespawnTime _respawnTimer;
