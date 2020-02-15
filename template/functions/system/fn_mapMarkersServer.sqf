@@ -101,7 +101,7 @@ if (!isNil "XPT_mapMarkersList") exitWith {
 		XPT_mapMarkersList = _markers;
 		// If the mission is a PVP mission, tell the clients to unhide friendly markers
 		if ((getMissionConfigValue "XPT_isPVP") == 1) then {
-			[_groups] remoteExec ["XPT_fnc_mapMarkersClient", 2];
+			[_groups] remoteExec ["XPT_fnc_mapMarkersClient", 0];
 		};
 		publicVariable "XPT_mapMarkersList";
 		// Wait a few seconds
