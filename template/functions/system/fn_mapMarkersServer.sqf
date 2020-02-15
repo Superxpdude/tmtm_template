@@ -27,6 +27,7 @@ if (!isNil "XPT_mapMarkersList") exitWith {
 
 // Spawn map markers loop (since this function is called on mission start)
 [] spawn {
+	private _fnc_scriptName = "XPT_fnc_mapMarkersServer";
 	// Define our variables
 	private ["_groups", "_markers", "_tempMarkers", "_markerType"];
 	_markers = [];
@@ -77,7 +78,7 @@ if (!isNil "XPT_mapMarkersList") exitWith {
 				_grpMarker setMarkerText (groupID _x);
 				_grpMarker setMarkerSize [0.75, 0.75];
 				// Add the new marker to the markers array
-				_markers pushBackUnique [_grpMarker];
+				_markers pushBackUnique _grpMarker;
 				// Set a variable on the group referencing the new marker
 				_x setVariable ["XPT_mapMarker", _grpMarker, true];
 				

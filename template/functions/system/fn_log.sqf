@@ -94,7 +94,7 @@ if (isNil "_message") exitWith {
 	[2, format ["Called from [%1] with no message defined",_module]] call XPT_fnc_log;
 };
 
-_priorityText = switch (_priority) do {
+private _priorityText = switch (_priority) do {
 	case 0: {"CRITICAL"};
 	case 1: {"ERROR"};
 	case 2: {"WARNING"};
@@ -106,7 +106,7 @@ _priorityText = switch (_priority) do {
 // Build our messages
 private _logMessage = format ["[%1] (%2) %3",_priorityText,_module,_message];
 private _chatMessage = if ((_priority <= 1) OR ((_priority <= 3) AND (_debug == 1))) then {
-	format ["[%1] %2",_module,_message];
+	format ["[%1] %2",_module,_message]
 } else {
 	false
 };
@@ -114,15 +114,15 @@ private _chatMessage = if ((_priority <= 1) OR ((_priority <= 3) AND (_debug == 
 // Send our message
 switch (_location) do {
 	// Only the local machine
-	case 0: {[logMessage,_chatMessage] call XPT_fnc_logWrite;};
+	case 0: {[_logMessage,_chatMessage] call XPT_fnc_logWrite;};
 	// Local machine and server
 	case 1: {
-		[logMessage,_chatMessage] call XPT_fnc_logWrite;
+		[_logMessage,_chatMessage] call XPT_fnc_logWrite;
 		// Only remoteExec to the server if not called on the server.
 		if (!isServer) then {
-			[logMessage,_chatMessage] remoteExec ["XPT_fnc_logWrite", 2];
+			[_logMessage,_chatMessage] remoteExec ["XPT_fnc_logWrite", 2];
 		};
 	};
 	// All machines
-	case 2: {[logMessage,_chatMessage] remoteExec ["XPT_fnc_logWrite", 0];};
+	case 2: {[_logMessage,_chatMessage] remoteExec ["XPT_fnc_logWrite", 0];};
 };

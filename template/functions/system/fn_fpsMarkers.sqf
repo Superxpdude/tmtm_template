@@ -41,10 +41,10 @@ if (isServer) then {
 	
 	if (isNil "hc") then {
 		_hcMark setMarkerColor "ColorGREY";
-		_hcMark setMarkerText "HC: Disconnected";
+		_hcMark setMarkerText "HC1: Disconnected";
 	} else {
 		_hcMark setMarkerColor "ColorBlue";
-		_hcMark setMarkerText "HC: Setup";
+		_hcMark setMarkerText "HC1: Setup";
 	};
 	if (isNil "hc2") then {
 		_hcMark2 setMarkerColor "ColorGREY";
@@ -67,6 +67,7 @@ if (isServer) then {
 // Spawn the loop (since it needs to run forever)
 
 [] spawn {
+	private _fnc_scriptName = "XPT_fnc_fpsMarkers";
 	private ["_marker", "_name", "_fps"];
 	// Make sure we're editing the correct marker
 	switch (true) do {
@@ -106,15 +107,15 @@ if (isServer) then {
 			// If the HC doesn't exist (will only ever be true on the server), indicate the HC is disconnected
 			if (isNil "hc") then {
 				"fpsmarker_hc" setMarkerColor "ColorGREY";
-				"fpsmarker_hc" setMarkerText "HC: Disconnected";
+				"fpsmarker_hc" setMarkerText "HC1: Disconnected";
 			};
 			if (isNil "hc2") then {
 				"fpsmarker_hc2" setMarkerColor "ColorGREY";
-				"fpsmarker_hc2" setMarkerText "HC: Disconnected";
+				"fpsmarker_hc2" setMarkerText "HC2: Disconnected";
 			};
 			if (isNil "hc3") then {
 				"fpsmarker_hc3" setMarkerColor "ColorGREY";
-				"fpsmarker_hc3" setMarkerText "HC: Disconnected";
+				"fpsmarker_hc3" setMarkerText "HC3: Disconnected";
 			};
 		};
 		
