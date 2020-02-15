@@ -235,6 +235,3 @@ class CfgXPT
 	#include "config\XPTTaskUpdates.hpp"
 	#include "config\XPTVehicleSetup.hpp"
 };
-
-//-------------------- ACE3 Settings
-#include "config\ACE_Settings.hpp"
