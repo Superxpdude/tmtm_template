@@ -163,5 +163,22 @@ private _loadout = [
 // Apply the loadout
 _unit setUnitLoadout _loadout;
 
+// Check if the unit is overloaded
+private _uniformLoad = loadUniform _unit;
+private _vestLoad = loadVest _unit;
+private _backpackLoad = loadBackpack _unit;
+
+if (_uniformLoad > 1) then {
+	[1, format ["Loadout [%1] has an overloaded uniform! Load: [%2]",configName _baseClass,_uniformLoad], 2] call XPT_fnc_log;
+};
+
+if (_vestLoad > 1) then {
+	[1, format ["Loadout [%1] has an overloaded vest! Load: [%2]",configName _baseClass,_vestLoad], 2] call XPT_fnc_log;
+};
+
+if (_backpackLoad > 1) then {
+	[1, format ["Loadout [%1] has an overloaded backpack! Load: [%2]",configName _baseClass,_backpackLoad], 2] call XPT_fnc_log;
+};
+
 // Return true if script is completed.
 true 
