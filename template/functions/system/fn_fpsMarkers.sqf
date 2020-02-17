@@ -105,17 +105,34 @@ if (isServer) then {
 		
 		if (isServer) then {
 			// If the HC doesn't exist (will only ever be true on the server), indicate the HC is disconnected
+			// TODO: Find a way to clean up this section
 			if (isNil "hc") then {
 				"fpsmarker_hc" setMarkerColor "ColorGREY";
 				"fpsmarker_hc" setMarkerText "HC1: Disconnected";
+			} else {
+				// If hc is not nil, check if it is a player
+				if (!isPlayer hc) then {
+					"fpsmarker_hc" setMarkerColor "ColorGREY";
+					"fpsmarker_hc" setMarkerText "HC1: Disconnected";
+				};
 			};
 			if (isNil "hc2") then {
 				"fpsmarker_hc2" setMarkerColor "ColorGREY";
 				"fpsmarker_hc2" setMarkerText "HC2: Disconnected";
+			} else {
+				if (!isPlayer hc2) then {
+					"fpsmarker_hc2" setMarkerColor "ColorGREY";
+					"fpsmarker_hc2" setMarkerText "HC2: Disconnected";
+				};
 			};
 			if (isNil "hc3") then {
 				"fpsmarker_hc3" setMarkerColor "ColorGREY";
 				"fpsmarker_hc3" setMarkerText "HC3: Disconnected";
+			} else {
+				if (!isPlayer hc3) then {
+					"fpsmarker_hc3" setMarkerColor "ColorGREY";
+					"fpsmarker_hc3" setMarkerText "HC3: Disconnected";
+				};
 			};
 		};
 		
