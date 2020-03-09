@@ -130,7 +130,7 @@ XPT_acre_autoradio = XPT_DEFINE_ACRE_AUTORADIO;
 
 // ACE 3 cardiac arrest timer. Defaults to 120 seconds.
 #ifndef XPT_ACE3_CARDARREST_TIMER
-	#define XPT_ACE3_CARDARREST_TIMER 120
+	#define XPT_ACE3_CARDARREST_TIMER 180
 #endif
 
 // ACEX View restriction COOP. Defaults to off
