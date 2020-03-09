@@ -26,17 +26,15 @@ class xpt_medical_level
 			{"ace_medical_treatment_advancedBandages",0},
 			{"ace_medical_treatment_clearTraumaAfterBandage",1},
 			{"ace_medical_treatment_advancedMedication",1},
-			{"ace_medical_treatment_woundReopening",0}
 		},
 		// Realistic medical
 		{
 			{"ace_medical_limping",2},
 			{"ace_medical_fractures",1},
 			{"ace_medical_treatment_advancedDiagnose",1},
-			{"ace_medical_treatment_advancedBandages",1},
+			{"ace_medical_treatment_advancedBandages",2},
 			{"ace_medical_treatment_clearTraumaAfterBandage",0},
 			{"ace_medical_treatment_advancedMedication",1},
-			{"ace_medical_treatment_woundReopening",1}
 		},
 		// Custom
 		{}
