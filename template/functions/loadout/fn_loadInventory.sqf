@@ -138,6 +138,14 @@ private _vestArray = [_vestClass, _vestItems];
 private _backpackArray = [_backpackClass, _backpackItems];
 private _binocularArray = [_binocular,"","","",[],[],""];
 
+// Check if the binoculars are a laser designator
+private _binocularMagazines = (configFile >> "CfgWeapons" >> _binocular >> "magazines") call BIS_fnc_getCfgData;
+if ((count _binocularMagazines) > 0) then {
+	private _laserBattery = _binocularMagazines select 0;
+	private _batteryCount = (configFile >> "CfgMagazines" >> _laserBattery >> "count") call BIS_fnc_getCfgData;
+	_binocularArray set [4,[_laserBattery,_batteryCount]];
+};
+
 // Fix for "Bad Vehicle Type" errors regarding weapons and inventories
 {
 	// If the main classname is undefined, replace the array with an empty one.
