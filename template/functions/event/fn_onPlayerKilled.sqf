@@ -21,3 +21,8 @@ BIS_fnc_feedback_allowPP = false;
 if ((getMissionConfigValue "XPT_acre_enable") == 1) then {
 	[_oldUnit] call XPT_fnc_radioHandleDeath;
 };
+
+// If enabled, set the player as spectator
+if ((getMissionConfigValue ["XPT_acre_autospectator",1]) == 1) then {
+	[true] call acre_api_fnc_setSpectator;
+};

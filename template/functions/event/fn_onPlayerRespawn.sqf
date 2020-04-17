@@ -26,11 +26,18 @@ if ((getMissionConfigValue "XPT_customLoadouts") == 1) then {
 [_newUnit] remoteExec ["XPT_fnc_curatorAddUnit", 2];
 
 // Sets the insignia of the unit to the TMTM insignia
-[_newUnit, "tmtm"] remoteExec ["BIS_fnc_setUnitInsignia", 0, true];
+if ((getMissionConfigValue ["XPT_tmtm_insignia",1]) == 1) then {
+	[_newUnit, "tmtm"] remoteExec ["BIS_fnc_setUnitInsignia", 0, true];
+};
 
 // Load the player's radio settings. (This needs to happen after the inventory is loaded)
 if ((getMissionConfigValue "XPT_acre_enable") == 1) then {
 	[_newUnit] spawn XPT_fnc_radioHandleRespawn;
+};
+
+// If enabled, remove the player from spectator
+if ((getMissionConfigValue ["XPT_acre_autospectator",1]) == 1) then {
+	[false] call acre_api_fnc_setSpectator;
 };
 
 // If the player is a zeus unit. Spawn the movement loop

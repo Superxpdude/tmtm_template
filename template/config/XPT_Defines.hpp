@@ -96,6 +96,12 @@ XPT_acre_autoradio = XPT_DEFINE_ACRE_AUTORADIO;
 	XPT_acre_autobabel = XPT_DEFINE_ACRE_AUTOBABEL_PVP;
 #endif
 
+// ACRE2 autospectator
+#ifndef XPT_DEFINE_ACRE_AUTOSPECTATOR
+	#define XPT_DEFINE_ACRE_AUTOSPECTATOR 1
+#endif
+XPT_acre_autospectator = XPT_DEFINE_ACRE_AUTOSPECTATOR;
+
 //-------------------- ACE 3 medical defines
 
 // ACE 3 medical level. Defaults to basic medical.
