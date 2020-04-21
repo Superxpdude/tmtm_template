@@ -139,7 +139,7 @@ private _backpackArray = [_backpackClass, _backpackItems];
 private _binocularArray = [_binocular,"","","",[],[],""];
 
 // Check if the binoculars are a laser designator
-private _binocularMagazines = (configFile >> "CfgWeapons" >> _binocular >> "magazines") call BIS_fnc_getCfgData;
+private _binocularMagazines = (configFile >> "CfgWeapons" >> _binocular >> "magazines") call BIS_fnc_getCfgDataArray;
 if ((count _binocularMagazines) > 0) then {
 	private _laserBattery = _binocularMagazines select 0;
 	private _batteryCount = (configFile >> "CfgMagazines" >> _laserBattery >> "count") call BIS_fnc_getCfgData;
