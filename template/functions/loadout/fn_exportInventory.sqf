@@ -105,18 +105,18 @@ _fn_addItemArray = {
 	
 	_export = _export + "};" + _br;
 };
-/*
-_fn_acreCheckLinkedItems = {
+
+_fn_tfarCheckLinkedItems = {
 	_array = _this select 0;
 	// Loop through the array
 	{
-		// If the item is a flagged radio, replace it with nothing
-		if (_x == "ItemRadioAcreFlagged") then {
-			_array set [_forEachIndex, ""];
+		// If the item is a unique radio, replace it with the prototype
+		if (_x call TFAR_fnc_isRadio) then {
+			_array set [_forEachIndex, (configfile >> "CfgWeapons" >> _x >> "tf_parent") call BIS_fnc_getCfgData];
 		};
 	} forEach _array;
 };
-*/
+
 // Creates a single entry for the config
 _fn_addValue = {
 	_name = _this select 0; // The name of the value
@@ -129,32 +129,31 @@ _fn_addValue = {
 	};
 	_export = _export + _br;
 };
-/*
-// Replace ACRE radios with base classes
-_fn_acreCheck = {
+
+// Replace TFAR radios with base classes
+_fn_tfarCheck = {
 	_array = _this select 0;
 	// Loop through each entry in the array
 	{
-		// If the item is an ACRE radio. Replace it with a base class.
-		if ([_x select 0] call acre_api_fnc_isRadio) then {
-			_x set [0, [_x select 0] call acre_api_fnc_getBaseRadio];
+		// If the item is a TFAR radio. Replace it with a base class.
+		if ((_x select 0) call TFAR_fnc_isRadio) then {
+			_x set [0, (configfile >> "CfgWeapons" >> (_x select 0) >> "tf_parent") call BIS_fnc_getCfgData];
 		};
 	} forEach _array;
 };
 
-// Remove ACRE unique radios from item arrays
+// Remove unique radios from item arrays
 if (count (_loadout select 3) > 0) then {
-	[(_loadout select 3) select 1] call _fn_acreCheck;
+	[(_loadout select 3) select 1] call _fn_tfarCheck;
 };
 if (count (_loadout select 4) > 0) then {
-	[(_loadout select 4) select 1] call _fn_acreCheck;
+	[(_loadout select 4) select 1] call _fn_tfarCheck;
 };
 if (count (_loadout select 5) > 0) then {
-	[(_loadout select 5) select 1] call _fn_acreCheck;
+	[(_loadout select 5) select 1] call _fn_tfarCheck;
 };
 
-[_loadout select 9] call _fn_acreCheckLinkedItems;
-*/
+[_loadout select 9] call _fn_tfarCheckLinkedItems;
 
 ["displayName", typeOf _unit] call _fn_addValue;
 _export = _export + _br;
