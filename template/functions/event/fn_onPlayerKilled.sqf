@@ -18,4 +18,6 @@ _this params ["_oldUnit", "_killer", "_respawn", "_respawnDelay"];
 BIS_fnc_feedback_allowPP = false;
 
 // Save the player's radio settings
-_this call XPT_fnc_radioHandleDeath;
+if ((getMissionConfigValue ["XPT_radio_enable",1]) == 1) then {
+	_this call XPT_fnc_radioHandleDeath;
+};

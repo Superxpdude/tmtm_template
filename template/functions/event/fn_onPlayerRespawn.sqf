@@ -31,7 +31,9 @@ if ((getMissionConfigValue ["XPT_tmtm_insignia",1]) == 1) then {
 };
 
 // Load the player's radio settings. (This needs to happen after the inventory is loaded)
-_this spawn XPT_fnc_radioHandleRespawn;
+if ((getMissionConfigValue ["XPT_radio_enable",1]) == 1) then {
+	_this spawn XPT_fnc_radioHandleRespawn;
+};
 
 // If the player is a zeus unit. Spawn the movement loop
 _zeus = _newUnit getVariable ["XPT_zeusUnit", false];

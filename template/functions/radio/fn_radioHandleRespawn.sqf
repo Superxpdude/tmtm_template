@@ -37,6 +37,7 @@ if (!local _unit) exitWith {
 
 // Assign settings to the SW radios
 // We need to spawn this so that it waits until the radios have been assigned without stopping the LR radio portion
+/*
 [_unit] spawn {
 	private _unit = _this select 0;
 	
@@ -83,7 +84,7 @@ if (!local _unit) exitWith {
 		[call TFAR_fnc_activeSwRadio, (_srSettings select 1)] call TFAR_fnc_setSwSettings;
 	};
 };
-
+*/
 
 
 // Assign settings to the LR radios
