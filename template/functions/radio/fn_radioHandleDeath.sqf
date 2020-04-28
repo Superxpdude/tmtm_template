@@ -13,50 +13,31 @@
 
 #include "script_macros.hpp"
 
-_unit = _this param [0, player, [objNull]];
+_this params ["_oldUnit", "_killer", "_respawn", "_respawnDelay"];
 
 // Don't run on Zeus units
-if ((_unit isKindOf "VirtualMan_F") or (_unit getVariable ["XPT_zeusUnit", false])) exitWith {};
+if (_oldUnit isKindOf "VirtualMan_F") exitWith {};
 
-// Get the list of player radios
-_radios = [] call acre_api_fnc_getCurrentRadioList;
-// Iterate through all radios, and get their current channels
-// This may cause inconsistencies when the player has multiple radios of the same type
-{
-	switch (toUpper ([_x] call acre_api_fnc_getBaseRadio)) do {
-		case "ACRE_PRC343": {
-			_unit setVariable ["XPT_ACRE_channel_343", [_x] call acre_api_fnc_getRadioChannel, true];
-			_unit setVariable ["XPT_ACRE_spatial_343", [_x] call acre_api_fnc_getRadioSpatial, true];
-		};
-		case "ACRE_PRC148": {
-			_unit setVariable ["XPT_ACRE_channel_148", [_x] call acre_api_fnc_getRadioChannel, true];
-			_unit setVariable ["XPT_ACRE_spatial_148", [_x] call acre_api_fnc_getRadioSpatial, true];
-		};
-		case "ACRE_PRC152": {
-			_unit setVariable ["XPT_ACRE_channel_152", [_x] call acre_api_fnc_getRadioChannel, true];
-			_unit setVariable ["XPT_ACRE_spatial_152", [_x] call acre_api_fnc_getRadioSpatial, true];
-		};
-		case "ACRE_PRC117F": {
-			_unit setVariable ["XPT_ACRE_channel_117", [_x] call acre_api_fnc_getRadioChannel, true];
-			_unit setVariable ["XPT_ACRE_spatial_117", [_x] call acre_api_fnc_getRadioSpatial, true];
-		};
-		case "ACRE_SEM52SL": {
-			_unit setVariable ["XPT_ACRE_channel_sem52", [_x] call acre_api_fnc_getRadioChannel, true];
-			_unit setVariable ["XPT_ACRE_spatial_sem52", [_x] call acre_api_fnc_getRadioSpatial, true];
-		};
-		case "ACRE_PRC77": {
-			_unit setVariable ["XPT_ACRE_spatial_77", [_x] call acre_api_fnc_getRadioSpatial, true];
-		};
-		case "ACRE_SEM70": {
-			_unit setVariable ["XPT_ACRE_spatial_sem70", [_x] call acre_api_fnc_getRadioSpatial, true];
-		};
-		default {} // Do nothing for other radios
-	};
-} forEach _radios;
+// Figure out if the player has radios
+private _hasSR = _oldUnit call TFAR_fnc_activeSWRadio;
+private _hasLR = _oldUnit call TFAR_fnc_backpackLR;
 
-// Store the player push to talk assignments
-_ptt = [] call acre_api_fnc_getMultiPushToTalkAssignment;
-{
-	_ptt set [_forEachIndex, [_x] call acre_api_fnc_getBaseRadio];
-} forEach _ptt;
-_unit setVariable ["XPT_ACRE_ptt", _ptt];
+// If the player has an SR radio. Find the prototype classname and store it.
+if (!isNil "_hasSR") then {
+	// Grab the prototype classname of the unit's radio
+	_srRadio = (configfile >> "CfgWeapons" >> _hasSR >> "tf_parent") call BIS_fnc_getCfgData;
+	// Grab the settings of the unit's radio
+	_srSettings = _hasSR call TFAR_fnc_getSWSettings;
+	// Save the settings to the player
+	player setVariable ["XPT_savedSRSettings", [_srRadio, _srSettings]];
+};
+
+// If the player has an LR radio. Store their radio settings
+if (!isNil "_hasLR") then {
+	// Grab the classname of the unit's backpack
+	_lrRadio = (backpack _oldUnit);
+	// Grab the settings of the unit's radio
+	_lrSettings = _hasLR call TFAR_fnc_getLRSettings;
+	// Save the settings to the player
+	player setVariable ["XPT_savedLRSettings", [_lrRadio, _lrSettings]];
+};
