@@ -41,7 +41,7 @@ class Header
 //#define XPT_DEFINE_CURATOR_REMOVENVG 1			// 0 = Disabled, 1 = Enabled. Removes NVGs from zeus-spawned units.
 
 //-------------------- Radio Defines
-// ACRE2 radio setup parameters.
+// ACRE2 radio setup parameters. No longer in use.
 
 //#define XPT_DEFINE_ACRE_ENABLE 1					// 0 = Disabled, 1 = Enabled. Default = 1. Set to 0 if you use a custom radio setup script.
 //#define XPT_DEFINE_ACRE_AUTORADIO 0				// 0 = Disabled, 1 = Enabled. Default = 0. Set to 1 to enable automatically giving radios to units.

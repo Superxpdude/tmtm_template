@@ -17,12 +17,7 @@ _this params ["_oldUnit", "_killer", "_respawn", "_respawnDelay"];
 // Disable feedback post-processing effects when dead.
 BIS_fnc_feedback_allowPP = false;
 
-// Save the player's radio channels
-if ((getMissionConfigValue "XPT_acre_enable") == 1) then {
-	[_oldUnit] call XPT_fnc_radioHandleDeath;
-};
-
-// If enabled, set the player as spectator
-if ((getMissionConfigValue ["XPT_acre_autospectator",1]) == 1) then {
-	[true] call acre_api_fnc_setSpectator;
+// Save the player's radio settings
+if ((getMissionConfigValue ["XPT_radio_enable",1]) == 1) then {
+	_this call XPT_fnc_radioHandleDeath;
 };

@@ -78,7 +78,16 @@ private _fn_weaponItem = {
 		// Magazine
 		
 		// Check if the magazine is for the primary muzzle
-		if (_item in ((configFile >> "CfgWeapons" >> _weapon >> "magazines") call BIS_fnc_getCfgData)) then {
+		private _primaryMag = false;
+		{
+			private _magWell = _x;
+			{
+				if (_item in (_x call BIS_fnc_getCfgData)) then {
+					_primaryMag = true;
+				};
+			} forEach (configProperties [(configFile >> "CfgMagazineWells" >> _magWell)]);
+		} forEach ((configFile >> "CfgWeapons" >> _weapon >> "magazineWell") call BIS_fnc_getCfgData);
+		if (_primaryMag OR (_item in ((configFile >> "CfgWeapons" >> _weapon >> "magazines") call BIS_fnc_getCfgData))) then {
 			// Magazine in primary magazines array. We're assuming this means the primary muzzle.
 			_return set [0,4]; // Mark this value for the primary muzzle
 		} else {

@@ -46,7 +46,7 @@ if (!isNil "XPT_mapMarkersList") exitWith {
 		// Fill the groups list with player groups
 		{
 			// Ensure that we exclude zeus groups
-			if (isPlayer (leader _x) AND (((leader _x) getVariable ["XPT_zeusUnit", false]) isEqualTo false)) then {
+			if (isPlayer (leader _x) AND (((leader _x) getVariable ["XPT_zeusUnit", false]) isEqualTo false) AND !(_x getVariable ["XPT_disableMapMarker", false])) then {
 				_groups pushBackUnique _x
 			};
 		} forEach allGroups;

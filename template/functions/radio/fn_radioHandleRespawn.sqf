@@ -12,8 +12,8 @@
 
 #include "script_macros.hpp"
 
-// Do not run before acre has initialized
-waitUntil {call acre_api_fnc_isInitialized};
+// Wait until the mission has started
+waitUntil {time > 0};
 
 // Exit if the function is run on a machine that does not have a player
 if (!hasInterface) exitWith {};
@@ -21,100 +21,117 @@ if (!hasInterface) exitWith {};
 // Define variables
 _unit = _this param [0, player, [objNull]];
 // Don't run on Zeus units
-if ((_unit isKindOf "VirtualMan_F") or !((_unit getVariable ["XPT_zeusUnit", false]) isEqualTo false)) exitWith {};
+if (_unit isKindOf "VirtualMan_F") exitWith {};
 
-if ((getMissionConfigValue "XPT_acre_autoradio") == 1) then {
-	// Autoradio will automatically provide squad leaders with AN/PRC-152s
-	// Remove the 343
-	//if (!isNil {["ACRE_PRC343"] call acre_api_fnc_getRadioByType}) then {
-	//	_unit removeItem (["ACRE_PRC343"] call acre_api_fnc_getRadioByType);
-	//};
-	// If the player does not have one, try to add an AN/PRC-343
-	if ((isNil {["ACRE_PRC343"] call acre_api_fnc_getRadioByType}) AND !("ACRE_PRC343" in items _unit)) then {
-		_unit addItem "ACRE_PRC343";
-		// Check if the radio was added successfully
-		if ((isNil {["ACRE_PRC343"] call acre_api_fnc_getRadioByType}) AND !("ACRE_PRC343" in items _unit)) then {
-			[1, format ["Autoradio was unable to provide an AN/PRC343. Type: '%1' Unit: '%2'", typeOf _unit, name _unit], 2] call XPT_fnc_log;
-		};
-	};
-	
-
-	// If the player is the leader of their squad, try to add a 152.
-	if (((leader group _unit) == _unit) AND (isNil {["ACRE_PRC152"] call acre_api_fnc_getRadioByType}) AND !("ACRE_PRC152" in items _unit)) then {
-		_unit addItem "ACRE_PRC152";
-		// Check if the radio was added successfully
-		if ((isNil {["ACRE_PRC152"] call acre_api_fnc_getRadioByType}) AND !("ACRE_PRC152" in items _unit)) then {
-			[1, format ["Autoradio was unable to provide an AN/PRC152. Type: '%1' Unit: '%2'", typeOf _unit, name _unit], 2] call XPT_fnc_log;
-		};
+// If the unit is not local, run this function where it is local.
+if (!local _unit) exitWith {
+	// If this has not been run on the server, we need to send it to the server to find the right owner
+	if (!isServer) then {
+		// Send the script on the server
+		[_unit] remoteExec ["XPT_fnc_radioHandleRespawn", 2];
+	} else {
+		// If this has been run on the server, find out who the owner is (since we've already confirmed it isn't local)
+		[_unit] remoteExec ["XPT_fnc_radioHandleRespawn", owner _unit];
 	};
 };
 
-[{
-    call acre_api_fnc_isInitialized
-}, {
-	_unit = _this select 0;
-	// Grab a list of all acre radios
-	_radios = [] call acre_api_fnc_getCurrentRadioList;
-	// Get the radio channels
-	private _channel_343 = (_unit getVariable ["XPT_ACRE_channel_343", ((group _unit) getVariable ["XPT_ACRE_channel_343", -1])]);
-	private _channel_148 = (_unit getVariable ["XPT_ACRE_channel_148", ((group _unit) getVariable ["XPT_ACRE_channel_148", -1])]);
-	private _channel_152 = (_unit getVariable ["XPT_ACRE_channel_152", ((group _unit) getVariable ["XPT_ACRE_channel_152", -1])]);
-	private _channel_117 = (_unit getVariable ["XPT_ACRE_channel_117", ((group _unit) getVariable ["XPT_ACRE_channel_117", -1])]);
-	//private _channel_77 = (_unit getVariable ["XPT_ACRE_channel_77", ((group _unit) getVariable ["XPT_ACRE_channel_77", -1])]); // ACRE_PRC77
-	private _channel_sem52 = (_unit getVariable ["XPT_ACRE_channel_sem52", ((group _unit) getVariable ["XPT_ACRE_channel_sem52", -1])]);
-	//private _channel_sem70 = (_unit getVariable ["XPT_ACRE_channel_sem70", ((group _unit) getVariable ["XPT_ACRE_channel_sem70", -1])]); // ACRE_SEM70
+// Assign settings to the SW radios
+// We need to spawn this so that it waits until the radios have been assigned without stopping the LR radio portion
+/*
+[_unit] spawn {
+	private _unit = _this select 0;
 	
-	// Iterate through all radios, and set their default channels
-	{
-		switch (toUpper ([_x] call acre_api_fnc_getBaseRadio)) do {
-			case "ACRE_PRC343": {
-				if (_channel_343 >= 0) then {
-					[_x,_channel_343] call acre_api_fnc_setRadioChannel;
-				};
-				[_x, _unit getVariable ["XPT_ACRE_spatial_343", "CENTER"]] call acre_api_fnc_setRadioSpatial
+	// Check if the player has an SW radio
+	if !(({(_x call TFAR_fnc_isPrototypeRadio) OR (_x call TFAR_fnc_isRadio)} count (assignedItems player)) > 0) exitWith {};
+	// Wait until the player's SW radio has been assigned
+	waitUntil {(call TFAR_fnc_haveSWRadio) and !(isNil "XPT_radio_setup_complete")};
+	
+	// Check if any previous settings have been saved
+	// Settings are stored in an array that contains the classname of the radio, as well as a saved copy of TFAR_fnc_getSwSettings.
+	private _srSettings = _unit getVariable ["XPT_savedSRSettings", nil];
+	// Grab the classname of the new radio
+	private _srRadio = call TFAR_fnc_activeSwRadio;
+	// Grab the classname of the old radio
+	private _oldRadio = if (isNil "_srSettings") then {"none"} else {_srSettings select 0};
+	// Grab the side of the new radio. (The encryption code allows us to determine what side the radio belongs to).
+	private _radioSide = (configfile >> "CfgWeapons" >> _srRadio >> "tf_encryptionCode") call BIS_fnc_getCfgData;
+
+	// If any SR settings have been defined, assign them to the player's radio
+	// Only do so if the classnames match between the radios, and the server has finished setting up radios.
+	if ((!isNil "_srSettings") AND (_oldRadio == _srRadio)) then {
+		[call TFAR_fnc_activeSwRadio, (_srSettings select 1)] call TFAR_fnc_setSwSettings;
+	} else {
+		// If we have no saved data, or the classnames don't match, generate default values
+		private _srSettings = ["",[false] call TFAR_fnc_generateSrSettings];
+		// Set the radio frequencies and encryption codes
+		switch (_radioSide) do {
+			case "tf_west_radio_code": {
+				(_srSettings select 1) set [2,TFAR_defaultFrequencies_sr_west];
+				(_srSettings select 1) set [4,tf_west_radio_code];
 			};
-			case "ACRE_PRC148": {
-				if (_channel_148 >= 0) then {
-					[_x,_channel_148] call acre_api_fnc_setRadioChannel;
-				};
-				[_x, _unit getVariable ["XPT_ACRE_spatial_148", "CENTER"]] call acre_api_fnc_setRadioSpatial
+			case "tf_east_radio_code": {
+				(_srSettings select 1) set [2,TFAR_defaultFrequencies_sr_east];
+				(_srSettings select 1) set [4,tf_east_radio_code];
 			};
-			case "ACRE_PRC152": {
-				if (_channel_152 >= 0) then {
-					[_x,_channel_152] call acre_api_fnc_setRadioChannel;
-				};
-				[_x, _unit getVariable ["XPT_ACRE_spatial_152", "CENTER"]] call acre_api_fnc_setRadioSpatial
+			case "tf_independent_radio_code": {
+				(_srSettings select 1) set [2,TFAR_defaultFrequencies_sr_independent];
+				(_srSettings select 1) set [4,tf_independent_radio_code];
 			};
-			case "ACRE_PRC117F": {
-				if (_channel_117 >= 0) then {
-					[_x,_channel_117] call acre_api_fnc_setRadioChannel;
-				};
-				[_x, _unit getVariable ["XPT_ACRE_spatial_117", "CENTER"]] call acre_api_fnc_setRadioSpatial
-			};
-			case "ACRE_SEM52SL": {
-				if (_channel_sem52 >= 0) then {
-					[_x,_channel_sem52] call acre_api_fnc_setRadioChannel;
-				};
-				[_x, _unit getVariable ["XPT_ACRE_spatial_sem52", "CENTER"]] call acre_api_fnc_setRadioSpatial
-			};
-			case "ACRE_PRC77": {
-				[_x, _unit getVariable ["XPT_ACRE_spatial_77", "CENTER"]] call acre_api_fnc_setRadioSpatial
-			};
-			case "ACRE_SEM70": {
-				[_x, _unit getVariable ["XPT_ACRE_spatial_sem70", "CENTER"]] call acre_api_fnc_setRadioSpatial
-			};
-			default {} // Do nothing for other radios
 		};
-	} forEach _radios;
+		// Set the default channel. Grab the value from the player unit first, otherwise try the group. If both don't exist, use the default (channel 0).
+		(_srSettings select 1) set [0, (_unit getVariable ["TFAR_SRChannel", ((group _unit) getVariable ["TFAR_SRChannel", 0])])];
+		// Assign the radio settings
+		[call TFAR_fnc_activeSwRadio, (_srSettings select 1)] call TFAR_fnc_setSwSettings;
+	};
+};
+*/
+
+
+// Assign settings to the LR radios
+// Spawn this as well
+[_unit] spawn {
+	private _unit = _this select 0;
 	
-	// Set the push-to-talk assignments
-	private _ptt = [];
-	{
-		_radio = [_x] call acre_api_fnc_getRadioByType;
-		if (!isNil "_radio") then {
-			_ptt append [_radio];
+	// Check if the player has an LR radio
+	if (isNil {player call TFAR_fnc_backpackLR}) exitWith {};
+	// Wait until the player's LR radio has been assigned, and the server has finished setting up radios.
+	waitUntil {(call TFAR_fnc_haveLRRadio) and !(isNil "XPT_radio_setup_complete")};
+	
+	// Check if any previous settings have been saved
+	// Settings are stored in an array that contains the classname of the radio, as well as a saved copy of TFAR_fnc_getLrSettings.
+	private _lrSettings = _unit getVariable ["XPT_savedLRSettings", nil];
+	// Get the current LR radio
+	private _lrRadio = (backpack _unit);
+	// Grab the classname of the old radio
+	private _oldRadio = if (isNil "_lrSettings") then {"none"} else {_lrSettings select 0};
+	// Grab the side of the new radio. (The encryption code allows us to determine what side the radio belongs to).
+	private _radioSide = (configfile >> "CfgVehicles" >> _lrRadio >> "tf_encryptionCode") call BIS_fnc_getCfgData;
+
+	// If any LR settings have been defined, assign them to the player's radio
+	// Only do so if the encryption codes match between the radios
+	if ((!isNil "_lrSettings") AND (_oldRadio == _lrRadio)) then {
+		[_unit call TFAR_fnc_backpackLR, (_lrSettings select 1)] call TFAR_fnc_setLRSettings;
+	} else {
+		// If we have no saved data, or the classnames don't match, generate default values
+		private _lrSettings = ["",[false] call TFAR_fnc_generateLrSettings];
+		// Set the radio frequencies and encryption codes
+		switch (_radioSide) do {
+			case "tf_west_radio_code": {
+				(_lrSettings select 1) set [2,TFAR_defaultFrequencies_lr_west];
+				(_lrSettings select 1) set [4,tf_west_radio_code];
+			};
+			case "tf_east_radio_code": {
+				(_lrSettings select 1) set [2,TFAR_defaultFrequencies_lr_east];
+				(_lrSettings select 1) set [4,tf_east_radio_code];
+			};
+			case "tf_independent_radio_code": {
+				(_lrSettings select 1) set [2,TFAR_defaultFrequencies_lr_independent];
+				(_lrSettings select 1) set [4,tf_independent_radio_code];
+			};
 		};
-	} forEach (_unit getVariable ["XPT_ACRE_ptt",[]]);
-	[_ptt] call acre_api_fnc_setMultiPushToTalkAssignment;
-	
-}, _this] call CBA_fnc_waitUntilAndExecute;
+		// Set the default channel. Grab the value from the player unit first, otherwise try the group. If both don't exist, use the default (channel 0).
+		(_lrSettings select 1) set [0, [(_unit getVariable ["TFAR_LRChannel", ((group _unit) getVariable ["TFAR_LRChannel", 0])])] param [0,0,[0]]];
+		// Assign the radio settings
+		[_unit call TFAR_fnc_backpackLR, (_lrSettings select 1)] call TFAR_fnc_setLRSettings;
+	};
+};
