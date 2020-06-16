@@ -117,8 +117,8 @@ if ((["xpt_medical_level", 0] call BIS_fnc_getParamValue) == 0) then {
 // Function to ensure that magazines have an ammo count defined
 private _fn_fixMagazine = {
 	_x = _this;
-	// Only run if the item does not have a third entry in the array
-	if (count _x == 2) then {
+	// Only run if the item does not have a third entry in the array. Do not run if the item is a weapon.
+	if ((count _x == 2) AND {!((_x select 0) isEqualType [])}) then {
 		_classname = (_x select 0);
 		if (isClass (configFile >> "CfgMagazines" >> _classname)) then {
 			[2, format ["Magazine type [%1] has no ammo count defined in loadout [%2].",_classname,configName _baseClass], 0] call XPT_fnc_log;
