@@ -91,11 +91,11 @@ private _primaryWeapon = [((_class >> "primaryWeapon") call BIS_fnc_getCfgData)]
 private _secondaryWeapon = [((_class >> "secondaryWeapon") call BIS_fnc_getCfgData)] param [0, [], [[]], [0,7]];
 private _handgunWeapon = [((_class >> "handgunWeapon") call BIS_fnc_getCfgData)] param [0, [], [[]], [0,7]];
 private _binocular = [((_class >> "binocular") call BIS_fnc_getCfgData)] param [0, "", [""]];
-private _uniformClass = [((_class >> "uniformClass") call BIS_fnc_getCfgData)] param [0, "", [""]];
-private _headgearClass = [((_class >> "headgearClass") call BIS_fnc_getCfgData)] param [0, "", [""]];
-private _facewearClass = [((_class >> "facewearClass") call BIS_fnc_getCfgData)] param [0, "", [""]];
-private _vestClass = [((_class >> "vestClass") call BIS_fnc_getCfgData)] param [0, "", [""]];
-private _backpackClass = [((_class >> "backpackClass") call BIS_fnc_getCfgData)] param [0, "", [""]];
+private _uniformClass = [((_class >> "uniformClass") call BIS_fnc_getCfgData)] param [0, "", ["",[]]];
+private _headgearClass = [((_class >> "headgearClass") call BIS_fnc_getCfgData)] param [0, "", ["",[]]];
+private _facewearClass = [((_class >> "facewearClass") call BIS_fnc_getCfgData)] param [0, "", ["",[]]];
+private _vestClass = [((_class >> "vestClass") call BIS_fnc_getCfgData)] param [0, "", ["",[]]];
+private _backpackClass = [((_class >> "backpackClass") call BIS_fnc_getCfgData)] param [0, "", ["",[]]];
 private _linkedItems = [((_class >> "linkedItems") call BIS_fnc_getCfgData)] param [0, [], [[]], 6];
 private _uniformItems = [((_class >> "uniformItems") call BIS_fnc_getCfgData)] param [0, [], [[]]];
 private _vestItems = [((_class >> "vestItems") call BIS_fnc_getCfgData)] param [0, [], [[]]];
@@ -116,7 +116,7 @@ if ((["xpt_medical_level", 0] call BIS_fnc_getParamValue) == 0) then {
 
 // Function to ensure that magazines have an ammo count defined
 private _fn_fixMagazine = {
-	_x = _this;
+	private _x = _this;
 	// Only run if the item does not have a third entry in the array. Do not run if the item is a weapon.
 	if ((count _x == 2) AND {!((_x select 0) isEqualType [])}) then {
 		_classname = (_x select 0);
@@ -131,6 +131,22 @@ private _fn_fixMagazine = {
 _uniformItems = _uniformItems apply {_x call _fn_fixMagazine};
 _vestItems = _vestItems apply {_x call _fn_fixMagazine};
 _backpackItems = _backpackItems apply {_x call _fn_fixMagazine};
+
+// Equipment randomization support
+private _fn_equipmentSelect = {
+	private _return = if (_this isEqualType []) then {
+		selectRandom _this
+	} else {
+		_this
+	};
+	_return
+};
+
+_uniformClass = _uniformClass call _fn_equipmentSelect;
+_headgearClass = _headgearClass call _fn_equipmentSelect;
+_facewearClass = _facewearClass call _fn_equipmentSelect;
+_vestClass = _vestClass call _fn_equipmentSelect;
+_backpackClass = _backpackClass call _fn_equipmentSelect;
 
 // Merge some arrays into their main unit loadout entry
 private _uniformArray = [_uniformClass, _uniformItems];
