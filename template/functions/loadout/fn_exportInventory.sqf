@@ -136,7 +136,7 @@ _fn_tfarCheck = {
 	// Loop through each entry in the array
 	{
 		// If the item is a TFAR radio. Replace it with a base class.
-		if ((_x select 0) call TFAR_fnc_isRadio) then {
+		if (((_x select 0) isEqualType "") AND {(_x select 0) call TFAR_fnc_isRadio}) then {
 			_x set [0, (configfile >> "CfgWeapons" >> (_x select 0) >> "tf_parent") call BIS_fnc_getCfgData];
 		};
 	} forEach _array;
