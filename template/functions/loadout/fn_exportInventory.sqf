@@ -12,12 +12,13 @@
 
 #include "script_macros.hpp"
 
-_unit = _this param [0, player, [objNull]];
+private _unit = _this param [0, player, [objNull]];
 
 // Define some variables
-_br = tostring [13,10];
-_export = "";
-_loadout = getUnitLoadout _unit;
+private _br = tostring [13,10];
+private _export = "";
+private _loadout = getUnitLoadout _unit;
+private _dlcs = getPersonUsedDLCs _unit;
 
 // Array of all ace medical items
 _aceMedical = [
@@ -130,6 +131,40 @@ _fn_addValue = {
 	_export = _export + _br;
 };
 
+// Adds a comment to the export
+_fn_addComment = {
+	_text = _this select 0; // Text to add as a comment
+	_export = _export + format ["//%1",_text];
+	_export = _export + _br;
+};
+
+// Adds used DLCs as a comment to the export
+_fn_dlcCheck = {
+	if ((count _dlcs) > 0) then {
+		private _text = "Requires the following DLC:";
+		{
+			private _appID = _x;
+			// Manual override
+			_dlcName = switch _x do {
+				// Manual overrides for certain DLCs with internal codenames
+				case 395180: {"Apex"}; // Expansion
+				case 571710: {"LawsOfWar"}; // Orange
+				case 1021790: {"Contact"}; // Enoch
+				// Grab the name from the configs if not overridden
+				default {
+					configName (("((_x >> 'appID') call BIS_fnc_getCfgData) == _appID" configClasses (configFile >> "CfgMods")) select 0);
+				};
+			};
+			if (isNil "_dlcName") then {
+				_dlcName = format ["%1", _appID];
+			};
+			_text = _text + format [" %1,", _dlcName];
+		} forEach _dlcs;
+		_text = _text select [0,(count _text) - 1];
+		[_text] call _fn_addComment;
+	};
+};
+
 // Replace TFAR radios with base classes
 _fn_tfarCheck = {
 	_array = _this select 0;
@@ -155,6 +190,7 @@ if (count (_loadout select 5) > 0) then {
 
 [_loadout select 9] call _fn_tfarCheckLinkedItems;
 
+[] call _fn_dlcCheck;
 ["displayName", typeOf _unit] call _fn_addValue;
 _export = _export + _br;
 
