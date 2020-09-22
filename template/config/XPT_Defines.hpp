@@ -30,10 +30,11 @@
 	#define XPT_JIPTELEPORT 1
 #endif
 
-// XPT safe-start. Defaults to Enabled.
-#ifndef XPT_SAFESTART
-	#define XPT_SAFESTART 1
+// XPT safe-start. Defaults to disabled.
+#ifndef XPT_DEFINE_SAFESTART
+	#define XPT_DEFINE_SAFESTART 0
 #endif
+XPT_safeStart = XPT_DEFINE_SAFESTART
 
 // XPT debug mode. Defaults to disabled.
 #ifndef XPT_DEBUGMODE

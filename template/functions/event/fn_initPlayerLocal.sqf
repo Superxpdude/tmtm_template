@@ -40,6 +40,20 @@ _player createDiaryRecord ["XPT_template", ["Version",
 	};
 };
 
+// Safe start support
+if (((getMissionConfigValue ["XPT_safeStart", 0]) == 1) AND {missionNamespace getVariable ["XPT_safeStart_enabled",true]}) then {
+	// Add event handlers for safe start
+	private _XPT_safeStartPlayerEH = ["ace_firedPlayer", {
+		[_this,_thisID,_thisType] call XPT_fnc_safeStartEH;
+	}] call CBA_fnc_addEventHandlerArgs;
+	private _XPT_safeStartVehicleEH = ["ace_firedPlayerVehicle", {
+		[_this,_thisID,_thisType] call XPT_fnc_safeStartEH;
+	}] call CBA_fnc_addEventHandlerArgs;
+	// Assign the EH values to the player
+	_player setVariable ["XPT_safeStartPlayerEH", _XPT_safeStartPlayerEH];
+	_player setVariable ["XPT_safeStartVehicleEH", _XPT_safeStartVehicleEH];
+};
+
 _zeus = _player getVariable ["XPT_zeusUnit", false];
 if !(_zeus isEqualTo false) then {
 	[1, format ["XPT_zeusUnit is deprecated. Unit: [%1] will not have Zeus access.",_newUnit], 2] call XPT_fnc_log;

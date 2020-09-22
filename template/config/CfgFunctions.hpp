@@ -61,6 +61,13 @@ class XPT
 		file = "template\functions\respawn";
 		class waveOnPlayerKilled {};			// onPlayerKilled portion of the waves respawn template
 	};
+	class safeStart
+	{
+		file = "template\functions\safeStart";
+		class safeStartEnd {};					// Ends the safe start period for all players
+		class safeStartEndLocal {};				// Ends the safe start period for the local player
+		class safeStartEH {};					// Event handler function for safe start
+	};
 	class stage
 	{
 		file = "template\functions\stage";
