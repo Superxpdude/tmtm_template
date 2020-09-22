@@ -18,7 +18,7 @@ params ["_newUnit", "_oldUnit", "_respawn", "_respawnDelay"];
 BIS_fnc_feedback_allowPP = true;
 
 // Check if the player needs a loadout assigned
-if ((getMissionConfigValue "XPT_customLoadouts") == 1) then {
+if ((getMissionConfigValue ["XPT_customLoadouts",0]) == 1) then {
 	[_newUnit] call XPT_fnc_loadCurrentInventory;
 };
 
@@ -33,24 +33,4 @@ if ((getMissionConfigValue ["XPT_tmtm_insignia",1]) == 1) then {
 // Load the player's radio settings. (This needs to happen after the inventory is loaded)
 if ((getMissionConfigValue ["XPT_radio_enable",1]) == 1) then {
 	_this spawn XPT_fnc_radioHandleRespawn;
-};
-
-// If the player is a zeus unit. Spawn the movement loop
-_zeus = _newUnit getVariable ["XPT_zeusUnit", false];
-if !(_zeus isEqualTo false) then {
-	_newUnit spawn {
-		waitUntil {!isNull (getAssignedCuratorLogic _this)};
-		_this allowDamage false;
-		// These commands need to be executed on the server
-		[_this, false] remoteExec ["enableSimulationGlobal", 2];
-		[_this, true] remoteExec ["hideObjectGlobal", 2];
-		// Wait until the mission has started
-		waitUntil {time > 2};
-		// Start the loop
-		while {alive _this} do {
-			sleep 1;
-			_this setPosASL (getPosASL curatorCamera);
-			_this setDir (getDir curatorCamera);
-		};
-	};
 };

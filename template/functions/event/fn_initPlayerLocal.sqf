@@ -21,12 +21,12 @@ params ["_player", "_jip"];
 [] spawn XPT_fnc_curatorMenu;
 
 // Initialise the client-side part of dynamic groups
-["InitializePlayer", [player, true]] call BIS_fnc_dynamicGroups;
+["InitializePlayer", [_player, true]] call BIS_fnc_dynamicGroups;
 
 // Create template-specific briefing sections
-player createDiarySubject ["XPT_template", "XP Template"];
+_player createDiarySubject ["XPT_template", "XP Template"];
 // Add a version readout to the briefing section
-player createDiaryRecord ["XPT_template", ["Version",
+_player createDiaryRecord ["XPT_template", ["Version",
 	"This mission is using version " + __XPTVERSION__ + " of the XP template."
 ]];
 
@@ -41,12 +41,6 @@ player createDiaryRecord ["XPT_template", ["Version",
 };
 
 _zeus = _player getVariable ["XPT_zeusUnit", false];
-// Check if the player is marked as a zeus unit
 if !(_zeus isEqualTo false) then {
-	// Set the unit's loadout
-	// _player setUnitLoadout []
-	// Ensure that the player can access the curator interface
-	if ((typeName _zeus) == "STRING") then {
-		[_player, _zeus] remoteExec ["XPT_fnc_curatorAssignUnit", 2];
-	};
+	[1, format ["XPT_zeusUnit is deprecated. Unit: [%1] will not have Zeus access.",_newUnit], 2] call XPT_fnc_log;
 };
