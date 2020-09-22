@@ -19,17 +19,23 @@ _this params ["_oldUnit", "_killer", "_respawn", "_respawnDelay"];
 if (_oldUnit isKindOf "VirtualMan_F") exitWith {};
 
 // Figure out if the player has radios
-private _hasSR = _oldUnit call TFAR_fnc_activeSWRadio;
+private _srRadios = _oldUnit call TFAR_fnc_radiosList;
 private _hasLR = _oldUnit call TFAR_fnc_backpackLR;
 
-// If the player has an SR radio. Find the prototype classname and store it.
-if (!isNil "_hasSR") then {
-	// Grab the prototype classname of the unit's radio
-	_srRadio = (configfile >> "CfgWeapons" >> _hasSR >> "tf_parent") call BIS_fnc_getCfgData;
-	// Grab the settings of the unit's radio
-	_srSettings = _hasSR call TFAR_fnc_getSWSettings;
+// If the player has an SR radio. Store the settings.
+if ((count _srRadios) > 0) then {
+	private _srSettings = [];
+	// Iterate through each SR radio that the unit has
+	{
+		// Get the base class of the radio
+		private _baseClass = (configfile >> "CfgWeapons" >> _x >> "tf_parent") call BIS_fnc_getCfgData;
+		// Get the settings of the radio
+		private _settings = _x call TFAR_fnc_getSwSettings;
+		// Add the radio to the settings array
+		_srSettings pushBack [_baseClass,_settings];
+	} forEach _srRadios;
 	// Save the settings to the player
-	player setVariable ["XPT_TFAR_savedSRSettings", [[_srRadio, _srSettings]]];
+	player setVariable ["XPT_TFAR_savedSRSettings", _srSettings];
 };
 
 // If the player has an LR radio. Store their radio settings
