@@ -29,7 +29,7 @@ if (!isNil "_hasSR") then {
 	// Grab the settings of the unit's radio
 	_srSettings = _hasSR call TFAR_fnc_getSWSettings;
 	// Save the settings to the player
-	player setVariable ["XPT_savedSRSettings", [_srRadio, _srSettings]];
+	player setVariable ["XPT_TFAR_savedSRSettings", [[_srRadio, _srSettings]]];
 };
 
 // If the player has an LR radio. Store their radio settings
