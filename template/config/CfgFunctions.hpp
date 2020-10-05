@@ -55,6 +55,7 @@ class XPT
 		class radioHandleDeath {};				// Function for saving radio info on death
 		class radioHandleRespawn {};			// Function for setting radio info on respawn
 		class radioInit {preInit = 1;};			// Function for configuring radio settings
+		class radioMarkers {/*postInit = 1;*/};		// Automatically creates map markers with radio frequencies
 	};
 	class respawn
 	{
