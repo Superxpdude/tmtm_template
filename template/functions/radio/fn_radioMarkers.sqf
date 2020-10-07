@@ -59,10 +59,17 @@ private _groupList = allGroups select {isPlayer (leader _x) OR {!isNil {_x getVa
 		};
 	};
 	
+	// Get the name of the group leader
+	private _leaderName = if (!isNull (leader _group)) then {
+		name (leader _group)
+	} else {
+		"N/A"
+	};
+	
 	// Create the marker
 	private _markerPos = [_startPos # 0, (_startPos # 1) - (_posDiff * _forEachIndex)];
 	private _marker = createMarker [format ["xpt_radioMarker_%1",_group], _markerPos];
 	_marker setMarkerType "mil_dot";
 	_marker setMarkerColor _colour;
-	_marker setMarkerText format ["%1 | Ch %2 | Freq %3", _groupName, _channel + 1, _freq];
+	_marker setMarkerText format ["%1 (%2) | Ch %3 | Freq %4", _groupName, _leaderName, _channel + 1, _freq];
 } forEach _groupList;
