@@ -1,0 +1,13 @@
+name = "TMTM Template"
+prefix = "tmtm_template"
+author = "Superxpdude"
+files = [
+	"mod.cpp",
+	"README.md"
+]
+
+key_name = "{{prefix}}_{{version}}"
+authority = "{{prefix}}_{{version}}"
+
+[header_exts]
+version= "{{git \"id 8\"}}"
