@@ -88,6 +88,28 @@ if (!isNil "XPT_mapMarkersList") exitWith {
 				_grpMarker setMarkerText (groupID _x);
 			};
 			_tempMarkers = _tempMarkers - [_grpMarker];
+			
+			/*
+				Marker type suffixes
+				x_unknown - Empty marker
+				x_inf - Infantry (Two crossed diagonal lines)
+				x_motor_inf - Motorized Infantry (Infantry with vertical line)
+				x_mech_inf - Mechanized Infantry (Infantry with armour oval)
+				x_armor - Armoured (Oval)
+				x_recon - Recon (Single diagonal line)
+				x_air - Helicopter (Rotor symbol)
+				x_plane - Airplane (Infinity symbol)
+				x_uav - UAV/Drone (Upside-down chevron)
+				x_naval - Boat
+				x_med - Medical (Cross)
+				x_art - Artillery (Single dot)
+				x_mortar - Mortars (Circle with arrow)
+				x_hq - Headquarters (Flag)
+				x_support - Support (Low horizontal line for logistics)
+				x_maint - Maintenance (Wrench)
+				x_service - Service (Triangle on right side)
+				x_installation - Installation or Base
+			*/
 		} forEach _groups;
 		
 		// Check if any markers are missing a group, and delete them
