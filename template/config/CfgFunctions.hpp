@@ -5,6 +5,7 @@
 // Template functions now use the XPT tag to differentiate them from functions I write for my own missions. --Superxpdude
 class XPT
 {
+	/*
 	class curator
 	{
 		file = "template\functions\curator";
@@ -95,4 +96,5 @@ class XPT
 		class vehicleSetup {};
 		class vehicleSetupTurret {};
 	};
+	*/
 };
