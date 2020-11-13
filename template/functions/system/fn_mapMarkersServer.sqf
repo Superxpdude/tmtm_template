@@ -21,9 +21,8 @@ if ((_this select 0) == 0) exitWith {};
 
 // Do not execute if there are already map markers present, this would indicate that the function is already running
 if (!isNil "XPT_mapMarkersList") exitWith {
-	[1, "Second XPT_fnc_mapMarkersServer instance started while another instance was already running", 2] call XPT_fnc_log;
+	["error", "Second XPT_fnc_mapMarkersServer instance started while another instance was already running", "all"] call XPT_fnc_log;
 };
-	
 
 // Spawn map markers loop (since this function is called on mission start)
 [] spawn {
@@ -35,7 +34,7 @@ if (!isNil "XPT_mapMarkersList") exitWith {
 	// Mark the map markers as enabled
 	XPT_mapMarkersEnabled = true;
 	
-	[3, "Starting map markers loop", 0] call XPT_fnc_log;
+	["info", "Starting map markers loop", 0] call XPT_fnc_log;
 	
 	// Start the loop
 	while {XPT_mapMarkersEnabled} do {
@@ -45,8 +44,8 @@ if (!isNil "XPT_mapMarkersList") exitWith {
 		_tempMarkers = + _markers;
 		// Fill the groups list with player groups
 		{
-			// Ensure that we exclude zeus groups
-			if (isPlayer (leader _x) AND (((leader _x) getVariable ["XPT_zeusUnit", false]) isEqualTo false) AND !(_x getVariable ["XPT_disableMapMarker", false])) then {
+			// Ensure that we exclude virtual entities
+			if (isPlayer (leader _x) AND !((leader_x) isKindOf "VirtualMan_F") AND !(_x getVariable ["XPT_disableMapMarker", false])) then {
 				_groups pushBackUnique _x
 			};
 		} forEach allGroups;
@@ -81,6 +80,7 @@ if (!isNil "XPT_mapMarkersList") exitWith {
 				_markers pushBackUnique _grpMarker;
 				// Set a variable on the group referencing the new marker
 				_x setVariable ["XPT_mapMarker", _grpMarker, true];
+				["debug", format ["Created a map marker for [%1]",_x], "all"] call XPT_fnc_log;
 				
 			} else {
 				// If the group already has a marker, just update it
