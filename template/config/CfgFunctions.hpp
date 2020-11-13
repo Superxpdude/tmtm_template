@@ -82,7 +82,7 @@ class XPT
 		file = "template\functions\system";
 		//class briefingCreate {};				// Function to create briefings from a config file
 		//class briefingOnStart {postInit = 1;};	// Function to create mission briefings on mission start
-		//class cbaParams {preInit = 1;}; 		// Function to handle converting lobby parameters to CBA settings
+		class cbaParams {preInit = 1;}; 		// Function to handle converting lobby parameters to CBA settings
 		//class fpsMarkers {postInit = 1;}; 		// Function to place FPS indicators on the map
 		class log {};							// Handles log messages
 		class logWrite {};						// Writes log messages to .rpt and systemChat
