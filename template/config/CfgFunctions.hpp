@@ -76,19 +76,21 @@ class XPT
 		class stageInit {preInit = 1;};			// Initialises the stage system
 		class stageUpdate {};					// Updates the current stage. Handles changing between stages
 	};
+	*/
 	class system
 	{
 		file = "template\functions\system";
-		class briefingCreate {};				// Function to create briefings from a config file
-		class briefingOnStart {postInit = 1;};	// Function to create mission briefings on mission start
-		class cbaParams {preInit = 1;}; 		// Function to handle converting lobby parameters to CBA settings
-		class fpsMarkers {postInit = 1;}; 		// Function to place FPS indicators on the map
+		//class briefingCreate {};				// Function to create briefings from a config file
+		//class briefingOnStart {postInit = 1;};	// Function to create mission briefings on mission start
+		//class cbaParams {preInit = 1;}; 		// Function to handle converting lobby parameters to CBA settings
+		//class fpsMarkers {postInit = 1;}; 		// Function to place FPS indicators on the map
 		class log {};							// Handles log messages
 		class logWrite {};						// Writes log messages to .rpt and systemChat
-		class mapMarkersClient {}; 				// Client-side portion of the map-markers module
-		class mapMarkersServer {}; 				// Server-side portion of the map-markers module
-		class updateTask {}; 					// Function for handling mission task updates
+		//class mapMarkersClient {}; 				// Client-side portion of the map-markers module
+		//class mapMarkersServer {}; 				// Server-side portion of the map-markers module
+		//class updateTask {}; 					// Function for handling mission task updates
 	};
+	/*
 	class vehicle
 	{
 		file = "template\functions\vehicle";

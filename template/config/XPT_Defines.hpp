@@ -108,7 +108,7 @@ XPT_curator_removeNVGs = XPT_DEFINE_CURATOR_REMOVENVG;
 	#define XPT_ACE3_CARDARREST_TIMER 180
 #endif
 
-
+//------------------- ACEX defines
 
 // ACEX View restriction COOP. Defaults to off
 #ifndef XPT_ACEX_VIEWRESTRICTION_COOP
