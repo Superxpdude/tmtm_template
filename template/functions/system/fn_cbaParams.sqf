@@ -63,6 +63,8 @@ if (!isClass (configfile >> "CfgMods" >> "cba")) exitWith {
 		} forEach (_paramArray select _paramValue);
 	} forEach _multiparams;
 	
+	["info", "Finished setting CBA settings"] call XPT_fnc_log;
+	
 }] call CBA_fnc_addEventHandler;
 
 true 
