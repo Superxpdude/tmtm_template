@@ -6,3 +6,8 @@ class XPT_wave
 {
 	onPlayerKilled = "XPT_fnc_waveOnPlayerKilled";
 };
+
+class XPT_EGSpec
+{
+	onPlayerKilled = "XPT_fnc_EGSpecWithMenuRespawn";
+};
