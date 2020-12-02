@@ -53,7 +53,7 @@ if (!isNil "XPT_mapMarkersList") exitWith {
 		// Start updating map markers
 		{
 			// Define more variables
-			private ["_x", "_grpMarker", "_markerType"];
+			private ["_x", "_grpMarker", "_markerPrefix", "_markerSuffix", "_markerType"];
 			// Check if the group has a marker already
 			_grpMarker = _x getVariable ["XPT_mapMarker", nil];
 			if (isNil "_grpMarker") then {
@@ -64,7 +64,26 @@ if (!isNil "XPT_mapMarkersList") exitWith {
 				if ((getMissionConfigValue "XPT_isPVP") == 1) then {
 					_grpMarker setMarkerAlpha 0;
 				};
+				// Get the marker prefix based on the group side
+				_markerPrefix = switch (side _x) do {
+					case west: {"b_"};
+					case east: {"o_"};
+					case resistance: {"n_"};
+					case civilian: {"c_"};
+					default {"b_"};
+				};
+				
+				private _leaderVehicle = vehicle (leader _x);
+				_markerSuffix = switch (true) do {
+					case (_leaderVehicle isKindOf "Man"): {"inf"};
+					case (_leaderVehicle isKindOf "Helicopter"): {"air"};
+					case (_leaderVehicle isKindOf "Plane"): {"plane"};
+					case (_leaderVehicle isKindOf "Tank"): {"armor"};
+					default {"unknown"};
+				};
+				
 				// Get the correct marker type based on the group's side
+				/*
 				_markerType = switch (side _x) do {
 					case west: {"b_unknown"};
 					case east: {"o_unknown"};
@@ -72,6 +91,9 @@ if (!isNil "XPT_mapMarkersList") exitWith {
 					case civilian: {"c_unknown"};
 					default {"b_unknown"};
 				};
+				*/
+				
+				_markerType = _markerPrefix + _markerSuffix;
 				_grpMarker setMarkerType _markerType;
 				_grpMarker setMarkerPos (getPosATL (leader _x));
 				_grpMarker setMarkerText (groupID _x);
