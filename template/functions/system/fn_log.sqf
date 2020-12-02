@@ -29,6 +29,16 @@
 			Default value (when missing) is 0.
 		
 	Returns: Nothing
+	
+	Examples:
+		Log info message on client and server
+		["info", "My info message", 1] call XPT_fnc_log;
+		
+		Log error message on all clients
+		["error", "Oh no everything broke", 2] call XPT_fnc_log;
+		
+		Log debug message only on client
+		["debug", "Debug message"] call XPT_fnc_log;
 */
 
 #include "script_macros.hpp"
