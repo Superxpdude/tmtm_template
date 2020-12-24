@@ -42,6 +42,7 @@ class XPT
 		class headlessSetGroupOwner {};			// Function for moving groups to the headlessClient
 		class headlessSetup {preInit = 1;};		// Function for setting up the headlessClient framework
 	};
+	*/
 	class loadout
 	{
 		file = "template\functions\loadout";
@@ -58,6 +59,7 @@ class XPT
 		class radioInit {preInit = 1;};			// Function for configuring radio settings
 		class radioMarkers {postInit = 1;};		// Automatically creates map markers with radio frequencies
 	};
+	/*
 	class respawn
 	{
 		file = "template\functions\respawn";
