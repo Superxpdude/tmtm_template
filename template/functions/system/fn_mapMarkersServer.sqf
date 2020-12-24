@@ -58,7 +58,7 @@ if (!isNil "XPT_mapMarkersList") exitWith {
 			_grpMarker = _x getVariable ["XPT_mapMarker", nil];
 			if (isNil "_grpMarker") then {
 				// If the group does not yet have a marker, create one
-				_grpMarker = createMarker [format ["%1", _x], getPosATL (leader _x)];
+				_grpMarker = createMarker [format ["xpt_mapMarker_%1", _x], getPosATL (leader _x)];
 				_grpMarker setMarkerShape "ICON";
 				// If the mission is a PvP mission, hide the marker on all machines
 				if ((getMissionConfigValue "XPT_isPVP") == 1) then {
