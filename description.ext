@@ -215,14 +215,9 @@ class CfgTaskDescriptions
 
 class CfgXPT
 {
-	class stages
-	{
-		#include "template\config\XPT_stage_base.hpp" 	// This include must be first in the stage section
-		#include "config\stages\stage1.hpp"
-	};
-	
 	#include "config\XPTBriefings.hpp"
 	#include "config\XPTItemCargos.hpp"
+	#include "config\XPTLoadoutGroups.hpp"
 	#include "config\XPTLoadouts.hpp"
 	#include "config\XPTTaskUpdates.hpp"
 	#include "config\XPTVehicleSetup.hpp"

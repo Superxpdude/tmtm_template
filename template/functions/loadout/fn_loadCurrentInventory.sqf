@@ -49,9 +49,10 @@ if ((count _subclasses) > 0) then {
 };
 */
 // Find the correct loadout for the unit. Report an error if no loadout is found
+private _loadoutGroup = missionNamespace getVariable ["XPT_loadout_activeGroup","defaultGroup"];
 switch true do {
-	case (isClass ((getMissionConfig "CfgXPT") >> "stages" >> XPT_stage_active >> "loadouts" >> _loadout)): {
-		[_unit, (getMissionConfig "CfgXPT") >> "stages" >> XPT_stage_active >> "loadouts" >> _loadout] call _fn_checkInventoryVersion;
+	case (isClass ((getMissionConfig "CfgXPT") >> "loadoutGroups" >> _loadoutGroup >> _loadout)): {
+		[_unit, (getMissionConfig "CfgXPT") >> "loadoutGroups" >> _loadoutGroup >> _loadout] call _fn_checkInventoryVersion;
 	};
 	// Keep the old loadouts location in here for legacy reasons
 	case (isClass ((getMissionConfig "CfgXPT") >> "loadouts" >> _loadout)): {

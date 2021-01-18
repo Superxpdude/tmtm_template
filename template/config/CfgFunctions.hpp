@@ -50,6 +50,7 @@ class XPT
 		class loadCurrentInventory {};			// Uses loadInventory to apply a loadout to a unit
 		class loadInventory {};					// Function for loading a unit's inventory
 		class loadInventoryLegacy {};			// Old inventory function. Temporarily preserved for backwards compatibility.
+		class setLoadoutGroup {};				// Sets a "loadout group" to be used for loadCurrentInventory
 	};
 	class radio
 	{
@@ -92,13 +93,11 @@ class XPT
 		class mapMarkersServer {}; 				// Server-side portion of the map-markers module
 		//class updateTask {}; 					// Function for handling mission task updates
 	};
-	/*
 	class vehicle
 	{
 		file = "template\functions\vehicle";
 		class loadItemCargo {};
-		class vehicleSetup {};
-		class vehicleSetupTurret {};
+		class vehicleSetup {};					// Deprecated vehicle setup function
+		class vehicleSetupTurret {};			// Deprecated vehicle setup function
 	};
-	*/
 };
