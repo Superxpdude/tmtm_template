@@ -17,7 +17,6 @@ class XPT
 		class curatorObjPlaced {};				// Function for adding curator placed objects to other curators
 		class curatorRemoveNVG {};				// Function for removing NVGs from curator-spawned units
 	};
-	/*
 	class debug
 	{
 		file = "template\functions\debug";
@@ -26,7 +25,6 @@ class XPT
 		class errorLog {};						// Writes errors to the log and systemchat
 		class errorReport {};					// Old function for handling error reporting
 	};
-	*/
 	class event
 	{
 		file = "template\functions\event";
@@ -61,13 +59,11 @@ class XPT
 		class radioInit {preInit = 1;};			// Function for configuring radio settings
 		class radioMarkers {postInit = 1;};		// Automatically creates map markers with radio frequencies
 	};
-	/*
 	class respawn
 	{
 		file = "template\functions\respawn";
 		class waveOnPlayerKilled {};			// onPlayerKilled portion of the waves respawn template
 	};
-	*/
 	class safeStart
 	{
 		file = "template\functions\safeStart";
@@ -78,15 +74,14 @@ class XPT
 	class system
 	{
 		file = "template\functions\system";
-		//class briefingCreate {};				// Function to create briefings from a config file
-		//class briefingOnStart {postInit = 1;};	// Function to create mission briefings on mission start
+		class briefingCreate {};				// Function to create briefings from a config file
+		class briefingOnStart {postInit = 1;};	// Function to create mission briefings on mission start
 		class cbaParams {preInit = 1;}; 		// Function to handle converting lobby parameters to CBA settings
 		class fpsMarkers {postInit = 1;}; 		// Function to place FPS indicators on the map
 		class log {};							// Handles log messages
 		class logWrite {};						// Writes log messages to .rpt and systemChat
 		class mapMarkersClient {}; 				// Client-side portion of the map-markers module
 		class mapMarkersServer {}; 				// Server-side portion of the map-markers module
-		//class updateTask {}; 					// Function for handling mission task updates
 	};
 	class vehicle
 	{
