@@ -13,9 +13,6 @@
 // Define parameters
 params ["_oldUnit", "_killer", "_respawn", "_respawnDelay"];
 
-// Sleep delay time for EG spectator, finishes roughly 5 seconds of respawnDelay
-private _terminateEGSpecDelay = _respawnDelay - 10;
-
 // Wait for Menu Respawn screen to appear and close it immediately
 waitUntil{missionNameSpace getVariable "BIS_RscRespawnControlsMap_shown"};
 ["close"] call BIS_fnc_showRespawnMenu;
@@ -36,6 +33,8 @@ waitUntil{missionNameSpace getVariable "BIS_RscRespawnControlsMap_shown"};
 	]
 ] call BIS_fnc_EGSpectator;
 
-sleep _terminateEGSpecDelay;
+// Wait until there are less than 10 seconds remaining before respawn
+waitUntil {playerRespawnTime <= 10};
+
 ["Terminate", [_oldUnit]] call BIS_fnc_EGSpectator;
 ["open"] call BIS_fnc_showRespawnMenu;
