@@ -73,6 +73,7 @@ if (!isNil "XPT_mapMarkersList") exitWith {
 					default {"b_"};
 				};
 				
+				/*
 				private _leaderVehicle = vehicle (leader _x);
 				_markerSuffix = switch (true) do {
 					case (_leaderVehicle isKindOf "Man"): {"inf"};
@@ -81,6 +82,9 @@ if (!isNil "XPT_mapMarkersList") exitWith {
 					case (_leaderVehicle isKindOf "Tank"): {"armor"};
 					default {"unknown"};
 				};
+				*/
+				_markerSuffix = _x getVariable ["XPT_mapMarkerType", "unknown"];
+				
 				
 				// Get the correct marker type based on the group's side
 				/*
