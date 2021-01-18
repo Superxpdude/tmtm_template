@@ -34,7 +34,7 @@
 #ifndef XPT_DEFINE_SAFESTART
 	#define XPT_DEFINE_SAFESTART 0
 #endif
-XPT_safeStart = XPT_DEFINE_SAFESTART
+XPT_safeStart = XPT_DEFINE_SAFESTART;
 
 // XPT debug mode. Defaults to disabled.
 #ifndef XPT_DEBUGMODE

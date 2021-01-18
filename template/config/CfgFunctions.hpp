@@ -26,6 +26,7 @@ class XPT
 		class errorLog {};						// Writes errors to the log and systemchat
 		class errorReport {};					// Old function for handling error reporting
 	};
+	*/
 	class event
 	{
 		file = "template\functions\event";
@@ -35,7 +36,6 @@ class XPT
 		class onPlayerKilled {};				// Template specific onPlayerKilled entries
 		class onPlayerRespawn {};				// Template specific onPlayerRespawn entries
 	};
-	*/
 	class headlessClient
 	{
 		file = "template\functions\headlessClient";
@@ -67,6 +67,7 @@ class XPT
 		file = "template\functions\respawn";
 		class waveOnPlayerKilled {};			// onPlayerKilled portion of the waves respawn template
 	};
+	*/
 	class safeStart
 	{
 		file = "template\functions\safeStart";
@@ -74,7 +75,6 @@ class XPT
 		class safeStartEndLocal {};				// Ends the safe start period for the local player
 		class safeStartEH {};					// Event handler function for safe start
 	};
-	*/
 	class system
 	{
 		file = "template\functions\system";
