@@ -5,18 +5,19 @@
 // Template functions now use the XPT tag to differentiate them from functions I write for my own missions. --Superxpdude
 class XPT
 {
-	/*
 	class curator
 	{
 		file = "template\functions\curator";
 		class curatorAddUnit {};				// Function to add an editable unit to all curators
 		class curatorAssignUnit {};				// Function to assign a player as a curator unit
-		class curatorEH {postInit = 1;};		// Function for adding event handlers to curators on mission start
+		class curatorFailsafe {};				// Failsafe function for curator assignment on dedicated server
 		class curatorGrpPlaced {};				// Function for adding curator placed groups to other curators
+		class curatorInit {postInit = 1;};		// Function for adding event handlers to curators on mission start
 		class curatorMenu {};					// Function for adding the briefing-based curator menu
 		class curatorObjPlaced {};				// Function for adding curator placed objects to other curators
 		class curatorRemoveNVG {};				// Function for removing NVGs from curator-spawned units
 	};
+	/*
 	class debug
 	{
 		file = "template\functions\debug";
