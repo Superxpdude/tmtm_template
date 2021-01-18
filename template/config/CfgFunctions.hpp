@@ -17,14 +17,6 @@ class XPT
 		class curatorObjPlaced {};				// Function for adding curator placed objects to other curators
 		class curatorRemoveNVG {};				// Function for removing NVGs from curator-spawned units
 	};
-	class debug
-	{
-		file = "template\functions\debug";
-		class debugCuratorFix {};				// Function to fix black screen in the curator interface
-		class error {};							// Function used for handling errors
-		class errorLog {};						// Writes errors to the log and systemchat
-		class errorReport {};					// Old function for handling error reporting
-	};
 	class event
 	{
 		file = "template\functions\event";
