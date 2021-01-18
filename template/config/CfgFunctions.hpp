@@ -61,6 +61,7 @@ class XPT
 	{
 		file = "template\functions\respawn";
 		class waveOnPlayerKilled {};			// onPlayerKilled portion of the waves respawn template
+		class EGSpecWithMenuRespawn {};			// Handles entering and leaving End Game spectator mode with MenuPosition respawn template active
 	};
 	class safeStart
 	{
