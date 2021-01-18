@@ -73,12 +73,6 @@ class XPT
 		class safeStartEndLocal {};				// Ends the safe start period for the local player
 		class safeStartEH {};					// Event handler function for safe start
 	};
-	class stage
-	{
-		file = "template\functions\stage";
-		class stageInit {preInit = 1;};			// Initialises the stage system
-		class stageUpdate {};					// Updates the current stage. Handles changing between stages
-	};
 	*/
 	class system
 	{
