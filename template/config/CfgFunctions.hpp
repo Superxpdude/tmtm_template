@@ -34,15 +34,15 @@ class XPT
 		class onPlayerKilled {};				// Template specific onPlayerKilled entries
 		class onPlayerRespawn {};				// Template specific onPlayerRespawn entries
 	};
+	*/
 	class headlessClient
 	{
 		file = "template\functions\headlessClient";
 		class headlessConnect {};				// Function for handling the headlessClient connecting
 		class headlessDisconnect {};			// Function for handling the headlessClient disconnecting
-		class headlessSetGroupOwner {};			// Function for moving groups to the headlessClient
+		class headlessSetGroupOwner {};			// *DEPRECATED* Function for moving groups to the headlessClient
 		class headlessSetup {preInit = 1;};		// Function for setting up the headlessClient framework
 	};
-	*/
 	class loadout
 	{
 		file = "template\functions\loadout";
