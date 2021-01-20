@@ -15,9 +15,12 @@
 private _enable = getMissionConfigValue ["XPT_radio_enable", 1];
 
 if (_enable == 1) then {
+	["info", "Adding radio init event handlers"] call XPT_fnc_log;
 	["CBA_beforeSettingsInitialized", {
 		// Set the script name for error handling
 		private _fnc_scriptName = "XPT_fnc_radioInit";
+		
+		["info", "Initializing radio CBA settings"] call XPT_fnc_log;
 		
 		// Define variables
 		private ["_settingsSWWest", "_settingsSWEast", "_settingsSWGuer", "_bluCode", "_opCode", "_indepCode", "_codesDisabled"];

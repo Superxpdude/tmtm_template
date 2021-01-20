@@ -15,14 +15,12 @@ if (!isServer) exitWith {};
 // Define variables
 _this params ["_id", "_uid", "_name", "_jip", "_owner"];
 
-// Check if the owner ID matches the ID of the headless client
-if (XPT_headless_clientID == _owner) then {
-	// Mark the headless client as disconnected
-	XPT_headless_connected = false;
-	// Clear the stored headless client ID
-	XPT_headless_clientID = 0;
-	// Push the variables to all clients
-	{
-		publicVariable _x;
-	} forEach ["XPT_headless_clientID", "XPT_headless_connected"];
+// Check and see if the owner ID is present in the headless client array
+if (_owner in XPT_headless_clientIDs) then {
+	// Grab the index of the ID
+	private _index = XPT_headless_clientIDs findIf {_x == _owner};
+	// Delete the ID
+	XPT_headless_clientIDs set [_index, -1];
+	// Update the array of all clients
+	publicVariable "XPT_headless_clientIDs";
 };

@@ -18,7 +18,7 @@ params ["_player", "_jip"];
 #include "..\..\version.hpp"
 
 // Initialise the curator menu (if the player is a curator)
-[] spawn XPT_fnc_curatorMenu;
+//[] spawn XPT_fnc_curatorMenu;
 
 // Initialise the client-side part of dynamic groups
 ["InitializePlayer", [_player, true]] call BIS_fnc_dynamicGroups;

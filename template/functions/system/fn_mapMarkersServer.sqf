@@ -21,9 +21,8 @@ if ((_this select 0) == 0) exitWith {};
 
 // Do not execute if there are already map markers present, this would indicate that the function is already running
 if (!isNil "XPT_mapMarkersList") exitWith {
-	[1, "Second XPT_fnc_mapMarkersServer instance started while another instance was already running", 2] call XPT_fnc_log;
+	["error", "Second XPT_fnc_mapMarkersServer instance started while another instance was already running", "all"] call XPT_fnc_log;
 };
-	
 
 // Spawn map markers loop (since this function is called on mission start)
 [] spawn {
@@ -35,7 +34,7 @@ if (!isNil "XPT_mapMarkersList") exitWith {
 	// Mark the map markers as enabled
 	XPT_mapMarkersEnabled = true;
 	
-	[3, "Starting map markers loop", 0] call XPT_fnc_log;
+	["info", "Starting map markers loop", 0] call XPT_fnc_log;
 	
 	// Start the loop
 	while {XPT_mapMarkersEnabled} do {
@@ -45,8 +44,8 @@ if (!isNil "XPT_mapMarkersList") exitWith {
 		_tempMarkers = + _markers;
 		// Fill the groups list with player groups
 		{
-			// Ensure that we exclude zeus groups
-			if (isPlayer (leader _x) AND (((leader _x) getVariable ["XPT_zeusUnit", false]) isEqualTo false) AND !(_x getVariable ["XPT_disableMapMarker", false])) then {
+			// Ensure that we exclude virtual entities
+			if (isPlayer (leader _x) AND !((leader _x) isKindOf "VirtualMan_F") AND !(_x getVariable ["XPT_disableMapMarker", false])) then {
 				_groups pushBackUnique _x
 			};
 		} forEach allGroups;
@@ -54,18 +53,41 @@ if (!isNil "XPT_mapMarkersList") exitWith {
 		// Start updating map markers
 		{
 			// Define more variables
-			private ["_x", "_grpMarker", "_markerType"];
+			private ["_x", "_grpMarker", "_markerPrefix", "_markerSuffix", "_markerType"];
 			// Check if the group has a marker already
 			_grpMarker = _x getVariable ["XPT_mapMarker", nil];
 			if (isNil "_grpMarker") then {
 				// If the group does not yet have a marker, create one
-				_grpMarker = createMarker [format ["%1", _x], getPosATL (leader _x)];
+				_grpMarker = createMarker [format ["xpt_mapMarker_%1", _x], getPosATL (leader _x)];
 				_grpMarker setMarkerShape "ICON";
 				// If the mission is a PvP mission, hide the marker on all machines
 				if ((getMissionConfigValue "XPT_isPVP") == 1) then {
 					_grpMarker setMarkerAlpha 0;
 				};
+				// Get the marker prefix based on the group side
+				_markerPrefix = switch (side _x) do {
+					case west: {"b_"};
+					case east: {"o_"};
+					case resistance: {"n_"};
+					case civilian: {"c_"};
+					default {"b_"};
+				};
+				
+				/*
+				private _leaderVehicle = vehicle (leader _x);
+				_markerSuffix = switch (true) do {
+					case (_leaderVehicle isKindOf "Man"): {"inf"};
+					case (_leaderVehicle isKindOf "Helicopter"): {"air"};
+					case (_leaderVehicle isKindOf "Plane"): {"plane"};
+					case (_leaderVehicle isKindOf "Tank"): {"armor"};
+					default {"unknown"};
+				};
+				*/
+				_markerSuffix = _x getVariable ["XPT_mapMarkerType", "unknown"];
+				
+				
 				// Get the correct marker type based on the group's side
+				/*
 				_markerType = switch (side _x) do {
 					case west: {"b_unknown"};
 					case east: {"o_unknown"};
@@ -73,6 +95,9 @@ if (!isNil "XPT_mapMarkersList") exitWith {
 					case civilian: {"c_unknown"};
 					default {"b_unknown"};
 				};
+				*/
+				
+				_markerType = _markerPrefix + _markerSuffix;
 				_grpMarker setMarkerType _markerType;
 				_grpMarker setMarkerPos (getPosATL (leader _x));
 				_grpMarker setMarkerText (groupID _x);
@@ -81,6 +106,7 @@ if (!isNil "XPT_mapMarkersList") exitWith {
 				_markers pushBackUnique _grpMarker;
 				// Set a variable on the group referencing the new marker
 				_x setVariable ["XPT_mapMarker", _grpMarker, true];
+				["debug", format ["Created a map marker for [%1]",_x], "all"] call XPT_fnc_log;
 				
 			} else {
 				// If the group already has a marker, just update it
@@ -88,6 +114,28 @@ if (!isNil "XPT_mapMarkersList") exitWith {
 				_grpMarker setMarkerText (groupID _x);
 			};
 			_tempMarkers = _tempMarkers - [_grpMarker];
+			
+			/*
+				Marker type suffixes
+				x_unknown - Empty marker
+				x_inf - Infantry (Two crossed diagonal lines)
+				x_motor_inf - Motorized Infantry (Infantry with vertical line)
+				x_mech_inf - Mechanized Infantry (Infantry with armour oval)
+				x_armor - Armoured (Oval)
+				x_recon - Recon (Single diagonal line)
+				x_air - Helicopter (Rotor symbol)
+				x_plane - Airplane (Infinity symbol)
+				x_uav - UAV/Drone (Upside-down chevron)
+				x_naval - Boat
+				x_med - Medical (Cross)
+				x_art - Artillery (Single dot)
+				x_mortar - Mortars (Circle with arrow)
+				x_hq - Headquarters (Flag)
+				x_support - Support (Low horizontal line for logistics)
+				x_maint - Maintenance (Wrench)
+				x_service - Service (Triangle on right side)
+				x_installation - Installation or Base
+			*/
 		} forEach _groups;
 		
 		// Check if any markers are missing a group, and delete them

@@ -121,7 +121,7 @@ private _fn_fixMagazine = {
 	if ((count _x == 2) AND {!((_x select 0) isEqualType [])}) then {
 		_classname = (_x select 0);
 		if (isClass (configFile >> "CfgMagazines" >> _classname)) then {
-			[2, format ["Magazine type [%1] has no ammo count defined in loadout [%2].",_classname,configName _baseClass], 0] call XPT_fnc_log;
+			["warning", format ["Magazine type [%1] has no ammo count defined in loadout [%2].",_classname,configName _baseClass], "local"] call XPT_fnc_log;
 			_x set [2, (configFile >> "CfgMagazines" >> _classname >> "count") call BIS_fnc_getCfgData];
 		};
 	};
@@ -193,15 +193,15 @@ private _vestLoad = loadVest _unit;
 private _backpackLoad = loadBackpack _unit;
 
 if (_uniformLoad > 1) then {
-	[1, format ["Loadout [%1] has an overloaded uniform! Load: [%2]",configName _baseClass,_uniformLoad], 2] call XPT_fnc_log;
+	["warning", format ["Loadout [%1] has an overloaded uniform! Load: [%2]",configName _baseClass,_uniformLoad], "all"] call XPT_fnc_log;
 };
 
 if (_vestLoad > 1) then {
-	[1, format ["Loadout [%1] has an overloaded vest! Load: [%2]",configName _baseClass,_vestLoad], 2] call XPT_fnc_log;
+	["warning", format ["Loadout [%1] has an overloaded vest! Load: [%2]",configName _baseClass,_vestLoad], "all"] call XPT_fnc_log;
 };
 
 if (_backpackLoad > 1) then {
-	[1, format ["Loadout [%1] has an overloaded backpack! Load: [%2]",configName _baseClass,_backpackLoad], 2] call XPT_fnc_log;
+	["warning", format ["Loadout [%1] has an overloaded backpack! Load: [%2]",configName _baseClass,_backpackLoad], "all"] call XPT_fnc_log;
 };
 
 // Return true if script is completed.

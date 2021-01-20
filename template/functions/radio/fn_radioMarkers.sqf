@@ -13,16 +13,18 @@
 // Only run on the server
 if (!isServer) exitWith {};
 
-// TODO: check if the marker even exists
-
 // Grab some marker info
 private _markerName = "xpt_radioMarker_start";
 
 private _markerType = getMarkerType _markerName;
+
+// Check if the marker exists, exit if it doesn't
+if (_markerType == "") exitWith {};
+
 private _startPos = getMarkerPos _markerName;
 
-// Remove the existing marker now that we have the position
-deleteMarker _markerName;
+// Do not delete the marker, hide it instead
+_markerName setMarkerAlpha 0;
 
 // Start creating our frequency markers
 private _posDiff = 100;
