@@ -45,7 +45,7 @@ if (!isNil "XPT_mapMarkersList") exitWith {
 		// Fill the groups list with player groups
 		{
 			// Ensure that we exclude virtual entities
-			if (isPlayer (leader _x) AND !((leader_x) isKindOf "VirtualMan_F") AND !(_x getVariable ["XPT_disableMapMarker", false])) then {
+			if (isPlayer (leader _x) AND !((leader _x) isKindOf "VirtualMan_F") AND !(_x getVariable ["XPT_disableMapMarker", false])) then {
 				_groups pushBackUnique _x
 			};
 		} forEach allGroups;
