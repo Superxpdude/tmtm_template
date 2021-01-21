@@ -164,6 +164,13 @@ class CfgDebriefing
 	#include "config\CfgDebriefing.hpp"
 };
 
+//-------------------- Debriefing Sections
+
+class CfgDebriefingSections {
+	#include "template\config\CfgDebriefingSections.hpp"
+	#include "config\CfgDebriefingSections.hpp"
+};
+
 //-------------------- Respawn Inventories
 
 class CfgRespawnInventory
