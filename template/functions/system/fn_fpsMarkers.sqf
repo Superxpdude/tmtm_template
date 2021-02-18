@@ -17,7 +17,7 @@ private ["_serverMark", "_hcMark", "_hcMark2", "_hcMark3"];
 
 private _markerSpacing = 250;
 
-[3, "Initializing FPS markers", 0] call XPT_fnc_log;
+["info", "Initializing FPS markers"] call XPT_fnc_log;
 
 // If running on the server, create the markers themselves.
 if (isServer) then {
@@ -89,7 +89,7 @@ if (isServer) then {
 		};
 	};
 	
-	[3, format ["Starting FPS markers loop on [%1]",_name], 1] call XPT_fnc_log;
+	["info", format ["Starting FPS markers loop on [%1]",_name], "server"] call XPT_fnc_log;
 	
 	// Wait until the mission has started
 	sleep 1;

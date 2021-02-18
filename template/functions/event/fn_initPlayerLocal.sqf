@@ -18,7 +18,7 @@ params ["_player", "_jip"];
 #include "..\..\version.hpp"
 
 // Initialise the curator menu (if the player is a curator)
-[] spawn XPT_fnc_curatorMenu;
+//[] spawn XPT_fnc_curatorMenu;
 
 // Initialise the client-side part of dynamic groups
 ["InitializePlayer", [_player, true]] call BIS_fnc_dynamicGroups;
@@ -57,4 +57,9 @@ if (((getMissionConfigValue ["XPT_safeStart", 0]) == 1) AND {missionNamespace ge
 _zeus = _player getVariable ["XPT_zeusUnit", false];
 if !(_zeus isEqualTo false) then {
 	[1, format ["XPT_zeusUnit is deprecated. Unit: [%1] will not have Zeus access.",_newUnit], 2] call XPT_fnc_log;
+};
+
+if (_player isKindOf "VirtualMan_F") then {
+	// Disable ambient sound (i.e. wind noises) for zeus
+	enableEnvironment [true, false];
 };

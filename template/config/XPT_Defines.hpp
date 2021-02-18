@@ -34,7 +34,7 @@
 #ifndef XPT_DEFINE_SAFESTART
 	#define XPT_DEFINE_SAFESTART 0
 #endif
-XPT_safeStart = XPT_DEFINE_SAFESTART
+XPT_safeStart = XPT_DEFINE_SAFESTART;
 
 // XPT debug mode. Defaults to disabled.
 #ifndef XPT_DEBUGMODE
@@ -71,38 +71,6 @@ XPT_curator_customLoadouts = XPT_DEFINE_CURATOR_CUSTOMLOADOUTS;
 #endif
 XPT_curator_removeNVGs = XPT_DEFINE_CURATOR_REMOVENVG;
 
-//-------------------- ACRE2 radio defines
-#ifndef XPT_DEFINE_ACRE_ENABLE
-	#define XPT_DEFINE_ACRE_ENABLE 1
-#endif
-XPT_acre_enable = XPT_DEFINE_ACRE_ENABLE;
-
-// ACRE2 autoradio script. Automatically provides 
-#ifndef XPT_DEFINE_ACRE_AUTORADIO
-	#define XPT_DEFINE_ACRE_AUTORADIO 0
-#endif
-XPT_acre_autoradio = XPT_DEFINE_ACRE_AUTORADIO;
-
-// ACRE2 autoconfiguration for babel. Sets different languages for each side if enabled.
-#ifndef XPT_DEFINE_ACRE_AUTOBABEL_COOP
-	#define XPT_DEFINE_ACRE_AUTOBABEL_COOP 0
-#endif
-#ifndef XPT_DEFINE_ACRE_AUTOBABEL_PVP
-	#define XPT_DEFINE_ACRE_AUTOBABEL_PVP 1
-#endif
-
-#ifndef XPT_DEFINEPVP
-	XPT_acre_autobabel = XPT_DEFINE_ACRE_AUTOBABEL_COOP;
-#else
-	XPT_acre_autobabel = XPT_DEFINE_ACRE_AUTOBABEL_PVP;
-#endif
-
-// ACRE2 autospectator
-#ifndef XPT_DEFINE_ACRE_AUTOSPECTATOR
-	#define XPT_DEFINE_ACRE_AUTOSPECTATOR 1
-#endif
-XPT_acre_autospectator = XPT_DEFINE_ACRE_AUTOSPECTATOR;
-
 //-------------------- ACE 3 medical defines
 
 // ACE 3 medical level. Defaults to basic medical.
@@ -135,10 +103,12 @@ XPT_acre_autospectator = XPT_DEFINE_ACRE_AUTOSPECTATOR;
 	#define XPT_ACE3_PLAYERFATAL_PVP 0
 #endif
 
-// ACE 3 cardiac arrest timer. Defaults to 120 seconds.
+// ACE 3 cardiac arrest timer. Defaults to 180 seconds.
 #ifndef XPT_ACE3_CARDARREST_TIMER
 	#define XPT_ACE3_CARDARREST_TIMER 180
 #endif
+
+//------------------- ACEX defines
 
 // ACEX View restriction COOP. Defaults to off
 #ifndef XPT_ACEX_VIEWRESTRICTION_COOP

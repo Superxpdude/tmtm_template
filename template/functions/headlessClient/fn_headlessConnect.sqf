@@ -18,21 +18,16 @@ params ["_player", "_jip"];
 // Only run the script if the client is headless
 if (!(_player isKindOf "HeadlessClient_F")) exitWith {};
 
-// Register the clientID of the headless client, and enable the headless client
-XPT_headless_clientID = owner _player;
-XPT_headless_connected = true;
+// Grab the client ID of the headless client
+private _clientID = owner _player;
 
-// Push the headless client variables to all clients
-{
-	publicVariable _x;
-} forEach ["XPT_headless_clientID", "XPT_headless_connected"];
-
-// Move all existing non-player groups over to the headless client
-{
-	if (!(isPlayer (leader _x))) then {
-		[_x] call XPT_fnc_headlessSetGroupOwner;
-	};
-} forEach allGroups;
+// Add the client ID to the headless client array
+private _index = XPT_headless_clientIDs findIf {_x == -1};
+// If we can't find an empty spot. Log an error
+if (_index < 0) exitWith {
+	["warning", format ["Headless client joined with no available space in XPT array. %1", XPT_headless_clientIDs], "local"] call XPT_fnc_log;
+};
+XPT_headless_clientIDs set [_index,_clientID];
 
 // Return nothing
 nil

@@ -1,9 +1,0 @@
-{
-    "Prefix":  "GAMEMODE",
-    "Author": "Your name",
-    "Version": "0.1",
-    "InternalName":  "Name_separated_by_underscores",
-    "Name":  "Name of the Mission",
-    "Map":  "Visual Name",
-    "MapName":  "InternalName"
-}

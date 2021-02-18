@@ -27,6 +27,8 @@
 
 class briefings
 {
+	// IT IS RECOMMENDED TO USE THE "scripts\briefings.sqf" FILE TO SET UP YOUR BRIEFINGS, AS IT ALLOWS FOR ADDITIONAL FLEXIBILITY.
+	// THE CONFIG BRIEFING SYSTEM REMAINS IN PLACE FOR COMPATIBILITY WITH EXISTING MISSIONS
 	// Uncomment the briefings below if you intend to use them for your mission.
 	/*
 	class assets	// Example assets briefing. Should include a list of all friendly vehicle assets available.

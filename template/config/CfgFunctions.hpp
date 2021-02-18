@@ -10,19 +10,12 @@ class XPT
 		file = "template\functions\curator";
 		class curatorAddUnit {};				// Function to add an editable unit to all curators
 		class curatorAssignUnit {};				// Function to assign a player as a curator unit
-		class curatorEH {postInit = 1;};		// Function for adding event handlers to curators on mission start
+		class curatorFailsafe {};				// Failsafe function for curator assignment on dedicated server
 		class curatorGrpPlaced {};				// Function for adding curator placed groups to other curators
+		class curatorInit {postInit = 1;};		// Function for adding event handlers to curators on mission start
 		class curatorMenu {};					// Function for adding the briefing-based curator menu
 		class curatorObjPlaced {};				// Function for adding curator placed objects to other curators
 		class curatorRemoveNVG {};				// Function for removing NVGs from curator-spawned units
-	};
-	class debug
-	{
-		file = "template\functions\debug";
-		class debugCuratorFix {};				// Function to fix black screen in the curator interface
-		class error {};							// Function used for handling errors
-		class errorLog {};						// Writes errors to the log and systemchat
-		class errorReport {};					// Old function for handling error reporting
 	};
 	class event
 	{
@@ -38,7 +31,7 @@ class XPT
 		file = "template\functions\headlessClient";
 		class headlessConnect {};				// Function for handling the headlessClient connecting
 		class headlessDisconnect {};			// Function for handling the headlessClient disconnecting
-		class headlessSetGroupOwner {};			// Function for moving groups to the headlessClient
+		class headlessSetGroupOwner {};			// *DEPRECATED* Function for moving groups to the headlessClient
 		class headlessSetup {preInit = 1;};		// Function for setting up the headlessClient framework
 	};
 	class loadout
@@ -48,6 +41,7 @@ class XPT
 		class loadCurrentInventory {};			// Uses loadInventory to apply a loadout to a unit
 		class loadInventory {};					// Function for loading a unit's inventory
 		class loadInventoryLegacy {};			// Old inventory function. Temporarily preserved for backwards compatibility.
+		class setLoadoutGroup {};				// Sets a "loadout group" to be used for loadCurrentInventory
 	};
 	class radio
 	{
@@ -61,6 +55,7 @@ class XPT
 	{
 		file = "template\functions\respawn";
 		class waveOnPlayerKilled {};			// onPlayerKilled portion of the waves respawn template
+		class EGSpecWithMenuRespawn {};			// Handles entering and leaving End Game spectator mode with MenuPosition respawn template active
 	};
 	class safeStart
 	{
@@ -68,12 +63,6 @@ class XPT
 		class safeStartEnd {};					// Ends the safe start period for all players
 		class safeStartEndLocal {};				// Ends the safe start period for the local player
 		class safeStartEH {};					// Event handler function for safe start
-	};
-	class stage
-	{
-		file = "template\functions\stage";
-		class stageInit {preInit = 1;};			// Initialises the stage system
-		class stageUpdate {};					// Updates the current stage. Handles changing between stages
 	};
 	class system
 	{
@@ -86,13 +75,12 @@ class XPT
 		class logWrite {};						// Writes log messages to .rpt and systemChat
 		class mapMarkersClient {}; 				// Client-side portion of the map-markers module
 		class mapMarkersServer {}; 				// Server-side portion of the map-markers module
-		class updateTask {}; 					// Function for handling mission task updates
 	};
 	class vehicle
 	{
 		file = "template\functions\vehicle";
 		class loadItemCargo {};
-		class vehicleSetup {};
-		class vehicleSetupTurret {};
+		class vehicleSetup {};					// Deprecated vehicle setup function
+		class vehicleSetupTurret {};			// Deprecated vehicle setup function
 	};
 };

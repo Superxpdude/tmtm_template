@@ -8,6 +8,8 @@
 //player createDiaryRecord ["Diary", ["Mission", "Example Mission Briefing"]];
 //player createDiaryRecord ["Diary", ["Situation", "Example Situation Briefing"]];
 
+// TO USE THIS FILE. UNCOMMENT THE MARKED LINE IN "initPlayerLocal.sqf"
+
 player createDiaryRecord ["Diary", ["Assets", "Example Asset List:<br/>
 	- 1x Tank<br/>
 	- 4x Car<br/>
