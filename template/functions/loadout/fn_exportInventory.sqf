@@ -60,7 +60,7 @@ _fn_printArray = {
 				_export = _export + "}";
 			};
 			case (_x isEqualType 0): {_export = _export + format ["%1",_x];};
-			default {_export = _export + format ["""%1""",_x];}
+			default {_export = _export + format ["""%1""",_x];};
 		};
 	} forEach _array;
 };
