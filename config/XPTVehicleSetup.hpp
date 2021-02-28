@@ -30,7 +30,7 @@ class vehicleSetup
 				{"weapon1","weapon2"}, // Weapons to add to the specific turret. Use an empty array {} if no weapons will change.
 				{{"magazine1",1},{"magazine2",5}}, // Magazines to add to the specific turret. Use an empty array {} if no magazines will change.
 				0 // Lock status of the turret. 0 = Unlocked, 1 = Locked
-			};
+			}
 		};
 		
 		// Datalink. Must be an array of three numerical values. -1 = No Change, 0 = Disabled, 1 = Enabled. Sets the datalink status of the vehicle.
