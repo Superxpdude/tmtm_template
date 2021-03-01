@@ -22,6 +22,7 @@ if (!isServer) exitWith {};
 		// Get some prerequisite variables
 		private _vehicle = _x;
 		private _vehicleType = typeOf _vehicle;
+		private _vehicleData = createHashMap; // Create our hashmap to store all of the vehicle info
 		
 		// Get vehicle textures
 		private _textures = getObjectTextures _vehicle;
@@ -35,10 +36,11 @@ if (!isServer) exitWith {};
 		
 		// Get a list of animations and their states
 		private _animations = [];
-		// Grab only animation sources that are supposed to be changed by the user
-		private _animationSources = "((_x >> 'source') call BIS_fnc_getCfgData) == 'user'" configClasses (configFile >> "CfgVehicles" >> _vehicleType >> "AnimationSources");
+		// Grab a list of animation sources
+		private _animationSources = configProperties [configFile >> "CfgVehicles" >> _vehicleType >> "animationSources","isclass _x",true];
 		{
-			_animations pushBack [_x,_vehicle animationSourcePhase _x];
+			_animName = configName _x;
+			_animations pushback [_animName, _vehicle animationPhase _animName];
 		} forEach _animationSources;
 		
 		// Get a list of inventory items
@@ -55,15 +57,17 @@ if (!isServer) exitWith {};
 		
 		// Start saving variables onto the vehicle
 		{
-			_vehicle setVariable [_x # 0, _x # 1, true];
+			_vehicleData set [_x # 0, _x # 1];
 		} forEach [
-			["xpt_vehicle_respawn_pylons", _pylons],
-			["xpt_vehicle_respawn_textures", _textures],
-			["xpt_vehicle_respawn_animations", _animations],
-			["xpt_vehicle_respawn_itemCargo", _itemCargo],
-			["xpt_vehicle_respawn_backpackCargo", _backpackCargo],
-			["xpt_vehicle_respawn_datalink", _datalink]
+			["pylons", _pylons],
+			["textures", _textures],
+			["animations", _animations],
+			["items", _itemCargo],
+			["backpacks", _backpackCargo],
+			["datalink", _datalink]
 		];
+		
+		_vehicle setVariable ["xpt_vehicle_respawnData", _vehicleData, true];
 		
 	} forEach _vehicles;
 } forEach (entities "ModuleRespawnVehicle_F");
