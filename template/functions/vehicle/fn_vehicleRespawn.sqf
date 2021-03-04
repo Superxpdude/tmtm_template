@@ -25,7 +25,7 @@ params [
 ];
 
 // Grab the vehicle setup information (stored on vehicle postInit)
-private _vehicleData = _vehicle getVariable "xpt_vehicle_respawnData";
+private _vehicleData = _newVeh getVariable "xpt_vehicle_respawnData";
 
 // If we don't have any vehicle data, exit
 if (isNil "_vehicleData") exitWith {};
@@ -48,27 +48,42 @@ private _pylonsConfig = [];
 // Code grabbed from BIS_fnc_loadVehicle
 {
 	_x set [2,true];
-	_vehicle animate _x;
-	_vehicle animateDoor _x;
+	_newVeh animate _x;
+	_newVeh animateDoor _x;
 } forEach (_vehicleData get "animations");
 
 // Add inventory items
-clearItemCargoGlobal _vehicle;
-private _itemCargo = _vehicleData get "items";
+clearItemCargoGlobal _newVeh;
+clearBackpackCargoGlobal _newVeh;
+clearWeaponCargoGlobal _newVeh;
+clearMagazineCargoGlobal _newVeh;
+
+private _itemCargo = _vehicleData get "itemCargo";
 {
 	private _count = (_itemCargo select 1) select _forEachIndex;
-	_vehicle addItemCargoGlobal [_x,_count];
+	_newVeh addItemCargoGlobal [_x,_count];
 } forEach (_itemCargo select 0);
 
-clearBackpackCargoGlobal _vehicle;
-private _backpackCargo = _vehicleData get "backpacks";
+private _backpackCargo = _vehicleData get "backpackCargo";
 {
 	private _count = (_backpackCargo select 1) select _forEachIndex;
-	_vehicle addItemCargoGlobal [_x,_count];
+	_newVeh addBackpackCargoGlobal [_x,_count];
 } forEach (_backpackCargo select 0);
+
+private _weaponCargo = _vehicleData get "weaponCargo";
+{
+	private _count = (_weaponCargo select 1) select _forEachIndex;
+	_newVeh addWeaponCargoGlobal [_x,_count];
+} forEach (_weaponCargo select 0);
+
+private _magazineCargo = _vehicleData get "magazineCargo";
+{
+	private _count = (_magazineCargo select 1) select _forEachIndex;
+	_newVeh addMagazineCargoGlobal [_x,_count];
+} forEach (_magazineCargo select 0);
 
 // Configure datalink
 private _datalink = _vehicleData get "datalink";
-_vehicle setVehicleReportRemoteTargets (_datalink # 0);
-_vehicle setVehicleReceiveRemoteTargets (_datalink # 1);
-_vehicle setVehicleReportOwnPosition (_datalink # 2);
+_newVeh setVehicleReportRemoteTargets (_datalink # 0);
+_newVeh setVehicleReceiveRemoteTargets (_datalink # 1);
+_newVeh setVehicleReportOwnPosition (_datalink # 2);

@@ -16,7 +16,7 @@
 if (!isServer) exitWith {};
 
 {
-	private _module = _x
+	private _module = _x;
 	private _vehicles = [_module, "AllVehicles", false] call BIS_fnc_synchronizedObjects;
 	{
 		// Get some prerequisite variables
@@ -45,7 +45,9 @@ if (!isServer) exitWith {};
 		
 		// Get a list of inventory items
 		private _itemCargo = getItemCargo _vehicle;
-		private _backpackCargo = backpackCargo _vehicle;
+		private _backpackCargo = getBackpackCargo _vehicle;
+		private _weaponCargo = getWeaponCargo _vehicle;
+		private _magazineCargo = getMagazineCargo _vehicle;
 		
 		// Get datalink status
 		private _datalink = [
@@ -62,8 +64,10 @@ if (!isServer) exitWith {};
 			["pylons", _pylons],
 			["textures", _textures],
 			["animations", _animations],
-			["items", _itemCargo],
-			["backpacks", _backpackCargo],
+			["itemCargo", _itemCargo],
+			["backpackCargo", _backpackCargo],
+			["weaponCargo", _weaponCargo],
+			["magazineCargo", _magazineCargo],
 			["datalink", _datalink]
 		];
 		

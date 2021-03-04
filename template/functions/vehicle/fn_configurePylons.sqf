@@ -65,7 +65,7 @@ private _pylonWeapons = [];
 private _pylonsInfo = getAllPylonsInfo _vehicle;
 {
 	private _turretID = _x;
-	private _turretPylons = _pylonsInfo select {(_x # 2) == _turret};
+	private _turretPylons = _pylonsInfo select {(_x # 2) isEqualTo _turretID};
 	_pylonWeapons pushBack [_x,_turretPylons apply {(configFile >> "CfgMagazines" >> (_x # 3) >> "pylonWeapon") call BIS_fnc_getCfgData}];
 } forEach (allTurrets [_vehicle,false]);
 
@@ -82,7 +82,7 @@ private _newPylonsInfo = getAllPylonsInfo _vehicle;
 	private _turretWeapons = _x # 1;
 	
 	// Grab a list of pylons on the turret
-	private _turretPylons = _newPylonsInfo select {(_x # 2) == _turretID};
+	private _turretPylons = _newPylonsInfo select {(_x # 2) isEqualTo _turretID};
 	private _newPylonWeapons = _turretPylons apply {(configFile >> "CfgMagazines" >> (_x # 3) >> "pylonWeapon") call BIS_fnc_getCfgData};
 	{
 		if !(_x in _newPylonWeapons) then {
