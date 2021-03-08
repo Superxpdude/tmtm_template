@@ -39,21 +39,23 @@ if (isServer) then {
 	_hcMark3 setMarkerType "mil_start";
 	_hcMark3 setMarkerSize [0.7, 0.7];
 	
-	if (isNil "hc") then {
+	private _headlessCount = count (entities "HeadlessClient_F");
+	
+	if (_headlessCount < 1) then {
 		_hcMark setMarkerColor "ColorGREY";
 		_hcMark setMarkerText "HC1: Disconnected";
 	} else {
 		_hcMark setMarkerColor "ColorBlue";
 		_hcMark setMarkerText "HC1: Setup";
 	};
-	if (isNil "hc2") then {
+	if (_headlessCount < 2) then {
 		_hcMark2 setMarkerColor "ColorGREY";
 		_hcMark2 setMarkerText "HC2: Disconnected";
 	} else {
 		_hcMark2 setMarkerColor "ColorBlue";
 		_hcMark2 setMarkerText "HC2: Setup";
 	};
-	if (isNil "hc3") then {
+	if (_headlessCount < 3) then {
 		_hcMark3 setMarkerColor "ColorGREY";
 		_hcMark3 setMarkerText "HC3: Disconnected";
 	} else {
@@ -69,21 +71,25 @@ if (isServer) then {
 [] spawn {
 	private _fnc_scriptName = "XPT_fnc_fpsMarkers";
 	private ["_marker", "_name", "_fps"];
+	
+	// Wait until the headless clientID array has been populated
+	waitUntil {!isNil "XPT_headless_clientIDs"};
+	
 	// Make sure we're editing the correct marker
 	switch (true) do {
 		case (isServer): {
 			_marker = "fpsmarker_server";
 			_name = "Server";
 		};
-		case ((vehicleVarName player) == "HC"): {
+		case (clientOwner == (XPT_headless_clientIDs select 0)): {
 			_marker = "fpsmarker_hc";
 			_name = "HC1";
 		};
-		case ((vehicleVarName player) == "HC2"): {
+		case (clientOwner == (XPT_headless_clientIDs select 1)): {
 			_marker = "fpsmarker_hc2";
 			_name = "HC2";
 		};
-		case ((vehicleVarName player) == "HC3"): {
+		case (clientOwner == (XPT_headless_clientIDs select 2)): {
 			_marker = "fpsmarker_hc3";
 			_name = "HC3";
 		};
@@ -106,33 +112,17 @@ if (isServer) then {
 		if (isServer) then {
 			// If the HC doesn't exist (will only ever be true on the server), indicate the HC is disconnected
 			// TODO: Find a way to clean up this section
-			if (isNil "hc") then {
+			if ((XPT_headless_clientIDs select 0) < 0) then {
 				"fpsmarker_hc" setMarkerColor "ColorGREY";
 				"fpsmarker_hc" setMarkerText "HC1: Disconnected";
-			} else {
-				// If hc is not nil, check if it is a player
-				if (!isPlayer hc) then {
-					"fpsmarker_hc" setMarkerColor "ColorGREY";
-					"fpsmarker_hc" setMarkerText "HC1: Disconnected";
-				};
 			};
-			if (isNil "hc2") then {
+			if ((XPT_headless_clientIDs select 1) < 0) then {
 				"fpsmarker_hc2" setMarkerColor "ColorGREY";
 				"fpsmarker_hc2" setMarkerText "HC2: Disconnected";
-			} else {
-				if (!isPlayer hc2) then {
-					"fpsmarker_hc2" setMarkerColor "ColorGREY";
-					"fpsmarker_hc2" setMarkerText "HC2: Disconnected";
-				};
 			};
-			if (isNil "hc3") then {
+			if ((XPT_headless_clientIDs select 2) < 0) then {
 				"fpsmarker_hc3" setMarkerColor "ColorGREY";
 				"fpsmarker_hc3" setMarkerText "HC3: Disconnected";
-			} else {
-				if (!isPlayer hc3) then {
-					"fpsmarker_hc3" setMarkerColor "ColorGREY";
-					"fpsmarker_hc3" setMarkerText "HC3: Disconnected";
-				};
 			};
 		};
 		

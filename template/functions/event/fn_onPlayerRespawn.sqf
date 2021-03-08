@@ -27,7 +27,7 @@ if ((getMissionConfigValue ["XPT_customLoadouts",0]) == 1) then {
 
 // Sets the insignia of the unit to the TMTM insignia
 if ((getMissionConfigValue ["XPT_tmtm_insignia",1]) == 1) then {
-	[_newUnit, "tmtm"] call BIS_fnc_setUnitInsignia;
+	[_newUnit, "tmtm_patch"] call BIS_fnc_setUnitInsignia;
 };
 
 // Load the player's radio settings. (This needs to happen after the inventory is loaded)

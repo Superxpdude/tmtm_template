@@ -60,7 +60,7 @@ _fn_printArray = {
 				_export = _export + "}";
 			};
 			case (_x isEqualType 0): {_export = _export + format ["%1",_x];};
-			default {_export = _export + format ["""%1""",_x];}
+			default {_export = _export + format ["""%1""",_x];};
 		};
 	} forEach _array;
 };
@@ -150,6 +150,7 @@ _fn_dlcCheck = {
 				case 395180: {"Apex"}; // Expansion
 				case 571710: {"LawsOfWar"}; // Orange
 				case 1021790: {"Contact"}; // Enoch
+				case 1325500: {"ArtOfWar"}; // AoW
 				// Grab the name from the configs if not overridden
 				default {
 					configName (("((_x >> 'appID') call BIS_fnc_getCfgData) == _appID" configClasses (configFile >> "CfgMods")) select 0);

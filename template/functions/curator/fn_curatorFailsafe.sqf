@@ -28,7 +28,7 @@ if (!_local) then {
 	if (_assignedLogic != _logic) then {
 		// If the logic has not been assigned successfully, initiate the failsafe.
 		// Send a message to the client letting them know that the issue is being fixed.
-		["Curator module failsafe activated. Please stand by."] remoteExec ["systemChat", _owner];
+		["Curator module failsafe activated. Please stand by."] remoteExec ["systemChat", _logicOwner];
 		
 		// If ZEN (Zeus Enhanced) is installed. Wait 15 seconds to see if their failsafe will fix it
 		if (isClass (configfile >> "CfgMods" >> "zen_modules")) then {
@@ -39,7 +39,7 @@ if (!_local) then {
 		if ((getAssignedCuratorLogic _unit) == _logic) exitWith {};
 		
 		// Start the failsafe
-		["Executing curator module failsafe"] remoteExec ["systemChat", _owner];
+		["Executing curator module failsafe"] remoteExec ["systemChat", _logicOwner];
 		unassignCurator _logic;
 		
 		// Wait until the module has been unassigned
@@ -49,11 +49,11 @@ if (!_local) then {
 		private _attempt = 0;
 		while {isNull (getAssignedCuratorUnit _logic)} do {
 			_unit assignCurator _logic;
-			[format ["Attempting to re-establish curator module connection. Attempt: %1",_attempt]] remoteExec ["systemChat", _owner];
+			[format ["Attempting to re-establish curator module connection. Attempt: %1",_attempt]] remoteExec ["systemChat", _logicOwner];
 			_attempt = _attempt + 1;
 			sleep 5;
 			if (_attempt > 20) exitWith {
-				[format ["Cancelling curator reassignment for [%1|%2] after too many attempts: %3",_unit,_logic,_attempt]] remoteExec ["systemChat", _owner];
+				[format ["Cancelling curator reassignment for [%1|%2] after too many attempts: %3",_unit,_logic,_attempt]] remoteExec ["systemChat", _logicOwner];
 			};
 		};
 		
@@ -62,10 +62,10 @@ if (!_local) then {
 		_assignedLogic = getAssignedCuratorLogic _unit;
 		
 		if (_assignedLogic == _logic) then {
-			["Curator module connection re-established."] remoteExec ["systemChat", _owner];
-			[] remoteExec ["openCuratorInterface", _owner]; // Force open the curator interface if the reassignment succeeded
+			["Curator module connection re-established."] remoteExec ["systemChat", _logicOwner];
+			[] remoteExec ["openCuratorInterface", _logicOwner]; // Force open the curator interface if the reassignment succeeded
 		} else {
-			["Curator module failsafe failed. Could not re-establish curator module connection."] remoteExec ["systemChat", _owner];
+			["Curator module failsafe failed. Could not re-establish curator module connection."] remoteExec ["systemChat", _logicOwner];
 		};
 	};
 };

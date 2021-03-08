@@ -1,5 +1,5 @@
 /*
-	XPT_fnc_headlessDisconnect
+	XPT_fnc_headlessConnect
 	Author: Superxpdude
 	Handles setting up a headless client
 	
@@ -27,7 +27,10 @@ private _index = XPT_headless_clientIDs findIf {_x == -1};
 if (_index < 0) exitWith {
 	["warning", format ["Headless client joined with no available space in XPT array. %1", XPT_headless_clientIDs], "local"] call XPT_fnc_log;
 };
+
+// Broadcast the clientID array to all clients
 XPT_headless_clientIDs set [_index,_clientID];
+publicVariable "XPT_headless_clientIDs";
 
 // Return nothing
 nil

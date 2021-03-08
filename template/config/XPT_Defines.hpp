@@ -6,18 +6,18 @@
 
 // PVP setting
 #ifndef XPT_TEXTCHANNELS_COOP
-	#define XPT_TEXTCHANNELS_COOP disableChannels[] = {{0,false,true},{1,true,true},{2,true,true},{3,false,true},{4,true,true},{5,true,true}};
+	#define XPT_TEXTCHANNELS_COOP disableChannels[] = {{0,false,true},{1,true,true},{2,true,true},{3,false,true},{4,true,true},{5,true,true}}
 #endif
 #ifndef XPT_TEXTCHANNELS_PVP
-	#define XPT_TEXTCHANNELS_PVP disableChannels[] = {{0,false,true},{1,false,true},{2,true,true},{3,false,true},{4,true,true},{5,true,true}};
+	#define XPT_TEXTCHANNELS_PVP disableChannels[] = {{0,false,true},{1,false,true},{2,true,true},{3,false,true},{4,true,true},{5,true,true}}
 #endif
 
 #ifndef XPT_DEFINEPVP
 	XPT_isPVP = 0;
-	XPT_TEXTCHANNELS_COOP
+	XPT_TEXTCHANNELS_COOP;
 #else
 	XPT_isPVP = 1;
-	XPT_TEXTCHANNELS_PVP
+	XPT_TEXTCHANNELS_PVP;
 #endif
 
 // XPT map markers. Defaults to Enabled.
