@@ -6,5 +6,11 @@ class tmtm
 {
 	displayName = "TMTM";
 	author = "TMTM";
+	texture = "template\media\insignia\tmtm.paa";
+};
+class tmtm_patch
+{
+	displayName = "TMTM (Patch)";
+	author = "TMTM";
 	texture = "template\media\insignia\tmtm_insignia.paa";
 };
