@@ -25,7 +25,9 @@
 	// Share placed groups between all curators
 	_module addEventHandler ["CuratorGroupPlaced", {_this remoteExec ["XPT_fnc_curatorGrpPlaced", 2]}];
 	// Remove NVGs from spawned units (if enabled)
-	_module addEventHandler ["CuratorObjectPlaced", {_this call XPT_fnc_curatorRemoveNVG}];
+	if ((getMissionConfigValue "XPT_curator_removeNVGs") == 1) then {
+		_module addEventHandler ["CuratorObjectPlaced", {_this call XPT_fnc_curatorRemoveNVG}];
+	};
 	// Set custom vehicle cargos
 	// WIP
 	// Set custom unit loadouts
