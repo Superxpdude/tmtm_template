@@ -16,6 +16,7 @@ class XPT
 		class curatorMenu {};					// Function for adding the briefing-based curator menu
 		class curatorObjPlaced {};				// Function for adding curator placed objects to other curators
 		class curatorRemoveNVG {};				// Function for removing NVGs from curator-spawned units
+		class curatorLoadout {};
 	};
 	class event
 	{
