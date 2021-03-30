@@ -31,7 +31,9 @@
 	// Set custom vehicle cargos
 	// WIP
 	// Set custom unit loadouts
-	// WIP
+	if ((getMissionConfigValue "XPT_curator_customLoadouts") == 1) then {
+		_module addEventHandler ["CuratorObjectPlaced", {_this call XPT_fnc_curatorLoadout}];
+	};
 	
 	/*
 	// To be removed
