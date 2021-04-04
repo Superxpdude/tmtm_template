@@ -54,3 +54,5 @@ _squad = (units _grp) - [_sl];
 		if (alive _x && vehicle _x != _x) then {_moved = [_player, _X] call _fn_teleportVeh};
 		if (_moved) exitWith {call BIS_fnc_VRFadeIn};
 } forEach (_squad);
+
+if (!_moved) then {hint "Could not find valid teleport target"};
