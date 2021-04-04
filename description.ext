@@ -27,7 +27,7 @@ class Header
 
 // The following defines set default values for lobby parameters. Change as needed for the mission.
 //#define XPT_MAPMARKERS 1			// 0 = Disabled, 1 = Enabled.
-//#define XPT_DEFINE_JIPTELEPORT 1			// 0 = Disabled, 1 = Enabled. Currently unused
+//#define XPT_DEFINE_JIPTELEPORT 1			// 0 = Disabled, 1 = Enabled.
 //#define XPT_DEFINE_SAFESTART 1			// 0 = Disabled, 1 = Enabled. REQUIRES MISSION SUPPORT.
 
 //#define XPT_DEBUGMODE 0			// 0 = Disabled, 1 = Enabled.
@@ -37,7 +37,7 @@ class Header
 //#define XPT_DEFINE_STAGEDEFAULT "stage1"	// Use this to set the default mission stage. Does nothing if stages aren't used.
 
 // Curator settings
-//#define XPT_DEFINE_CURATOR_CUSTOMLOADOUTS 1		// 0 = Disabled, 1 = Enabled. Currently unused.
+//#define XPT_DEFINE_CURATOR_CUSTOMLOADOUTS 1		// 0 = Disabled, 1 = Enabled.
 //#define XPT_DEFINE_CURATOR_REMOVENVG 1			// 0 = Disabled, 1 = Enabled. Removes NVGs from zeus-spawned units.
 
 //-------------------- ACE 3 Defines

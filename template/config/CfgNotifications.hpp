@@ -11,3 +11,12 @@ class XPT_debugMode // Debug mode notification. Displays when a mission is start
 	duration = 15;
 	priority = 100000;
 };
+
+class XPT_jipTeleAvail
+{
+	title = "JIP Teleport to Squad Available";
+	iconPicture = "";
+	iconText = "Open Communication Menu to teleport.";
+	duration = 10;
+	priority = 1000;
+};

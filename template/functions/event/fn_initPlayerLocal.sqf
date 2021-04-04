@@ -63,3 +63,17 @@ if (_player isKindOf "VirtualMan_F") then {
 	// Disable ambient sound (i.e. wind noises) for zeus
 	enableEnvironment [true, false];
 };
+
+[_jip, _player] spawn {
+	params ["_jip", "_player"];
+	waitUntil {time > 2};
+	if (_jip && ((getMissionConfigValue "XPT_jipteleport") == 1)) then {
+		_tele = [_player, "xpt_jipTeleportComm", nil, nil, "xpt_jipTeleNotif"] call BIS_fnc_addCommMenuItem;
+		//["xpt_jipTeleNotif", []] call BIS_fnc_showNotification;
+		[
+			{[(_this select 0),(_this select 1)] call BIS_fnc_removeCommMenuItem},
+			[_player, _tele],
+			300
+		] call CBA_fnc_waitAndExecute;
+	};
+};

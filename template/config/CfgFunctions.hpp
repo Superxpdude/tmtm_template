@@ -35,6 +35,11 @@ class XPT
 		class headlessSetGroupOwner {};			// *DEPRECATED* Function for moving groups to the headlessClient
 		class headlessSetup {preInit = 1;};		// Function for setting up the headlessClient framework
 	};
+	class jip
+	{
+		file = "template\functions\jip";
+		class jipTeleport {};					// Function to teleport JIP players to their respective squads
+	};
 	class loadout
 	{
 		file = "template\functions\loadout";
