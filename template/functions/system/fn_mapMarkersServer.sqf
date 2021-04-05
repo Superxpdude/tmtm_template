@@ -55,8 +55,8 @@ if (!isNil "XPT_mapMarkersList") exitWith {
 			// Define more variables
 			private ["_x", "_grpMarker", "_markerPrefix", "_markerSuffix", "_markerType"];
 			// Check if the group has a marker already
-			_grpMarker = _x getVariable ["XPT_mapMarker", nil];
-			if ((getMarkerType _grpMarker) == "") then (_grpMarker = nil);
+			_grpMarker = _x getVariable ["XPT_mapMarker", ""];
+			if ((getMarkerType _grpMarker) == "") then {_grpMarker = nil};
 			if (isNil "_grpMarker") then {
 				// If the group does not yet have a marker, create one
 				_grpMarker = createMarker [format ["xpt_mapMarker_%1", _x], getPosATL (leader _x)];
