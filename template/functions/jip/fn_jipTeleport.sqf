@@ -55,4 +55,4 @@ _squad = (units _grp) - [_sl];
 		if (_moved) exitWith {call BIS_fnc_VRFadeIn};
 } forEach (_squad);
 
-if (!_moved) then {hint "Could not find valid teleport target"};
+if (!_moved) then {["XPT_jipTeleFail", []] call BIS_fnc_showNotification};
