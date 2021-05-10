@@ -22,8 +22,8 @@ class Header
 
 // The following lines are used if you want to change the default text channel restriction for missions.
 // By default, COOP missions only allow group and global, PVP missions allow side chat as well.
-//#define XPT_TEXTCHANNELS_COOP disableChannels[] = {{0,false,true},{1,true,true},{2,true,true},{3,false,true},{4,true,true},{5,true,true}};
-//#define XPT_TEXTCHANNELS_PVP disableChannels[] = {{0,false,true},{1,false,true},{2,true,true},{3,false,true},{4,true,true},{5,true,true}};
+//#define XPT_TEXTCHANNELS_COOP disableChannels[] = {{0,false,true},{1,true,true},{2,true,true},{3,false,true},{4,true,true},{5,true,true}}
+//#define XPT_TEXTCHANNELS_PVP disableChannels[] = {{0,false,true},{1,false,true},{2,true,true},{3,false,true},{4,true,true},{5,true,true}}
 
 // The following defines set default values for lobby parameters. Change as needed for the mission.
 //#define XPT_MAPMARKERS 1			// 0 = Disabled, 1 = Enabled.
