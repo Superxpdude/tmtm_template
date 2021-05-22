@@ -26,9 +26,10 @@
 #endif
 
 // XPT JIP teleporter. Defaults to Enabled.
-#ifndef XPT_JIPTELEPORT
-	#define XPT_JIPTELEPORT 1
+#ifndef XPT_DEFINE_JIPTELEPORT
+	#define XPT_DEFINE_JIPTELEPORT 1
 #endif
+XPT_jipteleport = XPT_DEFINE_JIPTELEPORT;
 
 // XPT safe-start. Defaults to disabled.
 #ifndef XPT_DEFINE_SAFESTART
