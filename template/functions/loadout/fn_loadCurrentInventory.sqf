@@ -63,6 +63,6 @@ switch true do {
 	};
 	// If no loadout is found, report an error
 	default {
-		["warning", format ["No loadout defined for unit. Loadout: '%1' Unit: '%2'", _loadout, name _unit], "all"] call XPT_fnc_log;
+		["error", format ["No loadout defined for unit. Loadout: '%1' Unit: '%2'", _loadout, name _unit], "all"] call XPT_fnc_log;
 	};
 };
