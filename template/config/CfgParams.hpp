@@ -64,8 +64,9 @@ class ace_medical_statemachine_cardiacArrestTime
 {
 	title = "ACE3 - Cardiac Arrest Timer";
 	XPT_CBA_setting = 1;
-	values[] = {60,90,120,180,240,300};
-	texts[] = {"60 seconds", "90 seconds", "2 minutes", "3 minutes", "4 minutes", "5 minutes"};
+	XPT_serverDefault = -1;
+	values[] = {-1,60,90,120,180,240,300};
+	texts[] = {"Server Default", "60 seconds", "90 seconds", "2 minutes", "3 minutes", "4 minutes", "5 minutes"};
 	default = XPT_ACE3_CARDARREST_TIMER;
 };
 class ace_medical_playerDamageThreshold
@@ -73,8 +74,9 @@ class ace_medical_playerDamageThreshold
 	title = "ACE3 - Player Health Multiplier";
 	XPT_CBA_setting = 1;
 	XPT_modifier = "%1/100";
-	values[] = {50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200};
-	texts[] = {"50%","60%","70%","80%","90%","100%","110%","120%","130%","140%","150%","160%","170%","180%","190%","200%"};
+	XPT_serverDefault = -1;
+	values[] = {-1,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200};
+	texts[] = {"Server Default","50%","60%","70%","80%","90%","100%","110%","120%","130%","140%","150%","160%","170%","180%","190%","200%"};
 	default = XPT_ACE3_PLAYERDAMAGETHRESHOLD;
 };
 class ace_medical_AIDamageThreshold
@@ -82,8 +84,9 @@ class ace_medical_AIDamageThreshold
 	title = "ACE3 - AI Health Multiplier";
 	XPT_CBA_setting = 1;
 	XPT_modifier = "%1/100";
-	values[] = {50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200};
-	texts[] = {"50%","60%","70%","80%","90%","100%","110%","120%","130%","140%","150%","160%","170%","180%","190%","200%"};
+	XPT_serverDefault = -1;
+	values[] = {-1,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200};
+	texts[] = {"Server Default","50%","60%","70%","80%","90%","100%","110%","120%","130%","140%","150%","160%","170%","180%","190%","200%"};
 	default = XPT_ACE3_AIDAMAGETHRESHOLD;
 };
 class header_acex_settings

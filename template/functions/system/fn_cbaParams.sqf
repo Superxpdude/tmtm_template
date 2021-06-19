@@ -31,6 +31,9 @@ if (!isClass (configfile >> "CfgMods" >> "cba")) exitWith {
 		// Use the parameter name to grab the parameter value
 		private _paramValue = [_paramName] call BIS_fnc_getParamValue;
 		
+		private _paramServerDefault = [(_x >> "XPT_serverDefault") call BIS_fnc_getCfgData] param [0,-1,[0]];
+		private _useDefault = if (_paramValue == _paramServerDefault) then {true} else {false};
+		
 		private _paramMod = [(_x >> "XPT_modifier") call BIS_fnc_getCfgData] param [0,nil,[""]];
 		
 		// If we have a modifier, apply it to the result before we set the CBA setting
@@ -38,9 +41,13 @@ if (!isClass (configfile >> "CfgMods" >> "cba")) exitWith {
 			_paramValue = call compile format [_paramMod, _paramValue];
 		};
 		
-		// Set the CBA setting from the parameter's value
-		["CBA_settings_setSettingMission", [_paramName, _paramValue, true]] call CBA_fnc_localEvent;
-		["info",[_fnc_scriptName,format ["Setting CBA setting [%1] to [%2]",_paramName, _paramValue]]] call XPT_fnc_log;
+		// Set the CBA setting from the parameter's value if the parameter is not default
+		if (_useDefault) then {
+			["info",[_fnc_scriptName,format ["Using server default CBA setting [%1]",_paramName]]] call XPT_fnc_log;
+		} else {
+			["CBA_settings_setSettingMission", [_paramName, _paramValue, true]] call CBA_fnc_localEvent;
+			["info",[_fnc_scriptName,format ["Setting CBA setting [%1] to [%2]",_paramName, _paramValue]]] call XPT_fnc_log;
+		};
 	} forEach _params;
 	
 	// Find all lobby parameters that affect multiple CBA settings

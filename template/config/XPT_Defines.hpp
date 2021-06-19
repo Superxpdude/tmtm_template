@@ -79,14 +79,14 @@ XPT_curator_removeNVGs = XPT_DEFINE_CURATOR_REMOVENVG;
 	#define XPT_ACE3_MEDICALLEVEL 0
 #endif
 
-// ACE 3 player damage threshold. Defaults to 100%.
+// ACE 3 player damage threshold. Use server default.
 #ifndef XPT_ACE3_PLAYERDAMAGETHRESHOLD
-	#define XPT_ACE3_PLAYERDAMAGETHRESHOLD 100
+	#define XPT_ACE3_PLAYERDAMAGETHRESHOLD -1
 #endif
 
-// ACE 3 AI damage threshold. Defaults to 100%.
+// ACE 3 AI damage threshold. Use server default.
 #ifndef XPT_ACE3_AIDAMAGETHRESHOLD
-	#define XPT_ACE3_AIDAMAGETHRESHOLD 100
+	#define XPT_ACE3_AIDAMAGETHRESHOLD -1
 #endif
 
 // ACE 3 Fatal Damage Source. Defaults to "Large hits to vitals only"
@@ -104,9 +104,9 @@ XPT_curator_removeNVGs = XPT_DEFINE_CURATOR_REMOVENVG;
 	#define XPT_ACE3_PLAYERFATAL_PVP 0
 #endif
 
-// ACE 3 cardiac arrest timer. Defaults to 180 seconds.
+// ACE 3 cardiac arrest timer. Use server default.
 #ifndef XPT_ACE3_CARDARREST_TIMER
-	#define XPT_ACE3_CARDARREST_TIMER 180
+	#define XPT_ACE3_CARDARREST_TIMER -1
 #endif
 
 //------------------- ACEX defines
