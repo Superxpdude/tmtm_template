@@ -7,7 +7,8 @@
 	Parameters:
 		0: Object - Object/vehicle to add items to.
 		1: String (Optional) - Config class name to load. Uses the object classname when undefined
-		2: Number/Bool (Optional) - Clear existing inventory before applying loadout. 0/false to disable. Defaults to 1/true when undefined.		
+		2: Number/Bool (Optional) - Clear existing inventory before applying loadout. 0/false to disable. Defaults to 1/true when undefined.
+		3: Bool (Optional) - Uses curator item cargo if true. Default false
 
 	Returns: Bool
 		True if the items were added correctly
@@ -21,7 +22,8 @@ private ["_object", "_loadout", "_class", "_config", "_remove", "_allitems"];
 params [
 	["_object", nil, [objNull]],
 	["_loadout", nil, [""]],
-	["_remove", true, [0,false]]
+	["_remove", true, [0,false]],
+	["_curator", false, [true]]
 ];
 
 if ((typeName _remove) == "SCALAR") then {
@@ -38,10 +40,18 @@ if (isNil "_object") exitWith {
 };
 
 // Find the config class of the loadout
-if (!isNil "_loadout") then {
-	_config = ((getMissionConfig "CfgXPT") >> "itemCargos" >> _loadout);
+if (_curator == true) then {
+	if (!isNil "_loadout") then {
+		_config = ((getMissionConfig "CfgXPT") >> "curatorItemCargos" >> _loadout);
+	} else {
+		_config = ((getMissionConfig "CfgXPT") >> "curatorItemCargos" >> (typeOf _object));
+	};
 } else {
-	_config = ((getMissionConfig "CfgXPT") >> "itemCargos" >> (typeOf _object));
+	if (!isNil "_loadout") then {
+		_config = ((getMissionConfig "CfgXPT") >> "itemCargos" >> _loadout);
+	} else {
+		_config = ((getMissionConfig "CfgXPT") >> "itemCargos" >> (typeOf _object));
+	};
 };
 
 // If the class doesn't exist, return an error

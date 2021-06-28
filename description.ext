@@ -38,6 +38,7 @@ class Header
 
 // Curator settings
 //#define XPT_DEFINE_CURATOR_CUSTOMLOADOUTS 1		// 0 = Disabled, 1 = Enabled.
+//#define XPT_DEFINE_CURATOR_CUSTOMVEHICLECARGO 1	// 0 = Disabled, 1 = Enabled.
 //#define XPT_DEFINE_CURATOR_REMOVENVG 1			// 0 = Disabled, 1 = Enabled. Removes NVGs from zeus-spawned units.
 
 //-------------------- ACE 3 Defines
@@ -229,4 +230,5 @@ class CfgXPT
 	#include "config\XPTLoadouts.hpp"
 	#include "config\XPTVehicleSetup.hpp"
 	#include "config\XPTCuratorLoadouts.hpp"
+	#include "config\XPTCuratorItemCargos.hpp"
 };
