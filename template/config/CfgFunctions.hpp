@@ -17,6 +17,7 @@ class XPT
 		class curatorObjPlaced {};				// Function for adding curator placed objects to other curators
 		class curatorRemoveNVG {};				// Function for removing NVGs from curator-spawned units
 		class curatorLoadout {};
+		class curatorVehicleCargo {};
 	};
 	class event
 	{

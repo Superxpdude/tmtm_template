@@ -28,8 +28,10 @@
 	if ((getMissionConfigValue "XPT_curator_removeNVGs") == 1) then {
 		_module addEventHandler ["CuratorObjectPlaced", {_this call XPT_fnc_curatorRemoveNVG}];
 	};
-	// Set custom vehicle cargos
-	// WIP
+	// Set custom vehicle cargos.
+	if ((getMissionConfigValue "XPT_curator_customVehicleCargo") == 1) then {
+		_module addEventHandler ["CuratorObjectPlaced", {_this call XPT_fnc_curatorVehicleCargo}];
+	};
 	// Set custom unit loadouts
 	if ((getMissionConfigValue "XPT_curator_customLoadouts") == 1) then {
 		_module addEventHandler ["CuratorObjectPlaced", {_this call XPT_fnc_curatorLoadout}];
