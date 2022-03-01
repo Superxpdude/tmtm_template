@@ -99,7 +99,6 @@ class header_acex_settings
 class acex_viewrestriction_mode
 {
 	title = "ACEX - View Restriction";
-	//ACE_setting = 1;
 	XPT_CBA_setting = 1;
 	values[] = {0,1,2,3};
 	texts[] = {"Disabled","Forced First-Person","Forced Third-Person","Selective (Follows rules below)"};
@@ -112,7 +111,6 @@ class acex_viewrestriction_mode
 class acex_viewrestriction_modeSelectiveFoot
 {
 	title = "ACEX - View Restriction Selective (On foot)";
-	//ACE_setting = 1;
 	XPT_CBA_setting = 1;
 	values[] = {0,1,2};
 	texts[] = {"Disabled","Forced First-Person","Forced Third-Person"};
@@ -121,7 +119,6 @@ class acex_viewrestriction_modeSelectiveFoot
 class acex_viewrestriction_modeSelectiveLand
 {
 	title = "ACEX - View Restriction Selective (Land Vehicles)";
-	//ACE_setting = 1;
 	XPT_CBA_setting = 1;
 	values[] = {0,1,2};
 	texts[] = {"Disabled","Forced First-Person","Forced Third-Person"};
@@ -130,7 +127,6 @@ class acex_viewrestriction_modeSelectiveLand
 class acex_viewrestriction_modeSelectiveAir
 {
 	title = "ACEX - View Restriction Selective (Air Vehicles)";
-	//ACE_setting = 1;
 	XPT_CBA_setting = 1;
 	values[] = {0,1,2};
 	texts[] = {"Disabled","Forced First-Person","Forced Third-Person"};
@@ -139,7 +135,6 @@ class acex_viewrestriction_modeSelectiveAir
 class acex_viewrestriction_modeSelectiveSea
 {
 	title = "ACEX - View Restriction Selective (Sea Vehicles)";
-	//ACE_setting = 1;
 	XPT_CBA_setting = 1;
 	values[] = {0,1,2};
 	texts[] = {"Disabled","Forced First-Person","Forced Third-Person"};

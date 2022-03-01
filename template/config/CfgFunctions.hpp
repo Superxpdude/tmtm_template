@@ -73,6 +73,7 @@ class XPT
 	class system
 	{
 		file = "template\functions\system";
+		class audit {};							// Function to perform rudimentary audit checks on a mission
 		class briefingCreate {};				// Function to create briefings from a config file
 		class briefingOnStart {postInit = 1;};	// Function to create mission briefings on mission start
 		class cbaParams {preInit = 1;}; 		// Function to handle converting lobby parameters to CBA settings
