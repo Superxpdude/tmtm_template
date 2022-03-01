@@ -10,7 +10,9 @@
 */
 
 // Do not run if our mission was not run from the editor
-if !(is3DEN or is3DENPreview) exitWith {};
+if !(is3DEN or is3DENPreview) exitWith {
+	systemChat "Audit can only be run in 3DEN or 3DEN preview.";
+};
 
 // Initialize some variables
 private _auditMessages = []; // Array of issue strings
