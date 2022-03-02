@@ -90,7 +90,5 @@ class XPT
 		class loadItemCargo {};
 		class vehicleRespawn {};
 		class vehicleRespawnInit {postInit = 1;};
-		class vehicleSetup {};					// Deprecated vehicle setup function
-		class vehicleSetupTurret {};			// Deprecated vehicle setup function
 	};
 };
