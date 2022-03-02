@@ -38,6 +38,9 @@ _player createDiaryRecord ["XPT_template", ["Version",
 	if ((["XPT_debugMode", 0] call BIS_fnc_getParamValue) == 1) then {
 		["XPT_debugMode"] call BIS_fnc_showNotification;
 	};
+	if ((__XPTVERSION__ == "DEV") && {getMissionConfigValue ["XPT_bypassDEVWarning",0] != 1}) then {
+		["XPT_devWarning"] call BIS_fnc_showNotification;
+	};
 };
 
 // Safe start support

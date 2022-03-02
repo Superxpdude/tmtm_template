@@ -8,6 +8,17 @@ class XPT_debugMode // Debug mode notification. Displays when a mission is start
 	iconPicture = "\A3\ui_f\data\igui\cfg\simpleTasks\types\use_ca.paa";
 	iconText = "";
 	description = "Debug mode is enabled. Some mission parameters may be changed.";
+	duration = 10;
+	priority = 100000;
+};
+
+class XPT_devWarning // Dev version notification. Displays when a mission is using a dev version of the template.
+{
+	title = "TEMPLATE DEV VERSION";
+	iconPicture = "\A3\ui_f\data\igui\cfg\simpleTasks\types\use_ca.paa";
+	iconText = "";
+	description = "Please download the template from the releases page!";
+	color[] = {1,0.65,0,1};
 	duration = 15;
 	priority = 100000;
 };
