@@ -53,7 +53,6 @@ _aceMedical = [
 	"ACE_bloodIV",
 	"ACE_bloodIV_250",
 	"ACE_bloodIV_500",
-	"ACE_Defibrillator",
 	"ACE_elasticBandage",
 	"ACE_epinephrine",
 	"ACE_fieldDressing",
@@ -248,7 +247,7 @@ _fn_tfarCheck = {
 	};
 	
 	// Create our class definition
-	_export = _export + format ["class %1 {", typeOf _x] + _br;
+	_export = _export + format ["class %1 {", _x getVariable ["XPT_loadout", typeOf _x]] + _br;
 
 	// Run our DLC check
 	[] call _fn_dlcCheck;

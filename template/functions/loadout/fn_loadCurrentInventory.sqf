@@ -19,7 +19,7 @@ private ["_loadout"];
 if (_unit isKindOf "VirtualMan_F") exitWith {};
 
 // Check if the unit has a special loadout defined
-_loadout = _unit getVariable ["loadout", nil];
+_loadout = _unit getVariable ["XPT_loadout", _unit getVariable ["loadout", nil]];
 
 // If no loadout is defined, grab the unit's classname as their loadout
 if (isNil "_loadout") then {
