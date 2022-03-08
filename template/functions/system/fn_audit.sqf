@@ -67,6 +67,15 @@ private _protectedCBASettings = [
 	"wha_nametags_"
 ];
 
+// ACE3 bandage classnames for validation
+// Must be all lowercase for string comparison
+private _aceBandageClasses = [
+	"ace_fielddressing",
+	"ace_elasticbandage",
+	"ace_packingbandage",
+	"ace_quikclot"
+];
+
 
 // ---------------------------------------------------
 // --------------- BEGIN MISSION CHECK ---------------
@@ -161,6 +170,12 @@ if (_respawnTimer > 1800) then {
 	_warningMessages append ["WARNING: Mission has respawns disabled. Please verify that the mission will take less than one hour to complete."];
 };
 
+// Check respawn button
+private _respawnButton = getMissionConfigValue ["respawnButton", 1];
+if (_respawnButton == 0) then {
+	_failMessages append ["ERROR: Disabling the respawn button is not permitted for main ops."];
+};
+
 // Check how many CBA settings are set at the mission level
 private _forcedCBASettings = 0;
 // Iterate through all cba settings to check if they are forced at the mission level
@@ -186,6 +201,105 @@ if (_forcedCBASettings >= 10) then {
 	_warningMessages append [format ["WARNING: More than 10 CBA settings forced at mission level. Please verify forced mission settings.", _forcedCBASettings]];
 };
 
+// --------------------------------------------
+// ---------- Loadout checking block ----------
+// --------------------------------------------
+private _xptLoadoutsEnabled = if (getMissionConfigValue ["XPT_customLoadouts", 0] == 1) then {true} else {false};
+
+// We run different checks if XPT loadouts is enabled
+if (_xptLoadoutsEnabled) then {
+	// XPTLoadouts enabled. Check config unit loadouts.
+	_auditMessages append ["XPTLoadouts enabled. Checking config loadouts."];
+	
+	// Validate that all playable units have a loadout defined
+	// This can't validate loadouts assigned by the "XPT_loadout" object variable since there's no way to get that value in the 3DEN editor.
+	private _playableClasses = [];
+	{
+		_playableClasses pushBackUnique _x;
+	} forEach (([player] + playableUnits) apply {typeOf _x}); // Playableunits does not include zeus or HC
+	
+	// Get a list of loadout classes in our XPTLoadouts config
+	// This part ignores anything in XPTLoadoutGroups, since it's assumed that those aren't applied at mission start
+	// Additionally, XPTLoadoutGroups will fall back to the base XPTLoadouts definition if a class cannot be found
+	private _configLoadoutClasses = "true" configClasses (missionConfigFile >> "CfgXPT" >> "loadouts") apply {toLower configName _x};
+	
+	// Iterate through our playable classes to confirm that we have loadouts for all classes
+	{
+		if !((toLower _x) in _configLoadoutClasses) then {
+			_failMessages append [format ["ERROR: XPTLoadouts class missing for unit type: %1", _x]];
+		};
+	} forEach _playableClasses;
+	
+	// Perform some basic "medical amount" validation on loadout classes
+	// Ignore the default loadouts, since they're unlikely to contain anything
+	{
+		private _loadoutClass = _x;
+		// Get medical data from our config
+		private _uniformMedical = [((_loadoutClass >> "basicMedUniform") call BIS_fnc_getCfgData)] param [0, [], [[]]];
+		private _vestMedical = [((_loadoutClass >> "basicMedVest") call BIS_fnc_getCfgData)] param [0, [], [[]]];
+		private _backpackMedical = [((_loadoutClass >> "basicMedBackpack") call BIS_fnc_getCfgData)] param [0, [], [[]]];
+		
+		// Count how many bandages the loadout has
+		private _bandageCount = 0;
+		{
+			// Entries will be in the form of [itemClass, count]
+			if ((_x select 0) in _aceBandageClasses) then {
+				// Item is a bandage. Increment our count
+				_bandageCount = _bandageCount + (_x select 1);
+			};
+		} forEach (_uniformMedical + _vestMedical + _backpackMedical);
+		
+		// Check to see if we have sufficient medical
+		if (_bandageCount < 8) then {
+			_warningMessages append [format ["WARNING: Loadout class '%1' has very low medical supplies. Bandages [%2]", configName _loadoutClass, _bandageCount]];
+		};
+	} forEach ("!(toLower configName _x in ['base', 'example', 'example_random'])" configClasses (missionConfigFile >> "CfgXPT" >> "loadouts"));
+} else {
+	// XPTLoadouts not enabled. Check in-game unit loadouts.
+	_auditMessages append ["XPTLoadouts disabled. Checking editor loadouts."];
+	
+	// Set up a hashmap to store loadout information
+	private _loadoutMap = createHashMap;
+	
+	// Start iterating through our playable units, check if loadouts are matching between units
+	// Loadouts must match *EXACTLY* for this to pass
+	{
+		private _unitClass = typeOf _x;
+		// Check if our class is in our hashmap yet
+		if (_unitClass in _loadoutMap) then {
+			// Class in loadout hashmap. Compare to stored loadout
+			// Loadouts stored as an array of [unit, getUnitLoadout array]
+			private _storedLoadoutData = _loadoutMap get _unitClass;
+			
+			// Compare our loadouts
+			if !((getUnitLoadout _x) isEqualTo (_storedLoadoutData select 1)) then {
+				// Loadouts not equal. Add a warning
+				_warningMessages append [format [
+					"WARNING: Loadout mismatch for class '%1' between groups '%2' and '%3'.", 
+					_unitClass, 
+					groupID group (_storedLoadoutData select 0), 
+					groupID group _x
+				]];
+			};
+		} else {
+			// Class is not in loadout hashmap. Store the loadout
+			private _loadoutData = [
+				_x,
+				getUnitLoadout _x
+			];
+			_loadoutMap set [_unitClass, _loadoutData]
+		};
+	} forEach ([player] + playableUnits);
+	
+	// Base medical amount check
+	{
+		private _bandageItems = (items _x) select {toLower _x in _aceBandageClasses};
+		if ((count _bandageItems) < 8) then {
+			_warningMessages append [format ["WARNING: Unit '%1' in group '%2' has very low medical supplies. Bandages [%3]", typeOf _x, groupID group _x, count _bandageItems]];
+		};
+	} forEach ([player] + playableUnits);
+};
+
 // Ensure that we can see systemChat
 showChat True;
 // Write messages to systemChat
@@ -195,17 +309,21 @@ systemChat "Begin audit report";
 	private _list = _x;
 	{
 		systemChat _x;
+		diag_log text format ["[XPT-AUDIT]: %1", _x];
 	} forEach _list;
 } forEach [_auditMessages, _warningMessages, _failMessages];
 
 switch (true) do {
 	case ((count _failMessages) > 0): {
 		systemChat "FAIL: Mission does not meet audit requirements.";
+		diag_log text "FAIL: Mission does not meet audit requirements.";
 	};
 	case ((count _warningMessages) > 0): {
 		systemChat "WARNING. Please check audit details.";
+		diag_log text "WARNING. Please check audit details.";
 	};
 	default {
 		systemChat "Audit check complete";
+		diag_log text "Audit check complete";
 	};
 };
