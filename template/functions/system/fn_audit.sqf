@@ -233,26 +233,45 @@ if (_xptLoadoutsEnabled) then {
 	// Perform some basic "medical amount" validation on loadout classes
 	// Ignore the default loadouts, since they're unlikely to contain anything
 	{
-		private _loadoutClass = _x;
-		// Get medical data from our config
-		private _uniformMedical = [((_loadoutClass >> "basicMedUniform") call BIS_fnc_getCfgData)] param [0, [], [[]]];
-		private _vestMedical = [((_loadoutClass >> "basicMedVest") call BIS_fnc_getCfgData)] param [0, [], [[]]];
-		private _backpackMedical = [((_loadoutClass >> "basicMedBackpack") call BIS_fnc_getCfgData)] param [0, [], [[]]];
-		
-		// Count how many bandages the loadout has
-		private _bandageCount = 0;
-		{
-			// Entries will be in the form of [itemClass, count]
-			if ((_x select 0) in _aceBandageClasses) then {
-				// Item is a bandage. Increment our count
-				_bandageCount = _bandageCount + (_x select 1);
-			};
-		} forEach (_uniformMedical + _vestMedical + _backpackMedical);
-		
-		// Check to see if we have sufficient medical
-		if (_bandageCount < 8) then {
-			_warningMessages append [format ["WARNING: Loadout class '%1' has very low medical supplies. Bandages [%2]", configName _loadoutClass, _bandageCount]];
+		private _mainClass = _x;
+		private _subClasses = "true" configClasses _mainClass;
+		private _loadoutClasses = if ((count _subClasses) > 0) then {
+			_subClasses
+		} else {
+			[_x]
 		};
+		
+		systemChat format ["Main class: %1", configName _mainClass];
+		systemChat format ["%1", _loadoutClasses apply {configName _x}];
+		
+		// Iterate through all subclasses if applicable
+		{
+			systemChat format ["%1", configName _x];
+			private _loadoutClass = _x;
+			// Get medical data from our config
+			private _uniformMedical = [((_loadoutClass >> "basicMedUniform") call BIS_fnc_getCfgData)] param [0, [], [[]]];
+			private _vestMedical = [((_loadoutClass >> "basicMedVest") call BIS_fnc_getCfgData)] param [0, [], [[]]];
+			private _backpackMedical = [((_loadoutClass >> "basicMedBackpack") call BIS_fnc_getCfgData)] param [0, [], [[]]];
+			
+			// Count how many bandages the loadout has
+			private _bandageCount = 0;
+			{
+				// Entries will be in the form of [itemClass, count]
+				if ((_x select 0) in _aceBandageClasses) then {
+					// Item is a bandage. Increment our count
+					_bandageCount = _bandageCount + (_x select 1);
+				};
+			} forEach (_uniformMedical + _vestMedical + _backpackMedical);
+			
+			// Check to see if we have sufficient medical
+			if (_bandageCount < 8) then {
+				if (_loadoutClass == _mainClass) then {
+					_warningMessages append [format ["WARNING: Loadout class '%1' has very low medical supplies. Bandages [%2]", configName _loadoutClass, _bandageCount]];
+				} else {
+					_warningMessages append [format ["WARNING: Loadout class '%1', subclass '%2' has very low medical supplies. Bandages [%3]", configName _mainClass, configName _loadoutClass, _bandageCount]];
+				};
+			};
+		} forEach _loadoutClasses;
 	} forEach ("!(toLower configName _x in ['base', 'example', 'example_random'])" configClasses (missionConfigFile >> "CfgXPT" >> "loadouts"));
 } else {
 	// XPTLoadouts not enabled. Check in-game unit loadouts.
@@ -316,14 +335,14 @@ systemChat "Begin audit report";
 switch (true) do {
 	case ((count _failMessages) > 0): {
 		systemChat "FAIL: Mission does not meet audit requirements.";
-		diag_log text "FAIL: Mission does not meet audit requirements.";
+		diag_log text "[XPT-AUDIT]: FAIL: Mission does not meet audit requirements.";
 	};
 	case ((count _warningMessages) > 0): {
 		systemChat "WARNING. Please check audit details.";
-		diag_log text "WARNING. Please check audit details.";
+		diag_log text "[XPT-AUDIT]: WARNING. Please check audit details.";
 	};
 	default {
 		systemChat "Audit check complete";
-		diag_log text "Audit check complete";
+		diag_log text "[XPT-AUDIT]: Audit check complete";
 	};
 };
