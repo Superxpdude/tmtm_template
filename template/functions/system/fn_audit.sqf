@@ -241,12 +241,8 @@ if (_xptLoadoutsEnabled) then {
 			[_x]
 		};
 		
-		systemChat format ["Main class: %1", configName _mainClass];
-		systemChat format ["%1", _loadoutClasses apply {configName _x}];
-		
 		// Iterate through all subclasses if applicable
 		{
-			systemChat format ["%1", configName _x];
 			private _loadoutClass = _x;
 			// Get medical data from our config
 			private _uniformMedical = [((_loadoutClass >> "basicMedUniform") call BIS_fnc_getCfgData)] param [0, [], [[]]];
