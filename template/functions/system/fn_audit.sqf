@@ -176,6 +176,12 @@ if (_respawnButton == 0) then {
 	_failMessages append ["ERROR: Disabling the respawn button is not permitted for main ops."];
 };
 
+// Check AFM
+private _forceRotorLib = getMissionConfigValue ["forceRotorLibSimulation", 0];
+if (_forceRotorLib != 0) then {
+	_failMessages append ["ERROR: Forcing Helicopter AFM (on or off) is not permitted."];
+};
+
 // Check how many CBA settings are set at the mission level
 private _forcedCBASettings = 0;
 // Iterate through all cba settings to check if they are forced at the mission level
@@ -319,7 +325,8 @@ if (_xptLoadoutsEnabled) then {
 showChat True;
 // Write messages to systemChat
 
-systemChat "Begin audit report";
+systemChat "========== BEGIN AUDIT REPORT ==========";
+diag_log text "[XPT-AUDIT]: ========== BEGIN AUDIT REPORT ==========";
 {
 	private _list = _x;
 	{
@@ -342,3 +349,6 @@ switch (true) do {
 		diag_log text "[XPT-AUDIT]: Audit check complete";
 	};
 };
+
+systemChat "=========== END AUDIT REPORT ===========";
+diag_log text "[XPT-AUDIT]: =========== END AUDIT REPORT ===========";
