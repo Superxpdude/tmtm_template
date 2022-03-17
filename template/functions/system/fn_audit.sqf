@@ -259,7 +259,7 @@ if (_xptLoadoutsEnabled) then {
 			private _bandageCount = 0;
 			{
 				// Entries will be in the form of [itemClass, count]
-				if ((_x select 0) in _aceBandageClasses) then {
+				if ((toLower (_x select 0)) in _aceBandageClasses) then {
 					// Item is a bandage. Increment our count
 					_bandageCount = _bandageCount + (_x select 1);
 				};
