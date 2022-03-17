@@ -8,5 +8,5 @@ _this call XPT_fnc_initPlayerLocal; // DO NOT CHANGE THIS LINE
 
 // Add any mission specific code after this point
 
-// Uncomment the line below to use briefing.sqf for mission briefings. Un-needed if you're using XPTBriefings.hpp
-//[] execVM "scripts\briefing.sqf";
+// Comment this line if you're looking to use a different method to set up briefings
+[] execVM "scripts\briefing.sqf";
