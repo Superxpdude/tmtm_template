@@ -75,6 +75,9 @@ if (isServer) then {
 	// Wait until the headless clientID array has been populated
 	waitUntil {!isNil "XPT_headless_clientIDs"};
 	
+	// Wait until the mission has started
+	sleep 1;
+	
 	// Make sure we're editing the correct marker
 	switch (true) do {
 		case (isServer): {
@@ -96,9 +99,6 @@ if (isServer) then {
 	};
 	
 	["info", format ["Starting FPS markers loop on [%1]",_name], "server"] call XPT_fnc_log;
-	
-	// Wait until the mission has started
-	sleep 1;
 	
 	while {true} do {
 		_fps = diag_fps;
