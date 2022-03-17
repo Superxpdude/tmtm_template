@@ -1,4 +1,4 @@
-Copyright 2021 Superxpdude
+Copyright 2022 Superxpdude
 
 The XP template is released under the Arma Public License - Share Alike (APL-SA)
 The full details about the license can be found at the link below:
