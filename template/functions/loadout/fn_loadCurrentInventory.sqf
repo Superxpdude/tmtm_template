@@ -19,7 +19,7 @@ private ["_loadout"];
 if (_unit isKindOf "VirtualMan_F") exitWith {};
 
 // Check if the unit has a special loadout defined
-_loadout = _unit getVariable ["loadout", nil];
+_loadout = _unit getVariable ["XPT_loadout", _unit getVariable ["loadout", nil]];
 
 // If no loadout is defined, grab the unit's classname as their loadout
 if (isNil "_loadout") then {
@@ -63,6 +63,6 @@ switch true do {
 	};
 	// If no loadout is found, report an error
 	default {
-		["warning", format ["No loadout defined for unit. Loadout: '%1' Unit: '%2'", _loadout, name _unit], "all"] call XPT_fnc_log;
+		["error", format ["No loadout defined for unit. Loadout: '%1' Unit: '%2'", _loadout, name _unit], "all"] call XPT_fnc_log;
 	};
 };

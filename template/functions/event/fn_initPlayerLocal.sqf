@@ -38,6 +38,9 @@ _player createDiaryRecord ["XPT_template", ["Version",
 	if ((["XPT_debugMode", 0] call BIS_fnc_getParamValue) == 1) then {
 		["XPT_debugMode"] call BIS_fnc_showNotification;
 	};
+	if ((__XPTVERSION__ == "DEV") && {getMissionConfigValue ["XPT_bypassDEVWarning",0] != 1}) then {
+		["XPT_devWarning"] call BIS_fnc_showNotification;
+	};
 };
 
 // Safe start support
@@ -62,4 +65,17 @@ if !(_zeus isEqualTo false) then {
 if (_player isKindOf "VirtualMan_F") then {
 	// Disable ambient sound (i.e. wind noises) for zeus
 	enableEnvironment [true, false];
+};
+
+[_jip, _player] spawn {
+	params ["_jip", "_player"];
+	waitUntil {time > 2};
+	if (_jip && ((getMissionConfigValue "XPT_jipteleport") == 1) && ({alive _x} count (units group _player) > 1)) then {
+		_tele = [_player, "xpt_jipTeleportComm", nil, nil, "XPT_jipTeleAvail"] call BIS_fnc_addCommMenuItem;
+		[
+			{[(_this select 0),(_this select 1)] call BIS_fnc_removeCommMenuItem},
+			[_player, _tele],
+			300
+		] call CBA_fnc_waitAndExecute;
+	};
 };

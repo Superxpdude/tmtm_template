@@ -22,12 +22,12 @@ class Header
 
 // The following lines are used if you want to change the default text channel restriction for missions.
 // By default, COOP missions only allow group and global, PVP missions allow side chat as well.
-//#define XPT_TEXTCHANNELS_COOP disableChannels[] = {{0,false,true},{1,true,true},{2,true,true},{3,false,true},{4,true,true},{5,true,true}};
-//#define XPT_TEXTCHANNELS_PVP disableChannels[] = {{0,false,true},{1,false,true},{2,true,true},{3,false,true},{4,true,true},{5,true,true}};
+//#define XPT_TEXTCHANNELS_COOP disableChannels[] = {{0,false,true},{1,true,true},{2,true,true},{3,false,true},{4,true,true},{5,true,true}}
+//#define XPT_TEXTCHANNELS_PVP disableChannels[] = {{0,false,true},{1,false,true},{2,true,true},{3,false,true},{4,true,true},{5,true,true}}
 
 // The following defines set default values for lobby parameters. Change as needed for the mission.
 //#define XPT_MAPMARKERS 1			// 0 = Disabled, 1 = Enabled.
-//#define XPT_DEFINE_JIPTELEPORT 1			// 0 = Disabled, 1 = Enabled. Currently unused
+//#define XPT_DEFINE_JIPTELEPORT 1			// 0 = Disabled, 1 = Enabled.
 //#define XPT_DEFINE_SAFESTART 1			// 0 = Disabled, 1 = Enabled. REQUIRES MISSION SUPPORT.
 
 //#define XPT_DEBUGMODE 0			// 0 = Disabled, 1 = Enabled.
@@ -37,11 +37,12 @@ class Header
 //#define XPT_DEFINE_STAGEDEFAULT "stage1"	// Use this to set the default mission stage. Does nothing if stages aren't used.
 
 // Curator settings
-//#define XPT_DEFINE_CURATOR_CUSTOMLOADOUTS 1		// 0 = Disabled, 1 = Enabled. Currently unused.
+//#define XPT_DEFINE_CURATOR_CUSTOMLOADOUTS 1		// 0 = Disabled, 1 = Enabled.
 //#define XPT_DEFINE_CURATOR_REMOVENVG 1			// 0 = Disabled, 1 = Enabled. Removes NVGs from zeus-spawned units.
 
 //-------------------- ACE 3 Defines
 // Uncomment the following defines if you want to change away from the default values pictured here.
+// It is *strongly* recommended that you follow the default values for this section unless you have good reason to change them.
 
 //#define XPT_ACE3_MEDICALLEVEL 0					// 0 = Standard, 1 = Realistic (for side/sunday ops only), 2 = Custom (does not modify any settings, for side ops only)
 //#define XPT_ACE3_PLAYERDAMAGETHRESHOLD 100		// Percentage value (without the % sign). Accepts values from 50 to 200 in increments of 10 (50, 60, 70, etc.) (70 = 70% of normal health)
@@ -226,6 +227,5 @@ class CfgXPT
 	#include "config\XPTItemCargos.hpp"
 	#include "config\XPTLoadoutGroups.hpp"
 	#include "config\XPTLoadouts.hpp"
-	#include "config\XPTVehicleSetup.hpp"
 	#include "config\XPTCuratorLoadouts.hpp"
 };

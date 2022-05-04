@@ -193,15 +193,15 @@ private _vestLoad = loadVest _unit;
 private _backpackLoad = loadBackpack _unit;
 
 if (_uniformLoad > 1) then {
-	["warning", format ["Loadout [%1] has an overloaded uniform! Load: [%2]",configName _baseClass,_uniformLoad], "all"] call XPT_fnc_log;
+	["error", format ["Loadout [%1] has an overloaded uniform! Load: [%2]",configName _baseClass,_uniformLoad], "all"] call XPT_fnc_log;
 };
 
 if (_vestLoad > 1) then {
-	["warning", format ["Loadout [%1] has an overloaded vest! Load: [%2]",configName _baseClass,_vestLoad], "all"] call XPT_fnc_log;
+	["error", format ["Loadout [%1] has an overloaded vest! Load: [%2]",configName _baseClass,_vestLoad], "all"] call XPT_fnc_log;
 };
 
 if (_backpackLoad > 1) then {
-	["warning", format ["Loadout [%1] has an overloaded backpack! Load: [%2]",configName _baseClass,_backpackLoad], "all"] call XPT_fnc_log;
+	["error", format ["Loadout [%1] has an overloaded backpack! Load: [%2]",configName _baseClass,_backpackLoad], "all"] call XPT_fnc_log;
 };
 
 // Return true if script is completed.

@@ -25,10 +25,15 @@ params [
 ];
 
 // Grab the vehicle setup information (stored on vehicle postInit)
-private _vehicleData = _newVeh getVariable "xpt_vehicle_respawnData";
+private _vehicleData = _newVeh getVariable ["xpt_vehicle_respawnData",_oldVeh getVariable "xpt_vehicle_respawnData"];
 
 // If we don't have any vehicle data, exit
 if (isNil "_vehicleData") exitWith {};
+
+// Ensure that the vehicle data is set on the new vehicle
+if (isNil {_newVeh getVariable "xpt_vehicle_respawnData"}) then {
+	_newVeh setVariable ["xpt_vehicle_respawnData", _vehicleData, true];
+};
 
 // Start the vehicle setup
 
