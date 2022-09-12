@@ -54,6 +54,12 @@ XPT_customLoadouts = XPT_DEFINE_CUSTOMLOADOUTS;
 #endif
 XPT_stageDefault = XPT_DEFINE_STAGEDEFAULT;
 
+// Custom vehicle cargo for zeus-spawned units. Defaults to disabled.
+#ifndef XPT_DEFINE_CURATOR_CUSTOMVEHICLECARGO
+	#define XPT_DEFINE_CURATOR_CUSTOMVEHICLECARGO 0
+#endif
+XPT_curator_customVehicleCargo = XPT_DEFINE_CURATOR_CUSTOMVEHICLECARGO;
+
 // Custom loadouts for zeus-spawned units. Defaults to disabled.
 #ifndef XPT_DEFINE_CURATOR_CUSTOMLOADOUTS
 	#define XPT_DEFINE_CURATOR_CUSTOMLOADOUTS 0
