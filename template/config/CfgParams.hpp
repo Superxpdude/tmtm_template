@@ -24,7 +24,7 @@ class xpt_medical_level
 			{"ace_medical_fractures",0},
 			{"ace_medical_treatment_advancedDiagnose",1},
 			{"ace_medical_treatment_advancedBandages",0},
-			{"ace_medical_treatment_clearTraumaAfterBandage",1},
+			{"ace_medical_treatment_clearTrauma",2},
 			{"ace_medical_treatment_advancedMedication",1},
 		},
 		// Realistic medical
@@ -33,7 +33,7 @@ class xpt_medical_level
 			{"ace_medical_fractures",1},
 			{"ace_medical_treatment_advancedDiagnose",1},
 			{"ace_medical_treatment_advancedBandages",2},
-			{"ace_medical_treatment_clearTraumaAfterBandage",0},
+			{"ace_medical_treatment_clearTrauma",1},
 			{"ace_medical_treatment_advancedMedication",1},
 		},
 		// Custom
