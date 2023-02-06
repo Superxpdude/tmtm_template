@@ -48,12 +48,6 @@ XPT_safeStart = XPT_DEFINE_SAFESTART;
 #endif
 XPT_customLoadouts = XPT_DEFINE_CUSTOMLOADOUTS;
 
-// Vehicle setup upon mission start. Defaults to disabled.
-#ifndef XPT_DEFINE_VEHICLESETUP
-	#define XPT_DEFINE_VEHICLESETUP 0
-#endif
-XPT_vehicleSetup = XPT_DEFINE_VEHICLESETUP;
-
 // Default mission stage. Defaults to "stage1"
 #ifndef XPT_DEFINE_STAGEDEFAULT
 	#define XPT_DEFINE_STAGEDEFAULT "stage1"
