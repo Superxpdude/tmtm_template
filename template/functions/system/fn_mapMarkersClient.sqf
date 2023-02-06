@@ -25,7 +25,7 @@ params ["_groups"];
 		private _grpMarker = _x getVariable ["XPT_mapMarker", nil];
 		if !(isNil "_grpMarker") then {
 			// Group has a map marker. Check if they are friendly
-			if ([playerSide, (side _x)] call BIS_fnc_sideIsFriendly) then {
+			if (side (group player), (side _x)] call BIS_fnc_sideIsFriendly) then {
 				// Group is friendly
 				_grpMarker setMarkerAlphaLocal 1;
 			} else {
