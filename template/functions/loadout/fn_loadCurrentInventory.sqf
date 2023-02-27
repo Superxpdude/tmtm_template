@@ -1,7 +1,7 @@
 /*
 	XPT_fnc_loadCurrentInventory
 	Author: Superxpdude
-	Loads the current inventory for the player unit (based on their classname and the current mission stage)
+	Loads the current inventory for the player unit (based on their classname and the current loadout group)
 	
 	Parameters:
 		0: Object - Unit that needs a new loadout applied
