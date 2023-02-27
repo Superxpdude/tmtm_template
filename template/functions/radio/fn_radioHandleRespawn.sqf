@@ -63,7 +63,7 @@ if (!local _unit) exitWith {
 	} else {
 		// If the unit has an LR channel defined in the editor, set it here
 		private _lrChannel = _unit getVariable ["XPT_TFAR_LRChannel", (group _unit) getVariable [
-			"XPT_TFAR_LRChannel", getVariable ["TFAR_LRChannel", (group _unit) getVariable ["TFAR_LRChannel", nil]]]];
+			"XPT_TFAR_LRChannel", _unit getVariable ["TFAR_LRChannel", (group _unit) getVariable ["TFAR_LRChannel", nil]]]];
 		if (!isNil "_lrChannel") then {
 			[_backpackRadio, _lrChannel] call TFAR_fnc_setLrChannel;
 		};
