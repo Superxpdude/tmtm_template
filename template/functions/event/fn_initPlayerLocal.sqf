@@ -54,11 +54,6 @@ if (((getMissionConfigValue ["XPT_safeStart", 0]) == 1) AND {missionNamespace ge
 	_player setVariable ["XPT_safeStartVehicleEH", _XPT_safeStartVehicleEH];
 };
 
-_zeus = _player getVariable ["XPT_zeusUnit", false];
-if !(_zeus isEqualTo false) then {
-	[1, format ["XPT_zeusUnit is deprecated. Unit: [%1] will not have Zeus access.",_player], 2] call XPT_fnc_log;
-};
-
 if (_player isKindOf "VirtualMan_F") then {
 	// Disable ambient sound (i.e. wind noises) for zeus
 	enableEnvironment [true, false];
