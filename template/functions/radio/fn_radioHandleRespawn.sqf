@@ -41,7 +41,8 @@ if (!local _unit) exitWith {
 	private _unit = _this select 0;
 	
 	// Check if the player has an LR radio
-	if (isNil {player call TFAR_fnc_backpackLR}) exitWith {};
+	private _backpackRadio = _unit call TFAR_fnc_backpackLR;
+	if (isNil "_backpackRadio") exitWith {};
 	// Wait until the player's LR radio has been assigned, and the server has finished setting up radios.
 	waitUntil {(call TFAR_fnc_haveLRRadio) and !(isNil "XPT_radio_setup_complete")};
 	
@@ -58,28 +59,12 @@ if (!local _unit) exitWith {
 	// If any LR settings have been defined, assign them to the player's radio
 	// Only do so if the encryption codes match between the radios
 	if ((!isNil "_lrSettings") AND (_oldRadio == _lrRadio)) then {
-		[_unit call TFAR_fnc_backpackLR, (_lrSettings select 1)] call TFAR_fnc_setLRSettings;
+		[_backpackRadio, (_lrSettings select 1)] call TFAR_fnc_setLRSettings;
 	} else {
-		// If we have no saved data, or the classnames don't match, generate default values
-		private _lrSettings = ["",[false] call TFAR_fnc_generateLrSettings];
-		// Set the radio frequencies and encryption codes
-		switch (_radioSide) do {
-			case "tf_west_radio_code": {
-				(_lrSettings select 1) set [2,TFAR_defaultFrequencies_lr_west];
-				(_lrSettings select 1) set [4,tf_west_radio_code];
-			};
-			case "tf_east_radio_code": {
-				(_lrSettings select 1) set [2,TFAR_defaultFrequencies_lr_east];
-				(_lrSettings select 1) set [4,tf_east_radio_code];
-			};
-			case "tf_independent_radio_code": {
-				(_lrSettings select 1) set [2,TFAR_defaultFrequencies_lr_independent];
-				(_lrSettings select 1) set [4,tf_independent_radio_code];
-			};
+		// If the unit has an LR channel defined in the editor, set it here
+		private _lrChannel = _unit getVariable ["TFAR_LRChannel", ((group _unit) getVariable ["TFAR_LRChannel", nil])];
+		if (!isNil "_lrChannel") then {
+			[_backpackRadio, _lrChannel] call TFAR_fnc_setLrChannel;
 		};
-		// Set the default channel. Grab the value from the player unit first, otherwise try the group. If both don't exist, use the default (channel 0).
-		(_lrSettings select 1) set [0, [(_unit getVariable ["TFAR_LRChannel", ((group _unit) getVariable ["TFAR_LRChannel", 0])])] param [0,0,[0]]];
-		// Assign the radio settings
-		[_unit call TFAR_fnc_backpackLR, (_lrSettings select 1)] call TFAR_fnc_setLRSettings;
 	};
 };
