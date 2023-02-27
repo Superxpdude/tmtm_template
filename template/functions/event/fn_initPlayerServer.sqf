@@ -14,10 +14,5 @@
 // Define variables
 params ["_player", "_jip"];
 
-_this call XPT_fnc_headlessConnect;
 // Call the headless client connect function
-/*
-if ((["headlessClient", 0] call BIS_fnc_getParamValue) == 1) then {
-	_this call XPT_fnc_headlessConnect;
-};
-*/
+_this call XPT_fnc_headlessConnect;
