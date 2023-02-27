@@ -26,13 +26,13 @@ class Header
 //#define XPT_TEXTCHANNELS_PVP disableChannels[] = {{0,false,true},{1,false,true},{2,true,true},{3,false,true},{4,true,true},{5,true,true}}
 
 // The following defines set default values for lobby parameters. Change as needed for the mission.
-//#define XPT_MAPMARKERS 1			// 0 = Disabled, 1 = Enabled.
-//#define XPT_DEFINE_JIPTELEPORT 1			// 0 = Disabled, 1 = Enabled.
-//#define XPT_DEFINE_SAFESTART 1			// 0 = Disabled, 1 = Enabled. REQUIRES MISSION SUPPORT.
+//#define XPT_MAPMARKERS 1							// 0 = Disabled, 1 = Enabled.
+//#define XPT_DEFINE_JIPTELEPORT 1					// 0 = Disabled, 1 = Enabled.
+//#define XPT_DEFINE_SAFESTART 1					// 0 = Disabled, 1 = Enabled. REQUIRES MISSION SUPPORT.
 
-//#define XPT_DEBUGMODE 0			// 0 = Disabled, 1 = Enabled.
+//#define XPT_DEBUGMODE 0							// 0 = Disabled, 1 = Enabled.
 
-//#define XPT_DEFINE_CUSTOMLOADOUTS 1		// 0 = Disabled, 1 = Enabled. Enables the loadout system
+//#define XPT_DEFINE_CUSTOMLOADOUTS 1				// 0 = Disabled, 1 = Enabled. Enables the loadout system
 
 // Curator settings
 //#define XPT_DEFINE_CURATOR_CUSTOMLOADOUTS 1		// 0 = Disabled, 1 = Enabled.
@@ -67,9 +67,9 @@ class Header
 // Arma 3 playerUIDs correspond with the Steam64ID of the user.
 enableDebugConsole[] = {
 	"76561198031434864"
-};														// Array of player UIDs that have debug console access.
-allowFunctionsLog = 0;									// Disables functions from spamming the server RPT logs
-allowFunctionsRecompile = 0;							// Always leave this as 0
+};													// Array of player UIDs that have debug console access.
+allowFunctionsLog = 0;								// Disables functions from spamming the server RPT logs
+allowFunctionsRecompile = 0;						// Always leave this as 0
 
 //-------------------- Misc
 
@@ -94,7 +94,7 @@ respawnButton = 1;				// Enable the respawn button for players
 
 //-------------------- Respawn Templates
 
-respawnTemplates[] = {"Spectator","Counter"};								// Templates used for player respawning, applies to all sides
+respawnTemplates[] = {"Spectator","Counter"};					// Templates used for player respawning, applies to all sides
 //respawnTemplatesWest[] = {"MenuPosition", "Spectator"};		// Templates used for player respawning, applies to BLUFOR only
 //respawnTemplatesEast[] = {"MenuPosition", "Spectator"};		// Templates used for player respawning, applies to OPFOR only
 //respawnTemplatesGuer[] = {"MenuPosition", "Spectator"};		// Templates used for player respawning, applies to Independent only
