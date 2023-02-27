@@ -36,7 +36,7 @@
 	};
 	
 	// Server only block for curator assignment failsafe
-	if (isServer) then {
-		_module addEventHandler ["Local", {_this spawn XPT_fnc_curatorFailsafe}];
-	};
+	// if (isServer) then {
+	// 	_module addEventHandler ["Local", {_this spawn XPT_fnc_curatorFailsafe}];
+	// };
 }, nil, nil, true] call CBA_fnc_addClassEventHandler;
