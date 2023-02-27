@@ -35,16 +35,6 @@
 		_module addEventHandler ["CuratorObjectPlaced", {_this call XPT_fnc_curatorLoadout}];
 	};
 	
-	/*
-	// To be removed
-	// Add event handler to handle transferring units to headless clients
-	if (("XPT_headlessclient" call BIS_fnc_getParamValue) == 1) then {
-		_x addEventHandler ["CuratorObjectPlaced",{
-			[(group (_this select 1))] remoteExec ["XPT_fnc_headlessSetGroupOwner", 2];
-		}];
-	};
-	*/
-	
 	// Server only block for curator assignment failsafe
 	if (isServer) then {
 		_module addEventHandler ["Local", {_this spawn XPT_fnc_curatorFailsafe}];
