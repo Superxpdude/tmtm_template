@@ -13,7 +13,6 @@ class XPT
 		class curatorFailsafe {};				// Failsafe function for curator assignment on dedicated server
 		class curatorGrpPlaced {};				// Function for adding curator placed groups to other curators
 		class curatorInit {postInit = 1;};		// Function for adding event handlers to curators on mission start
-		class curatorMenu {};					// Function for adding the briefing-based curator menu
 		class curatorObjPlaced {};				// Function for adding curator placed objects to other curators
 		class curatorRemoveNVG {};				// Function for removing NVGs from curator-spawned units
 		class curatorLoadout {};
