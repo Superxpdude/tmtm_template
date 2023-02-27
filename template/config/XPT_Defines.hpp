@@ -48,12 +48,6 @@ XPT_safeStart = XPT_DEFINE_SAFESTART;
 #endif
 XPT_customLoadouts = XPT_DEFINE_CUSTOMLOADOUTS;
 
-// Default mission stage. Defaults to "stage1"
-#ifndef XPT_DEFINE_STAGEDEFAULT
-	#define XPT_DEFINE_STAGEDEFAULT "stage1"
-#endif
-XPT_stageDefault = XPT_DEFINE_STAGEDEFAULT;
-
 // Custom loadouts for zeus-spawned units. Defaults to disabled.
 #ifndef XPT_DEFINE_CURATOR_CUSTOMLOADOUTS
 	#define XPT_DEFINE_CURATOR_CUSTOMLOADOUTS 0
