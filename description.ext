@@ -221,7 +221,6 @@ class CfgTaskDescriptions
 
 class CfgXPT
 {
-	#include "config\XPTBriefings.hpp"
 	#include "config\XPTItemCargos.hpp"
 	#include "config\XPTLoadoutGroups.hpp"
 	#include "config\XPTLoadouts.hpp"
