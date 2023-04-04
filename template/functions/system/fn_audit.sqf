@@ -82,14 +82,13 @@ private _aceBandageClasses = [
 // ---------------------------------------------------
 
 // Get mission information
-private _missionType = [(getMissionConfig "Header" >> "gameType") call BIS_fnc_getCfgData] param [0, "", [""]];
-private _isPVP = if (toLower (_missionType) == "tvt") then {True} else {False};
 private _respawnTimer = getMissionConfigValue ["respawnDelay", 1e10];
 
 // Basic validation on the briefingName
-private _briefingNameType = ((getMissionConfigValue ["briefingName", ""]) splitString " ") select 0;
+private _briefingNameType = toLower (((getMissionConfigValue ["briefingName", "MISSING"]) splitString " ") select 0);
 switch (true) do {
-	case (isNil "_briefingNameType"): {
+	case (isNil "_briefingNameType");
+	case (_briefingNameType == "missing"): {
 		_failMessages append ["ERROR: Could not determine mission type in briefingName"];
 	};
 	case !((toLower _briefingNameType) in ["coop", "tvt", "cotvt", "zeus", "zgm", "rpg"]): {
@@ -108,27 +107,83 @@ private _viewRestrictionLand = [(getMissionConfig "params" >> "acex_viewrestrict
 private _viewRestrictionAir = [(getMissionConfig "params" >> "acex_viewrestriction_modeSelectiveAir" >> "default") call BIS_fnc_getCfgData] param [0, 0, [0]];
 private _viewRestrictionSea = [(getMissionConfig "params" >> "acex_viewrestriction_modeSelectiveSea" >> "default") call BIS_fnc_getCfgData] param [0, 0, [0]];
 
-if (_isPVP) then {
-	// PVP mission
-	if (_viewRestriction != 1) then {
-		_warningMessages append ["WARNING: PvP missions are recommended to use first-person view restrictions"];
-	};
-} else {
-	// Non-PVP mission
-	switch (_viewRestriction) do {
-		case 1: {
-			_failMessages append ["ERROR: COOP main ops are not allowed to force first-person view for all."];
+// Player fatal injuries / fatal damage source
+private _fatalInjuries = [(getMissionConfig "params" >> "ace_medical_statemachine_fatalInjuriesPlayer" >> "default") call BIS_fnc_getCfgData] param [0, 1, [0]];
+private _fatalDamageSource = [(getMissionConfig "params" >> "ace_medical_fatalDamageSource" >> "default") call BIS_fnc_getCfgData] param [0, 0, [0]];
+
+
+// PVP-type specific checks
+switch (_briefingNameType) do {
+	case "rptvt";
+	case "tvt": {
+		// TvT mission
+		if (_viewRestriction != 1) then {
+			_warningMessages append ["WARNING: PvP missions are recommended to use first-person view restrictions"];
 		};
-		case 3: {
-			// Selective
-			if (_viewRestrictionLand != 0) then {
-				_failMessages append ["ERROR: COOP main ops are not permitted to force first-person view in vehicles."];
+	};
+	case "cotvt": {
+		// CoTvT missions don't have view restriction requirements like COOP does
+		// Fatal injuries checking
+		switch (_fatalInjuries) do {
+			case 0: {
+				// Always
+				if (_fatalDamageSource != 0) then {
+					_failMessages append ["ERROR: ""Fatal Damage Source"" must be set to ""Only large hits"" when fatal injuries are set to ""Always""."];
+				};
+				if (_respawnTimer > 180) then {
+					_warningMessages append ["WARNING: CoTvT Respawn timer exceeds 3 minutes with ""Fatal Injuries"" set to ""Always"". Ensure main player force respawns within 3 minutes."];
+				};
+				// Append a warning message to validate quick reinsertion
+				_warningMessages append ["WARNING: Mission has ""Fatal Injuries"" set to ""Always"". Ensure that the mission has quick reinsertion for respawns."];
 			};
-			if (_viewRestrictionAir != 0) then {
-				_failMessages append ["ERROR: COOP main ops are not permitted to force first-person view in aircraft."];
+			case 1: {
+				// Only in cardiac arrest
+				// A respawn timer over 30 minutes is effectively disabled
+				if (_respawnTimer > 1800) then {
+					_failMessages append ["ERROR: Missions with ""Fatal Injuries"" set to ""In Cardiac Arrest"" must have respawns enabled."]
+				};
 			};
-			if (_viewRestrictionSea != 0) then {
-				_failMessages append ["ERROR: COOP main ops are not permitted to force first-person view in boats."];
+		};
+	};
+	default {
+		// Non-PVP mission
+		switch (_viewRestriction) do {
+			case 1: {
+				_failMessages append ["ERROR: COOP main ops are not allowed to force first-person view for all."];
+			};
+			case 3: {
+				// Selective
+				if (_viewRestrictionLand != 0) then {
+					_failMessages append ["ERROR: COOP main ops are not permitted to force first-person view in vehicles."];
+				};
+				if (_viewRestrictionAir != 0) then {
+					_failMessages append ["ERROR: COOP main ops are not permitted to force first-person view in aircraft."];
+				};
+				if (_viewRestrictionSea != 0) then {
+					_failMessages append ["ERROR: COOP main ops are not permitted to force first-person view in boats."];
+				};
+			};
+		};
+		
+		// Fatal injuries checking
+		switch (_fatalInjuries) do {
+			case 0: {
+				// Always
+				if (_fatalDamageSource != 0) then {
+					_failMessages append ["ERROR: ""Fatal Damage Source"" must be set to ""Only large hits"" when fatal injuries are set to ""Always""."];
+				};
+				if (_respawnTimer > 180) then {
+					_failMessages append ["ERROR: Respawn timer exceeds 3 minutes with ""Fatal Injuries"" set to ""Always""."];
+				};
+				// Append a warning message to validate quick reinsertion
+				_warningMessages append ["WARNING: Mission has ""Fatal Injuries"" set to ""Always"". Ensure that the mission has quick reinsertion for respawns."];
+			};
+			case 1: {
+				// Only in cardiac arrest
+				// A respawn timer over 30 minutes is effectively disabled
+				if (_respawnTimer > 1800) then {
+					_failMessages append ["ERROR: Missions with ""Fatal Injuries"" set to ""In Cardiac Arrest"" must have respawns enabled."]
+				};
 			};
 		};
 	};
@@ -141,33 +196,9 @@ if (_medicalPreset != 0) then {
 	_failMessages append ["ERROR: Mission does not use the ""Standard"" medical preset."];
 };
 
-// Player fatal injuries / fatal damage source
-private _fatalInjuries = [(getMissionConfig "params" >> "ace_medical_statemachine_fatalInjuriesPlayer" >> "default") call BIS_fnc_getCfgData] param [0, 1, [0]];
-private _fatalDamageSource = [(getMissionConfig "params" >> "ace_medical_fatalDamageSource" >> "default") call BIS_fnc_getCfgData] param [0, 0, [0]];
-switch (_fatalInjuries) do {
-	case 0: {
-		// Always
-		if (_fatalDamageSource != 0) then {
-			_failMessages append ["ERROR: ""Fatal Damage Source"" must be set to ""Only large hits"" when fatal injuries are set to ""Always""."];
-		};
-		if (_respawnTimer > 180) then {
-			_failMessages append ["ERROR: Respawn timer exceeds 3 minutes with ""Fatal Injuries"" set to ""Always""."];
-		};
-		// Append a warning message to validate quick reinsertion
-		_warningMessages append ["WARNING: Mission has ""Fatal Injuries"" set to ""Always"". Ensure that the mission has quick reinsertion for respawns."];
-	};
-	case 1: {
-		// Only in cardiac arrest
-		// A respawn timer over 30 minutes is effectively disabled
-		if (_respawnTimer > 1800) then {
-			_failMessages append ["ERROR: Missions with ""Fatal Injuries"" set to ""In Cardiac Arrest"" must have respawns enabled."]
-		};
-	};
-};
-
 // Check respawn timer
-if (_respawnTimer > 1800) then {
-	_warningMessages append ["WARNING: Mission has respawns disabled. Please verify that the mission will take less than one hour to complete."];
+if (_respawnTimer > 600) then {
+	_warningMessages append [format ["WARNING: Mission has respawns disabled (RespawnTime: %1). Please verify that the mission will take less than one hour to complete.", _respawnTimer]];
 };
 
 // Check respawn button
