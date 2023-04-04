@@ -21,7 +21,7 @@ class xpt_medical_level
 		// Standard medical
 		{
 			{"ace_medical_limping",1},
-			{"ace_medical_fractures",0},
+			{"ace_medical_fractures",1},
 			{"ace_medical_treatment_advancedDiagnose",1},
 			{"ace_medical_treatment_advancedBandages",0},
 			{"ace_medical_treatment_clearTrauma",2},
