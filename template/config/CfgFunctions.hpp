@@ -42,6 +42,7 @@ class XPT
 	class loadout
 	{
 		file = "template\functions\loadout";
+		class getLoadoutArray {};				// Resolves loadout array for loadInventory
 		class exportInventory {};				// Exports a unit's inventory to the XPTLoadouts config format
 		class loadCurrentInventory {};			// Uses loadInventory to apply a loadout to a unit
 		class loadInventory {};					// Function for loading a unit's inventory
