@@ -33,7 +33,7 @@ class Header
 //#define XPT_DEBUGMODE 0							// 0 = Disabled, 1 = Enabled.
 
 //#define XPT_DEFINE_CUSTOMLOADOUTS 1				                     // 0 = Disabled, 1 = Enabled. Enables the loadout system
-//#define XPT_CUSTOMLOADOUTS_GETLOADOUTARRAY_FN TAG_fnc_getLoadoutArray  // Custom loadout resolution function to use in the loadout system. REQUIRES MISSION SUPPORT.
+//#define XPT_CUSTOMLOADOUTS_LOADOUTOVERRIDE_FN TAG_fnc_getLoadoutArray  // Custom loadout resolution function to use in the loadout system. REQUIRES MISSION SUPPORT.
 
 // Curator settings
 //#define XPT_DEFINE_CURATOR_CUSTOMLOADOUTS 1		// 0 = Disabled, 1 = Enabled.
