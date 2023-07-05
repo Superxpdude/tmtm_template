@@ -22,31 +22,37 @@ params [
 ];
 
 // Exit the script if _unit is not an object or _class is not a config class
-if ((isNil "_unit") or (isNil "_baseClass")) exitWith {false};
-
-// setUnitLoadout is apparently a global command. This section is no longer needed
-/*
-if (!local _unit) exitWith {
-	// If this has not been run on the server, we need to send it to the server to find the right owner
-	if (!isServer) then {
-		// Send the script on the server
-		[_unit, _class] remoteExec ["XPT_fnc_loadInventory", 2];
-	} else {
-		// If this has been run on the server, find out who the owner is (since we've already confirmed it isn't local)
-		[_unit, _class] remoteExec ["XPT_fnc_loadInventory", owner _unit];
-	};
+if (isNil "_unit") exitWith {
+	["error", "Function called with no unit defined", 0] call XPT_fnc_log;
+	false;
 };
-*/
+
+if (isNil "_baseClass") exitWith {
+	["error", "Function called with no base class defined", 0] call XPT_fnc_log;
+	false;
+};
 
 // Resolve loadout array, by default XPT_fnc_resolveInventory will be used
-// However, this can be overriden by the user by providing custom resolve function
-private _loadout = [_unit, _baseClass] call XPT_customLoadouts_getLoadoutArrayFunction;
+private _getLoadoutFunctionName = getMissionConfigValue ["XPT_customLoadouts_loadoutOverrideFunction", "XPT_getLoadoutArray"];
+private _fnc_getLoadout = missionNamespace getVariable [_getLoadoutFunctionName, scriptNull];
 
-// Ensure that we've received loadout array
-if (isNil "_loadout" || typeName _loadout != "ARRAY") exitWith {false};
+// Provided function does not exist
+if (isNull _fnc_getLoadout) then { 
+	["error", format["Provided getLoadoutArray function [%1] does not exist!", _getLoadoutFunctionName], 0] call XPT_fnc_log;
+	false;
+};
 
-// Should contain at least 10 entries for each loadout section
-if (count(_loadout) < 10) exitWith {false};
+// Ensure that we've received what looks like loadout array
+private _loadout = [_unit, _baseClass] call _fnc_getLoadout;
+
+if ((isNil "_loadout") OR (typeName _loadout != "ARRAY")) exitWith {
+	["error", format["Received unexpected loadout type from [%1] call!", _getLoadoutFunctionName], 0] call XPT_fnc_log;
+	false;
+};
+if (count(_loadout) < 10) exitWith {
+	["error", format["Received malformed loadout array from [%1] call!", _getLoadoutFunctionName], 0] call XPT_fnc_log;
+	false;
+};
 
 // Apply the loadout
 _unit setUnitLoadout _loadout;
