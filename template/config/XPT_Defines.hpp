@@ -48,6 +48,12 @@ XPT_safeStart = XPT_DEFINE_SAFESTART;
 #endif
 XPT_customLoadouts = XPT_DEFINE_CUSTOMLOADOUTS;
 
+// Custom loadouts override function. Defaults to XPT_fnc_getLoadoutArray
+#ifndef XPT_CUSTOMLOADOUTS_LOADOUTOVERRIDE_FN
+	#define XPT_CUSTOMLOADOUTS_LOADOUTOVERRIDE_FN "XPT_fnc_getLoadoutArray"
+#endif
+XPT_customLoadouts_loadoutOverrideFunction = XPT_CUSTOMLOADOUTS_LOADOUTOVERRIDE_FN;
+
 // Custom loadouts for zeus-spawned units. Defaults to disabled.
 #ifndef XPT_DEFINE_CURATOR_CUSTOMLOADOUTS
 	#define XPT_DEFINE_CURATOR_CUSTOMLOADOUTS 0
