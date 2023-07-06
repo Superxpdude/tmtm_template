@@ -33,11 +33,11 @@ if (isNil "_baseClass") exitWith {
 };
 
 // Resolve loadout array, by default XPT_fnc_resolveInventory will be used
-private _getLoadoutFunctionName = getMissionConfigValue ["XPT_customLoadouts_loadoutOverrideFunction", "XPT_getLoadoutArray"];
-private _fnc_getLoadout = missionNamespace getVariable [_getLoadoutFunctionName, scriptNull];
+private _getLoadoutFunctionName = getMissionConfigValue ["XPT_customLoadouts_loadoutOverrideFunction", "XPT_fnc_getLoadoutArray"];
+private _fnc_getLoadout = missionNamespace getVariable [_getLoadoutFunctionName, nil];
 
 // Provided function does not exist
-if (isNull _fnc_getLoadout) then { 
+if (isNil "_fnc_getLoadout") then { 
 	["error", format["Provided getLoadoutArray function [%1] does not exist!", _getLoadoutFunctionName], 0] call XPT_fnc_log;
 	false;
 };
@@ -45,12 +45,16 @@ if (isNull _fnc_getLoadout) then {
 // Ensure that we've received what looks like loadout array
 private _loadout = [_unit, _baseClass] call _fnc_getLoadout;
 
-if ((isNil "_loadout") OR (typeName _loadout != "ARRAY")) exitWith {
-	["error", format["Received unexpected loadout type from [%1] call!", _getLoadoutFunctionName], 0] call XPT_fnc_log;
+if (isNil "_loadout") exitWith {
+	["error", format["Loadout [%1]: Did not receive loadout definition from [%2] call!", configName _baseClass, _getLoadoutFunctionName], 0] call XPT_fnc_log;
 	false;
 };
+if (typeName _loadout != "ARRAY") exitWith {
+	["error", format["Loadout [%1]: Received unexpected loadout type from [%2] call!", configName _baseClass, _getLoadoutFunctionName], 0] call XPT_fnc_log;
+	false;	
+};
 if (count(_loadout) < 10) exitWith {
-	["error", format["Received malformed loadout array from [%1] call!", _getLoadoutFunctionName], 0] call XPT_fnc_log;
+	["error", format["Loadout [%1]: Received malformed loadout array from [%2] call!", configName _baseClass, _getLoadoutFunctionName], 0] call XPT_fnc_log;
 	false;
 };
 
